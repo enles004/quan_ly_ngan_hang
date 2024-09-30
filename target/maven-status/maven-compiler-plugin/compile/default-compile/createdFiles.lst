@@ -1,2 +1,6 @@
 com\mycompany\config.class
+com\mycompany\controllers\admin\trangchu$1.class
+com\mycompany\controllers\admin\trangchu.class
+com\mycompany\controllers\admin\quanlynguoidung$1.class
+com\mycompany\controllers\admin\quanlynguoidung.class
 com\mycompany\db.class
