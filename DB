@@ -24,8 +24,8 @@ CREATE TABLE thong_tin_ca_nhan (
 );
 
 CREATE TABLE loai_the (
-	id VARCHAR(255) NOT NULL UNIQUE,
-	PRIMARY KEY(id)
+	id VARCHAR(255) PRIMARY KEY(id),
+	ten_loai_the NVARCHAR(255) not null
 );
 
 CREATE TABLE the_nguoi_dung (
@@ -119,4 +119,19 @@ CREATE TABLE lich_su_giao_dich (
 	ON UPDATE NO ACTION ON DELETE CASCADE,
 	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
 	ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE khoan_vay (
+    id INT PRIMARY KEY IDENTITY,  
+    nguoi_dung_id INT,                              
+    loai_vay NVARCHAR(255),                      
+    so_tien_vay DECIMAL(15, 2),
+    so_tien_da_tra DECIMAL(15, 2),
+    so_tien_con_lai DECIMAL(15, 2),                                    
+    ngay_bat_dau DATE,                          
+    ngay_ket_thuc DATE,                         
+    tinh_trang NVARCHAR(255),                    
+    ngay_tao DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
+    ON UPDATE NO ACTION ON DELETE CASCADE    
 );
