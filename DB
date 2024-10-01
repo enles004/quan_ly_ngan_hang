@@ -76,7 +76,7 @@ CREATE TABLE tiet_kiem (
 
 CREATE TABLE thong_bao (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
-	nguoi_dung_id INTEGER NOT NULL,
+	nguoi_dung_id INTEGER NULL,
 	noi_dung NTEXT NOT NULL,
 	loai_thong_bao NVARCHAR(255) NOT NULL,
 	ngay_tao DATETIME NOT NULL,
