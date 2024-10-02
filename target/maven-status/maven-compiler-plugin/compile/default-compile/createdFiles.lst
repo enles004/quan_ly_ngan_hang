@@ -7,5 +7,3 @@ com\mycompany\db.class
 com\mycompany\config.class
 com\mycompany\models\empty.class
 com\mycompany\controllers\admin\trangchu.class
-com\mycompany\controllers\admin\admin_main_frame$1.class
-com\mycompany\controllers\admin\nguoi_dung$1.class
