@@ -4,7 +4,6 @@
  */
 package com.mycompany.controllers.user;
 
-import com.mycompany.controllers.admin.quanlynguoidung;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -484,12 +483,6 @@ public class Quanlyvay_von extends javax.swing.JFrame {
 //        }
 //
 //    }
-    private void nguoi_dungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dungMouseClicked
-        quanlynguoidung qlnd = new quanlynguoidung();
-        qlnd.setVisible(true);
-        this.dispose();
-        JOptionPane.showMessageDialog(qlnd, "ok");        // TODO add your handling code here:
-    }//GEN-LAST:event_nguoi_dungMouseClicked
     Connection con;
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         //lấy dữ liệu từ các componens đưa vào biến
