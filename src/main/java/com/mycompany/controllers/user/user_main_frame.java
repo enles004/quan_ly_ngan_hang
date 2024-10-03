@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.controllers.admin;
+package com.mycompany.controllers.user;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import java.awt.Image;
@@ -19,14 +19,14 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author nobpe
+ * @author Admin
  */
-public class admin_main_frame extends javax.swing.JFrame {
+public class user_main_frame extends javax.swing.JFrame {
 
     /**
-     * Creates new form main_frame
+     * Creates new form user_main_frame
      */
-    public admin_main_frame() throws IOException {
+    public user_main_frame() throws IOException {
         initComponents();
         load_anh();
     }
@@ -82,8 +82,6 @@ public class admin_main_frame extends javax.swing.JFrame {
         Desktop1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(850, 600));
-        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setMaximumSize(new java.awt.Dimension(818, 497));
@@ -198,7 +196,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         Desktop1.setLayout(Desktop1Layout);
         Desktop1Layout.setHorizontalGroup(
             Desktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 655, Short.MAX_VALUE)
         );
         Desktop1Layout.setVerticalGroup(
             Desktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,31 +211,32 @@ public class admin_main_frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Desktop1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addComponent(Desktop1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Desktop1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Desktop1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+@SuppressWarnings("unchecked")
     private void nguoi_dungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dungMouseClicked
-        Desktop1.removeAll();
+       Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
         Color customColor = new Color(18, 48, 174);
         sourceLabel.setForeground(customColor);
-        nguoi_dung nguoi_dung = new nguoi_dung();
-        Desktop1.add(nguoi_dung).setVisible(true);
+        quanly_vayy quanly_vayy = new quanly_vayy();
+        Desktop1.add(quanly_vayy).setVisible(true);
+    
     }//GEN-LAST:event_nguoi_dungMouseClicked
-
+    
     /**
      * @param args the command line arguments
      */
@@ -255,15 +254,14 @@ public class admin_main_frame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(admin_main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(user_main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(admin_main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(user_main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(admin_main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(user_main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(admin_main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(user_main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
         try {
             UIManager.setLookAndFeel(new FlatLightLaf()); // Hoặc FlatDarkLaf
@@ -273,10 +271,10 @@ public class admin_main_frame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new admin_main_frame().setVisible(true);
+               try {
+                    new user_main_frame().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(admin_main_frame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(user_main_frame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
