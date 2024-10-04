@@ -382,7 +382,8 @@ public class quanliguitietkiem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nguoi_dung1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung1MouseClicked
-       // TODO add your handling code here:
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_nguoi_dung1MouseClicked
 
     private void nguoi_dung2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung2MouseClicked
