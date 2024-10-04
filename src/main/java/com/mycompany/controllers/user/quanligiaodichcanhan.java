@@ -4,7 +4,7 @@
  */
 package com.mycompany.controllers.user;
 
-import com.mycompany.controllers.admin.quanlynguoidung;
+//import com.mycompany.controllers.admin.quanlynguoidung;
 import javax.swing.JOptionPane;
 
 /**
@@ -431,10 +431,10 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nguoi_dung1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung1MouseClicked
-        quanlynguoidung qlnd = new quanlynguoidung();
-        qlnd.setVisible(true);
-        this.dispose();
-        JOptionPane.showMessageDialog(qlnd, "ok");
+//        quanlynguoidung qlnd = new quanlynguoidung();
+//        qlnd.setVisible(true);
+//        this.dispose();
+//        JOptionPane.showMessageDialog(qlnd, "ok");
     }//GEN-LAST:event_nguoi_dung1MouseClicked
 
     private void nguoi_dung2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung2MouseClicked
