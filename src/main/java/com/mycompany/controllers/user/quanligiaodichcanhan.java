@@ -4,6 +4,11 @@
  */
 package com.mycompany.controllers.user;
 
+import com.mycompany.controllers.user.GiaoDich;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -224,10 +229,25 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
         jLabel14.setText("Số tiền:");
 
         btnluu.setText("Lưu");
+        btnluu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnluuActionPerformed(evt);
+            }
+        });
 
         btnsua.setText("Sửa");
+        btnsua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsuaActionPerformed(evt);
+            }
+        });
 
         btnxoa.setText("Xóa");
+        btnxoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnxoaActionPerformed(evt);
+            }
+        });
 
         btntimkiem.setText("Tìm kiếm");
 
@@ -316,6 +336,11 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
         jLabel4.setText("Ngân hàng thụ hưởng:");
 
         cbnganhang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vietcombank (Ngân hàng TMCP Ngoại Thương Việt Nam)", "BIDV (Ngân hàng Đầu tư và phát triển Việt Nam)", "Techcombank (Ngân hàng Kỹ thương Việt Nam)", "TP Bank (Ngân hàng tiên phong)", "MB Bank (Ngân hàng Quân đội Việt Nam)" }));
+        cbnganhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbnganhangActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Loại phương thức chuyển tiền:");
 
@@ -431,7 +456,6 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
 
     private void nguoi_dung1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung1MouseClicked
 
-        //
     }//GEN-LAST:event_nguoi_dung1MouseClicked
 
     private void nguoi_dung2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung2MouseClicked
@@ -461,6 +485,34 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
     private void btnchuyennhanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchuyennhanhActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnchuyennhanhActionPerformed
+
+    private void btnluuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnluuActionPerformed
+        // TODO add your handling code here:
+        // Lấy thông tin từ các trường
+    String tenNganHang = (String) cbnganhang.getSelectedItem();
+    String soTaiKhoan = txtsotk.getText();
+    String tenNguoiNhan = txtname.getText();
+    String loaiPhuongThuc = btnchuyennhanh.isSelected() ? "Chuyển nhanh" : "Chuyển thường";
+    String tuTaiKhoan = (String) jComboBox2.getSelectedItem();
+    String soTien = txttien.getText();
+    String loiNhan = txtloinhan.getText();
+    String soDu = txtsodu.getText();
+    // Tạo đối tượng GiaoDich
+    GiaoDich giaoDich = new GiaoDich(tenNganHang, soTaiKhoan, tenNguoiNhan, loaiPhuongThuc, tuTaiKhoan, soTien, loiNhan, soDu);
+    System.out.println("Thông tin giao dịch đã được lưu: " + giaoDich);
+    }//GEN-LAST:event_btnluuActionPerformed
+
+    private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
+
+    }//GEN-LAST:event_btnsuaActionPerformed
+
+    private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnxoaActionPerformed
+
+    private void cbnganhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbnganhangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbnganhangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,7 +548,38 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
             }
         });
     }
+private void luuGiaoDichVaoDatabase(GiaoDich giaoDich) {
+    try {
+        // Tạo kết nối với cơ sở dữ liệu
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "username", "password");
 
+        // Tạo câu lệnh SQL để thêm giao dịch
+        String sql = "INSERT INTO GiaoDich (tenNganHang, soTaiKhoan, tenNguoiNhan, loaiPhuongThuc, tuTaiKhoan, soTien, loiNhan, soDu) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        // Thiết lập các tham số
+        ps.setString(1, giaoDich.getTenNganHang());
+        ps.setString(2, giaoDich.getSoTaiKhoan());
+        ps.setString(3, giaoDich.getTenNguoiNhan());
+        ps.setString(4, giaoDich.getLoaiPhuongThuc());
+        ps.setString(5, giaoDich.getTuTaiKhoan());
+        ps.setString(6, giaoDich.getSoTien());
+        ps.setString(7, giaoDich.getLoiNhan());
+        ps.setString(8, giaoDich.getSoDu());
+
+        // Thực thi câu lệnh
+        ps.executeUpdate();
+
+        // Đóng kết nối
+        ps.close();
+        conn.close();
+
+        System.out.println("Giao dịch đã được lưu");
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnchuyennhanh;
     private javax.swing.JRadioButton btnchuyenthuong;
