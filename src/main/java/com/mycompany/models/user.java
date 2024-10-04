@@ -22,6 +22,14 @@ public class user {
     
     public user(){
     }
-    
+
+    public String getStk() {
+        return stk;
+    }
+
+    public void setStk(String stk) {
+        this.stk = stk;
+    }
+   
     
 }
