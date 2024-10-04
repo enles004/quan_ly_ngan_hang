@@ -4,6 +4,10 @@
  */
 package com.mycompany.controllers.user;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3c2de14a14f89fd0933321eb7d0fbae5ac7fca34
 import javax.swing.JOptionPane;
 
 /**
@@ -382,8 +386,15 @@ public class quanliguitietkiem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nguoi_dung1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung1MouseClicked
+<<<<<<< HEAD
+//        quanlynguoidung qlnd = new quanlynguoidung();
+//        qlnd.setVisible(true);
+//        this.dispose();
+//        JOptionPane.showMessageDialog(qlnd, "ok");        // TODO add your handling code here:
+=======
 
         // TODO add your handling code here:
+>>>>>>> 3c2de14a14f89fd0933321eb7d0fbae5ac7fca34
     }//GEN-LAST:event_nguoi_dung1MouseClicked
 
     private void nguoi_dung2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung2MouseClicked

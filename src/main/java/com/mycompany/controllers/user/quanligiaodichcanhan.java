@@ -4,6 +4,9 @@
  */
 package com.mycompany.controllers.user;
 
+<<<<<<< HEAD
+//import com.mycompany.controllers.admin.quanlynguoidung;
+=======
 import com.mycompany.controllers.user.GiaoDich;
 import com.mycompany.db;
 import java.sql.Connection;
@@ -13,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+>>>>>>> 3c2de14a14f89fd0933321eb7d0fbae5ac7fca34
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -464,7 +468,14 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nguoi_dung1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung1MouseClicked
+<<<<<<< HEAD
+//        quanlynguoidung qlnd = new quanlynguoidung();
+//        qlnd.setVisible(true);
+//        this.dispose();
+//        JOptionPane.showMessageDialog(qlnd, "ok");
+=======
 
+>>>>>>> 3c2de14a14f89fd0933321eb7d0fbae5ac7fca34
     }//GEN-LAST:event_nguoi_dung1MouseClicked
 
     private void nguoi_dung2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung2MouseClicked
