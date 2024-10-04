@@ -280,7 +280,7 @@ private boolean isSTKExists(String stk) throws ClassNotFoundException {
 }
 
     
-    private void btndangkyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndangkyActionPerformed
+    private void btndangkyActionPerformed(java.awt.event.ActionEvent evt) throws ClassNotFoundException {//GEN-FIRST:event_btndangkyActionPerformed
         // TODO add your handling code here:
     String maThongTin = txtMathongtin.getText().trim();
     String id = txtID.getText().trim();
