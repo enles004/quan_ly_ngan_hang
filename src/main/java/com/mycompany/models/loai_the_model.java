@@ -8,7 +8,7 @@ package com.mycompany.models;
  *
  * @author nobpe
  */
-public class loai_the {
+public class loai_the_model {
     int id;
     String ten_the;
     String uu_dai;

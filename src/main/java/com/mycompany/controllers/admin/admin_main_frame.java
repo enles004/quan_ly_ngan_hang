@@ -118,6 +118,11 @@ public class admin_main_frame extends javax.swing.JFrame {
         thong_bao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         thong_bao.setText("  Thông báo");
         thong_bao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        thong_bao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                thong_baoMouseClicked(evt);
+            }
+        });
 
         loai_the.setBackground(new java.awt.Color(153, 0, 153));
         loai_the.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -297,6 +302,23 @@ public class admin_main_frame extends javax.swing.JFrame {
         Desktop1.add(lt).setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_loai_theMouseClicked
+
+    private void thong_baoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thong_baoMouseClicked
+        Desktop1.removeAll();
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        Color customColor = new Color(18, 48, 174);
+        sourceLabel.setForeground(customColor);
+        Color black = new Color(0, 0, 0);
+        sourceLabel.setForeground(customColor);
+        nguoi_dung.setForeground(black);
+        khoan_vay.setForeground(black);
+        loai_the.setForeground(black);
+        ho_tro.setForeground(black);
+        giao_dich.setForeground(black);
+        thong_bao tb = new thong_bao();
+        Desktop1.add(tb).setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_thong_baoMouseClicked
 
     /**
      * @param args the command line arguments
