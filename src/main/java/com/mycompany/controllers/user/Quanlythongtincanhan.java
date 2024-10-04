@@ -55,7 +55,7 @@ public class Quanlythongtincanhan extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbthongtin = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -211,7 +211,7 @@ public class Quanlythongtincanhan extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbthongtin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -222,7 +222,7 @@ public class Quanlythongtincanhan extends javax.swing.JFrame {
                 "Họ ", "Tên", "Ngày Sinh", "Giới tính", "Địa chỉ", "SĐT", "CCCD", "STK"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbthongtin);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -480,20 +480,20 @@ private void load_thongtin() throws ClassNotFoundException{
             String sql="Select * from thong_tin_ca_nhan";
             Statement st=con.createStatement();
             ResultSet rs =st.executeQuery(sql);
-            String [] tieude={"Matacgia", "Tentacgia","Ngaysinh","Gioitinh","Dienthoai","Email","Diachi"};
+            String [] tieude={"ho", "ten","ngay_sinh","gioi_tinh","dia_chi","so_dien_thoai","so_cong_dan", "so_tai_khoan"};
             DefaultTableModel tb= new DefaultTableModel(tieude,0);
             while(rs.next()){
                 Vector v=new Vector();
-                v.add(rs.getString("Matacgia"));
-                v.add(rs.getString("Tentacgia"));
-                v.add(rs.getString("Ngaysinh"));
-                v.add(rs.getString("Gioitinh"));
+                v.add(rs.getString("ho"));
+                v.add(rs.getString("ten"));
+                v.add(rs.getString("ngay_sinh"));
+                v.add(rs.getString("gioi_tinh"));
                 v.add(rs.getString("Dienthoai"));
                 v.add(rs.getString("Email"));
                 v.add(rs.getString("Diachi"));
                 tb.addRow(v);
             }
-            tbTacgia.setModel(tb);
+            tbthongtin.setModel(tb);
             con.close();
            
            
@@ -633,8 +633,8 @@ private void load_thongtin() throws ClassNotFoundException{
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel nguoi_dung;
+    private javax.swing.JTable tbthongtin;
     private javax.swing.JLabel the_canhan;
     private javax.swing.JLabel tiet_kiem;
     private javax.swing.JLabel tra_no;
