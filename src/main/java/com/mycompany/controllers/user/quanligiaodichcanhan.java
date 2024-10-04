@@ -5,11 +5,16 @@
 package com.mycompany.controllers.user;
 
 import com.mycompany.controllers.user.GiaoDich;
+import com.mycompany.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -69,7 +74,6 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
         txtname = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -250,6 +254,11 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
         });
 
         btntimkiem.setText("Tìm kiếm");
+        btntimkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntimkiemActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Lời nhắn (nếu có):");
 
@@ -485,34 +494,218 @@ public class quanligiaodichcanhan extends javax.swing.JFrame {
     private void btnchuyennhanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchuyennhanhActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnchuyennhanhActionPerformed
+private void loadGiaoDich() {
+    try {
+        Connection con = db.connect(); // Kết nối tới cơ sở dữ liệu
+        String sql = "SELECT * FROM GiaoDich"; // Câu lệnh SQL để chọn tất cả giao dịch
+        Statement st =con.createStatement();
+        ResultSet rs = st.executeQuery(sql); // Thực thi truy vấn
 
+        // Đặt tiêu đề cho bảng
+        String[] tieude = {"Số tài khoản", "Tên người nhận", "Loại giao dịch", "Số tiền", "Ngày giao dịch"};
+        DefaultTableModel tb = new DefaultTableModel(tieude, 0);
+
+        // Lặp qua các kết quả trả về
+        while (rs.next()) {
+            Vector v = new Vector();
+            v.add(rs.getString("tennganhang"));
+            v.add(rs.getString("SoTaiKhoan")); // Số tài khoản
+            v.add(rs.getString("TenNguoiNhan")); // Tên người nhận
+            v.add(rs.getString("Loaiphuongthuc")); // Loại giao dịch
+            v.add(rs.getString("SoTien")); // Số tiền
+            v.add(rs.getString("Loinhan")); // Ngày giao dịch
+            v.add(rs.getString("Sodu"));
+        }
+
+        con.close(); // Đóng kết nối
+    } catch (Exception e) {
+        e.printStackTrace(); // In ra lỗi nếu có
+    }
+
+
+}
     private void btnluuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnluuActionPerformed
         // TODO add your handling code here:
         // Lấy thông tin từ các trường
+   
+       
     String tenNganHang = (String) cbnganhang.getSelectedItem();
     String soTaiKhoan = txtsotk.getText();
     String tenNguoiNhan = txtname.getText();
-    String loaiPhuongThuc = btnchuyennhanh.isSelected() ? "Chuyển nhanh" : "Chuyển thường";
+    String loaiPhuongThuc = "=";
+    if(btnchuyennhanh.isSelected()){
+    loaiPhuongThuc = "Chuyển nhanh Napas 24/7";
+} else if(btnchuyenthuong.isSelected()){
+    loaiPhuongThuc = "Chuyển thường";
+}
     String tuTaiKhoan = (String) jComboBox2.getSelectedItem();
     String soTien = txttien.getText();
     String loiNhan = txtloinhan.getText();
     String soDu = txtsodu.getText();
-    // Tạo đối tượng GiaoDich
-    GiaoDich giaoDich = new GiaoDich(tenNganHang, soTaiKhoan, tenNguoiNhan, loaiPhuongThuc, tuTaiKhoan, soTien, loiNhan, soDu);
-    System.out.println("Thông tin giao dịch đã được lưu: " + giaoDich);
+// Kiểm tra dữ liệu đầu vào
+if(soTaiKhoan.isEmpty() || tenNguoiNhan.isEmpty() || soTien.isEmpty()){
+    JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!");
+} else {
+    // Kết nối database và thực hiện lưu
+    try {
+        Connection con = db.connect();
+        String sql = "INSERT INTO GiaoDich (SoTaiKhoan, TenNguoiNhan, SoTien, LoaiChuyenTien, TuTaiKhoan, LoiNhan) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(0, tenNganHang);
+        pst.setString(1, soTaiKhoan);
+        pst.setString(2, tenNguoiNhan);
+        pst.setString(3, soTien);
+        pst.setString(4, loaiPhuongThuc);
+        pst.setString(5, tuTaiKhoan);
+        pst.setString(6, loiNhan);
+        
+        int result = pst.executeUpdate();
+        if(result > 0) {
+            JOptionPane.showMessageDialog(this, "Lưu thông tin thành công!");
+        }
+        con.close();
+    } catch(Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi lưu dữ liệu.");
+    }
+}
+
+   
     }//GEN-LAST:event_btnluuActionPerformed
 
     private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
+// Lấy dữ liệu từ các trường trong form
+    String tenNganHang = (String) cbnganhang.getSelectedItem();
+    String soTaiKhoan = txtsotk.getText();
+    String tenNguoiNhan = txtname.getText();
+    String loaiPhuongThuc = "=";
+     if(btnchuyennhanh.isSelected()){
+    loaiPhuongThuc = "Chuyển nhanh Napas 24/7";
+} else if(btnchuyenthuong.isSelected()){
+    loaiPhuongThuc = "Chuyển thường";
+}
+String tuTaiKhoan = (String) jComboBox2.getSelectedItem();
+    String soTien = txttien.getText();
+    String loiNhan = txtloinhan.getText();
+    String soDu = txtsodu.getText();
+// Kiểm tra dữ liệu đầu vào
+if(soTaiKhoan.isEmpty() || tenNguoiNhan.isEmpty() || soTien.isEmpty()){
+    JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!");
+} else {
+    // Kết nối cơ sở dữ liệu và thực hiện cập nhật
+    try {
+        Connection con = db.connect();
+        String sql = "UPDATE GiaoDich SET TenNguoiNhan = ?, SoTien = ?, LoaiChuyenTien = ?, TuTaiKhoan = ?, LoiNhan = ? WHERE SoTaiKhoan = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(0, tenNganHang);
+        pst.setString(1, soTaiKhoan);
+        pst.setString(2, tenNguoiNhan);
+        pst.setString(3, soTien);
+        pst.setString(4, loaiPhuongThuc);
+        pst.setString(5, tuTaiKhoan);
+        pst.setString(6, loiNhan); // Điều kiện là số tài khoản
+        
+        int result = pst.executeUpdate();
+        if(result > 0) {
+            JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy giao dịch với số tài khoản này.");
+        }
+        con.close();
+    } catch(Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi cập nhật dữ liệu.");
+    }
+}
 
     }//GEN-LAST:event_btnsuaActionPerformed
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
         // TODO add your handling code here:
+        // Lấy số tài khoản từ form
+ String soTaiKhoan = txtsotk.getText();
+
+// Kiểm tra dữ liệu đầu vào
+if(soTaiKhoan.isEmpty()){
+    JOptionPane.showMessageDialog(this, "Vui lòng nhập số tài khoản để xóa giao dịch!");
+} else {
+    // Hỏi xác nhận trước khi xóa
+    int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa giao dịch này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
+    
+    if(confirm == JOptionPane.YES_OPTION) {
+        // Kết nối cơ sở dữ liệu và thực hiện xóa
+        try {
+            Connection con = db.connect();
+            String sql = "DELETE FROM GiaoDich WHERE SoTaiKhoan = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, soTaiKhoan); // Điều kiện là số tài khoản
+            
+            int result = pst.executeUpdate();
+            if(result > 0) {
+                JOptionPane.showMessageDialog(this, "Xóa giao dịch thành công!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy giao dịch với số tài khoản này.");
+            }
+            con.close();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi xóa giao dịch.");
+        }
+    }
+}
+
     }//GEN-LAST:event_btnxoaActionPerformed
 
     private void cbnganhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbnganhangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbnganhangActionPerformed
+
+    private void btntimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntimkiemActionPerformed
+        // TODO add your handling code here:
+        // Lấy số tài khoản từ form
+String soTaiKhoan = txtsotk.getText();
+
+// Kiểm tra xem người dùng đã nhập số tài khoản chưa
+if(soTaiKhoan.isEmpty()){
+    JOptionPane.showMessageDialog(this, "Vui lòng nhập số tài khoản để xóa giao dịch!");
+} else {
+    // Kết nối cơ sở dữ liệu và tìm kiếm thông tin
+    try {
+        Connection con = db.connect();
+        String sql = "SELECT * FROM GiaoDich WHERE SoTaiKhoan = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, soTaiKhoan); // Điều kiện là số tài khoản
+        
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()) {
+            // Hiển thị thông tin giao dịch nếu tìm thấy
+            String tenNguoiNhan = rs.getString("TenNguoiNhan");
+            String soTien = rs.getString("SoTien");
+            String loaiPhuongThuc = rs.getString("LoaiPhuongThuc");
+            String tuTaiKhoan = rs.getString("TuTaiKhoan");
+            String loiNhan = rs.getString("LoiNhan");
+            
+            // Gán các giá trị tìm thấy vào form
+            txtname.setText(tenNguoiNhan);
+            txttien.setText(soTien);
+            if(loaiPhuongThuc.equals("Chuyển nhanh Napas 24/7")) {
+                btnchuyennhanh.setSelected(true);
+            } else if(loaiPhuongThuc.equals("Chuyển thường")) {
+                btnchuyenthuong.setSelected(true);
+            }
+            jComboBox2.setSelectedItem(tuTaiKhoan);
+            txtloinhan.setText(loiNhan);
+        } else {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy giao dịch với số tài khoản này.");
+        }
+        con.close();
+    } catch(Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi tìm kiếm dữ liệu.");
+    }
+}
+
+    }//GEN-LAST:event_btntimkiemActionPerformed
 
     /**
      * @param args the command line arguments
