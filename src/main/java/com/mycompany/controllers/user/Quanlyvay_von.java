@@ -123,11 +123,6 @@ public class Quanlyvay_von extends javax.swing.JFrame {
         nguoi_dung.setText("  Người dùng");
         nguoi_dung.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         nguoi_dung.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nguoi_dung.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nguoi_dungMouseClicked(evt);
-            }
-        });
 
         giao_dich.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         giao_dich.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

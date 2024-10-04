@@ -40,28 +40,28 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void load_anh() throws IOException{
         try {
             BufferedImage img_nd = ImageIO.read(new File("src/main/java/com/mycompany/pics/user.png"));
-            Image scaledImg_nd = img_nd.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
+            Image scaledImg_nd = img_nd.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
             nguoi_dung.setIcon(new ImageIcon(scaledImg_nd));
             
             BufferedImage img_gd = ImageIO.read(new File("src/main/java/com/mycompany/pics/giaodich.png"));
             Image scaledImg_gd = img_gd.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
-            jLabel6.setIcon(new ImageIcon(scaledImg_gd));
+            giao_dich.setIcon(new ImageIcon(scaledImg_gd));
             
             BufferedImage img_c = ImageIO.read(new File("src/main/java/com/mycompany/pics/credit.png"));
             Image scaledImg_c = img_c.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
-            jLabel8.setIcon(new ImageIcon(scaledImg_c));
+            loai_the.setIcon(new ImageIcon(scaledImg_c));
             
             BufferedImage img_b = ImageIO.read(new File("src/main/java/com/mycompany/pics/bell.png"));
             Image scaledImg_b = img_b.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
-            jLabel7.setIcon(new ImageIcon(scaledImg_b));
+            thong_bao.setIcon(new ImageIcon(scaledImg_b));
             
             BufferedImage img_br = ImageIO.read(new File("src/main/java/com/mycompany/pics/borrow.png"));
             Image scaledImg_br = img_br.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
-            jLabel9.setIcon(new ImageIcon(scaledImg_br));
+            khoan_vay.setIcon(new ImageIcon(scaledImg_br));
             
             BufferedImage img_sp = ImageIO.read(new File("src/main/java/com/mycompany/pics/help-desk.png"));
             Image scaledImg_sp = img_sp.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
-            jLabel10.setIcon(new ImageIcon(scaledImg_sp));
+            ho_tro.setIcon(new ImageIcon(scaledImg_sp));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,20 +73,19 @@ public class admin_main_frame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         nguoi_dung = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        giao_dich = new javax.swing.JLabel();
+        thong_bao = new javax.swing.JLabel();
+        loai_the = new javax.swing.JLabel();
+        khoan_vay = new javax.swing.JLabel();
+        ho_tro = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         Desktop1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(850, 600));
         setMinimumSize(new java.awt.Dimension(850, 600));
-        setPreferredSize(new java.awt.Dimension(850, 600));
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setMaximumSize(new java.awt.Dimension(818, 497));
 
@@ -95,7 +94,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         nguoi_dung.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         nguoi_dung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        nguoi_dung.setText("  Người dùng");
+        nguoi_dung.setText("   Người dùng");
         nguoi_dung.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nguoi_dung.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -103,30 +102,45 @@ public class admin_main_frame extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("  Giao dịch");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        giao_dich.setBackground(new java.awt.Color(153, 0, 153));
+        giao_dich.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        giao_dich.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        giao_dich.setText("  Giao dịch");
+        giao_dich.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        giao_dich.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                giao_dichMouseClicked(evt);
+            }
+        });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("  Thông báo");
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        thong_bao.setBackground(new java.awt.Color(153, 0, 153));
+        thong_bao.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        thong_bao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        thong_bao.setText("  Thông báo");
+        thong_bao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("  Loại thẻ");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loai_the.setBackground(new java.awt.Color(153, 0, 153));
+        loai_the.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        loai_the.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        loai_the.setText("  Loại thẻ");
+        loai_the.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loai_the.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loai_theMouseClicked(evt);
+            }
+        });
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("  Khoản vay");
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        khoan_vay.setBackground(new java.awt.Color(153, 0, 153));
+        khoan_vay.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        khoan_vay.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        khoan_vay.setText("  Khoản vay");
+        khoan_vay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setText("  Hỗ trợ");
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ho_tro.setBackground(new java.awt.Color(153, 0, 153));
+        ho_tro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ho_tro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ho_tro.setText("  Hỗ trợ");
+        ho_tro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -135,12 +149,15 @@ public class admin_main_frame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nguoi_dung, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
+                    .addComponent(ho_tro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(khoan_vay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(thong_bao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loai_the, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(giao_dich, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nguoi_dung, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,15 +165,15 @@ public class admin_main_frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(nguoi_dung, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(giao_dich, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loai_the, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(thong_bao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(khoan_vay, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ho_tro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -177,22 +194,24 @@ public class admin_main_frame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(2, 2, 2)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
+                .addGap(2, 2, 2)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(2, 2, 2))
         );
 
+        Desktop1.setBackground(new java.awt.Color(204, 204, 204));
+        Desktop1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         Desktop1.setPreferredSize(new java.awt.Dimension(640, 462));
         Desktop1.setRequestFocusEnabled(false);
 
@@ -200,7 +219,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         Desktop1.setLayout(Desktop1Layout);
         Desktop1Layout.setHorizontalGroup(
             Desktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 638, Short.MAX_VALUE)
         );
         Desktop1Layout.setVerticalGroup(
             Desktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +235,7 @@ public class admin_main_frame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Desktop1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,10 +254,49 @@ public class admin_main_frame extends javax.swing.JFrame {
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
         Color customColor = new Color(18, 48, 174);
+        Color black = new Color(0, 0, 0);
         sourceLabel.setForeground(customColor);
-        nguoi_dung nguoi_dung = new nguoi_dung();
-        Desktop1.add(nguoi_dung).setVisible(true);
+        giao_dich.setForeground(black);
+        khoan_vay.setForeground(black);
+        thong_bao.setForeground(black);
+        ho_tro.setForeground(black);
+        loai_the.setForeground(black);
+        nguoi_dung nd = new nguoi_dung();
+        Desktop1.add(nd).setVisible(true);
     }//GEN-LAST:event_nguoi_dungMouseClicked
+
+    private void giao_dichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giao_dichMouseClicked
+        Desktop1.removeAll();
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        Color customColor = new Color(18, 48, 174);
+        sourceLabel.setForeground(customColor);
+        Color black = new Color(0, 0, 0);
+        sourceLabel.setForeground(customColor);
+        nguoi_dung.setForeground(black);
+        khoan_vay.setForeground(black);
+        thong_bao.setForeground(black);
+        ho_tro.setForeground(black);
+        loai_the.setForeground(black);
+        giao_dich gd = new giao_dich();
+        Desktop1.add(gd).setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_giao_dichMouseClicked
+
+    private void loai_theMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai_theMouseClicked
+        Desktop1.removeAll();
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        Color customColor = new Color(18, 48, 174);
+        sourceLabel.setForeground(customColor);
+        Color black = new Color(0, 0, 0);
+        sourceLabel.setForeground(customColor);
+        nguoi_dung.setForeground(black);
+        khoan_vay.setForeground(black);
+        thong_bao.setForeground(black);
+        ho_tro.setForeground(black);
+        giao_dich.setForeground(black);
+        loai_the lt = new loai_the();
+        Desktop1.add(lt).setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loai_theMouseClicked
 
     /**
      * @param args the command line arguments
@@ -286,14 +344,14 @@ public class admin_main_frame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel giao_dich;
+    private javax.swing.JLabel ho_tro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel khoan_vay;
+    private javax.swing.JLabel loai_the;
     private javax.swing.JLabel nguoi_dung;
+    private javax.swing.JLabel thong_bao;
     // End of variables declaration//GEN-END:variables
 }
