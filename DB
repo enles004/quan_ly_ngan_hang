@@ -24,8 +24,11 @@ CREATE TABLE thong_tin_ca_nhan (
 );
 
 CREATE TABLE loai_the (
-	id VARCHAR(255) PRIMARY KEY(id),
-	ten_loai_the NVARCHAR(255) not null
+	id VARCHAR(255) PRIMARY KEY,
+	ten_loai_the NVARCHAR(255) NOT NULL,
+	uu_dai NTEXT NOT NULL, -- Mô tả ưu đãi
+	han_muc_su_dung DECIMAL(15,2),
+	phi_dich_vu DECIMAL(10,2),
 );
 
 CREATE TABLE the_nguoi_dung (
