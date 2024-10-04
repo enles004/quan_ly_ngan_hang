@@ -20,12 +20,15 @@ CREATE TABLE thong_tin_ca_nhan (
 	so_tai_khoan VARCHAR(255) NOT NULL UNIQUE,
 	PRIMARY KEY(ma_thong_tin),
 	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
-	ON UPDATE NO ACTION ON DELETE NO ACTION
+	ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 CREATE TABLE loai_the (
-	id VARCHAR(255) PRIMARY KEY(id),
-	ten_loai_the NVARCHAR(255) not null
+	id VARCHAR(255) PRIMARY KEY,
+	ten_loai_the NVARCHAR(255) NOT NULL,
+	uu_dai NTEXT NOT NULL, -- Mô tả ưu đãi
+	han_muc_su_dung DECIMAL(15,2),
+	phi_dich_vu DECIMAL(10,2),
 );
 
 CREATE TABLE the_nguoi_dung (
@@ -52,7 +55,7 @@ CREATE TABLE giao_dich (
 	so_tai_khoan_nguoi_nhan VARCHAR(255) NOT NULL,
 	so_tien DECIMAL NOT NULL,
 	mo_ta NTEXT NOT NULL,
-	ngay_giao_dich TIMESTAMP NOT NULL,
+	ngay_giao_dich DATETIME NOT NULL,
 	trang_thai VARCHAR(255) NOT NULL,
 	PRIMARY KEY(id),
 	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
@@ -110,17 +113,6 @@ CREATE TABLE ho_tro_nguoi_dung (
 	ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-CREATE TABLE lich_su_giao_dich (
-	id INTEGER NOT NULL IDENTITY UNIQUE,
-	giao_dich_id INTEGER NOT NULL,
-	nguoi_dung_id INTEGER NOT NULL,
-	PRIMARY KEY(id),
-	FOREIGN KEY(giao_dich_id) REFERENCES giao_dich(id)
-	ON UPDATE NO ACTION ON DELETE CASCADE,
-	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
-	ON UPDATE NO ACTION ON DELETE NO ACTION
-);
-
 CREATE TABLE khoan_vay (
     id INT PRIMARY KEY IDENTITY,  
     nguoi_dung_id INT,                              
@@ -129,7 +121,8 @@ CREATE TABLE khoan_vay (
     so_tien_da_tra DECIMAL(15, 2),
     so_tien_con_lai DECIMAL(15, 2),                                    
     ngay_bat_dau DATE,                          
-    ngay_ket_thuc DATE,                         
+    ngay_ket_thuc DATE,
+	ky_han NVARCHAR(255) NOT NULL,                         
     tinh_trang NVARCHAR(255),                    
     ngay_tao DATETIME DEFAULT GETDATE(),
     FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
