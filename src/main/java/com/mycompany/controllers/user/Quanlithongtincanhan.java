@@ -1,15 +1,15 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package com.mycompany.controllers.user;
 
 import com.mycompany.db;
+import java.awt.Font;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -21,21 +21,34 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.export.oasis.BorderStyle;
-import net.sf.jasperreports.engine.export.oasis.CellStyle;
-import org.jfree.ui.HorizontalAlignment;
-import org.jfree.ui.VerticalAlignment;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+
 
 /**
  *
  * @author HOA.HP
  */
-public class Quanlythongtincanhan extends javax.swing.JFrame {
+public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Quanlythongtincanhan
+     * Creates new form Quanlithongtincanhan
      */
-    public Quanlythongtincanhan() {
+    public Quanlithongtincanhan() {
         initComponents();
     }
 
@@ -87,7 +100,6 @@ public class Quanlythongtincanhan extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txtstk = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(850, 600));
 
         jPanel5.setBackground(new java.awt.Color(255, 204, 204));
@@ -243,7 +255,7 @@ public class Quanlythongtincanhan extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -498,12 +510,12 @@ public class Quanlythongtincanhan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void load_thongtin() throws ClassNotFoundException{
+
+    private void load_thongtin() throws ClassNotFoundException{
     Connection con = null;
         try {
 ////            Class.forName("com.mysql.cj.jdbc.Driver");
 ////            con=DriverManager.getConnection(url,user,pass);
-            //con = Connect_Database.KetNoiDB();
             con = db.connect();
             String sql="Select * from thong_tin_ca_nhan";
             Statement st=con.createStatement();
@@ -531,12 +543,36 @@ private void load_thongtin() throws ClassNotFoundException{
         
         }
     }
+    
+    
     private void nguoi_dungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dungMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_nguoi_dungMouseClicked
 
-    
-    
+    private void tbthongtinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbthongtinMouseClicked
+        // TODO add your handling code here:
+        int i=tbthongtin.getSelectedRow();
+        DefaultTableModel tb=(DefaultTableModel) tbthongtin.getModel();
+        txtHo.setText(tb.getValueAt(i,0).toString());
+        txtTen.setText(tb.getValueAt(i,1).toString());
+        String ngay=tb.getValueAt(i, 2).toString();
+        java.util.Date ngs;
+        try{
+            ngs=new SimpleDateFormat("yyyy-MM-dd").parse(ngay);
+            txtngaysinh.setDate(ngs);
+            cboGioitinh.setSelectedItem(tb.getValueAt(i, 3));
+            //Gioitinh.setSelectedItem(tb.getValueAt(i, 3).toString());
+            txtDiachi.setText(tb.getValueAt(i, 4).toString());
+            txtSdt.setText(tb.getValueAt(i, 5).toString());
+            txtcccd.setText(tb.getValueAt(i, 6).toString());
+            txtstk.setText(tb.getValueAt(i, 7).toString());
+            txtHo.setEnabled(false);
+
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_tbthongtinMouseClicked
+
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         //lấy dữ liệu từ các componens đưa vào biến
         // lay dl tu componenment dua vao bien
@@ -551,12 +587,12 @@ private void load_thongtin() throws ClassNotFoundException{
         //ket noi database
         Connection con = null;
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            con=DriverManager.getConnection(url,user,pass);  
-             
-                con = db.connect();
-//            String sql="Insert Tacgia(Matacgia, Tentacgia,NgaySinh, Gioitinh,Dienthoai, Email, Diachi) Values('"+mtg+"',N'"+ttg+"','"+ngs+"',N'"+gt+"',"+"'"+dt+"','"+email+"',N'"+dc+"')";
-//            Statement st=con.createStatement();
+            //            Class.forName("com.mysql.cj.jdbc.Driver");
+            //            con=DriverManager.getConnection(url,user,pass);
+
+            con = db.connect();
+            //            String sql="Insert Tacgia(Matacgia, Tentacgia,NgaySinh, Gioitinh,Dienthoai, Email, Diachi) Values('"+mtg+"',N'"+ttg+"','"+ngs+"',N'"+gt+"',"+"'"+dt+"','"+email+"',N'"+dc+"')";
+            //            Statement st=con.createStatement();
             String sql="Insert into thong_tin_ca_nhan Values(?,?,?,?,?,?,?)";
             PreparedStatement st=con.prepareStatement(sql);
             st.setString(1,ho);
@@ -573,50 +609,31 @@ private void load_thongtin() throws ClassNotFoundException{
             load_thongtin();
         }   catch(SQLException ex){
             ex.printStackTrace();
-        
+
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Quanlythongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                                        
-
-        
+            Logger.getLogger(Quanlithongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_btnLuuActionPerformed
-
-    private void txtSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSdtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSdtActionPerformed
-
-    private void txtTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenActionPerformed
-
-    private void txtcccdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcccdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcccdActionPerformed
-
-    private void txtstkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstkActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtstkActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        
-         try{
+
+        try{
             //B1: Lấy dữ liệu từ các component đưa vào biến
-        String ho = txtHo.getText().trim();
-        String ten= txtTen.getText().trim();
-        Date ngs= new Date (txtngaysinh.getDate().getTime());
-        String gt= cboGioitinh.getSelectedItem().toString();
-        String dc=txtDiachi.getText().trim();
-        String dt=txtSdt.getText().trim();
-        String cccd=txtcccd.getText().trim();
-        String stk=txtstk.getText().trim();
-        Connection con = null;
+            String ho = txtHo.getText().trim();
+            String ten= txtTen.getText().trim();
+            Date ngs= new Date (txtngaysinh.getDate().getTime());
+            String gt= cboGioitinh.getSelectedItem().toString();
+            String dc=txtDiachi.getText().trim();
+            String dt=txtSdt.getText().trim();
+            String cccd=txtcccd.getText().trim();
+            String stk=txtstk.getText().trim();
+            Connection con = null;
             //B2: Kết nối đến DB
             con = db.connect();
             //B3: Tạo đối tượng Statement để sửa dl
             String sql="Update thong_tin_ca_nhan Set ho=N'"+ho+"',ten='"+ten+"',ngay_sinh='"+ngs+"',gioi_tinh=N'"+gt+"',dia_chi='"+dc+"',dien_thoai='"+dt+"',so_cong_dan='"+cccd+"', so_tai_khoan='"+stk+
-                    "' Where ho='"+ho+"'";
+            "' Where ho='"+ho+"'";
             Statement st=con.createStatement();
             st.executeUpdate(sql);
             con.close();
@@ -625,33 +642,9 @@ private void load_thongtin() throws ClassNotFoundException{
         }catch(SQLException ex){
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Quanlythongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Quanlithongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_btnSuaActionPerformed
-
-    private void tbthongtinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbthongtinMouseClicked
-        // TODO add your handling code here:
-        int i=tbthongtin.getSelectedRow();
-        DefaultTableModel tb=(DefaultTableModel) tbthongtin.getModel();
-        txtHo.setText(tb.getValueAt(i,0).toString());
-        txtTen.setText(tb.getValueAt(i,1).toString());
-        String ngay=tb.getValueAt(i, 2).toString();
-        java.util.Date ngs;
-        try{
-            ngs=new SimpleDateFormat("yyyy-MM-dd").parse(ngay);
-            txtngaysinh.setDate(ngs);
-        cboGioitinh.setSelectedItem(tb.getValueAt(i, 3));
-       //Gioitinh.setSelectedItem(tb.getValueAt(i, 3).toString());
-        txtDiachi.setText(tb.getValueAt(i, 4).toString());
-        txtSdt.setText(tb.getValueAt(i, 5).toString());
-        txtcccd.setText(tb.getValueAt(i, 6).toString());
-        txtstk.setText(tb.getValueAt(i, 7).toString());
-        txtHo.setEnabled(false);
-       
-        } catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_tbthongtinMouseClicked
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
@@ -671,17 +664,17 @@ private void load_thongtin() throws ClassNotFoundException{
         } catch(SQLException ex){
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Quanlythongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
+            Logger.getLogger(Quanlithongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         // TODO add your handling code here:
-         try {
-            
+        try {
+
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet spreadsheet = workbook.createSheet("tacgia");
+            XSSFSheet spreadsheet = workbook.createSheet("thong_tin_ca_nhan");
             // register the columns you wish to track and compute the column width
 
             CreationHelper createHelper = workbook.getCreationHelper();
@@ -692,7 +685,7 @@ private void load_thongtin() throws ClassNotFoundException{
             row = spreadsheet.createRow((short) 2);
             row.setHeight((short) 500);
             cell = row.createCell(0, CellType.STRING);
-            cell.setCellValue("DANH SÁCH TÁC GIẢ");
+            cell.setCellValue("DANH SÁCH THÔNG TIN CÁ NHÂN");
 
             //Tạo dòng tiêu đều của bảng
             // create CellStyle
@@ -701,39 +694,39 @@ private void load_thongtin() throws ClassNotFoundException{
             row.setHeight((short) 500);
             cell = row.createCell(0, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("STT");
+            cell.setCellValue("Họ");
 
             cell = row.createCell(1, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Mã Tác Giả");
+            cell.setCellValue("Tên");
 
             cell = row.createCell(2, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Tên Tác Giả");
+            cell.setCellValue("Ngày Sinh");
 
             cell = row.createCell(3, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Ngày Sinh");
+            cell.setCellValue("Giới tính");
 
             cell = row.createCell(4, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Giới Tính");
+            cell.setCellValue("Địa chỉ");
 
             cell = row.createCell(5, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Điện Thoại");
+            cell.setCellValue("SĐT");
 
             cell = row.createCell(6, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Email");
+            cell.setCellValue("CCCD");
 
             cell = row.createCell(7, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Địa Chỉ");
+            cell.setCellValue("STK");
             Connection con = null;
-             //Kết nối DB
+            //Kết nối DB
             con = db.connect();
-            String sql = "Select * From Tacgia";
+            String sql = "Select * From thong_tin_ca_nhan";
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             //Đổ dữ liệu từ rs vào các ô trong excel
@@ -796,8 +789,8 @@ private void load_thongtin() throws ClassNotFoundException{
             for (int col = 0; col < tongsocot; col++) {
                 spreadsheet.autoSizeColumn(col);
             }
-
-            File f = new File("D:\\Danhsachtacgia.xlsx");
+            File f = new File("D:\\Java nhóm 9\\quan_ly_ngan_hang\\Danh_sach_thong_tin_ca_nhan.xlsx");
+            //File f = new File("D:\\Danhsachtacgia.xlsx");
             FileOutputStream out = new FileOutputStream(f);
             workbook.write(out);
             out.close();
@@ -805,14 +798,14 @@ private void load_thongtin() throws ClassNotFoundException{
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnXuatExcelActionPerformed
- private static CellStyle DinhdangHeader(XSSFSheet sheet) {
+
+     private static CellStyle DinhdangHeader(XSSFSheet sheet) {
         // Create font
-        Font font = sheet.getWorkbook().createFont();
+        XSSFFont font = sheet.getWorkbook().createFont();
         font.setFontName("Times New Roman");
         font.setBold(true);
         font.setFontHeightInPoints((short) 12); // font size
         font.setColor(IndexedColors.WHITE.getIndex()); // text color
-
         // Create CellStyle
         CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
         cellStyle.setFont(font);
@@ -827,41 +820,22 @@ private void load_thongtin() throws ClassNotFoundException{
     
     
     
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Quanlythongtincanhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Quanlythongtincanhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Quanlythongtincanhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Quanlythongtincanhan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSdtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSdtActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Quanlythongtincanhan().setVisible(true);
-            }
-        });
-    }
+    private void txtTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenActionPerformed
+
+    private void txtcccdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcccdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcccdActionPerformed
+
+    private void txtstkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtstkActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLuu;
