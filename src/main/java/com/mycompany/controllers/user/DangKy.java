@@ -33,6 +33,7 @@ public class DangKy extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnDangKy = new javax.swing.JButton();
@@ -223,10 +224,16 @@ public class DangKy extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/pics/Đăng ký dễ dàng.png"))); // NOI18N
 
+=======
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(850, 600));
+
+>>>>>>> 2c0cc37970e406fd388fd659de1d3513fc2a55a3
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -245,6 +252,13 @@ public class DangKy extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(10, Short.MAX_VALUE))
+=======
+            .addGap(0, 778, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 545, Short.MAX_VALUE)
+>>>>>>> 2c0cc37970e406fd388fd659de1d3513fc2a55a3
         );
 
         pack();
@@ -389,6 +403,7 @@ private boolean isSTKExists(String stk) throws ClassNotFoundException {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
     private com.toedter.calendar.JDateChooser Ngaysinh;
     private javax.swing.JButton btnDangKy;
     private javax.swing.JComboBox<String> cbogioitinh;
@@ -416,6 +431,8 @@ private boolean isSTKExists(String stk) throws ClassNotFoundException {
     private javax.swing.JTextField txtmathongtin;
     private javax.swing.JTextField txtsdt;
     private javax.swing.JTextField txtstk;
+=======
+>>>>>>> 2c0cc37970e406fd388fd659de1d3513fc2a55a3
     // End of variables declaration//GEN-END:variables
 
 }

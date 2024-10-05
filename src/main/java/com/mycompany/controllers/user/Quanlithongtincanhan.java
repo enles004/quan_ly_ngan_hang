@@ -77,7 +77,11 @@ public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
+<<<<<<< HEAD:src/main/java/com/mycompany/controllers/user/Quanlithongtincanhan.java
         tbthongtin = new javax.swing.JTable();
+=======
+        tbTacgia = new javax.swing.JTable();
+>>>>>>> 2c0cc37970e406fd388fd659de1d3513fc2a55a3:src/main/java/com/mycompany/controllers/user/Quanlythongtincanhan.java
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -237,7 +241,11 @@ public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+<<<<<<< HEAD:src/main/java/com/mycompany/controllers/user/Quanlithongtincanhan.java
         tbthongtin.setModel(new javax.swing.table.DefaultTableModel(
+=======
+        tbTacgia.setModel(new javax.swing.table.DefaultTableModel(
+>>>>>>> 2c0cc37970e406fd388fd659de1d3513fc2a55a3:src/main/java/com/mycompany/controllers/user/Quanlythongtincanhan.java
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -248,12 +256,16 @@ public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
                 "ID", "Họ ", "Tên", "Ngày Sinh", "Giới tính", "Địa chỉ", "SĐT", "CCCD", "STK"
             }
         ));
+<<<<<<< HEAD:src/main/java/com/mycompany/controllers/user/Quanlithongtincanhan.java
         tbthongtin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbthongtinMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbthongtin);
+=======
+        jScrollPane1.setViewportView(tbTacgia);
+>>>>>>> 2c0cc37970e406fd388fd659de1d3513fc2a55a3:src/main/java/com/mycompany/controllers/user/Quanlythongtincanhan.java
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -959,7 +971,11 @@ public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nguoi_dung;
+<<<<<<< HEAD:src/main/java/com/mycompany/controllers/user/Quanlithongtincanhan.java
     private javax.swing.JTable tbthongtin;
+=======
+    private javax.swing.JTable tbTacgia;
+>>>>>>> 2c0cc37970e406fd388fd659de1d3513fc2a55a3:src/main/java/com/mycompany/controllers/user/Quanlythongtincanhan.java
     private javax.swing.JLabel the_canhan;
     private javax.swing.JLabel tiet_kiem;
     private javax.swing.JLabel tra_no;

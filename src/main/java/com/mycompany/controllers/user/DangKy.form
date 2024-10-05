@@ -59,6 +59,7 @@
       </Group>
     </DimensionLayout>
   </Layout>
+<<<<<<< HEAD
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel4">
       <Properties>
@@ -348,4 +349,6 @@
       </Properties>
     </Component>
   </SubComponents>
+=======
+>>>>>>> 2c0cc37970e406fd388fd659de1d3513fc2a55a3
 </Form>

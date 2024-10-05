@@ -24,11 +24,11 @@ CREATE TABLE thong_tin_ca_nhan (
 );
 
 CREATE TABLE loai_the (
-	id VARCHAR(255) PRIMARY KEY,
+	id INTEGER PRIMARY KEY IDENTITY,
 	ten_loai_the NVARCHAR(255) NOT NULL,
-	uu_dai NTEXT NOT NULL, -- Mô tả ưu đãi
-	han_muc_su_dung DECIMAL(15,2),
-	phi_dich_vu DECIMAL(10,2),
+	uu_dai NTEXT NOT NULL,
+	han_muc_su_dung VARCHAR(255),
+	phi_dich_vu VARCHAR(255)
 );
 
 CREATE TABLE the_nguoi_dung (
@@ -79,26 +79,13 @@ CREATE TABLE tiet_kiem (
 
 CREATE TABLE thong_bao (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
-	nguoi_dung_id INTEGER NULL,
+	tieu_de NTEXT NOT NULL,
 	noi_dung NTEXT NOT NULL,
 	loai_thong_bao NVARCHAR(255) NOT NULL,
 	ngay_tao DATETIME NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
-	ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-CREATE TABLE uu_dai (
-	id INTEGER NOT NULL IDENTITY UNIQUE,
-	doi_tuong_the_id VARCHAR(255) NOT NULL,
-	ten_uu_dai NVARCHAR(255) NOT NULL,
-	mo_ta NTEXT NOT NULL,
-	ngay_hieu_luc DATETIME NOT NULL,
-	ngay_het_han DATETIME NOT NULL,
-	PRIMARY KEY(id),
-	FOREIGN KEY(doi_tuong_the_id) REFERENCES loai_the(id)
-	ON UPDATE NO ACTION ON DELETE CASCADE
-);
 
 CREATE TABLE ho_tro_nguoi_dung (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
