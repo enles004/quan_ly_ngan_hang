@@ -361,6 +361,8 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="btnluu" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnhienthi" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnhuy" min="-2" max="-2" attributes="0"/>
@@ -411,6 +413,7 @@
                       <Component id="btngui" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnhuy" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnhienthi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnluu" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -507,6 +510,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtlai">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnluu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnluuActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
