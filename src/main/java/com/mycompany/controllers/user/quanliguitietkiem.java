@@ -55,6 +55,7 @@ public class quanliguitietkiem extends javax.swing.JFrame {
         tbDanhsach = new javax.swing.JTable();
         btnhienthi = new javax.swing.JButton();
         txtlai = new javax.swing.JTextField();
+        btnluu = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -240,6 +241,13 @@ public class quanliguitietkiem extends javax.swing.JFrame {
 
         btnhienthi.setText("Hiển thị tiền lãi");
 
+        btnluu.setText("Lưu");
+        btnluu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnluuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -279,6 +287,8 @@ public class quanliguitietkiem extends javax.swing.JFrame {
                                 .addComponent(daterut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnluu)
+                        .addGap(18, 18, 18)
                         .addComponent(btnhienthi)
                         .addGap(18, 18, 18)
                         .addComponent(btnhuy)
@@ -319,7 +329,8 @@ public class quanliguitietkiem extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btngui)
                     .addComponent(btnhuy)
-                    .addComponent(btnhienthi))
+                    .addComponent(btnhienthi)
+                    .addComponent(btnluu))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -414,6 +425,11 @@ public class quanliguitietkiem extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txttienActionPerformed
 
+    private void btnluuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnluuActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnluuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -453,6 +469,7 @@ public class quanliguitietkiem extends javax.swing.JFrame {
     private javax.swing.JButton btngui;
     private javax.swing.JButton btnhienthi;
     private javax.swing.JButton btnhuy;
+    private javax.swing.JButton btnluu;
     private com.toedter.calendar.JDateChooser dategui;
     private com.toedter.calendar.JDateChooser daterut;
     private javax.swing.JLabel jLabel1;
