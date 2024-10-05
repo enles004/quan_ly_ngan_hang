@@ -158,7 +158,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
                 .addComponent(lb1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lb2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -233,7 +233,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(txt_nbd)
                     .addComponent(txt_stv, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -384,6 +384,14 @@ public class khoan_vay extends javax.swing.JInternalFrame {
     }
     
     private void load_xoa(){
+        txt_lv.setText("");
+        txt_stv.setText("");
+        txt_dt.setText("");
+        txt_cl.setText("");
+        txt_nbd.setText("");
+        txt_nkt.setText("");
+        txt_kh.setText("");
+        txt_stkv.setText("");
         lb1.setVisible(false);
         lb2.setVisible(false);
         txt_lv.setEnabled(false);
