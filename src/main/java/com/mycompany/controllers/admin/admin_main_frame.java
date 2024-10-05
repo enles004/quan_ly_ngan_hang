@@ -140,6 +140,11 @@ public class admin_main_frame extends javax.swing.JFrame {
         khoan_vay.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         khoan_vay.setText("  Khoản vay");
         khoan_vay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        khoan_vay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                khoan_vayMouseClicked(evt);
+            }
+        });
 
         ho_tro.setBackground(new java.awt.Color(153, 0, 153));
         ho_tro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -319,6 +324,23 @@ public class admin_main_frame extends javax.swing.JFrame {
         Desktop1.add(tb).setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_thong_baoMouseClicked
+
+    private void khoan_vayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khoan_vayMouseClicked
+        Desktop1.removeAll();
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        Color customColor = new Color(18, 48, 174);
+        sourceLabel.setForeground(customColor);
+        Color black = new Color(0, 0, 0);
+        sourceLabel.setForeground(customColor);
+        nguoi_dung.setForeground(black);
+        thong_bao.setForeground(black);
+        loai_the.setForeground(black);
+        ho_tro.setForeground(black);
+        giao_dich.setForeground(black);
+        khoan_vay kv = new khoan_vay();
+        Desktop1.add(kv).setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_khoan_vayMouseClicked
 
     /**
      * @param args the command line arguments

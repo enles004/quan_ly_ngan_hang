@@ -364,7 +364,12 @@ public class thong_bao extends javax.swing.JInternalFrame {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             String[] td = {"ID", "Tiêu đề", "Nội dung", "Loại thông báo", "Ngày tạo"};
-            DefaultTableModel tb = new DefaultTableModel(td, 0);
+            DefaultTableModel tb = new DefaultTableModel(td, 0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Không cho phép chỉnh sửa bất kỳ ô nào
+                }
+            };
             while(rs.next()){
                 Vector v = new Vector();
                 v.add(rs.getString("id"));
@@ -438,7 +443,7 @@ public class thong_bao extends javax.swing.JInternalFrame {
             String tieu_de = txt_td.getText().trim();
             String noi_dung = txt_nd.getText().trim();
             String loai_thong_bao = txt_ltb.getSelectedItem().toString().trim();
-            String sql = "Update thong_bao Set tieu_de = N'"+tieu_de+"', noi_dung = N'"+noi_dung+"', loai_thong_bao = '"+loai_thong_bao+"' "
+            String sql = "Update thong_bao Set tieu_de = N'"+tieu_de+"', noi_dung = N'"+noi_dung+"', loai_thong_bao = N'"+loai_thong_bao+"' "
             + "where id = '"+tbb.getId()+"'";
             Statement st = con.createStatement();
             st.executeUpdate(sql);
