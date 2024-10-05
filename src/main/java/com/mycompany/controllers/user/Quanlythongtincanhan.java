@@ -5,18 +5,26 @@
 package com.mycompany.controllers.user;
 
 import com.mycompany.db;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.export.oasis.BorderStyle;
+import net.sf.jasperreports.engine.export.oasis.CellStyle;
+import org.jfree.ui.HorizontalAlignment;
+import org.jfree.ui.VerticalAlignment;
 
 /**
  *
@@ -222,6 +230,11 @@ public class Quanlythongtincanhan extends javax.swing.JFrame {
                 "Họ ", "Tên", "Ngày Sinh", "Giới tính", "Địa chỉ", "SĐT", "CCCD", "STK"
             }
         ));
+        tbthongtin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbthongtinMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbthongtin);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -268,12 +281,27 @@ public class Quanlythongtincanhan extends javax.swing.JFrame {
 
         btnSua.setBackground(new java.awt.Color(204, 204, 204));
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnXoa.setBackground(new java.awt.Color(204, 204, 204));
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnXuatExcel.setBackground(new java.awt.Color(204, 204, 204));
         btnXuatExcel.setText("Xuất file");
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatExcelActionPerformed(evt);
+            }
+        });
 
         txtSdt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -488,9 +516,10 @@ private void load_thongtin() throws ClassNotFoundException{
                 v.add(rs.getString("ten"));
                 v.add(rs.getString("ngay_sinh"));
                 v.add(rs.getString("gioi_tinh"));
-                v.add(rs.getString("Dienthoai"));
-                v.add(rs.getString("Email"));
-                v.add(rs.getString("Diachi"));
+                v.add(rs.getString("dia_chi"));
+                v.add(rs.getString("so_dien_thoai"));
+                v.add(rs.getString("so_cong_dan"));
+                v.add(rs.getString("so_tai_khoan"));
                 tb.addRow(v);
             }
             tbthongtin.setModel(tb);
@@ -523,11 +552,12 @@ private void load_thongtin() throws ClassNotFoundException{
         Connection con = null;
         try {
 //            Class.forName("com.mysql.cj.jdbc.Driver");
-//            con=DriverManager.getConnection(url,user,pass);    
+//            con=DriverManager.getConnection(url,user,pass);  
+             
                 con = db.connect();
 //            String sql="Insert Tacgia(Matacgia, Tentacgia,NgaySinh, Gioitinh,Dienthoai, Email, Diachi) Values('"+mtg+"',N'"+ttg+"','"+ngs+"',N'"+gt+"',"+"'"+dt+"','"+email+"',N'"+dc+"')";
 //            Statement st=con.createStatement();
-            String sql="Insert into tacgia Values(?,?,?,?,?,?,?)";
+            String sql="Insert into thong_tin_ca_nhan Values(?,?,?,?,?,?,?)";
             PreparedStatement st=con.prepareStatement(sql);
             st.setString(1,ho);
             st.setString(2,ten);
@@ -549,11 +579,6 @@ private void load_thongtin() throws ClassNotFoundException{
         }
                                         
 
-    
-
-                                        
-
-   
         
     }//GEN-LAST:event_btnLuuActionPerformed
 
@@ -573,6 +598,236 @@ private void load_thongtin() throws ClassNotFoundException{
         // TODO add your handling code here:
     }//GEN-LAST:event_txtstkActionPerformed
 
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        
+         try{
+            //B1: Lấy dữ liệu từ các component đưa vào biến
+        String ho = txtHo.getText().trim();
+        String ten= txtTen.getText().trim();
+        Date ngs= new Date (txtngaysinh.getDate().getTime());
+        String gt= cboGioitinh.getSelectedItem().toString();
+        String dc=txtDiachi.getText().trim();
+        String dt=txtSdt.getText().trim();
+        String cccd=txtcccd.getText().trim();
+        String stk=txtstk.getText().trim();
+        Connection con = null;
+            //B2: Kết nối đến DB
+            con = db.connect();
+            //B3: Tạo đối tượng Statement để sửa dl
+            String sql="Update thong_tin_ca_nhan Set ho=N'"+ho+"',ten='"+ten+"',ngay_sinh='"+ngs+"',gioi_tinh=N'"+gt+"',dia_chi='"+dc+"',dien_thoai='"+dt+"',so_cong_dan='"+cccd+"', so_tai_khoan='"+stk+
+                    "' Where ho='"+ho+"'";
+            Statement st=con.createStatement();
+            st.executeUpdate(sql);
+            con.close();
+            JOptionPane.showMessageDialog(this, "Sửa thành công!");
+            load_thongtin();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Quanlythongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void tbthongtinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbthongtinMouseClicked
+        // TODO add your handling code here:
+        int i=tbthongtin.getSelectedRow();
+        DefaultTableModel tb=(DefaultTableModel) tbthongtin.getModel();
+        txtHo.setText(tb.getValueAt(i,0).toString());
+        txtTen.setText(tb.getValueAt(i,1).toString());
+        String ngay=tb.getValueAt(i, 2).toString();
+        java.util.Date ngs;
+        try{
+            ngs=new SimpleDateFormat("yyyy-MM-dd").parse(ngay);
+            txtngaysinh.setDate(ngs);
+        cboGioitinh.setSelectedItem(tb.getValueAt(i, 3));
+       //Gioitinh.setSelectedItem(tb.getValueAt(i, 3).toString());
+        txtDiachi.setText(tb.getValueAt(i, 4).toString());
+        txtSdt.setText(tb.getValueAt(i, 5).toString());
+        txtcccd.setText(tb.getValueAt(i, 6).toString());
+        txtstk.setText(tb.getValueAt(i, 7).toString());
+        txtHo.setEnabled(false);
+       
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_tbthongtinMouseClicked
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        try{
+            // b1: lay du lieu tu componet dua vao bien
+            String ho=txtHo.getText();
+            Connection con = null;
+            //b2:Ket noi DB
+            con=db.connect();
+            //b3:tao doi tuong Statement de thuc hien cau lenh xoa
+            String sql="Delete From thong_tin_ca_nhan Where ho='"+ho+"'";
+            Statement st=con.createStatement();
+            st.executeUpdate(sql);
+            con.close();
+            JOptionPane.showMessageDialog(this,"xoa thanh cong!");
+            load_thongtin();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Quanlythongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+        // TODO add your handling code here:
+         try {
+            
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet spreadsheet = workbook.createSheet("tacgia");
+            // register the columns you wish to track and compute the column width
+
+            CreationHelper createHelper = workbook.getCreationHelper();
+
+            XSSFRow row = null;
+            Cell cell = null;
+
+            row = spreadsheet.createRow((short) 2);
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("DANH SÁCH TÁC GIẢ");
+
+            //Tạo dòng tiêu đều của bảng
+            // create CellStyle
+            CellStyle cellStyle_Head = DinhdangHeader(spreadsheet);
+            row = spreadsheet.createRow((short) 3);
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("STT");
+
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Mã Tác Giả");
+
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Tên Tác Giả");
+
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Ngày Sinh");
+
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Giới Tính");
+
+            cell = row.createCell(5, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Điện Thoại");
+
+            cell = row.createCell(6, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Email");
+
+            cell = row.createCell(7, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Địa Chỉ");
+            Connection con = null;
+             //Kết nối DB
+            con = db.connect();
+            String sql = "Select * From Tacgia";
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            //Đổ dữ liệu từ rs vào các ô trong excel
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int tongsocot = rsmd.getColumnCount();
+
+            //Đinh dạng Tạo đường kẻ cho ô chứa dữ liệu
+            CellStyle cellStyle_data = spreadsheet.getWorkbook().createCellStyle();
+            cellStyle_data.setBorderLeft(BorderStyle.THIN);
+            cellStyle_data.setBorderRight(BorderStyle.THIN);
+            cellStyle_data.setBorderBottom(BorderStyle.THIN);
+
+            int i = 0;
+            while (rs.next()) {
+                row = spreadsheet.createRow((short) 4 + i);
+                row.setHeight((short) 400);
+
+                cell = row.createCell(0);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(i + 1);
+
+                cell = row.createCell(1);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("Matacgia"));
+
+                cell = row.createCell(2);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("Tentacgia"));
+
+                //Định dạng ngày tháng trong excel
+                java.util.Date ngay = new java.util.Date(rs.getDate("Ngaysinh").getTime());
+                CellStyle cellStyle = workbook.createCellStyle();
+                cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
+                cellStyle.setBorderLeft(BorderStyle.THIN);
+                cellStyle.setBorderRight(BorderStyle.THIN);
+                cellStyle.setBorderBottom(BorderStyle.THIN);
+                cell = row.createCell(3);
+                cell.setCellValue(ngay);
+                cell.setCellStyle(cellStyle);
+
+                cell = row.createCell(4);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("Gioitinh"));
+
+                cell = row.createCell(5);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("Dienthoai"));
+
+                cell = row.createCell(6);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("Email"));
+
+                cell = row.createCell(7);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("Diachi"));
+
+                i++;
+            }
+            //Hiệu chỉnh độ rộng của cột
+            for (int col = 0; col < tongsocot; col++) {
+                spreadsheet.autoSizeColumn(col);
+            }
+
+            File f = new File("D:\\Danhsachtacgia.xlsx");
+            FileOutputStream out = new FileOutputStream(f);
+            workbook.write(out);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
+ private static CellStyle DinhdangHeader(XSSFSheet sheet) {
+        // Create font
+        Font font = sheet.getWorkbook().createFont();
+        font.setFontName("Times New Roman");
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 12); // font size
+        font.setColor(IndexedColors.WHITE.getIndex()); // text color
+
+        // Create CellStyle
+        CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
+        cellStyle.setFont(font);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setVerticalAlignment(VerticalAlignment.TOP);
+        cellStyle.setFillForegroundColor(IndexedColors.DARK_GREEN.getIndex());
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        cellStyle.setBorderBottom(BorderStyle.THIN);
+        cellStyle.setWrapText(true);
+        return cellStyle;
+    }
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
