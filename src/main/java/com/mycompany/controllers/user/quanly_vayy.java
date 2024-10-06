@@ -4,7 +4,9 @@
  */
 package com.mycompany.controllers.user;
 
+import com.mycompany.controllers.admin.nguoi_dung;
 import com.mycompany.db;
+import java.awt.Color;
 
 import java.sql.Connection;
 
@@ -15,6 +17,8 @@ import java.sql.Statement;
 
 import java.util.Vector;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +34,7 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
      */
     public quanly_vayy() {
         initComponents();
-         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         load();
@@ -87,6 +91,9 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
         btnThem = new javax.swing.JButton();
         btnXuatExcel = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        Thoát = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_vv = new javax.swing.JTable();
@@ -126,16 +133,27 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Kỳ hạn:");
 
-        Combo_Kyhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn kỳ hạn--", "3 tháng", "6 tháng", "12 tháng" }));
+        Combo_Kyhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn kỳ hạn--", "3 tháng", "6 tháng", "12 tháng", "15 tháng", "18 tháng", "24 tháng" }));
+        Combo_Kyhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Combo_KyhanActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Lãi suất:");
 
         jLabel11.setText("Loại khoản vay:");
 
         Combo_Khoanvay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn loại khoản vay--", "Vay tín dụng", "Vay thế chấp", "Vay tiêu dùng", "Vay kinh doanh" }));
+        Combo_Khoanvay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Combo_KhoanvayActionPerformed(evt);
+            }
+        });
 
         btnThem.setBackground(new java.awt.Color(204, 204, 204));
-        btnThem.setText("Gửi");
+        btnThem.setText("Vay");
+        btnThem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -144,8 +162,36 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
 
         btnXuatExcel.setBackground(new java.awt.Color(204, 204, 204));
         btnXuatExcel.setText("Xuất file");
+        btnXuatExcel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatExcelActionPerformed(evt);
+            }
+        });
 
-        jLabel12.setText("0,87%");
+        jLabel12.setText("8,7%/năm");
+
+        jLabel2.setText("Tiền trả mỗi tháng:");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        Thoát.setBackground(new java.awt.Color(204, 204, 204));
+        Thoát.setText("Thoát");
+        Thoát.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Thoát.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ThoátMouseClicked(evt);
+            }
+        });
+        Thoát.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ThoátActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -157,67 +203,74 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel8)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addGap(49, 49, 49)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel2))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(Combo_Kyhan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(txtBanmuonvay, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Combo_Khoanvay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 88, Short.MAX_VALUE)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                    .addComponent(jLabel7)
+                    .addComponent(txtBanmuonvay, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Combo_Kyhan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Combo_Khoanvay, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(235, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnThem)
-                .addGap(39, 39, 39)
-                .addComponent(btnXuatExcel)
-                .addGap(20, 20, 20))
+                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnXuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(Thoát, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBanmuonvay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Combo_Kyhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBanmuonvay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
+                    .addComponent(Combo_Khoanvay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(Combo_Kyhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel12))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(Combo_Khoanvay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
-                    .addComponent(btnXuatExcel))
-                .addGap(22, 22, 22))
+                    .addComponent(btnXuatExcel)
+                    .addComponent(Thoát))
+                .addGap(23, 23, 23))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         tb_vv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Vay số tiền", "Kỳ hạn", "Loại khoản vay", "Trạng thái"
+                "ID", "Vay số tiền", "Kỳ hạn", "Loại khoản vay", "Trạng thái"
             }
         ));
         jScrollPane1.setViewportView(tb_vv);
@@ -226,13 +279,13 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 27, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,19 +301,19 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(49, 49, 49)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(198, Short.MAX_VALUE)))
+                    .addContainerGap(177, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
      
-    private void load_combobox() {
+    public void load_combobox() {
         // Khởi tạo ComboBox cho Kỳ hạn
         String[] kyHanValues = {"6 tháng", "12 tháng", "24 tháng", "36 tháng"};
         Combo_Kyhan = new JComboBox<>(kyHanValues);
@@ -269,6 +322,22 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
         String[] loaiVayValues = {"Vay tín chấp", "Vay thế chấp", "Vay tiêu dùng"};
         Combo_Khoanvay = new JComboBox<>(loaiVayValues);
     }
+    public class FrameVay extends JFrame {
+    // Giữ Combo_Kyhan là private
+    private JComboBox<String> Combo_Kyhan;
+    private JComboBox<String> Combo_Khoanvay;
+
+    public FrameVay() {
+        Combo_Kyhan = new JComboBox<>(new String[] {"3 tháng", "6 tháng", "12 tháng"});
+        Combo_Khoanvay = new JComboBox<>(new String[] {"Vay tín chấp", "Vay thế chấp"});
+    }
+
+    // Tạo getter public để lấy giá trị của Combo_Kyhan
+    public String getKyHan() {
+        return Combo_Kyhan.getSelectedItem().toString();
+    }
+}
+
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
                                               
     // Lấy dữ liệu từ các components
@@ -318,6 +387,30 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void Combo_KyhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_KyhanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Combo_KyhanActionPerformed
+
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
+
+    private void Combo_KhoanvayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_KhoanvayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Combo_KhoanvayActionPerformed
+
+    private void ThoátActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThoátActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ThoátActionPerformed
+
+    private void ThoátMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThoátMouseClicked
+        
+    }//GEN-LAST:event_ThoátMouseClicked
     public static void main(String args[]) {
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -329,12 +422,14 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Combo_Khoanvay;
     private javax.swing.JComboBox<String> Combo_Kyhan;
+    private javax.swing.JButton Thoát;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXuatExcel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -342,6 +437,7 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tb_vv;
     private javax.swing.JTextField txtBanmuonvay;
     // End of variables declaration//GEN-END:variables

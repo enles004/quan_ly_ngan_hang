@@ -4,19 +4,89 @@
  */
 package com.mycompany.controllers.user;
 
+import com.mycompany.db;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
  */
 public class quanly_tra_no extends javax.swing.JInternalFrame {
+   
 
     /**
      * Creates new form quanly_tra_no
      */
     public quanly_tra_no() {
         initComponents();
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
+        load_Tra_no();
     }
+     Connection con;
 
+    private void load_Tra_no() {
+        try {
+            tb_tra_no.removeAll();
+            //b1:Ket noi Db
+            con = db.connect();
+            ////B2:Tạo đối tượng Statement để thực hiện câu lệnh truy vấn\
+            String sql = "Select * From khoan_vay";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String[] tieude = {"ID", "Số tiền vay", "Số tiền trả", "Số tiền còn lại", "Kỳ hạn", "Loại khoản vay", "Trạng thái"};
+            DefaultTableModel tb = new DefaultTableModel(tieude, 0);
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString("id_nguoi_dung"));
+                v.add(rs.getString("so_tien_vay"));
+                v.add(rs.getString("so_tien_tra"));
+                v.add(rs.getString("so_tien_con_lai"));
+                v.add(rs.getString("ky_han"));
+                v.add(rs.getString("loai_vay"));
+                v.add(rs.getString("tinh_trang"));
+                tb.addRow(v);
+
+            }
+            tb_tra_no.setModel(tb);
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public class tra_no extends quanly_vayy {
+        private JTextField txtBanmuonvay;
+        private JComboBox<String> Combo_Kyhan;
+        private JComboBox<String> Combo_Khoanvay; 
+        public tra_no() {
+            // Khởi tạo giao diện và các components
+            txtBanmuonvay = new JTextField();
+            Combo_Kyhan = new JComboBox<>();
+            Combo_Khoanvay =new JComboBox<>();
+            
+        }
+        // Tạo getter cho txtBanmuonvay
+        public String getSoTienVay() {
+            return txtBanmuonvay.getText().trim();
+        }
+        public String getKyhan() {
+            return Combo_Kyhan.getSelectedItem().toString();
+        }
+      public String getKhoanvay() {
+            return Combo_Khoanvay.getSelectedItem().toString();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,20 +100,25 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_vv = new javax.swing.JTable();
+        tb_tra_no = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTai_khoan = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtSo_tien_tra = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtGhi_chu = new javax.swing.JTextField();
+        btnThanhtoan = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtLai_phai_tra = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtTong = new javax.swing.JTextField();
+        btnXoa = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -71,18 +146,18 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        tb_vv.setModel(new javax.swing.table.DefaultTableModel(
+        tb_tra_no.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Số tiền vay", "Số tiền đã trả ", "Số tiền còn lại", "Kỳ hạn", "Khoản vay", "Trạng thái"
+                "ID", "Số tiền vay", "Số tiền đã trả ", "Số tiền còn lại", "Kỳ hạn", "Khoản vay", "Trạng thái"
             }
         ));
-        jScrollPane1.setViewportView(tb_vv);
+        jScrollPane1.setViewportView(tb_tra_no);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -94,7 +169,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel2.setText("Tài khoản nguồn trả nợ :");
@@ -127,18 +202,22 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Số tiền trả:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtSo_tien_tra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtSo_tien_traActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Ghi chú:");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jButton1.setText("Thanh toán");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnThanhtoan.setBackground(new java.awt.Color(204, 204, 204));
+        btnThanhtoan.setText("Thanh toán");
+        btnThanhtoan.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnThanhtoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThanhtoanActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("Tôi đồng ý với Quy định về các nội dung trong Hợp đồng và điều khoản điều kiện kèm theo. ");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -147,18 +226,31 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Xem khoản nợ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        btnThoat.setBackground(new java.awt.Color(204, 204, 204));
+        btnThoat.setText("Thoát");
+        btnThoat.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel6.setText("Lãi phải trả:");
+
+        jLabel7.setText("Tổng:");
+
+        btnXoa.setBackground(new java.awt.Color(204, 204, 204));
+        btnXoa.setText("Xóa");
+        btnXoa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnThanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,20 +260,19 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTai_khoan, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)))))
+                                .addComponent(txtTong, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtLai_phai_tra, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtGhi_chu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                                .addComponent(txtSo_tien_tra, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(14, 14, 14))
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -195,7 +286,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTai_khoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -203,30 +294,36 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSo_tien_tra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(txtLai_phai_tra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel4))
+                        .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel5))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtGhi_chu, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(16, 16, 16)
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(35, 35, 35)
-                .addComponent(jButton2)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThanhtoan)
+                    .addComponent(btnThoat)
+                    .addComponent(btnXoa))
+                .addContainerGap(149, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(401, Short.MAX_VALUE)
+                    .addContainerGap(378, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
@@ -234,37 +331,77 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtSo_tien_traActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSo_tien_traActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtSo_tien_traActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnThanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhtoanActionPerformed
+      // Lấy dữ liệu từ các components
+    int nguoi_dung_id =1;
+    
+    tra_no frameVay = new tra_no(); 
+    String so_tien_vay = frameVay.getSoTienVay();  // Gọi hàm getter
+    String ky_han = frameVay.getKyhan();
+    String loai_khoan = frameVay.getKhoanvay();
+    
+    String so_tien_da_tra =txtTong.getText().trim();
+    
+    // B2: Kết nối DB
+    try {
+        con = db.connect();
+        // B3: Tạo đối tượng PreparedStatement để thực hiện câu lệnh truy vấn             
+        String sql = "INSERT INTO khoan_vay (nguoi_dung_id, so_tien_vay, so_tien_da_tra, so_tien_con_lai, ky_han,loai_vay, tinh_trang) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement st = con.prepareStatement(sql); 
+
+            // Truyền giá trị cho các tham số ?
+            st.setInt(1, nguoi_dung_id);
+            st.setString(2, so_tien_vay);
+            st.setString(3, so_tien_da_tra);
+            st.setFloat(4, Float.parseFloat(frameVay.getSoTienVay()) - Float.parseFloat(txtTong.getText().trim()));
+            st.setString(5, ky_han);
+            st.setString(6, loai_khoan);  
+            st.setString(7, "Đã thanh toán");
+           st.executeUpdate();
+           con.close();
+           JOptionPane.showMessageDialog(this, "Thanh toán thành công");
+           load_Tra_no();
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+        
+
+    }//GEN-LAST:event_btnThanhtoanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnThanhtoan;
+    private javax.swing.JButton btnThoat;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTable tb_vv;
+    private javax.swing.JTable tb_tra_no;
+    private javax.swing.JTextField txtGhi_chu;
+    private javax.swing.JTextField txtLai_phai_tra;
+    private javax.swing.JTextField txtSo_tien_tra;
+    private javax.swing.JTextField txtTai_khoan;
+    private javax.swing.JTextField txtTong;
     // End of variables declaration//GEN-END:variables
 }
