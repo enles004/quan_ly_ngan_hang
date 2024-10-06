@@ -849,7 +849,15 @@ public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+<<<<<<< HEAD
     private javax.swing.JTable tbthongtin;
+=======
+    private javax.swing.JLabel nguoi_dung;
+    private javax.swing.JTable tbthongtin;
+    private javax.swing.JLabel the_canhan;
+    private javax.swing.JLabel tiet_kiem;
+    private javax.swing.JLabel tra_no;
+>>>>>>> 614f993fc410b534801a53954c76f80517bda379
     private javax.swing.JTextField txtDiachi;
     private javax.swing.JTextField txtHo;
     private javax.swing.JTextField txtID;
