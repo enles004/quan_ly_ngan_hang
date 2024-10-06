@@ -55,6 +55,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
         lb1 = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         cb_tt = new javax.swing.JComboBox<>();
+        tk = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         btn_xuatfile = new javax.swing.JButton();
         btn_xoa = new javax.swing.JButton();
@@ -109,7 +110,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -149,27 +150,41 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             }
         });
 
+        tk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tkKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lb1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lb2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tk)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(lb1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb1)
-                    .addComponent(lb2))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lb1)
+                        .addComponent(lb2))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(cb_tt, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -335,7 +350,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,6 +378,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
     }
     private void load(){
         try {
+            tk.setVisible(false);
             lb1.setVisible(false);
             lb2.setVisible(false);
             txt_lv.setEnabled(false);
@@ -375,7 +391,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             txt_nkt.setEnabled(false);
             btn_xoa.setVisible(false);
             tb_kv.removeAll();
-            String[] td = {"ID","Người vay", "STK vay", "Tình trạng"};
+            String[] td = {"ID", "Người vay", "STK vay", "Tình trạng"};
             DefaultTableModel tb = new DefaultTableModel(td, 0);
             tb_kv.setModel(tb);
         } catch (Exception e) {
@@ -527,18 +543,22 @@ public class khoan_vay extends javax.swing.JInternalFrame {
         String status = cb_tt.getSelectedItem().toString();
         String where = "";
         if (status == "Đang vay"){
+            tk.setVisible(true);
             lb1.setText("Tổng số vay đang vay:");
             where = "where kv.tinh_trang = 'dang_vay'";
         }
         else if(status == "Hoàn tất"){
+            tk.setVisible(true);
             lb1.setText("Tổng số vay đã hoàn tất:");
             where = "where kv.tinh_trang = 'hoan_tat'";
         }
         else if(status == "Quá hạn"){
+            tk.setVisible(true);
             lb1.setText("Tổng số vay quá hạn:");
             where = "where kv.tinh_trang = 'qua_han'";
         }
         else{
+            tk.setVisible(false);
             return;
         }
         try {
@@ -577,6 +597,62 @@ public class khoan_vay extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cb_ttItemStateChanged
 
+    private void tkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tkKeyReleased
+
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String tim = tk.getText().trim();
+            String status = cb_tt.getSelectedItem().toString();
+            String where = "";
+            if (status == "Đang vay"){
+                lb1.setText("Tổng số vay đang vay:");
+                where = "where kv.tinh_trang = 'dang_vay' and "
+                        + "ttcn.so_tai_khoan like '%"+tim+"%'";
+            }
+            else if(status == "Hoàn tất"){
+                lb1.setText("Tổng số vay đã hoàn tất:");
+                where = "where kv.tinh_trang = 'hoan_tat' and "
+                        + "ttcn.so_tai_khoan like '%"+tim+"%'";
+            }
+            else if(status == "Quá hạn"){
+                lb1.setText("Tổng số vay quá hạn:");
+                where = "where kv.tinh_trang = 'qua_han' and "
+                        + "ttcn.so_tai_khoan like '%"+tim+"%'";
+            }
+            else{
+                return;
+            }
+            String sql = "select * from khoan_vay kv "
+                    + "join nguoi_dung nd on nd.id = kv.nguoi_dung_id "
+                    + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nd.id "
+                    + where;
+            ResultSet rs = st.executeQuery(sql);
+            String[] td = {"ID", "Người vay", "STK vay", "Tình trạng"};
+            DefaultTableModel tb = new DefaultTableModel(td, 0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Không cho phép chỉnh sửa bất kỳ ô nào
+                }
+            };
+            int sum = 0;
+            while(rs.next()){
+                sum ++;
+                Vector v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("ho") +" "+ rs.getString("ten"));
+                v.add(rs.getString("so_tai_khoan"));
+                v.add(rs.getString("tinh_trang"));
+                tb.addRow(v);
+            }
+            lb2.setText(sum + "");
+            tb_kv.setModel(tb);
+            con.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_tkKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_thoat;
@@ -601,6 +677,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb1;
     private javax.swing.JLabel lb2;
     private javax.swing.JTable tb_kv;
+    private javax.swing.JTextField tk;
     private javax.swing.JTextField txt_cl;
     private javax.swing.JTextField txt_dt;
     private javax.swing.JTextField txt_kh;
