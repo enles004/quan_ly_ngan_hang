@@ -5,13 +5,22 @@
 package com.mycompany.controllers.admin;
 
 import com.mycompany.db;
+import com.mycompany.models.loai_the_model;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -30,6 +39,7 @@ public class loai_the extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         initComponents();
+        load_anh();
         load();
     }
 
@@ -41,17 +51,28 @@ public class loai_the extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     private void load(){
         try {
+            txt_ud.setEnabled(false);
+            txt_ten.setEnabled(false);
+            txt_hm.setEnabled(false);
+            txt_dv.setEnabled(false);
+            txt_ud.setText("");
+            txt_ten.setText("");
+            txt_hm.setText("");
+            txt_dv.setText("");
+            btn_sua.setVisible(false);
+            btn_xoa.setVisible(false);
             tb_lt.removeAll();
             con = db.connect();
             String sql = "select * from loai_the";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            String[] td = {"Tên thẻ", "Ưu đãi", "Hạn mức sử dụng", "Phí dịch vụ"};
+            String[] td = {"ID", "Tên thẻ", "Ưu đãi", "Hạn mức sử dụng", "Phí dịch vụ"};
             DefaultTableModel tb = new DefaultTableModel(td, 0);
             int sum = 0;
             while(rs.next()){
                 sum++;
                 Vector v = new Vector();
+                v.add(rs.getString("id"));
                 v.add(rs.getString("ten_loai_the"));
                 v.add(rs.getString("uu_dai"));
                 v.add(rs.getString("han_muc_su_dung"));
@@ -92,6 +113,7 @@ public class loai_the extends javax.swing.JInternalFrame {
         txt_dv = new javax.swing.JTextField();
         txt_ud = new javax.swing.JTextField();
         btn_them = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(640, 600));
         setPreferredSize(new java.awt.Dimension(640, 600));
@@ -251,7 +273,7 @@ public class loai_the extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txt_ten)
                     .addComponent(txt_hm, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
@@ -290,20 +312,24 @@ public class loai_the extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setText("Nhập file");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(154, 154, 154)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(16, 16, 16))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -319,7 +345,8 @@ public class loai_the extends javax.swing.JInternalFrame {
                     .addComponent(btn_sua)
                     .addComponent(btn_xoa)
                     .addComponent(btn_thoat)
-                    .addComponent(btn_them))
+                    .addComponent(btn_them)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -349,18 +376,51 @@ public class loai_the extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     Connection con;
+    loai_the_model l_t;
+    private void load_anh() {
+        try {
+            BufferedImage img_sua = ImageIO.read(new File("src/main/java/com/mycompany/pics/sua.png"));
+            Image scaledImg_sua = img_sua.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_sua.setIcon(new ImageIcon(scaledImg_sua));
+            
+            BufferedImage img_xoa = ImageIO.read(new File("src/main/java/com/mycompany/pics/xoa.png"));
+            Image scaledImg_xoa = img_xoa.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_xoa.setIcon(new ImageIcon(scaledImg_xoa));
+            
+            BufferedImage img_thoat = ImageIO.read(new File("src/main/java/com/mycompany/pics/thoat.png"));
+            Image scaledImg_thoat = img_thoat.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_thoat.setIcon(new ImageIcon(scaledImg_thoat));
+            
+            BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/search.png"));
+            Image scaledImg_tk = img_tk.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+            tk.setIcon(new ImageIcon(scaledImg_tk));
+            
+            BufferedImage img_them = ImageIO.read(new File("src/main/java/com/mycompany/pics/plus.png"));
+            Image scaledImg_them = img_them.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_them.setIcon(new ImageIcon(scaledImg_them));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+    boolean check = false;
     private void tb_ltMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_ltMouseClicked
+        check = true;
         int i = tb_lt.getSelectedRow();
         btn_sua.setVisible(true);
         btn_xoa.setVisible(true);
         txt_ten.setEnabled(true);
         txt_hm.setEnabled(true);
         txt_dv.setEnabled(true);
+        txt_ud.setEnabled(true);
         DefaultTableModel tb = (DefaultTableModel)tb_lt.getModel();
-        txt_ten.setText(tb.getValueAt(i, 0).toString());
-        txt_hm.setText(tb.getValueAt(i, 1).toString());
-        String ngay = tb.getValueAt(i, 2).toString();
-        txt_dv.setText(tb.getValueAt(i, 7).toString());
+        txt_ten.setText(tb.getValueAt(i, 1).toString());
+        txt_hm.setText(tb.getValueAt(i, 3).toString());
+        txt_ud.setText(tb.getValueAt(i, 2).toString());
+        txt_dv.setText(tb.getValueAt(i, 4).toString());
+        l_t = new loai_the_model();
+        l_t.setId(Integer.parseInt(tb.getValueAt(i, 0).toString()));
     }//GEN-LAST:event_tb_ltMouseClicked
 
     private void txt_tkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_tkMouseClicked
@@ -380,29 +440,18 @@ public class loai_the extends javax.swing.JInternalFrame {
             Statement st = con.createStatement();
             String tim = txt_tk.getText().trim();
             String sql = "select * "
-            + "from thong_tin_ca_nhan ttcn "
-            + "join nguoi_dung nd on nd.id = ttcn.nguoi_dung_id "
-            + "where ttcn.so_dien_thoai like '"+tim+"%'";
+            + "from loai_the "
+            + "where ten_loai_the like '%"+tim+"%' or han_muc_su_dung like '%"+tim+"%'";
             ResultSet rs = st.executeQuery(sql);
-            String[] td = {"Họ", "Tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Số điện thoại", "Email", "Số công dân", "Số tài khoản"};
-            DefaultTableModel tb = new DefaultTableModel(td, 0){
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false; // Không cho phép chỉnh sửa bất kỳ ô nào
-                }
-            };
-            System.out.println(rs);
+            String[] td = {"ID", "Tên thẻ", "Ưu đãi", "Hạn mức sử dụng", "Phí dịch vụ"};
+            DefaultTableModel tb = new DefaultTableModel(td, 0);
             while(rs.next()){
                 Vector v = new Vector();
-                v.add(rs.getString("ho"));
-                v.add(rs.getString("ten"));
-                v.add(rs.getString("ngay_sinh"));
-                v.add(rs.getString("gioi_tinh"));
-                v.add(rs.getString("dia_chi"));
-                v.add(rs.getString("so_dien_thoai"));
-                v.add(rs.getString("email"));
-                v.add(rs.getString("so_cong_dan"));
-                v.add(rs.getString("so_tai_khoan"));
+                v.add(rs.getString("id"));
+                v.add(rs.getString("ten_loai_the"));
+                v.add(rs.getString("uu_dai"));
+                v.add(rs.getString("han_muc_su_dung"));
+                v.add(rs.getString("phi_dich_vu"));
                 tb.addRow(v);
             }
             tb_lt.setModel(tb);
@@ -411,56 +460,70 @@ public class loai_the extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
 
-        // TODO add your handling code here:
     }//GEN-LAST:event_txt_tkKeyReleased
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-//        try {
-//            con = db.connect();
-//            String ten = txt_ten.getText().trim();
-//            String han_muc = txt_hm.getText().trim();
-//            String phi_divh_vu = txt_dv.getText().trim();
-//            String sql = "Update thong_tin_ca_nhan Set ho = N'"+ho+"', ten = N'"+ten+"', ngay_sinh = '"+ns+"', gioi_tinh = N'"+gt+"', dia_chi = N'"+dc+"', so_dien_thoai = '"+dt+"', so_cong_dan = '"+cd+"'"
-//            + "where so_tai_khoan = '"+u.getStk()+"'";
-//            Statement st = con.createStatement();
-//            st.executeUpdate(sql);
-//            JOptionPane.showMessageDialog(this, "Bạn đã cập nhật thành công");
-//            con.close();
-//            load();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(nguoi_dung.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(nguoi_dung.class.getName()).log(Level.SEVERE, null, ex);
-//        }        // TODO add your handling code here:
+        try {
+            con = db.connect();
+            String ten = txt_ten.getText().trim();
+            String uu_dai = txt_ud.getText().trim();
+            String han_muc = txt_hm.getText().trim();
+            String phi_dich_vu = txt_dv.getText().trim();
+            String sql = "Update loai_the Set ten_loai_the = N'"+ten+"', uu_dai = N'"+uu_dai+"', han_muc_su_dung = '"+han_muc+"', phi_dich_vu = '"+phi_dich_vu+"' "
+            + "where id = '"+l_t.getId()+"'";
+            Statement st = con.createStatement();
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(this, "Bạn đã cập nhật thành công");
+            con.close();
+            load();
+        } catch (SQLException ex) {
+            Logger.getLogger(loai_the.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(loai_the.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
 
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
-//        try {
-//            con = db.connect();
-//            Statement st = con.createStatement();
-//            String sql = "Delete nd from nguoi_dung nd "
-//            + "join thong_tin_ca_nhan ttcn on nd.id = ttcn.nguoi_dung_id "
-//            + "where ttcn.so_tai_khoan = '"+u.getStk()+"'";
-//            int r = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa người dùng này không?", "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-//            if(r == JOptionPane.YES_OPTION){
-//                st.executeUpdate(sql);
-//                JOptionPane.showMessageDialog(this, "Xóa thành công!!");
-//                con.close();
-//            }
-//            load();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        // TODO add your handling code here:
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String sql = "Delete from loai_the "
+            + "where id = '"+l_t.getId()+"'";
+            int r = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa loại thẻ này không?", "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(r == JOptionPane.YES_OPTION){
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(this, "Xóa thành công!!");
+                con.close();
+            }
+            load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
         System.exit(0);
-        // TODO add your handling code here:
     }//GEN-LAST:event_btn_thoatActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        btn_sua.setVisible(false);
+        btn_xoa.setVisible(false);
+        if(check == true){
+            txt_ud.setText("");
+            txt_ten.setText("");
+            txt_hm.setText("");
+            txt_dv.setText("");
+            check = false;
+            return;
+        }
+        if(!txt_ten.isEnabled()){
+            txt_ten.setEnabled(true);
+            txt_ud.setEnabled(true);
+            txt_hm.setEnabled(true);
+            txt_dv.setEnabled(true);
+            return;
+        }
         try {
             con = db.connect();
             Statement st = con.createStatement();
@@ -485,7 +548,7 @@ public class loai_the extends javax.swing.JInternalFrame {
                 return;
             }
             String sql = "insert into loai_the (ten_loai_the, uu_dai, han_muc_su_dung, phi_dich_vu)"
-                    + "values ('"+ten+"', N'"+uu_dai+"', '"+han_muc+"', N'"+phi_dich_vu+"'";
+                    + "values (N'"+ten+"', N'"+uu_dai+"', '"+han_muc+"', '"+phi_dich_vu+"')";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(this, "Thêm loại thẻ thành công.");
             load();
@@ -501,6 +564,7 @@ public class loai_the extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_thoat;
     private javax.swing.JButton btn_xoa;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
