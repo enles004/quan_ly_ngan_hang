@@ -267,8 +267,9 @@ public class user_main_frame extends javax.swing.JFrame {
         JLabel sourceLabel = (JLabel) evt.getSource();
         Color customColor = new Color(18, 48, 174);
         sourceLabel.setForeground(customColor);
-        quanly_vayy quanly_vayy = new quanly_vayy();
-        Desktop1.add(quanly_vayy).setVisible(true);
+         quanly_tra_no quanly_tra_no = new quanly_tra_no();
+        Desktop1.add(quanly_tra_no).setVisible(true);
+        
     }//GEN-LAST:event_khoan_traMouseClicked
 
     private void Ho_troMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ho_troMouseClicked
@@ -285,8 +286,8 @@ public class user_main_frame extends javax.swing.JFrame {
         JLabel sourceLabel = (JLabel) evt.getSource();
         Color customColor = new Color(18, 48, 174);
         sourceLabel.setForeground(customColor);
-        quanly_tra_no quanly_tra_no = new quanly_tra_no();
-        Desktop1.add(quanly_tra_no).setVisible(true);
+        quanly_vayy quanly_vayy = new quanly_vayy();
+        Desktop1.add(quanly_vayy).setVisible(true);
     }//GEN-LAST:event_khoan_vay1MouseClicked
     
     /**

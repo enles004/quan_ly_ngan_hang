@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import com.mycompany.models.khoan_vay_model;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -44,17 +46,17 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
             String sql = "Select * From khoan_vay";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            String[] tieude = {"ID", "Số tiền vay", "Số tiền trả", "Số tiền còn lại", "Kỳ hạn", "Loại khoản vay", "Trạng thái"};
+            String[] tieude = {"ID", "Số tiền vay", "Số tiền trả", "Số tiền còn lại", "Kỳ hạn", "Loại khoản vay"};
             DefaultTableModel tb = new DefaultTableModel(tieude, 0);
             while (rs.next()) {
                 Vector v = new Vector();
-                v.add(rs.getString("id_nguoi_dung"));
+                v.add(rs.getString("id"));
                 v.add(rs.getString("so_tien_vay"));
-                v.add(rs.getString("so_tien_tra"));
+                v.add(rs.getString("so_tien_da_tra"));
                 v.add(rs.getString("so_tien_con_lai"));
                 v.add(rs.getString("ky_han"));
                 v.add(rs.getString("loai_vay"));
-                v.add(rs.getString("tinh_trang"));
+                
                 tb.addRow(v);
 
             }
@@ -96,6 +98,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -109,8 +112,6 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         txtSo_tien_tra = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtGhi_chu = new javax.swing.JTextField();
         btnThanhtoan = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         btnThoat = new javax.swing.JButton();
@@ -148,15 +149,20 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
 
         tb_tra_no.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Số tiền vay", "Số tiền đã trả ", "Số tiền còn lại", "Kỳ hạn", "Khoản vay", "Trạng thái"
+                "ID", "Số tiền vay", "Số tiền đã trả ", "Số tiền còn lại", "Kỳ hạn", "Khoản vay"
             }
         ));
+        tb_tra_no.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_tra_noMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_tra_no);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -176,9 +182,21 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Hình thức trả nợ:");
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Trả nợ định kỳ");
+        jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton1MouseClicked(evt);
+            }
+        });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Tất toán - đóng khoản vay");
+        jRadioButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,8 +225,6 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                 txtSo_tien_traActionPerformed(evt);
             }
         });
-
-        jLabel5.setText("Ghi chú:");
 
         btnThanhtoan.setBackground(new java.awt.Color(204, 204, 204));
         btnThanhtoan.setText("Thanh toán");
@@ -261,16 +277,14 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTai_khoan, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtTong, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtTong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                                 .addComponent(txtLai_phai_tra, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtGhi_chu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                                 .addComponent(txtSo_tien_tra, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,11 +323,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(txtTong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtGhi_chu, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(16, 16, 16)
+                .addGap(58, 58, 58)
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -377,18 +387,112 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
         
 
     }//GEN-LAST:event_btnThanhtoanActionPerformed
+    khoan_vay_model a;
+    private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
+    int id = a.getId();
+    String sql = " Select * from khoan_vay "
+            + "where id = '"+ id +"'";
+         try {
+             con = db.connect();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+           
+            while(rs.next()){
+                float kh = 1 ;               
+                String ky_han=rs.getString("ky_han");
+                if (ky_han.equals("3 tháng")){
+                    kh=3;
+                }else if(ky_han.equals("6 tháng")){
+                    kh=6;
+                }else if(ky_han.equals("12 tháng")){
+                    kh=12;
+                }
+                double laisuat=0.00725;
+                double sotienvay = rs.getFloat("so_tien_vay");    
+                double sotientra = rs.getFloat("so_tien_vay")/kh;
+                double laiphaitra =(float) (sotienvay *laisuat);
+                double tongsotienphaitra = sotientra + laiphaitra;
+                DecimalFormat df = new DecimalFormat("#,###.##");
+                txtSo_tien_tra.setText(df.format(sotientra)+"");
+                txtLai_phai_tra.setText(df.format(laiphaitra)+ "");
+                txtTong.setText(df.format(tongsotienphaitra)+"");
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jRadioButton1MouseClicked
+
+    private void tb_tra_noMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_tra_noMouseClicked
+       int i = tb_tra_no.getSelectedRow();
+        DefaultTableModel tb = (DefaultTableModel)tb_tra_no.getModel();
+        int id = Integer.parseInt(tb.getValueAt(i, 0).toString());
+        a = new khoan_vay_model();
+        a.setId(id);
+        String sql = "Select * from khoan_vay "
+                + "join nguoi_dung on nguoi_dung.id = khoan_vay.nguoi_dung_id "
+                + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nguoi_dung.id "
+                + "where khoan_vay.id = '"+id+"'";
+        try {
+             con = db.connect();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                txtTai_khoan.setText(rs.getString("so_tai_khoan"));
+                
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+           
+    }//GEN-LAST:event_tb_tra_noMouseClicked
+
+    private void jRadioButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton2MouseClicked
+        int id = a.getId();
+        String sql = " Select * from khoan_vay "
+            + "where id = '"+ id +"'";
+         try {
+             con = db.connect();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                float kh = 1 ;
+                String ky_han=rs.getString("ky_han");
+               
+                if (ky_han.equals("3 tháng")){
+                    kh=3;
+                }else if(ky_han.equals("6 tháng")){
+                    kh=6;
+                }else if(ky_han.equals("12 tháng")){
+                    kh=12;
+                }
+                double laisuat=0.00725;
+                double sotienvay = rs.getFloat("so_tien_vay");    
+                double laiphaitra =(float) (sotienvay *laisuat)*kh;
+                double tongsotienphaitra = sotienvay + laiphaitra;
+                DecimalFormat df = new DecimalFormat("#,###.##");
+                txtSo_tien_tra.setText(df.format(sotienvay)+"");
+                txtLai_phai_tra.setText(df.format(laiphaitra)+ "");
+                txtTong.setText(df.format(tongsotienphaitra)+"");
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jRadioButton2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThanhtoan;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXoa;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -398,7 +502,6 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tb_tra_no;
-    private javax.swing.JTextField txtGhi_chu;
     private javax.swing.JTextField txtLai_phai_tra;
     private javax.swing.JTextField txtSo_tien_tra;
     private javax.swing.JTextField txtTai_khoan;
