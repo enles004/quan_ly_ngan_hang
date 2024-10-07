@@ -216,7 +216,7 @@ public class Quanlydangnhap extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
             
             // Chuyển đến trang chủ (TrangChu)
-            TrangChu mainForm = new TrangChu();
+           TrangChu mainForm = new TrangChu();
             mainForm.setVisible(true);
             this.dispose(); // Đóng form đăng nhập hiện tại
         } else {
