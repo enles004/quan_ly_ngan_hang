@@ -82,7 +82,19 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Số tài khoản:");
 
+        txtsotk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsotkActionPerformed(evt);
+            }
+        });
+
         jLabel12.setText("Tên người nhận:");
+
+        txtname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -166,6 +178,12 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
         });
 
         jLabel15.setText("Lời nhắn (nếu có):");
+
+        txtloinhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtloinhanActionPerformed(evt);
+            }
+        });
 
         tbDanhsach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -423,6 +441,18 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
     private void btnchuyennhanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchuyennhanhActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnchuyennhanhActionPerformed
+
+    private void txtsotkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsotkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsotkActionPerformed
+
+    private void txtloinhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloinhanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtloinhanActionPerformed
+
+    private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnameActionPerformed
 
 
 

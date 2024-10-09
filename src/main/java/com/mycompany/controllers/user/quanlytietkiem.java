@@ -43,7 +43,7 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDanhsach = new javax.swing.JTable();
         btnhienthi = new javax.swing.JButton();
-        txtlai = new javax.swing.JTextField();
+        txtlaisuat = new javax.swing.JTextField();
         btnluu = new javax.swing.JButton();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -70,8 +70,18 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
         jLabel8.setText("Ngày rút tiền tiết kiệm: ");
 
         btngui.setText("Gửi");
+        btngui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguiActionPerformed(evt);
+            }
+        });
 
         btnhuy.setText("Hủy");
+        btnhuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhuyActionPerformed(evt);
+            }
+        });
 
         tbDanhsach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,6 +97,11 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tbDanhsach);
 
         btnhienthi.setText("Hiển thị tiền lãi");
+        btnhienthi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhienthiActionPerformed(evt);
+            }
+        });
 
         btnluu.setText("Lưu");
         btnluu.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +141,7 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
                                         .addGap(72, 72, 72)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtsodu)
-                                            .addComponent(txtlai))))
+                                            .addComponent(txtlaisuat))))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,7 +176,7 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtlai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtlaisuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -214,6 +229,18 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnluuActionPerformed
 
+    private void btnhienthiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhienthiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnhienthiActionPerformed
+
+    private void btnhuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnhuyActionPerformed
+
+    private void btnguiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnguiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btngui;
@@ -232,7 +259,7 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbDanhsach;
-    private javax.swing.JTextField txtlai;
+    private javax.swing.JTextField txtlaisuat;
     private javax.swing.JTextField txtsodu;
     private javax.swing.JTextField txttien;
     // End of variables declaration//GEN-END:variables

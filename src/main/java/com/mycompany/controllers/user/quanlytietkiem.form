@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -86,7 +86,7 @@
                                           <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="txtsodu" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txtlai" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtlaisuat" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -134,7 +134,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtlai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtlaisuat" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -214,11 +214,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="G&#x1eed;i"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnguiActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnhuy">
           <Properties>
             <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnhuyActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -248,8 +254,11 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Hi&#x1ec3;n th&#x1ecb; ti&#x1ec1;n l&#xe3;i"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnhienthiActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtlai">
+        <Component class="javax.swing.JTextField" name="txtlaisuat">
         </Component>
         <Component class="javax.swing.JButton" name="btnluu">
           <Properties>
