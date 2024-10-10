@@ -5,6 +5,7 @@
 
 package com.mycompany.controllers.user;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import com.mycompany.db;
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import com.mycompany.models.AccountGenerator;
+import javax.swing.UIManager;
 /**
  *
  * @author HOA.HP
@@ -21,7 +23,13 @@ public class DangKy extends javax.swing.JFrame {
     Connection con;
     /** Creates new form DangKy */
     public DangKy() {
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf()); // Hoặc FlatDarkLaf
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         initComponents();
+        
     }
 
     /** This method is called from within the constructor to

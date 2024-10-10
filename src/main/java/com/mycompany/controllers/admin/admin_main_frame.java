@@ -27,6 +27,11 @@ public class admin_main_frame extends javax.swing.JFrame {
      * Creates new form main_frame
      */
     public admin_main_frame() throws IOException {
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf()); // Hoặc FlatDarkLaf
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         initComponents();
         load_anh();
     }
@@ -418,11 +423,6 @@ public class admin_main_frame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf()); // Hoặc FlatDarkLaf
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -4,6 +4,7 @@
  */
 package com.mycompany.controllers.user;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import com.mycompany.controllers.admin.admin_main_frame;
 import com.mycompany.db;
 import com.mycompany.models.UserSession;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -25,7 +27,13 @@ public class Quanlydangnhap extends javax.swing.JFrame {
      * Creates new form Quanlydangnhap
      */
     public Quanlydangnhap() {
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf()); // Hoặc FlatDarkLaf
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         initComponents();
+        
     }
 
     /**
