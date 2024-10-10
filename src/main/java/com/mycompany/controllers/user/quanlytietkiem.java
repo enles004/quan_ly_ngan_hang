@@ -4,6 +4,17 @@
  */
 package com.mycompany.controllers.user;
 
+import com.mycompany.db;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author PC
@@ -38,12 +49,11 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
         dategui = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         daterut = new com.toedter.calendar.JDateChooser();
-        btngui = new javax.swing.JButton();
         btnhuy = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDanhsach = new javax.swing.JTable();
         btnhienthi = new javax.swing.JButton();
-        txtlaisuat = new javax.swing.JTextField();
+        txtlai = new javax.swing.JTextField();
         btnluu = new javax.swing.JButton();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -69,13 +79,6 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Ngày rút tiền tiết kiệm: ");
 
-        btngui.setText("Gửi");
-        btngui.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnguiActionPerformed(evt);
-            }
-        });
-
         btnhuy.setText("Hủy");
         btnhuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,13 +88,13 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
 
         tbDanhsach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Số tiền", "Lãi suất", "Ngày gửi tiết kiệm", "Ngày rút tiết kiệm"
+                "Số tiền", "Lãi suất", "Ngày gửi tiết kiệm", "Ngày rút tiết kiệm", "Số tiền lãi"
             }
         ));
         jScrollPane1.setViewportView(tbDanhsach);
@@ -100,13 +103,6 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
         btnhienthi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnhienthiActionPerformed(evt);
-            }
-        });
-
-        btnluu.setText("Lưu");
-        btnluu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnluuActionPerformed(evt);
             }
         });
 
@@ -141,7 +137,7 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
                                         .addGap(72, 72, 72)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtsodu)
-                                            .addComponent(txtlaisuat))))
+                                            .addComponent(txtlai))))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,13 +145,10 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
                                 .addComponent(daterut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnluu)
-                        .addGap(18, 18, 18)
                         .addComponent(btnhienthi)
                         .addGap(18, 18, 18)
                         .addComponent(btnhuy)
-                        .addGap(18, 18, 18)
-                        .addComponent(btngui)))
+                        .addGap(90, 90, 90)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -176,7 +169,7 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtlaisuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtlai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -189,18 +182,26 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btngui)
                     .addComponent(btnhuy)
-                    .addComponent(btnhienthi)
-                    .addComponent(btnluu))
+                    .addComponent(btnhienthi))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        btnluu.setText("Lưu");
+        btnluu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnluuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(563, Short.MAX_VALUE)
+                .addComponent(btnluu)
+                .addGap(18, 18, 18))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -209,7 +210,10 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(469, Short.MAX_VALUE)
+                .addComponent(btnluu)
+                .addGap(14, 14, 14))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -226,24 +230,111 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
 
     private void btnluuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnluuActionPerformed
         // TODO add your handling code here:
+        // Lấy thông tin từ các trường
+    String soTien = txttien.getText();
+    String soDu = txtsodu.getText();
+    String laiSuat = txtlai.getText();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    String ngayGui = dateFormat.format(dategui.getDate());
+    String ngayRut = dateFormat.format(daterut.getDate());
 
+    // Kiểm tra dữ liệu đầu vào
+    if (soTien.isEmpty()|| soDu.isEmpty() || laiSuat.isEmpty() || ngayGui.isEmpty() || ngayRut.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!");
+    } else {
+        // Kết nối database và thực hiện lưu
+        try {
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost\\NguyenDinhTam:1433;;databaseName=Embeiu", "sa", "27012004");
+            String sql = "INSERT INTO TietKiem (SoTien, SoDu, LaiSuat, NgayGui, NgayRut) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            // Thiết lập các giá trị vào PreparedStatement
+            pst.setString(1, soTien);
+            pst.setString(2, soDu);
+            pst.setString(3, laiSuat);
+            pst.setString(4, ngayGui);
+            pst.setString(5, ngayRut);
+
+            // Thực hiện câu lệnh SQL
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "Lưu thông tin thành công!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Không thể lưu thông tin!");
+            }
+
+            // Đóng kết nối
+            con.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi lưu dữ liệu.");
+        }
+    }
     }//GEN-LAST:event_btnluuActionPerformed
 
     private void btnhienthiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhienthiActionPerformed
         // TODO add your handling code here:
+       // Tạo mô hình bảng (table model)
+    DefaultTableModel model = (DefaultTableModel) tbDanhsach.getModel();
+    model.setRowCount(0); // Xóa các hàng hiện có trong bảng trước khi thêm dữ liệu mới
+
+    // Kết nối database và truy xuất các giao dịch đã gửi tiết kiệm
+    try {
+        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost\\NguyenDinhTam:1433;databaseName=Embeiu", "sa", "27012004");
+        String sql = "SELECT SoTien, LaiSuat, NgayGui, NgayRut FROM TietKiem";
+        PreparedStatement pst = con.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+
+        // Tạo SimpleDateFormat để định dạng ngày
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Duyệt qua các kết quả truy vấn và thêm vào bảng
+        while (rs.next()) {
+            double soTien = rs.getDouble("SoTien");
+            double laiSuat = rs.getDouble("LaiSuat");
+            Date ngayGui = rs.getDate("NgayGui");
+            Date ngayRut = rs.getDate("NgayRut");
+
+            // Định dạng ngày thành chuỗi
+            String ngayGuiStr = sdf.format(ngayGui);
+            String ngayRutStr = sdf.format(ngayRut);
+
+            // Tính số ngày gửi
+            long diffInMillies = Math.abs(ngayRut.getTime() - ngayGui.getTime());
+            long soNgayGui = diffInMillies / (1000 * 60 * 60 * 24); // Số ngày giữa hai mốc thời gian
+            
+            // Tính tiền lãi theo công thức
+            double tienLai = (soTien * laiSuat / 100) * soNgayGui / 365;
+
+            // Thêm một hàng mới vào bảng với số tiền lãi
+            model.addRow(new Object[]{soTien, laiSuat, ngayGuiStr, ngayRutStr, String.format("%.2f", tienLai)});
+        }
+
+        // Đóng kết nối
+        rs.close();
+        pst.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi truy xuất dữ liệu.");
+    }
     }//GEN-LAST:event_btnhienthiActionPerformed
 
     private void btnhuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuyActionPerformed
         // TODO add your handling code here:
+        // Xóa sạch các trường văn bản
+            txttien.setText("");
+            txtsodu.setText("");
+            txtlai.setText("");
+            // Đặt lại ngày trên JDateChooser
+            dategui.setDate(null);
+            daterut.setDate(null);
     }//GEN-LAST:event_btnhuyActionPerformed
-
-    private void btnguiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnguiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btngui;
     private javax.swing.JButton btnhienthi;
     private javax.swing.JButton btnhuy;
     private javax.swing.JButton btnluu;
@@ -259,7 +350,7 @@ public class quanlytietkiem extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbDanhsach;
-    private javax.swing.JTextField txtlaisuat;
+    private javax.swing.JTextField txtlai;
     private javax.swing.JTextField txtsodu;
     private javax.swing.JTextField txttien;
     // End of variables declaration//GEN-END:variables
