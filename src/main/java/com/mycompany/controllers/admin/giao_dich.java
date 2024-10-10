@@ -16,6 +16,14 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -86,6 +94,11 @@ public class giao_dich extends javax.swing.JInternalFrame {
         });
 
         xuatfile.setText("Xuất file");
+        xuatfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xuatfileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -107,7 +120,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_thoat)
                     .addComponent(xuatfile))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 204, 204));
@@ -279,6 +292,27 @@ public class giao_dich extends javax.swing.JInternalFrame {
         System.exit(0);
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_thoatActionPerformed
+
+    private void xuatfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xuatfileActionPerformed
+        try {
+            con = db.connect();
+            JasperDesign jdesign = JRXmlLoader.load("src\\main\\java\\com\\mycompany\\controllers\\admin\\giao_dich.jrxml");
+            String sql = "select * "
+                    + "from giao_dich gd "
+                    + "join nguoi_dung nd on nd.id = gd.nguoi_dung_id "
+                    + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nd.id "
+                    + "where gd.trang_thai = 'thanh_cong'";
+            JRDesignQuery updateQuery = new JRDesignQuery();
+            updateQuery.setText(sql);
+            jdesign.setQuery(updateQuery);
+            JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+            JasperPrint jprint = JasperFillManager.fillReport(jreport, null, con);
+            JasperViewer.viewReport(jprint);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_xuatfileActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -150,6 +150,11 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             }
         });
 
+        tk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tkMouseClicked(evt);
+            }
+        });
         tk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tkKeyReleased(evt);
@@ -559,6 +564,9 @@ public class khoan_vay extends javax.swing.JInternalFrame {
         }
         else{
             tk.setVisible(false);
+            lb1.setVisible(false);
+            lb2.setVisible(false);
+            tb_kv.removeAll();
             return;
         }
         try {
@@ -652,6 +660,18 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_tkKeyReleased
+
+    private void tkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tkMouseClicked
+        txt_lv.setText("");
+        txt_stv.setText("");
+        txt_dt.setText("");
+        txt_cl.setText("");
+        txt_nbd.setText("");
+        txt_nkt.setText("");
+        txt_kh.setText("");
+        txt_stkv.setText("");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tkMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
