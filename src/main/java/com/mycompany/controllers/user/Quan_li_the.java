@@ -41,8 +41,6 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
      private void load_thongtin() throws ClassNotFoundException{
     Connection con = null;
         try {
-////            Class.forName("com.mysql.cj.jdbc.Driver");
-////            con=DriverManager.getConnection(url,user,pass);
             con = db.connect();
             String sql="Select * from thong_tin_ca_nhan";
             Statement st=con.createStatement();
@@ -386,11 +384,11 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(btndangkithemoi)
-                .addGap(55, 55, 55)
+                .addGap(92, 92, 92)
                 .addComponent(btnxoathe)
-                .addGap(69, 69, 69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(btntimkiemthe)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(97, 97, 97)
                 .addComponent(btnxemdanhsachthe)
                 .addGap(87, 87, 87))
         );
@@ -406,7 +404,7 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
                     .addComponent(btnxoathe)
                     .addComponent(btntimkiemthe)
                     .addComponent(btnxemdanhsachthe))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -428,12 +426,9 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
         //ket noi database
         Connection con = null;
         try {
-            //            Class.forName("com.mysql.cj.jdbc.Driver");
-            //            con=DriverManager.getConnection(url,user,pass);
+            
 
             con = db.connect();
-            //            String sql="Insert Tacgia(Matacgia, Tentacgia,NgaySinh, Gioitinh,Dienthoai, Email, Diachi) Values('"+mtg+"',N'"+ttg+"','"+ngs+"',N'"+gt+"',"+"'"+dt+"','"+email+"',N'"+dc+"')";
-            //            Statement st=con.createStatement();
             String sql="Insert into the_nguoi_dung Values(?,?,?,?,?,?,?)";
             PreparedStatement st=con.prepareStatement(sql);
             st.setString(0,id);
@@ -450,7 +445,8 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
         }   catch(SQLException ex){
             ex.printStackTrace();
 
-        } catch (ClassNotFoundException ex) {Logger.getLogger(Quanlithongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Quan_li_the.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -529,8 +525,8 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
         } catch(SQLException ex){
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Quanlithongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Logger.getLogger(Quan_li_the.class.getName()).log(Level.SEVERE, null, ex);
+        } 
 
     }//GEN-LAST:event_btnxoatheActionPerformed
 
@@ -541,10 +537,6 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
                 String id = txtID.getText().trim();
                 String nguoidungid = txtnguoidungid.getText().trim();
                 String loai_the_id= txtloaitheid.getText().trim();
-//                String sothe= txtsothe.getText().trim();
-//                Date ngay_het_han= new Date (ngayhethan.getDate().getTime());
-//                String trangthai=txttrangthai.getText().trim();
-//                Date ngay_tao= new Date (ngaytao.getDate().getTime());
             //b2: kết nối DB
             Connection con = null;
             con = db.connect();
