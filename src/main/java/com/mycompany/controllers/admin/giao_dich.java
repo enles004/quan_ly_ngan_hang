@@ -307,7 +307,9 @@ public class giao_dich extends javax.swing.JInternalFrame {
             jdesign.setQuery(updateQuery);
             JasperReport jreport = JasperCompileManager.compileReport(jdesign);
             JasperPrint jprint = JasperFillManager.fillReport(jreport, null, con);
-            JasperViewer.viewReport(jprint);
+            JasperViewer viewer = new JasperViewer(jprint, false); // false để không đóng ứng dụng khi thoát
+            viewer.setDefaultCloseOperation(JasperViewer.DISPOSE_ON_CLOSE); // Chỉ đóng cửa sổ
+            viewer.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }

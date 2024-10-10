@@ -9,18 +9,26 @@ import com.mycompany.models.thong_bao_model;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -71,7 +79,8 @@ public class thong_bao extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_td = new javax.swing.JTextField();
         btn_them = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        nhap_file = new javax.swing.JButton();
+        path = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(640, 600));
         setRequestFocusEnabled(false);
@@ -106,7 +115,7 @@ public class thong_bao extends javax.swing.JInternalFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 204, 204));
@@ -156,7 +165,7 @@ public class thong_bao extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -205,7 +214,7 @@ public class thong_bao extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Loại thông báo:");
 
-        txt_ltb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn-", "Người dùng", "Nhân viên", " " }));
+        txt_ltb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn-", "Người dùng", "Nhân viên" }));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Tiêu đề:");
@@ -221,7 +230,7 @@ public class thong_bao extends javax.swing.JInternalFrame {
                     .addComponent(txt_ltb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
                     .addComponent(txt_td, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -254,8 +263,6 @@ public class thong_bao extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Nhập file");
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -268,8 +275,6 @@ public class thong_bao extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -287,10 +292,16 @@ public class thong_bao extends javax.swing.JInternalFrame {
                     .addComponent(btn_sua)
                     .addComponent(btn_xoa)
                     .addComponent(btn_thoat)
-                    .addComponent(btn_them)
-                    .addComponent(jButton1))
+                    .addComponent(btn_them))
                 .addContainerGap())
         );
+
+        nhap_file.setText("Nhập file");
+        nhap_file.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nhap_fileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -300,6 +311,12 @@ public class thong_bao extends javax.swing.JInternalFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(nhap_file)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,6 +325,10 @@ public class thong_bao extends javax.swing.JInternalFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nhap_file)
+                    .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -381,6 +402,47 @@ public class thong_bao extends javax.swing.JInternalFrame {
             }
             tb_tb.setModel(tb);
             con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void Themthongbao(String tieu_de, String noi_dung, String loai_thong_bao){
+        try {
+            con = db.connect();
+            String sql = "insert thong_bao (tieu_de, noi_dung, loai_thong_bao, ngay_tao) "
+                + "values (N'"+tieu_de+"', N'"+noi_dung+"', N'"+loai_thong_bao+"', getdate())";
+            Statement st = con.createStatement();
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+    }
+    
+    private void ReadExcel(String tenfilepath) {
+        try {
+            FileInputStream fis = new FileInputStream(tenfilepath);
+            //Tạo đối tượng Excel
+            XSSFWorkbook wb = new XSSFWorkbook(fis);
+            XSSFSheet sheet = wb.getSheetAt(0); //Lấy sheet đầu tiên của file
+            //Lấy ra các dòng bảng bảng
+            Iterator<Row> itr = sheet.iterator();
+            //Đọc dữ liệu
+            int row_count = 0;
+            while (itr.hasNext()) {
+                if (row_count > 0) {
+                    Row row = itr.next(); 
+                    String tieu_de = row.getCell(0).getStringCellValue();
+                    String noi_dung = row.getCell(1).getStringCellValue();
+                    String loai_thong_bao = row.getCell(2).getStringCellValue();
+
+                    Themthongbao(tieu_de, noi_dung, loai_thong_bao);
+                }
+                row_count++;
+            }
+            JOptionPane.showMessageDialog(this, "Thêm thông báo bằng file thành công");
+            load();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -524,13 +586,33 @@ public class thong_bao extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btn_themActionPerformed
 
+    private void nhap_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhap_fileActionPerformed
+        try {
+            JFileChooser fc = new JFileChooser();
+            int lc = fc.showOpenDialog(this);
+            if (lc == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                path.setText(file.getPath());
+                String tenfile = file.getName();
+                if (tenfile.endsWith(".xlsx")) { 
+                    ReadExcel(file.getPath());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Phải chọn file excel");
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nhap_fileActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_thoat;
     private javax.swing.JButton btn_xoa;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -542,6 +624,8 @@ public class thong_bao extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton nhap_file;
+    private javax.swing.JTextField path;
     private javax.swing.JLabel sum_nd;
     private javax.swing.JTable tb_tb;
     private javax.swing.JLabel tk;
