@@ -150,6 +150,11 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             }
         });
 
+        tk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tkMouseClicked(evt);
+            }
+        });
         tk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tkKeyReleased(evt);
@@ -176,12 +181,14 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lb1)
-                        .addComponent(lb2))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb2)
+                            .addComponent(lb1))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -559,6 +566,9 @@ public class khoan_vay extends javax.swing.JInternalFrame {
         }
         else{
             tk.setVisible(false);
+            lb1.setVisible(false);
+            lb2.setVisible(false);
+            tb_kv.removeAll();
             return;
         }
         try {
@@ -652,6 +662,18 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_tkKeyReleased
+
+    private void tkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tkMouseClicked
+        txt_lv.setText("");
+        txt_stv.setText("");
+        txt_dt.setText("");
+        txt_cl.setText("");
+        txt_nbd.setText("");
+        txt_nkt.setText("");
+        txt_kh.setText("");
+        txt_stkv.setText("");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tkMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

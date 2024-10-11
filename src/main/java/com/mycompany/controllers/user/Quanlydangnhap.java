@@ -4,7 +4,10 @@
  */
 package com.mycompany.controllers.user;
 
+import com.formdev.flatlaf.FlatLightLaf;
+import com.mycompany.controllers.admin.admin_main_frame;
 import com.mycompany.db;
+import com.mycompany.models.UserSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -23,7 +27,13 @@ public class Quanlydangnhap extends javax.swing.JFrame {
      * Creates new form Quanlydangnhap
      */
     public Quanlydangnhap() {
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf()); // Hoặc FlatDarkLaf
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         initComponents();
+        
     }
 
     /**
@@ -66,10 +76,11 @@ public class Quanlydangnhap extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
-        btnDangky.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnDangky.setFont(new java.awt.Font("Segoe UI", 1, 8)); // NOI18N
         btnDangky.setText("Đăng Ký");
         btnDangky.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,15 +125,16 @@ public class Quanlydangnhap extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(54, 54, 54))
+                            .addComponent(txtPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addGap(38, 38, 38))))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -134,12 +146,12 @@ public class Quanlydangnhap extends javax.swing.JFrame {
                             .addComponent(jLabel11)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(121, 121, 121)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dangnhap)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(btnDangky)))))
+                        .addComponent(dangnhap)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDangky)
+                .addGap(62, 62, 62))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,11 +168,11 @@ public class Quanlydangnhap extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addGap(20, 20, 20)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDangky)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(dangnhap)
-                .addGap(18, 18, 18)
-                .addComponent(btnDangky)
-                .addGap(31, 31, 31)
+                .addGap(88, 88, 88)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9))
@@ -192,6 +204,7 @@ public class Quanlydangnhap extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void dangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangnhapActionPerformed
@@ -205,20 +218,33 @@ public class Quanlydangnhap extends javax.swing.JFrame {
         con = db.connect();
 
         // Kiểm tra username và password trong cơ sở dữ liệu
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM nguoi_dung WHERE ten_dang_nhap = ? AND mat_khau = ?";
         PreparedStatement st = con.prepareStatement(sql);
         st.setString(1, username);
         st.setString(2, password);
         ResultSet rs = st.executeQuery();
 
-        // Kiểm tra kết quả truy vấn
         if (rs.next()) {
+            UserSession.setUserId(rs.getInt("id"));
             JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
-            
-            // Chuyển đến trang chủ (TrangChu)
-           TrangChu mainForm = new TrangChu();
-            mainForm.setVisible(true);
-            this.dispose(); // Đóng form đăng nhập hiện tại
+            if(rs.getString("vai_tro").equals("nguoi_dung")){
+                try {
+                    user_main_frame u = new user_main_frame();
+                    u.setVisible(true);
+                    this.dispose();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(rs.getString("vai_tro").equals("admin")){
+                try {
+                    admin_main_frame a = new admin_main_frame();
+                    a.setVisible(true);
+                    this.dispose();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu!");
         }
@@ -248,8 +274,6 @@ public class Quanlydangnhap extends javax.swing.JFrame {
     // Đóng form đăng nhập hiện tại
     this.dispose();
 
-    
-  
     }//GEN-LAST:event_btnDangkyActionPerformed
 
     /**
