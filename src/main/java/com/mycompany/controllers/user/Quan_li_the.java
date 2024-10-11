@@ -109,7 +109,7 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
         btntimkiemthe = new javax.swing.JButton();
         btnxemdanhsachthe = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(850, 600));
+        setPreferredSize(new java.awt.Dimension(640, 550));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
