@@ -629,6 +629,7 @@ public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
                 spreadsheet.autoSizeColumn(col);
             }
             File f = new File("D:\\Java nhóm 9\\quan_ly_ngan_hang\\Danh_sach_thong_tin_ca_nhan.xlsx");
+            //File f = new File("D:\\Danhsachtacgia.xlsx");
             FileOutputStream out = new FileOutputStream(f);
             workbook.write(out);
             out.close();
@@ -706,8 +707,12 @@ public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
         //ket noi database
         Connection con = null;
         try {
+            //            Class.forName("com.mysql.cj.jdbc.Driver");
+            //            con=DriverManager.getConnection(url,user,pass);
+
             con = db.connect();
-           
+            //            String sql="Insert Tacgia(Matacgia, Tentacgia,NgaySinh, Gioitinh,Dienthoai, Email, Diachi) Values('"+mtg+"',N'"+ttg+"','"+ngs+"',N'"+gt+"',"+"'"+dt+"','"+email+"',N'"+dc+"')";
+            //            Statement st=con.createStatement();
             String sql="Insert into thong_tin_ca_nhan Values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement st=con.prepareStatement(sql);
             st.setString(0,id);
@@ -765,7 +770,8 @@ public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
     private void load_thongtin() throws ClassNotFoundException{
     Connection con = null;
         try {
-
+////            Class.forName("com.mysql.cj.jdbc.Driver");
+////            con=DriverManager.getConnection(url,user,pass);
             con = db.connect();
             String sql="Select * from thong_tin_ca_nhan";
             Statement st=con.createStatement();
