@@ -4,6 +4,11 @@
  */
 package com.mycompany.controllers.user;
 
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author PC
@@ -59,6 +64,12 @@ public class quanlithongbao extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Tìm kiếm: ");
 
+        txttimkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttimkiemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,8 +108,37 @@ public class quanlithongbao extends javax.swing.JInternalFrame {
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
         // TODO add your handling code here:
+        // Kiểm tra xem có dòng nào được chọn hay không
+    int selectedRow = tbDanhsach.getSelectedRow();
+    
+    if (selectedRow != -1) {
+        // Lấy mô hình bảng (tableModel) từ bảng tbDanhsach
+        DefaultTableModel tableModel = (DefaultTableModel) tbDanhsach.getModel();
+        
+        // Xóa dòng được chọn từ mô hình bảng
+        tableModel.removeRow(selectedRow);
+    } else {
+        // Hiển thị thông báo nếu không có dòng nào được chọn
+        JOptionPane.showMessageDialog(this, "Vui lòng chọn một dòng để xóa!");
+    }
     }//GEN-LAST:event_btnxoaActionPerformed
 
+    private void txttimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimkiemActionPerformed
+        // TODO add your handling code here:
+        String keyword = txttimkiem.getText();
+    // Nếu từ khóa tìm kiếm không rỗng, áp dụng bộ lọc tìm kiếm
+    if (!keyword.trim().isEmpty()) {
+        DefaultTableModel tableModel = (DefaultTableModel) tbDanhsach.getModel(); 
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+        tbDanhsach.setRowSorter(sorter);
+
+        // Áp dụng bộ lọc cho tất cả các cột, chỉ những hàng chứa từ khóa mới được hiển thị
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)" + keyword));
+    } else {
+        // Nếu từ khóa rỗng, xóa bộ lọc
+        ((TableRowSorter<?>) tbDanhsach.getRowSorter()).setRowFilter(null);
+    }
+    }//GEN-LAST:event_txttimkiemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnxoa;
