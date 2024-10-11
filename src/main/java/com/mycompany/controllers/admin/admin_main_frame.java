@@ -4,11 +4,14 @@
  */
 package com.mycompany.controllers.admin;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.mycompany.controllers.main;
+import com.mycompany.db;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -376,7 +379,14 @@ public class admin_main_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_khoan_vayMouseClicked
 
     private void dang_xuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dang_xuatMouseClicked
-        // TODO add your handling code here:
+        try {;
+            int r = JOptionPane.showConfirmDialog(this, "Bạn muốn đăng xuất?", "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(r == JOptionPane.YES_OPTION){
+                main m = new main();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_dang_xuatMouseClicked
 
     private void ho_troMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ho_troMouseClicked
