@@ -77,6 +77,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
         lb2 = new javax.swing.JLabel();
         cb_tt = new javax.swing.JComboBox<>();
         tk = new javax.swing.JTextField();
+        lb_tk = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -87,6 +88,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(640, 600));
         setRequestFocusEnabled(false);
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btn_xuatfile.setText("Xuất file");
@@ -110,6 +112,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -185,7 +188,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -194,21 +197,17 @@ public class ho_tro extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(btn_xuatfile, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_xuatfile, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(2, 2, 2)
                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -218,6 +217,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         lb1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -249,30 +249,40 @@ public class ho_tro extends javax.swing.JInternalFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tk)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(lb1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lb2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                        .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(16, 16, 16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(tk, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_tk, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cb_tt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lb2)
                         .addComponent(lb1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(tk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lb_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 204, 204));
@@ -282,7 +292,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QUẢN LÝ NGƯỜI DÙNG");
+        jLabel1.setText("QUẢN LÝ HỖ TRỢ NGƯỜI DÙNG");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -324,7 +334,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -340,13 +350,12 @@ public class ho_tro extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
@@ -363,7 +372,15 @@ public class ho_tro extends javax.swing.JInternalFrame {
             BufferedImage img_thoat = ImageIO.read(new File("src/main/java/com/mycompany/pics/thoat.png"));
             Image scaledImg_thoat = img_thoat.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             btn_thoat.setIcon(new ImageIcon(scaledImg_thoat));
-         
+            
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/excel.png"));
+            Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_xuatfile.setIcon(new ImageIcon(scaledImg_ec));
+            
+            BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/search.png"));
+            Image scaledImg_tk = img_tk.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            lb_tk.setIcon(new ImageIcon(scaledImg_tk));
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -373,6 +390,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
         try {
             btn_xuatfile.setVisible(false);
             tk.setVisible(false);
+            lb_tk.setVisible(false);
             lb1.setVisible(false);
             lb2.setVisible(false);
             txt_lyc.setEnabled(false);
@@ -475,138 +493,6 @@ public class ho_tro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_thoatActionPerformed
 
-    private void cb_ttItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ttItemStateChanged
-        txt_stkyc.setText("");
-        txt_lyc.setText("");
-        txt_nyc.setText("");
-        txt_nxl.setText("");
-        txt_mt.setText("");
-        String status = cb_tt.getSelectedItem().toString();
-        String where = "";
-        if (status == "Chờ xử lý"){
-            btn_xuatfile.setVisible(true);
-            txt_nxl.setVisible(false);
-            nxl.setVisible(false);
-            tk.setVisible(true);
-            lb1.setText("Tổng số hỗ trợ đang chờ xử lý:");
-            where = "where ht.trang_thai = 'dang_xu_ly'";
-        }
-        else if(status == "Đã xử lý"){
-            btn_xuatfile.setVisible(true);
-            tk.setVisible(true);
-            lb1.setText("Tổng số hỗ trợ đã xử lý:");
-            where = "where ht.trang_thai = 'da_xu_ly'";
-        }
-        else if(status == "Đã từ chối"){
-            btn_xuatfile.setVisible(true);
-            tk.setVisible(true);
-            lb1.setText("Tổng số hỗ trợ đã từ chối:");
-            where = "where ht.trang_thai = 'da_tu_choi'";
-        }
-        else{
-            btn_xuatfile.setVisible(false);
-            tk.setVisible(false);
-            lb1.setVisible(false);
-            lb2.setVisible(false);
-            tb_ht.removeAll();
-            return;
-        }
-        try {
-            int sum = 0;
-            lb1.setVisible(true);
-            lb2.setVisible(true);
-            tb_ht.removeAll();
-            con = db.connect();
-            String sql = "select * from ho_tro_nguoi_dung ht "
-            + "join nguoi_dung nd on nd.id = ht.nguoi_dung_id "
-            + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nd.id "
-            + where;
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            String[] td = {"ID", "Nội dung", "Ngày yêu cầu"};
-            DefaultTableModel tb = new DefaultTableModel(td, 0){
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false;
-                }
-            };
-            while(rs.next()){
-                sum ++;
-                Vector v = new Vector();
-                v.add(rs.getString("id"));
-                v.add(rs.getString("mo_ta"));
-                v.add(rs.getString("ngay_tao"));
-                tb.addRow(v);
-            }
-            lb2.setText(sum + "");
-            tb_ht.setModel(tb);
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_cb_ttItemStateChanged
-
-    private void tkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tkMouseClicked
-        txt_stkyc.setText("");
-        txt_lyc.setText("");
-        txt_nyc.setText("");
-        txt_nxl.setText("");
-        txt_mt.setText("");
-    }//GEN-LAST:event_tkMouseClicked
-
-    private void tkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tkKeyReleased
-        try {
-            con = db.connect();
-            Statement st = con.createStatement();
-            String tim = tk.getText().trim();
-            String status = cb_tt.getSelectedItem().toString();
-            String where = "";
-            if (status == "Chờ xử lý"){
-                lb1.setText("Tổng số hỗ trợ đang chờ xử lý:");
-                where = "where ht.trang_thai = 'cho_xu_ly' "
-                        + "ttcn.so_tai_khoan like '%"+tim+"%'";
-            }
-            else if(status == "Đã xử lý"){
-                tk.setVisible(true);
-                lb1.setText("Tổng số hỗ trợ đã xử lý:");
-                where = "where ht.trang_thai = 'da_xu_ly' "
-                        + "ttcn.so_tai_khoan like '%"+tim+"%'";
-            }
-            else if(status == "Đã từ chối"){
-                tk.setVisible(true);
-                lb1.setText("Tổng số hỗ trợ đã từ chối:");
-                where = "where ht.trang_thai = 'da_tu_choi' "
-                        + "ttcn.so_tai_khoan like '%"+tim+"%'";
-            }
-            else{
-                return;
-            }
-            String sql = "select * from ho_tro_nguoi_dung ht "
-            + "join nguoi_dung nd on nd.id = kv.nguoi_dung_id "
-            + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nd.id "
-            + where;
-            ResultSet rs = st.executeQuery(sql);
-            String[] td = {"ID", "Nội dung", "Ngày yêu cầu"};
-            DefaultTableModel tb = new DefaultTableModel(td, 0){
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false;
-                }
-            };
-            while(rs.next()){
-                Vector v = new Vector();
-                v.add(rs.getString("id"));
-                v.add(rs.getString("mo_ta"));
-                v.add(rs.getString("ngay_tao"));
-                tb.addRow(v);
-            }
-            tb_ht.setModel(tb);
-            con.close();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_tkKeyReleased
-
     private void tb_htMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_htMouseClicked
         int i = tb_ht.getSelectedRow();
         if(cb_tt.getSelectedItem().toString() == "Đã xử lý" || cb_tt.getSelectedItem().toString() == "Đã từ chối"){
@@ -683,6 +569,142 @@ public class ho_tro extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btn_xuatfileActionPerformed
 
+    private void tkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tkKeyReleased
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String tim = tk.getText().trim();
+            String status = cb_tt.getSelectedItem().toString();
+            String where = "";
+            if (status == "Chờ xử lý"){
+                lb1.setText("Tổng số hỗ trợ đang chờ xử lý:");
+                where = "where ht.trang_thai = 'cho_xu_ly' "
+                + "ttcn.so_tai_khoan like '%"+tim+"%'";
+            }
+            else if(status == "Đã xử lý"){
+                tk.setVisible(true);
+                lb1.setText("Tổng số hỗ trợ đã xử lý:");
+                where = "where ht.trang_thai = 'da_xu_ly' "
+                + "ttcn.so_tai_khoan like '%"+tim+"%'";
+            }
+            else if(status == "Đã từ chối"){
+                tk.setVisible(true);
+                lb1.setText("Tổng số hỗ trợ đã từ chối:");
+                where = "where ht.trang_thai = 'da_tu_choi' "
+                + "ttcn.so_tai_khoan like '%"+tim+"%'";
+            }
+            else{
+                return;
+            }
+            String sql = "select * from ho_tro_nguoi_dung ht "
+            + "join nguoi_dung nd on nd.id = kv.nguoi_dung_id "
+            + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nd.id "
+            + where;
+            ResultSet rs = st.executeQuery(sql);
+            String[] td = {"ID", "Nội dung", "Ngày yêu cầu"};
+            DefaultTableModel tb = new DefaultTableModel(td, 0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            while(rs.next()){
+                Vector v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("mo_ta"));
+                v.add(rs.getString("ngay_tao"));
+                tb.addRow(v);
+            }
+            tb_ht.setModel(tb);
+            con.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_tkKeyReleased
+
+    private void tkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tkMouseClicked
+        txt_stkyc.setText("");
+        txt_lyc.setText("");
+        txt_nyc.setText("");
+        txt_nxl.setText("");
+        txt_mt.setText("");
+    }//GEN-LAST:event_tkMouseClicked
+
+    private void cb_ttItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ttItemStateChanged
+        txt_stkyc.setText("");
+        txt_lyc.setText("");
+        txt_nyc.setText("");
+        txt_nxl.setText("");
+        txt_mt.setText("");
+        String status = cb_tt.getSelectedItem().toString();
+        String where = "";
+        if (status == "Chờ xử lý"){
+            btn_xuatfile.setVisible(true);
+            txt_nxl.setVisible(false);
+            nxl.setVisible(false);
+            tk.setVisible(true);
+            lb_tk.setVisible(true);
+            lb1.setText("Tổng số hỗ trợ đang chờ xử lý:");
+            where = "where ht.trang_thai = 'dang_xu_ly'";
+        }
+        else if(status == "Đã xử lý"){
+            btn_xuatfile.setVisible(true);
+            tk.setVisible(true);
+            lb_tk.setVisible(true);
+            lb1.setText("Tổng số hỗ trợ đã xử lý:");
+            where = "where ht.trang_thai = 'da_xu_ly'";
+        }
+        else if(status == "Đã từ chối"){
+            btn_xuatfile.setVisible(true);
+            tk.setVisible(true);
+            lb_tk.setVisible(true);
+            lb1.setText("Tổng số hỗ trợ đã từ chối:");
+            where = "where ht.trang_thai = 'da_tu_choi'";
+        }
+        else{
+            btn_xuatfile.setVisible(false);
+            tk.setVisible(false);
+            lb1.setVisible(false);
+            lb2.setVisible(false);
+            tb_ht.removeAll();
+            lb_tk.setVisible(false);
+            return;
+        }
+        try {
+            int sum = 0;
+            lb1.setVisible(true);
+            lb2.setVisible(true);
+            tb_ht.removeAll();
+            con = db.connect();
+            String sql = "select * from ho_tro_nguoi_dung ht "
+            + "join nguoi_dung nd on nd.id = ht.nguoi_dung_id "
+            + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nd.id "
+            + where;
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String[] td = {"ID", "Nội dung", "Ngày yêu cầu"};
+            DefaultTableModel tb = new DefaultTableModel(td, 0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            while(rs.next()){
+                sum ++;
+                Vector v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("mo_ta"));
+                v.add(rs.getString("ngay_tao"));
+                tb.addRow(v);
+            }
+            lb2.setText(sum + "");
+            tb_ht.setModel(tb);
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_cb_ttItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_thoat;
@@ -703,6 +725,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lb1;
     private javax.swing.JLabel lb2;
+    private javax.swing.JLabel lb_tk;
     private javax.swing.JLabel nxl;
     private javax.swing.JTable tb_ht;
     private javax.swing.JTextField tk;
