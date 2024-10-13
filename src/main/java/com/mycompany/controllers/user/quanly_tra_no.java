@@ -114,7 +114,6 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
         txtSo_tien_tra = new javax.swing.JTextField();
         btnThanhtoan = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
-        btnThoat = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtLai_phai_tra = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -149,13 +148,13 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
 
         tb_tra_no.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Số tiền vay", "Số tiền đã trả ", "Số tiền còn lại", "Kỳ hạn", "Khoản vay"
+                "ID", "Số tiền vay", "Số tiền đã trả ", "Số tiền còn lại", "Kỳ hạn", "Khoản vay", "Trạng thái"
             }
         ));
         tb_tra_no.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -242,10 +241,6 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
             }
         });
 
-        btnThoat.setBackground(new java.awt.Color(204, 204, 204));
-        btnThoat.setText("Thoát");
-        btnThoat.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         jLabel6.setText("Lãi phải trả:");
 
         jLabel7.setText("Tổng:");
@@ -253,6 +248,11 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
         btnXoa.setBackground(new java.awt.Color(204, 204, 204));
         btnXoa.setText("Xóa");
         btnXoa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -264,9 +264,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                 .addComponent(btnThanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(75, 75, 75))
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +326,6 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThanhtoan)
-                    .addComponent(btnThoat)
                     .addComponent(btnXoa))
                 .addContainerGap(149, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,8 +353,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
     tra_no frameVay = new tra_no(); 
     String so_tien_vay = frameVay.getSoTienVay();  // Gọi hàm getter
     String ky_han = frameVay.getKyhan();
-    String loai_khoan = frameVay.getKhoanvay();
-    
+    String loai_khoan = frameVay.getKhoanvay();   
     String so_tien_da_tra =txtTong.getText().trim();
     
     // B2: Kết nối DB
@@ -482,10 +478,28 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jRadioButton2MouseClicked
 
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+         try {
+            //Lấy dữ liệu từ component đưa vào biến
+            int id = a.getId();
+            //B2:Keets noois DB
+            con = db.connect();
+            //B3:Tạo đối tượng Statement để thực hirnj câu lệnh
+            String sql = "Delete From khoan_vay Where id='" + id + "'";
+            Statement st = con.createStatement();
+            st.executeUpdate(sql);
+            con.close();
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+            load_Tra_no();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThanhtoan;
-    private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox jCheckBox1;
