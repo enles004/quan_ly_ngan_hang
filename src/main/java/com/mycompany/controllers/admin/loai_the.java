@@ -121,7 +121,7 @@ public class loai_the extends javax.swing.JInternalFrame {
         txt_dv = new javax.swing.JTextField();
         txt_ud = new javax.swing.JTextField();
         btn_them = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        ec = new javax.swing.JButton();
         path = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(640, 600));
@@ -183,6 +183,7 @@ public class loai_the extends javax.swing.JInternalFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
         );
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -231,6 +232,7 @@ public class loai_the extends javax.swing.JInternalFrame {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btn_sua.setText("Sửa");
@@ -254,6 +256,7 @@ public class loai_the extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -279,7 +282,7 @@ public class loai_the extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txt_ten)
                     .addComponent(txt_hm, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
@@ -296,7 +299,7 @@ public class loai_the extends javax.swing.JInternalFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_dv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_ud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -304,11 +307,11 @@ public class loai_the extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_ten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel4)
                         .addGap(5, 5, 5)
                         .addComponent(txt_hm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         btn_them.setText("Thêm");
@@ -329,19 +332,15 @@ public class loai_the extends javax.swing.JInternalFrame {
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_sua)
@@ -351,10 +350,10 @@ public class loai_the extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jButton1.setText("Nhập file");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ec.setText("Nhập file");
+        ec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ecActionPerformed(evt);
             }
         });
 
@@ -368,25 +367,24 @@ public class loai_the extends javax.swing.JInternalFrame {
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ec, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
+                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(ec)
                     .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
@@ -488,6 +486,10 @@ public class loai_the extends javax.swing.JInternalFrame {
             Image scaledImg_them = img_them.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             btn_them.setIcon(new ImageIcon(scaledImg_them));
             
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/ec.png"));
+            Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            ec.setIcon(new ImageIcon(scaledImg_ec));
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -555,9 +557,25 @@ public class loai_the extends javax.swing.JInternalFrame {
         try {
             con = db.connect();
             String ten = txt_ten.getText().trim();
+            if(ten.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Tên không được để trống.");
+                return;
+            }
             String uu_dai = txt_ud.getText().trim();
+            if(uu_dai.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Ưu đãi không được để trống.");
+                return;
+            }
             String han_muc = txt_hm.getText().trim();
+            if(han_muc.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Hạn mức không được để trống.");
+                return;
+            }
             String phi_dich_vu = txt_dv.getText().trim();
+            if(phi_dich_vu.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Phí dich vụ không được để trống.");
+                return;
+            }
             String sql = "Update loai_the Set ten_loai_the = N'"+ten+"', uu_dai = N'"+uu_dai+"', han_muc_su_dung = '"+han_muc+"', phi_dich_vu = '"+phi_dich_vu+"' "
             + "where id = '"+l_t.getId()+"'";
             Statement st = con.createStatement();
@@ -647,7 +665,7 @@ public class loai_the extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_themActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecActionPerformed
         try {
             JFileChooser fc = new JFileChooser();
             int lc = fc.showOpenDialog(this);
@@ -666,7 +684,7 @@ public class loai_the extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ecActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -674,7 +692,7 @@ public class loai_the extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_thoat;
     private javax.swing.JButton btn_xoa;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton ec;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

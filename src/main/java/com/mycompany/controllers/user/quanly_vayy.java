@@ -7,11 +7,14 @@ package com.mycompany.controllers.user;
 import com.mycompany.controllers.admin.nguoi_dung;
 import com.mycompany.db;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileOutputStream;
 
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 
@@ -22,6 +25,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -46,19 +62,18 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
             tb_vv.removeAll();
             con = db.connect();
             String sql = " SELECT * from khoan_vay kv "
-                    +"join nguoi_dung nd on kv.nguoi_dung_id = nd.id";
-
-                    
+                    +"join nguoi_dung nd on kv.nguoi_dung_id = nd.id";          
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            String[] td = {"Vay số tiền","Kỳ hạn","Loại khoản vay"};
+            String[] td = {"ID","Vay số tiền","Kỳ hạn","Loại khoản vay","Trạng thái"};
             DefaultTableModel tb = new DefaultTableModel(td, 0);
             while(rs.next()){
                 Vector v = new Vector();
-               
+                v.add(rs.getString("id"));
                 v.add(rs.getString("so_tien_vay"));
                 v.add(rs.getString("ky_han"));
                 v.add(rs.getString("loai_vay"));
+                v.add(rs.getString("tinh_trang"));
                 tb.addRow(v);
             }
            
@@ -91,9 +106,6 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
         btnThem = new javax.swing.JButton();
         btnXuatExcel = new javax.swing.JButton();
         lai_suat = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        Thoát = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_vv = new javax.swing.JTable();
@@ -133,7 +145,7 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Kỳ hạn:");
 
-        Combo_Kyhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn kỳ hạn--", "3 tháng", "6 tháng", "12 tháng", "15 tháng", "18 tháng", "24 tháng" }));
+        Combo_Kyhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn kỳ hạn--", "3 tháng", "6 tháng", "12 tháng", "15 tháng", "18 tháng", "24 tháng", " " }));
         Combo_Kyhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Combo_KyhanActionPerformed(evt);
@@ -169,29 +181,7 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
             }
         });
 
-        lai_suat.setText("8,7%");
-
-        jLabel2.setText("Tiền trả mỗi tháng:");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        Thoát.setBackground(new java.awt.Color(204, 204, 204));
-        Thoát.setText("Thoát");
-        Thoát.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        Thoát.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ThoátMouseClicked(evt);
-            }
-        });
-        Thoát.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ThoátActionPerformed(evt);
-            }
-        });
+        lai_suat.setText("8,7%/năm");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -201,19 +191,16 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
                 .addGap(81, 81, 81)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel2)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel11)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel8))))
-                .addGap(31, 31, 31)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(txtBanmuonvay, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Combo_Kyhan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Combo_Kyhan, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Combo_Khoanvay, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lai_suat, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(235, Short.MAX_VALUE))
@@ -222,9 +209,7 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnXuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(Thoát, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addGap(68, 68, 68))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,20 +230,15 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Combo_Khoanvay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(lai_suat))
-                .addGap(30, 30, 30)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
-                    .addComponent(btnXuatExcel)
-                    .addComponent(Thoát))
-                .addGap(23, 23, 23))
+                    .addComponent(btnXuatExcel))
+                .addGap(36, 36, 36))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -281,13 +261,14 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -303,116 +284,188 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(49, 49, 49)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(176, Short.MAX_VALUE)))
+                    .addContainerGap(174, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
      
-    public void load_combobox() {
-        // Khởi tạo ComboBox cho Kỳ hạn
-        String[] kyHanValues = {"6 tháng", "12 tháng", "24 tháng", "36 tháng"};
-        Combo_Kyhan = new JComboBox<>(kyHanValues);
 
-        // Khởi tạo ComboBox cho Loại khoản vay
-        String[] loaiVayValues = {"Vay tín chấp", "Vay thế chấp", "Vay tiêu dùng"};
-        Combo_Khoanvay = new JComboBox<>(loaiVayValues);
-    }
-    public class FrameVay extends JFrame {
-    // Giữ Combo_Kyhan là private
-    private JComboBox<String> Combo_Kyhan;
-    private JComboBox<String> Combo_Khoanvay;
-
-    public FrameVay() {
-        Combo_Kyhan = new JComboBox<>(new String[] {"3 tháng", "6 tháng", "12 tháng"});
-        Combo_Khoanvay = new JComboBox<>(new String[] {"Vay tín chấp", "Vay thế chấp"});
-    }
-
-    // Tạo getter public để lấy giá trị của Combo_Kyhan
-    public String getKyHan() {
-        return Combo_Kyhan.getSelectedItem().toString();
-    }
-}
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
                                               
-    // Lấy dữ liệu từ các components
     int nguoi_dung_id =1;
-    float so_tien_da_tra =0;
-    float so_tien_con_lai= Float.parseFloat(txtBanmuonvay.getText().trim());
-    String so_tien_vay = txtBanmuonvay.getText().trim();
+     
+    String so_tien_vay =txtBanmuonvay.getText().trim();  
     String ky_han = Combo_Kyhan.getSelectedItem().toString();
-    int kh=0;
-    if (ky_han == "3 tháng"){
-        kh=3;
-    }else if(ky_han == "6 tháng"){
-        kh=6;
-    }else if(ky_han == "12 tháng"){
-        kh=12;
-    }
     String loai_vay = Combo_Khoanvay.getSelectedItem().toString();
-
+   
     // B2: Kết nối DB
     try {
         con = db.connect();
-
-        // B3: Tạo đối tượng PreparedStatement để thực hiện câu lệnh truy vấn
-        
-                     
-        String sql = "INSERT INTO khoan_vay (nguoi_dung_id, loai_vay, so_tien_vay, so_tien_da_tra, so_tien_con_lai, ngay_bat_dau, ngay_ket_thuc, ky_han, tinh_trang) "
-                + "VALUES (?, ?, ?, ?, ?, getdate(), dateadd(month, ?, getdate()), ?, ?)";
+        // B3: Tạo đối tượng PreparedStatement để thực hiện câu lệnh truy vấn             
+        String sql = "INSERT INTO khoan_vay (nguoi_dung_id, so_tien_vay, ky_han, loai_vay, tinh_trang) "
+                + "VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement st = con.prepareStatement(sql); 
 
             // Truyền giá trị cho các tham số ?
             st.setInt(1, nguoi_dung_id);
-            st.setString(2, loai_vay);
-            st.setString(3, so_tien_vay);
-            st.setFloat(4, so_tien_da_tra);
-            st.setFloat(5, so_tien_con_lai);
-            st.setInt(6, kh);  // Giá trị số tháng (ví dụ: 6 tháng)
-            st.setString(7, ky_han);
-            st.setString(8, "Đang vay");
+            st.setString(2, so_tien_vay);
+            st.setString(3, ky_han);
+            st.setString(4, loai_vay);  
+            st.setString(5, "Đang vay ");
            st.executeUpdate();
            con.close();
-           JOptionPane.showMessageDialog(this, "Gửi thành công");
+           JOptionPane.showMessageDialog(this, "Vay thành công");
            load();
     } catch (Exception ex) {
         ex.printStackTrace();
     }
 
-
     }//GEN-LAST:event_btnThemActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void Combo_KyhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_KyhanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Combo_KyhanActionPerformed
+     private static CellStyle DinhdangHeader(XSSFSheet sheet) {
+        // Create font
+        XSSFFont font = sheet.getWorkbook().createFont();
+        font.setFontName("Times New Roman");
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 12); // font size
+        font.setColor(IndexedColors.WHITE.getIndex()); // text color
 
+        // Create CellStyle
+        CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
+        cellStyle.setFont(font);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setVerticalAlignment(VerticalAlignment.TOP);
+        cellStyle.setFillForegroundColor(IndexedColors.DARK_GREEN.getIndex());
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        cellStyle.setBorderBottom(BorderStyle.THIN);
+        cellStyle.setWrapText(true);
+        return cellStyle;
+    }
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
-        // TODO add your handling code here:
+         try {
+            
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet spreadsheet = workbook.createSheet("khoan_vay");
+            // register the columns you wish to track and compute the column width
+
+            CreationHelper createHelper = workbook.getCreationHelper();
+
+            XSSFRow row = null;
+            Cell cell = null;
+
+            row = spreadsheet.createRow((short) 2);
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("DANH SÁCH KHOẢN VAY ");
+
+            //Tạo dòng tiêu đều của bảng
+            // create CellStyle
+            CellStyle cellStyle_Head = DinhdangHeader(spreadsheet);
+            row = spreadsheet.createRow((short) 3);
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("ID");
+
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Vay số tiền");
+
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Kỳ hạn");
+
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Loại khoản vay");
+
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Trạng thái");
+
+           
+            
+             //Kết nối DB
+            con = db.connect();
+            String sql = "Select * From khoan_vay";
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            //Đổ dữ liệu từ rs vào các ô trong excel
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int tongsocot = rsmd.getColumnCount();
+
+            //Đinh dạng Tạo đường kẻ cho ô chứa dữ liệu
+            CellStyle cellStyle_data = spreadsheet.getWorkbook().createCellStyle();
+            cellStyle_data.setBorderLeft(BorderStyle.THIN);
+            cellStyle_data.setBorderRight(BorderStyle.THIN);
+            cellStyle_data.setBorderBottom(BorderStyle.THIN);
+
+            int i = 0;
+            while (rs.next()) {
+                row = spreadsheet.createRow((short) 4 + i);
+                row.setHeight((short) 400);
+
+                cell = row.createCell(0);
+                cell.setCellStyle(cellStyle_data);cell.setCellValue(i + 1);
+
+                cell = row.createCell(1);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("so_tien_vay"));
+
+                cell = row.createCell(2);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("ky_han"));
+
+                //Định dạng ngày tháng trong excel
+//                java.util.Date ngay = new java.util.Date(rs.getDate("Ngaysinh").getTime());
+//                CellStyle cellStyle = workbook.createCellStyle();
+//                cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
+//                cellStyle.setBorderLeft(BorderStyle.THIN);
+//                cellStyle.setBorderRight(BorderStyle.THIN);
+//                cellStyle.setBorderBottom(BorderStyle.THIN);
+//                cell = row.createCell(3);
+//                cell.setCellValue(ngay);
+//                cell.setCellStyle(cellStyle);
+
+                cell = row.createCell(3);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("loai_vay"));
+
+                cell = row.createCell(4);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("tinh_trang"));
+
+                i++;
+            }
+            //Hiệu chỉnh độ rộng của cột
+            for (int col = 0; col < tongsocot; col++) {
+                spreadsheet.autoSizeColumn(col);
+            }
+
+            File f = new File("D:\\luuExcel\\taikhoannganhang.xlsx");
+            FileOutputStream out = new FileOutputStream(f);
+            workbook.write(out);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnXuatExcelActionPerformed
 
     private void Combo_KhoanvayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_KhoanvayActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Combo_KhoanvayActionPerformed
-
-    private void ThoátActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThoátActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ThoátActionPerformed
-
-    private void ThoátMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThoátMouseClicked
-        
-    }//GEN-LAST:event_ThoátMouseClicked
     public static void main(String args[]) {
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -424,13 +477,11 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Combo_Khoanvay;
     private javax.swing.JComboBox<String> Combo_Kyhan;
-    private javax.swing.JButton Thoát;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXuatExcel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -438,7 +489,6 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lai_suat;
     private javax.swing.JTable tb_vv;
     private javax.swing.JTextField txtBanmuonvay;
