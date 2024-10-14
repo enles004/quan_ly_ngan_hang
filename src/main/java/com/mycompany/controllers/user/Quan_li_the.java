@@ -109,7 +109,7 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
         btntimkiemthe = new javax.swing.JButton();
         btnxemdanhsachthe = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(850, 600));
+        setPreferredSize(new java.awt.Dimension(640, 550));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -386,7 +386,7 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
                 .addComponent(btndangkithemoi)
                 .addGap(92, 92, 92)
                 .addComponent(btnxoathe)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(btntimkiemthe)
                 .addGap(97, 97, 97)
                 .addComponent(btnxemdanhsachthe)
@@ -404,7 +404,7 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
                     .addComponent(btnxoathe)
                     .addComponent(btntimkiemthe)
                     .addComponent(btnxemdanhsachthe))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -414,8 +414,36 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
-       //lấy dữ liệu từ các componens đưa vào biến
-        // lay dl tu componenment dua vao bien
+       
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void txtnguoidungidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnguoidungidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnguoidungidActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void txtBanmuonvay2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBanmuonvay2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBanmuonvay2ActionPerformed
+
+    private void txtBanmuonvay3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBanmuonvay3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBanmuonvay3ActionPerformed
+
+    private void txtloaitheidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloaitheidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtloaitheidActionPerformed
+
+    private void txtsotheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsotheActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsotheActionPerformed
+
+    private void btndangkithemoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndangkithemoiActionPerformed
+        // TODO add your handling code here:
+        
         String id = txtID.getText().trim();
         String nguoidungid = txtnguoidungid.getText().trim();
         String loai_the_id= txtloaitheid.getText().trim();
@@ -448,34 +476,6 @@ public class Quan_li_the extends javax.swing.JInternalFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Quan_li_the.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }//GEN-LAST:event_btnThemActionPerformed
-
-    private void txtnguoidungidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnguoidungidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnguoidungidActionPerformed
-
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
-
-    private void txtBanmuonvay2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBanmuonvay2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBanmuonvay2ActionPerformed
-
-    private void txtBanmuonvay3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBanmuonvay3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBanmuonvay3ActionPerformed
-
-    private void txtloaitheidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloaitheidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtloaitheidActionPerformed
-
-    private void txtsotheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsotheActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtsotheActionPerformed
-
-    private void btndangkithemoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndangkithemoiActionPerformed
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_btndangkithemoiActionPerformed
 
