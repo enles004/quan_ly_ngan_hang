@@ -11,6 +11,9 @@ import com.mycompany.controllers.user.Quanlydangnhap;
  * @author nobpe
  */
 public class main {
+    public main(){
+        this.main(null);
+    }
     public static void main(String[] args){
         Quanlydangnhap dn = new Quanlydangnhap();
         dn.setVisible(true);
