@@ -45,6 +45,20 @@
             <type>jar</type>
         </dependency>
         <dependency>
+<<<<<<< HEAD
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.24.1</version> <!-- x.x là phiên bản Log4j2 bạn muốn sử dụng -->
+        </dependency>
+
+        <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>5.2.4</version>
+</dependency>
+        
+
+=======
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>5.2.4</version>
@@ -65,5 +79,6 @@
             <artifactId>log4j-core</artifactId>
             <version>2.20.0</version>
         </dependency>
+>>>>>>> 859ebc539ceacdf15b5c03d61c08e041c419368e
     </dependencies>
 </project>
