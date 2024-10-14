@@ -72,7 +72,7 @@ public class DangKy extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 600));
+        setPreferredSize(new java.awt.Dimension(640, 550));
         setResizable(false);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED)));
@@ -85,16 +85,16 @@ public class DangKy extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Tên đăng nhập");
+        jLabel4.setText("Tên đăng nhập*");
 
-        jLabel8.setText("Email");
+        jLabel8.setText("Email*");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel9.setText("Phiên bản v28.4.6 (0)");
 
         jLabel10.setText("Hotline: 1900 1533");
 
-        jLabel3.setText("Họ");
+        jLabel3.setText("Họ*");
 
         txttendangnhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,21 +102,21 @@ public class DangKy extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Tên");
+        jLabel6.setText("Tên*");
 
         jLabel7.setText("Ngày Sinh");
 
-        jLabel11.setText("Giới tính");
+        jLabel11.setText("Giới tính*");
 
         cbogioitinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn giới tinh--", "Nam", "Nữ", "Khác" }));
 
-        jLabel12.setText("Địa chỉ");
+        jLabel12.setText("Địa chỉ*");
 
-        jLabel13.setText("SĐT");
+        jLabel13.setText("SĐT*");
 
-        jLabel14.setText("CCCD");
+        jLabel14.setText("CCCD*");
 
-        jLabel15.setText("Mật khẩu");
+        jLabel15.setText("Mật khẩu*");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -271,11 +271,49 @@ public class DangKy extends javax.swing.JFrame {
         String mk = txtmatkhau.getText().trim();
         String email = txtemail.getText().trim();
         String role = "nguoi_dung";
+
+        // Lấy các trường thông tin cá nhân
+        String ho = txtHo.getText().trim();
+        String ten = txtTen.getText().trim();
+        Date ns = null;
+        if (Ngaysinh.getDate() != null) {
+            ns = new Date(Ngaysinh.getDate().getTime());
+        }
+        String gt = cbogioitinh.getSelectedItem().toString();
+        String dc = txtDiachi.getText().trim();
+        String sdt = txtsdt.getText().trim();
+        String scd = txtcccd.getText().trim();
+
+        // Kiểm tra các trường bắt buộc
+        if (username.isEmpty() || mk.isEmpty() || email.isEmpty() || ho.isEmpty() || ten.isEmpty() || ns == null || dc.isEmpty() || sdt.isEmpty() || scd.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tất cả các trường!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Kiểm tra định dạng email
+        if (!email.matches("^[\\w-\\.]+@[\\w-]+\\.[a-z]{2,4}$")) {
+            JOptionPane.showMessageDialog(this, "Email không đúng định dạng!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Kiểm tra họ và tên không chứa số hoặc ký tự đặc biệt
+        if (!ho.matches("[\\p{L} ]+") || !ten.matches("[\\p{L} ]+")) {
+            JOptionPane.showMessageDialog(this, "Họ và tên không được chứa số hoặc ký tự đặc biệt!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Kiểm tra số điện thoại phải là số
+        if (!sdt.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại phải là số!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Kết nối cơ sở dữ liệu và thực hiện đăng ký
         try {
             con = db.connect();
             con.setAutoCommit(false);
-            String sqlNguoiDung = "INSERT INTO nguoi_dung(ten_dang_nhap, mat_khau, email, vai_tro, ngay_tao) VALUES (?, ?, ?, ?, GETDATE())";
-            try (PreparedStatement psNguoiDung = con.prepareStatement(sqlNguoiDung, new String[]{"id"})) {
+            String sqlNguoiDung = "INSERT INTO nguoi_dung(ten_dang_nhap, mat_khau, email) VALUES (?, ?,GETDATE())";
+            try (PreparedStatement psNguoiDung = con.prepareStatement(sqlNguoiDung)) {
                 psNguoiDung.setString(1, username);
                 psNguoiDung.setString(2, mk);
                 psNguoiDung.setString(3, email);
@@ -283,32 +321,25 @@ public class DangKy extends javax.swing.JFrame {
 
                 psNguoiDung.executeUpdate();
                 try (var rs = psNguoiDung.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        int userId = rs.getInt(1);
-                        String ho = txtHo.getText().trim();
-                        String ten = txtTen.getText().trim();
-                        Date ns = new Date(Ngaysinh.getDate().getTime());
-                        String gt = cbogioitinh.getSelectedItem().toString();
-                        String dc = txtDiachi.getText().trim();
-                        String sdt = txtsdt.getText().trim();
-                        String scd = txtcccd.getText().trim();
+                   //stk chỉ có một
                         AccountGenerator acc = new AccountGenerator();
                         String stk = acc.generateUniqueAccountNumber(con);
-                        String sqlThongTinCaNhan = "INSERT INTO thong_tin_ca_nhan(nguoi_dung_id, ho, ten, ngay_sinh, gioi_tinh, dia_chi, so_dien_thoai, so_cong_dan, so_tai_khoan) "
-                                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                        String sqlThongTinCaNhan = "INSERT INTO thong_tin_ca_nhan(ho, ten, ngay_sinh, gioi_tinh, dia_chi, so_dien_thoai, so_cong_dan, so_tai_khoan) "
+                                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                         try (PreparedStatement psThongTinCaNhan = con.prepareStatement(sqlThongTinCaNhan)) {
-                            psThongTinCaNhan.setInt(1, userId);
-                            psThongTinCaNhan.setString(2, ho);
-                            psThongTinCaNhan.setString(3, ten);
-                            psThongTinCaNhan.setDate(4, ns);
-                            psThongTinCaNhan.setString(5, gt);
-                            psThongTinCaNhan.setString(6, dc);
-                            psThongTinCaNhan.setString(7, sdt);
-                            psThongTinCaNhan.setString(8, scd);
-                            psThongTinCaNhan.setString(9, stk);
+                        
+                            psThongTinCaNhan.setString(1, ho);
+                            psThongTinCaNhan.setString(2, ten);
+                            psThongTinCaNhan.setDate(3, ns);
+                            psThongTinCaNhan.setString(4, gt);
+                            psThongTinCaNhan.setString(5, dc);
+                            psThongTinCaNhan.setString(6, sdt);
+                            psThongTinCaNhan.setString(7, scd);
+                            psThongTinCaNhan.setString(8, stk);
                             psThongTinCaNhan.executeUpdate();
                         }
-                    }
+                    
                 }
                 con.commit(); 
                 JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
@@ -316,8 +347,7 @@ public class DangKy extends javax.swing.JFrame {
                 con.rollback(); 
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Lỗi khi đăng ký: " + e.getMessage());
-            }
-            finally {
+            } finally {
                 if (con != null) {
                     try {
                         con.setAutoCommit(true); // Bật lại AutoCommit sau khi hoàn tất
@@ -330,6 +360,7 @@ public class DangKy extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDang_KyActionPerformed
 
