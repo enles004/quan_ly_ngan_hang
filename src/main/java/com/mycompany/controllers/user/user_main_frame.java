@@ -27,6 +27,11 @@ public class user_main_frame extends javax.swing.JFrame {
      * Creates new form user_main_frame
      */
     public user_main_frame() throws IOException {
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf()); // Hoặc FlatDarkLaf
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         initComponents();
         load_anh();
     }
@@ -355,11 +360,6 @@ public class user_main_frame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(user_main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf()); // Hoặc FlatDarkLaf
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
