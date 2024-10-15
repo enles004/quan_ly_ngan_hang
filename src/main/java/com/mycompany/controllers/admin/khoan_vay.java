@@ -59,7 +59,6 @@ public class khoan_vay extends javax.swing.JInternalFrame {
         lb_tk = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         btn_xoa = new javax.swing.JButton();
-        btn_thoat = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -209,13 +208,6 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_thoat.setText("Thoát");
-        btn_thoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_thoatActionPerformed(evt);
-            }
-        });
-
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -325,9 +317,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(29, 502, Short.MAX_VALUE))
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
@@ -335,9 +325,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_xoa)
-                    .addComponent(btn_thoat))
+                .addComponent(btn_xoa)
                 .addContainerGap())
         );
 
@@ -371,10 +359,6 @@ public class khoan_vay extends javax.swing.JInternalFrame {
             BufferedImage img_xoa = ImageIO.read(new File("src/main/java/com/mycompany/pics/xoa.png"));
             Image scaledImg_xoa = img_xoa.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             btn_xoa.setIcon(new ImageIcon(scaledImg_xoa));
-            
-            BufferedImage img_thoat = ImageIO.read(new File("src/main/java/com/mycompany/pics/thoat.png"));
-            Image scaledImg_thoat = img_thoat.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-            btn_thoat.setIcon(new ImageIcon(scaledImg_thoat));
             
             BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/search.png"));
             Image scaledImg_tk = img_tk.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
@@ -485,11 +469,6 @@ public class khoan_vay extends javax.swing.JInternalFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_xoaActionPerformed
-
-    private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
-        System.exit(0);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_thoatActionPerformed
     
     private void tb_kvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_kvMouseClicked
         int i = tb_kv.getSelectedRow();
@@ -681,7 +660,6 @@ public class khoan_vay extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_thoat;
     private javax.swing.JButton btn_xoa;
     private javax.swing.JComboBox<String> cb_tt;
     private javax.swing.JLabel jLabel1;

@@ -110,7 +110,6 @@ public class loai_the extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         btn_sua = new javax.swing.JButton();
         btn_xoa = new javax.swing.JButton();
-        btn_thoat = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -249,13 +248,6 @@ public class loai_the extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_thoat.setText("Thoát");
-        btn_thoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_thoatActionPerformed(evt);
-            }
-        });
-
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -332,9 +324,7 @@ public class loai_the extends javax.swing.JInternalFrame {
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
-                .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGap(16, 299, Short.MAX_VALUE))
             .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
@@ -345,7 +335,6 @@ public class loai_the extends javax.swing.JInternalFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_sua)
                     .addComponent(btn_xoa)
-                    .addComponent(btn_thoat)
                     .addComponent(btn_them))
                 .addContainerGap())
         );
@@ -473,10 +462,6 @@ public class loai_the extends javax.swing.JInternalFrame {
             BufferedImage img_xoa = ImageIO.read(new File("src/main/java/com/mycompany/pics/xoa.png"));
             Image scaledImg_xoa = img_xoa.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             btn_xoa.setIcon(new ImageIcon(scaledImg_xoa));
-            
-            BufferedImage img_thoat = ImageIO.read(new File("src/main/java/com/mycompany/pics/thoat.png"));
-            Image scaledImg_thoat = img_thoat.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-            btn_thoat.setIcon(new ImageIcon(scaledImg_thoat));
             
             BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/search.png"));
             Image scaledImg_tk = img_tk.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
@@ -609,10 +594,6 @@ public class loai_the extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btn_xoaActionPerformed
 
-    private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btn_thoatActionPerformed
-
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         btn_sua.setVisible(false);
         btn_xoa.setVisible(false);
@@ -690,7 +671,6 @@ public class loai_the extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
-    private javax.swing.JButton btn_thoat;
     private javax.swing.JButton btn_xoa;
     private javax.swing.JButton ec;
     private javax.swing.JLabel jLabel1;
