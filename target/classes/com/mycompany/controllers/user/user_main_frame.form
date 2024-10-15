@@ -105,10 +105,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="loai_the" alignment="1" max="32767" attributes="0"/>
                           <Component id="Giao_dich" alignment="1" max="32767" attributes="0"/>
-                          <Component id="nguoi_dung" alignment="0" pref="155" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="dang_nhap" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="dang_nhap" alignment="0" pref="155" max="32767" attributes="0"/>
                                   <Component id="Ho_tro" alignment="0" max="32767" attributes="0"/>
                                   <Component id="thong_bao" alignment="0" max="32767" attributes="0"/>
                                   <Component id="khoan_tra" alignment="0" max="32767" attributes="0"/>
@@ -117,6 +116,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
+                          <Component id="nguoi_dung" alignment="0" pref="161" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -147,21 +147,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="nguoi_dung">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="18" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="  Ng&#x1b0;&#x1edd;i d&#xf9;ng"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="nguoi_dungMouseClicked"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="Giao_dich">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -280,6 +265,21 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dang_nhapMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="nguoi_dung">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="18" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="text" type="java.lang.String" value="  Ng&#x1b0;&#x1edd;i d&#xf9;ng"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="nguoi_dungMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>

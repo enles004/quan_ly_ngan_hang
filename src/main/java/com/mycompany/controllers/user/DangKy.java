@@ -72,9 +72,10 @@ public class DangKy extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(640, 550));
+        setPreferredSize(new java.awt.Dimension(850, 600));
         setResizable(false);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
         btnDang_Ky.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -312,7 +313,7 @@ public class DangKy extends javax.swing.JFrame {
         try {
             con = db.connect();
             con.setAutoCommit(false);
-            String sqlNguoiDung = "INSERT INTO nguoi_dung(ten_dang_nhap, mat_khau, email) VALUES (?, ?,GETDATE())";
+            String sqlNguoiDung = "INSERT INTO nguoi_dung(ten_dang_nhap, mat_khau, email, vai_tro) VALUES (?, ?, ?, ?, GETDATE())";
             try (PreparedStatement psNguoiDung = con.prepareStatement(sqlNguoiDung)) {
                 psNguoiDung.setString(1, username);
                 psNguoiDung.setString(2, mk);

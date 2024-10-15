@@ -95,7 +95,6 @@ public class user_main_frame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        nguoi_dung = new javax.swing.JLabel();
         Giao_dich = new javax.swing.JLabel();
         thong_bao = new javax.swing.JLabel();
         loai_the = new javax.swing.JLabel();
@@ -104,6 +103,7 @@ public class user_main_frame extends javax.swing.JFrame {
         khoan_vay1 = new javax.swing.JLabel();
         tiet_kiem = new javax.swing.JLabel();
         dang_nhap = new javax.swing.JLabel();
+        nguoi_dung = new javax.swing.JLabel();
         ebank = new javax.swing.JPanel();
         Desktop1 = new javax.swing.JDesktopPane();
 
@@ -115,16 +115,6 @@ public class user_main_frame extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setMaximumSize(new java.awt.Dimension(163, 398));
-
-        nguoi_dung.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        nguoi_dung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        nguoi_dung.setText("  Người dùng");
-        nguoi_dung.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nguoi_dung.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nguoi_dungMouseClicked(evt);
-            }
-        });
 
         Giao_dich.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Giao_dich.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -206,6 +196,16 @@ public class user_main_frame extends javax.swing.JFrame {
             }
         });
 
+        nguoi_dung.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        nguoi_dung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nguoi_dung.setText("  Người dùng");
+        nguoi_dung.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nguoi_dung.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nguoi_dungMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -215,16 +215,16 @@ public class user_main_frame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loai_the, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Giao_dich, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nguoi_dung, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dang_nhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dang_nhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                             .addComponent(Ho_tro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(thong_bao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(khoan_tra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(khoan_vay1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tiet_kiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addComponent(nguoi_dung, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,16 +326,6 @@ public class user_main_frame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-@SuppressWarnings("unchecked")
-    private void nguoi_dungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dungMouseClicked
-         Desktop1.removeAll();
-        JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(18, 48, 174);
-        sourceLabel.setForeground(customColor);
-        Quanlithongtincanhan Quanlithongtincanhan = new Quanlithongtincanhan();
-        Desktop1.add(Quanlithongtincanhan).setVisible(true);
-    
-    }//GEN-LAST:event_nguoi_dungMouseClicked
 
     private void khoan_traMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khoan_traMouseClicked
         Desktop1.removeAll();
@@ -418,6 +408,10 @@ public class user_main_frame extends javax.swing.JFrame {
     private void ebankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ebankMouseClicked
         
     }//GEN-LAST:event_ebankMouseClicked
+
+    private void nguoi_dungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dungMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nguoi_dungMouseClicked
     
     /**
      * @param args the command line arguments

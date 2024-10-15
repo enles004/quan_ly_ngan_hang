@@ -5,12 +5,30 @@
 package com.mycompany.controllers.user;
 
 import com.mycompany.db;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -55,6 +73,8 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
         txtloinhan = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDanhsach = new javax.swing.JTable();
+        btnXuatExcel = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(640, 550));
 
@@ -79,6 +99,11 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
         });
 
         btnchuyenthuong.setText("Chuyển thường");
+        btnchuyenthuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnchuyenthuongActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Số tài khoản:");
 
@@ -121,7 +146,7 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
                         .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,6 +223,15 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tbDanhsach);
 
+        btnXuatExcel.setText("Xuất Excel");
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatExcelActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Thông tin chuyển khoản: ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -205,8 +239,18 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txttien, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel15))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(btnXuatExcel)
+                            .addGap(18, 18, 18)
                             .addComponent(btntimkiem)
                             .addGap(18, 18, 18)
                             .addComponent(btnluu)
@@ -214,34 +258,31 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
                             .addComponent(btnsua)
                             .addGap(18, 18, 18)
                             .addComponent(btnxoa))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txttien, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel15)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtloinhan, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtloinhan, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(txttien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(txtloinhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnsua)
                     .addComponent(btnxoa)
                     .addComponent(btnluu)
-                    .addComponent(btntimkiem))
+                    .addComponent(btntimkiem)
+                    .addComponent(btnXuatExcel))
                 .addContainerGap())
         );
 
@@ -249,12 +290,8 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,7 +345,6 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi lưu dữ liệu.");
             }
         }
-
     }//GEN-LAST:event_btnluuActionPerformed
 
     private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
@@ -435,12 +471,37 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btntimkiemActionPerformed
 
     private void cbnganhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbnganhangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbnganhangActionPerformed
+        // TODO add your handling code here:                             
+        // Lấy ngân hàng đã chọn từ JComboBox
+        String selectedBank = (String) cbnganhang.getSelectedItem();
 
-    private void btnchuyennhanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchuyennhanhActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnchuyennhanhActionPerformed
+        // Thực hiện các hành động tùy thuộc vào ngân hàng được chọn
+        switch (selectedBank) {
+            case "Vietcombank (Ngân hàng TMCP Ngoại Thương Việt Nam)":
+                // Thực hiện hành động cho Vietcombank
+                System.out.println("Bạn đã chọn Vietcombank.");
+                break;
+            case "BIDV (Ngân hàng Đầu tư và phát triển Việt Nam)":
+                // Thực hiện hành động cho BIDV
+                System.out.println("Bạn đã chọn BIDV.");
+                break;
+            case "Techcombank (Ngân hàng Kỹ thương Việt Nam)":
+                // Thực hiện hành động cho Techcombank
+                System.out.println("Bạn đã chọn Techcombank.");
+                break;
+            case "TP Bank (Ngân hàng tiên phong)":
+                // Thực hiện hành động cho TP Bank
+                System.out.println("Bạn đã chọn TP Bank.");
+                break;
+            case "MB Bank (Ngân hàng Quân đội Việt Nam)":
+                // Thực hiện hành động cho MB Bank
+                System.out.println("Bạn đã chọn MB Bank.");
+                break;
+            default:
+                System.out.println("Ngân hàng không xác định.");
+                break;
+        }
+    }//GEN-LAST:event_cbnganhangActionPerformed
 
     private void txtsotkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsotkActionPerformed
         // TODO add your handling code here:
@@ -453,10 +514,185 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
     private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnameActionPerformed
+    private static CellStyle DinhdangHeader(XSSFSheet sheet) {
+        // Tạo font
+        XSSFFont font = sheet.getWorkbook().createFont();
+        font.setFontName("Times New Roman");
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 12); // Kích thước font
+        font.setColor(IndexedColors.WHITE.getIndex()); // Màu chữ
 
+        // Tạo CellStyle
+        CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
+        cellStyle.setFont(font);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setVerticalAlignment(VerticalAlignment.TOP);
+        cellStyle.setFillForegroundColor(IndexedColors.DARK_GREEN.getIndex());
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        cellStyle.setBorderBottom(BorderStyle.THIN);
+        cellStyle.setWrapText(true);
+        return cellStyle;
+    }
 
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+        // TODO add your handling code here:
+        try {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet spreadsheet = workbook.createSheet("Danh sách chuyển tiền");
+
+        // Tiêu đề bảng
+        CreationHelper createHelper = workbook.getCreationHelper();
+        XSSFRow row = spreadsheet.createRow(0);
+        row.setHeight((short) 500);
+        Cell cell = row.createCell(0, CellType.STRING);
+        cell.setCellValue("DANH SÁCH CHUYỂN TIỀN");
+
+        // Tạo dòng tiêu đề cho bảng
+        CellStyle cellStyle_Head = DinhdangHeader(spreadsheet);
+        row = spreadsheet.createRow(1);
+        row.setHeight((short) 500);
+
+        String[] headers = {"Số tài khoản", "Tên người nhận", "Số tiền", "Lời nhắn"};
+        for (int j = 0; j < headers.length; j++) {
+            cell = row.createCell(j);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue(headers[j]);
+        }
+
+        // Kết nối DB
+        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost\\NguyenDinhTam:1433;databaseName=Embeiu", "sa", "27012004");
+        String sql = "SELECT so_tai_khoan, ten_nguoi_nhan, so_tien, loi_nhan FROM khoan_vay"; // Cập nhật câu truy vấn để chọn các cột phù hợp
+        PreparedStatement st = con.prepareStatement(sql);
+        ResultSet rs = st.executeQuery();
+
+        // Định dạng ô chứa dữ liệu
+        CellStyle cellStyle_data = workbook.createCellStyle();
+        cellStyle_data.setBorderLeft(BorderStyle.THIN);
+        cellStyle_data.setBorderRight(BorderStyle.THIN);
+        cellStyle_data.setBorderBottom(BorderStyle.THIN);
+
+        int rowIndex = 2; // Bắt đầu từ dòng 2 vì dòng 0 và 1 đã sử dụng
+        while (rs.next()) {
+            row = spreadsheet.createRow(rowIndex);
+            row.setHeight((short) 400);
+
+            cell = row.createCell(0);
+            cell.setCellStyle(cellStyle_data);
+            cell.setCellValue(rs.getString("so_tai_khoan"));
+
+            cell = row.createCell(1);
+            cell.setCellStyle(cellStyle_data);
+            cell.setCellValue(rs.getString("ten_nguoi_nhan"));
+
+            cell = row.createCell(2);
+            cell.setCellStyle(cellStyle_data);
+            cell.setCellValue(rs.getDouble("so_tien")); // Giả sử so_tien là kiểu số
+
+            cell = row.createCell(3);
+            cell.setCellStyle(cellStyle_data);
+            cell.setCellValue(rs.getString("loi_nhan"));
+
+            rowIndex++;
+        }
+
+        // Ghi dữ liệu vào file
+        FileOutputStream out = new FileOutputStream(new File("DanhSachChuyenTien.xlsx"));
+        workbook.write(out);
+        out.close();
+        workbook.close();
+        
+        System.out.println("Excel file created successfully!");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
+
+    private void btnchuyenthuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchuyenthuongActionPerformed
+        // TODO add your handling code here:
+        // Lấy thông tin từ các trường nhập liệu
+    String soTaiKhoan = txtsotk.getText();
+    String tenNguoiNhan = txtname.getText();
+    String soTien = txttien.getText();
+    String loiNhan = txtloinhan.getText();
+    
+    // Kiểm tra xem các trường có trống không
+    if (soTaiKhoan.isEmpty() || tenNguoiNhan.isEmpty() || soTien.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Xử lý logic chuyển thường
+    try {
+        // Kết nối đến cơ sở dữ liệu
+        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost\\NguyenDinhTam:1433;databaseName=Embeiu", "sa", "27012004");
+        String sql = "INSERT INTO chuyen_tien (so_tai_khoan, ten_nguoi_nhan, so_tien, phuong_thuc, loi_nhan) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, soTaiKhoan);
+        pst.setString(2, tenNguoiNhan);
+        pst.setDouble(3, Double.parseDouble(soTien));
+        pst.setString(4, "Chuyển thường"); // Phương thức chuyển
+        pst.setString(5, loiNhan);
+        
+        int rowsAffected = pst.executeUpdate();
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(this, "Chuyển tiền thường thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Chuyển tiền thất bại!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        // Đóng kết nối
+        pst.close();
+        con.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Có lỗi xảy ra: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnchuyenthuongActionPerformed
+
+    private void btnchuyennhanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchuyennhanhActionPerformed
+        // TODO add your handling code here:
+        // Lấy thông tin từ các trường nhập liệu
+    String soTaiKhoan = txtsotk.getText();
+    String tenNguoiNhan = txtname.getText();
+    String soTien = txttien.getText();
+    String loiNhan = txtloinhan.getText();
+    
+    // Kiểm tra xem các trường có trống không
+    if (soTaiKhoan.isEmpty() || tenNguoiNhan.isEmpty() || soTien.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Xử lý logic chuyển nhanh
+    try {
+        // Kết nối đến cơ sở dữ liệu
+        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost\\NguyenDinhTam:1433;databaseName=Embeiu", "sa", "27012004");
+        String sql = "INSERT INTO chuyen_tien (so_tai_khoan, ten_nguoi_nhan, so_tien, phuong_thuc, loi_nhan) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, soTaiKhoan);
+        pst.setString(2, tenNguoiNhan);
+        pst.setDouble(3, Double.parseDouble(soTien));
+        pst.setString(4, "Chuyển nhanh Napas 24/7"); // Phương thức chuyển
+        pst.setString(5, loiNhan);
+        
+        int rowsAffected = pst.executeUpdate();
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(this, "Chuyển tiền nhanh thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Chuyển tiền thất bại!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        // Đóng kết nối
+        pst.close();
+        con.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Có lỗi xảy ra: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnchuyennhanhActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnXuatExcel;
     private javax.swing.JRadioButton btnchuyennhanh;
     private javax.swing.JRadioButton btnchuyenthuong;
     private javax.swing.JButton btnluu;
@@ -464,6 +700,7 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
     private javax.swing.JButton btntimkiem;
     private javax.swing.JButton btnxoa;
     private javax.swing.JComboBox<String> cbnganhang;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;

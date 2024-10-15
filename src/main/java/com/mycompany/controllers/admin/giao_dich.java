@@ -55,7 +55,6 @@ public class giao_dich extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_gd = new javax.swing.JTable();
-        btn_thoat = new javax.swing.JButton();
         btn_xuatfile = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -86,13 +85,6 @@ public class giao_dich extends javax.swing.JInternalFrame {
         tb_gd.setMinimumSize(new java.awt.Dimension(0, 0));
         jScrollPane1.setViewportView(tb_gd);
 
-        btn_thoat.setText("Thoát");
-        btn_thoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_thoatActionPerformed(evt);
-            }
-        });
-
         btn_xuatfile.setText("Xuất file");
         btn_xuatfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,18 +100,14 @@ public class giao_dich extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(btn_xuatfile, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGap(18, 482, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_thoat)
-                    .addComponent(btn_xuatfile))
+                .addComponent(btn_xuatfile)
                 .addGap(6, 6, 6))
         );
 
@@ -198,9 +186,6 @@ public class giao_dich extends javax.swing.JInternalFrame {
     
     private void load_anh() {
         try {
-            BufferedImage img_thoat = ImageIO.read(new File("src/main/java/com/mycompany/pics/thoat.png"));
-            Image scaledImg_thoat = img_thoat.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-            btn_thoat.setIcon(new ImageIcon(scaledImg_thoat));
             
             BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/search.png"));
             Image scaledImg_tk = img_tk.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
@@ -292,11 +277,6 @@ public class giao_dich extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_tkKeyReleased
 
-    private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
-        System.exit(0);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_thoatActionPerformed
-
     private void btn_xuatfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuatfileActionPerformed
         try {
             con = db.connect();
@@ -322,7 +302,6 @@ public class giao_dich extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_thoat;
     private javax.swing.JButton btn_xuatfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;

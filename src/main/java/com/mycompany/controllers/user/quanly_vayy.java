@@ -62,8 +62,9 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
         try {
             tb_vv.removeAll();
             con = db.connect();
-            String sql = " SELECT * from khoan_vay kv where nguoi_dung_id = '"+UserSession.getUserId()+"' "
-                    +"join nguoi_dung nd on kv.nguoi_dung_id = nd.id";          
+            String sql = " SELECT * from khoan_vay kv "
+                    +"join nguoi_dung nd on kv.nguoi_dung_id = nd.id "
+                    + "where nguoi_dung_id = '"+UserSession.getUserId()+"'";          
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             String[] td = {"ID","Vay số tiền","Kỳ hạn","Loại khoản vay","Trạng thái"};
@@ -204,7 +205,7 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
                     .addComponent(Combo_Kyhan, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Combo_Khoanvay, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lai_suat, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,14 +263,11 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -285,13 +283,13 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(49, 49, 49)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(174, Short.MAX_VALUE)))
+                    .addContainerGap(284, Short.MAX_VALUE)))
         );
 
         pack();
@@ -429,16 +427,7 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
                 cell.setCellStyle(cellStyle_data);
                 cell.setCellValue(rs.getString("ky_han"));
 
-                //Định dạng ngày tháng trong excel
-//                java.util.Date ngay = new java.util.Date(rs.getDate("Ngaysinh").getTime());
-//                CellStyle cellStyle = workbook.createCellStyle();
-//                cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
-//                cellStyle.setBorderLeft(BorderStyle.THIN);
-//                cellStyle.setBorderRight(BorderStyle.THIN);
-//                cellStyle.setBorderBottom(BorderStyle.THIN);
-//                cell = row.createCell(3);
-//                cell.setCellValue(ngay);
-//                cell.setCellStyle(cellStyle);
+                
 
                 cell = row.createCell(3);
                 cell.setCellStyle(cellStyle_data);
