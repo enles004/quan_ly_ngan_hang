@@ -6,6 +6,7 @@ package com.mycompany.controllers.user;
 
 import com.mycompany.controllers.admin.nguoi_dung;
 import com.mycompany.db;
+import com.mycompany.models.UserSession;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -61,7 +62,7 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
         try {
             tb_vv.removeAll();
             con = db.connect();
-            String sql = " SELECT * from khoan_vay kv "
+            String sql = " SELECT * from khoan_vay kv where nguoi_dung_id = '"+UserSession.getUserId()+"' "
                     +"join nguoi_dung nd on kv.nguoi_dung_id = nd.id";          
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -300,7 +301,7 @@ public class quanly_vayy extends javax.swing.JInternalFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
                                               
-    int nguoi_dung_id =1;
+    int nguoi_dung_id = UserSession.getUserId();
      
     String so_tien_vay =txtBanmuonvay.getText().trim();  
     String ky_han = Combo_Kyhan.getSelectedItem().toString();
