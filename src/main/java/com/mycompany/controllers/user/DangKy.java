@@ -72,9 +72,10 @@ public class DangKy extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(640, 550));
+        setPreferredSize(new java.awt.Dimension(850, 600));
         setResizable(false);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
         btnDang_Ky.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
