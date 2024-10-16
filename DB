@@ -1,4 +1,4 @@
-CREATE TABLE admin (
+CREATE TABLE adminn (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
 	ten_dang_nhap VARCHAR(255) NOT NULL UNIQUE,
 	mat_khau VARCHAR(255) NOT NULL,
@@ -21,13 +21,13 @@ CREATE TABLE nguoi_dung (
 
 CREATE TABLE tai_khoan_nguoi_dung (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
-	nguoi_dung_id INTEGER NOT NULL,
+	so_dien_thoai_id INTEGER NOT NULL,
 	loai_tai_khoan NVARCHAR(255) NOT NULL,
 	so_tai_khoan VARCHAR(255) NOT NULL,
 	so_tien_hien_co DECIMAL NOT NULL,
 	ngay_tao DATETIME NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
+	FOREIGN KEY(so_dien_thoai_id) REFERENCES nguoi_dung(so_dien_thoai)
 	ON UPDATE NO ACTION ON DELETE CASCADE
 )
 
@@ -43,13 +43,12 @@ CREATE TABLE loai_the (
 CREATE TABLE loai_the_nguoi_dung (
 	id INTEGER PRIMARY KEY IDENTITY,
 	nguoi_dung_id INTEGER NOT NULL,
-	loai_the_id INTERGER NOT NULL,
+	loai_the_id INTEGER NOT NULL,
 	so_the VARCHAR(255) NOT NULL UNIQUE,
 	so_tien DECIMAL NOT NULL,
 	ngay_het_han DATE NOT NULL,
 	trang_thai NVARCHAR(255) NOT NULL,
 	ngay_tao DATETIME NOT NULL,
-	PRIMARY KEY(id),
 	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
 	ON UPDATE NO ACTION ON DELETE CASCADE,
 	FOREIGN KEY(loai_the_id) REFERENCES loai_the(id)
@@ -88,16 +87,16 @@ CREATE TABLE thong_bao (
 	noi_dung NTEXT NOT NULL,
 	loai_thong_bao NVARCHAR(255) NOT NULL,
 	ngay_tao DATETIME NOT NULL,
-	PRIMARY KEY(id),
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE uu_dai (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
-	doi_tuong_the_id INTEGER NOT NULL
+	doi_tuong_the_id INTEGER NOT NULL,
 	tieu_de NTEXT NOT NULL,
 	noi_dung NTEXT NOT NULL,
 	ngay_tao DATETIME NOT NULL,
-	PRIMARY KEY(id),
+	PRIMARY KEY(id)
 );
 
 
@@ -135,6 +134,7 @@ CREATE TABLE bao_hiem (
     tai_khoan_nguoi_dung_id INTEGER NOT NULL,                              
     loai_bao_hiem NVARCHAR(255),                      
     so_tien_hop_dong DECIMAL(15, 2),
+	so_tien_da_dong DECIMAL NOT NULL,
     ngay_bat_dau DATE,                          
     ngay_ket_thuc DATE,
 	ky_han NVARCHAR(255) NOT NULL,                         

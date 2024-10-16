@@ -5,14 +5,12 @@
 package com.mycompany.controllers.admin;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.mycompany.controllers.main;
-import com.mycompany.db;
 import com.mycompany.models.UserSession;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -95,7 +93,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         dang_xuat = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         ho_tro = new javax.swing.JLabel();
-        nguoi_dung1 = new javax.swing.JLabel();
+        tai_khoan = new javax.swing.JLabel();
         giao_dich1 = new javax.swing.JLabel();
         giao_dich2 = new javax.swing.JLabel();
         loai_the1 = new javax.swing.JLabel();
@@ -108,6 +106,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         Desktop1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
         setMinimumSize(new java.awt.Dimension(840, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
@@ -200,13 +199,13 @@ public class admin_main_frame extends javax.swing.JFrame {
             }
         });
 
-        nguoi_dung1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        nguoi_dung1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        nguoi_dung1.setText("Tài khoản");
-        nguoi_dung1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nguoi_dung1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tai_khoan.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        tai_khoan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tai_khoan.setText("Tài khoản");
+        tai_khoan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tai_khoan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nguoi_dung1MouseClicked(evt);
+                tai_khoanMouseClicked(evt);
             }
         });
 
@@ -303,7 +302,7 @@ public class admin_main_frame extends javax.swing.JFrame {
                             .addComponent(loai_the, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(giao_dich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nguoi_dung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addComponent(nguoi_dung1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                            .addComponent(tai_khoan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                             .addComponent(giao_dich1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(giao_dich2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(loai_the1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -320,7 +319,7 @@ public class admin_main_frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(nguoi_dung, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nguoi_dung1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tai_khoan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(giao_dich, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -405,7 +404,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         Desktop1.setLayout(Desktop1Layout);
         Desktop1Layout.setHorizontalGroup(
             Desktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 798, Short.MAX_VALUE)
+            .addGap(0, 898, Short.MAX_VALUE)
         );
         Desktop1Layout.setVerticalGroup(
             Desktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +419,7 @@ public class admin_main_frame extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(Desktop1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Desktop1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -560,9 +559,19 @@ public class admin_main_frame extends javax.swing.JFrame {
         Desktop1.add(tc).setVisible(true);
     }//GEN-LAST:event_logoMouseClicked
 
-    private void nguoi_dung1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dung1MouseClicked
+    private void tai_khoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tai_khoanMouseClicked
+        Desktop1.removeAll();
+        Color black = new Color(0, 0, 0);
+        nguoi_dung.setForeground(black);
+        thong_bao.setForeground(black);
+        loai_the.setForeground(black);
+        khoan_vay.setForeground(black);
+        giao_dich.setForeground(black);
+        ho_tro.setForeground(black);
+        tai_khoan tk = new tai_khoan();
+        Desktop1.add(tk).setVisible(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_nguoi_dung1MouseClicked
+    }//GEN-LAST:event_tai_khoanMouseClicked
 
     private void giao_dich1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giao_dich1MouseClicked
         // TODO add your handling code here:
@@ -651,7 +660,7 @@ public class admin_main_frame extends javax.swing.JFrame {
     private javax.swing.JLabel loai_the2;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel nguoi_dung;
-    private javax.swing.JLabel nguoi_dung1;
+    private javax.swing.JLabel tai_khoan;
     private javax.swing.JLabel thong_bao;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,7 +40,6 @@ public class giao_dich extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         initComponents();
         load_anh();
-        load();
     }
 
     /**
@@ -53,14 +52,12 @@ public class giao_dich extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tb_gd = new javax.swing.JTable();
-        btn_xuatfile = new javax.swing.JButton();
+        p1 = new javax.swing.JPanel();
+        p2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        txt_tk = new javax.swing.JTextField();
-        tk = new javax.swing.JLabel();
+        giao_dich = new javax.swing.JButton();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(640, 600));
@@ -73,42 +70,51 @@ public class giao_dich extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setMaximumSize(new java.awt.Dimension(454, 404));
 
-        tb_gd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        tb_gd.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tb_gd.setMinimumSize(new java.awt.Dimension(0, 0));
-        jScrollPane1.setViewportView(tb_gd);
+        p1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btn_xuatfile.setText("Xuất file");
-        btn_xuatfile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_xuatfileActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout p1Layout = new javax.swing.GroupLayout(p1);
+        p1.setLayout(p1Layout);
+        p1Layout.setHorizontalGroup(
+            p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+        p1Layout.setVerticalGroup(
+            p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 497, Short.MAX_VALUE)
+        );
+
+        p2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout p2Layout = new javax.swing.GroupLayout(p2);
+        p2.setLayout(p2Layout);
+        p2Layout.setHorizontalGroup(
+            p2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
+        );
+        p2Layout.setVerticalGroup(
+            p2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(btn_xuatfile, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 482, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(p2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_xuatfile)
-                .addGap(6, 6, 6))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(p1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(p2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 204, 204));
@@ -118,7 +124,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QUẢN LÝ GIAO DỊCH");
+        jLabel1.setText("QUẢN LÝ GIAO DỊCH THANH TOÁN");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -135,10 +141,10 @@ public class giao_dich extends javax.swing.JInternalFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        txt_tk.setToolTipText("");
-        txt_tk.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_tkKeyReleased(evt);
+        giao_dich.setText("Giao dịch mới");
+        giao_dich.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                giao_dichActionPerformed(evt);
             }
         });
 
@@ -147,19 +153,16 @@ public class giao_dich extends javax.swing.JInternalFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(138, 138, 138)
+                .addComponent(giao_dich, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(6, 6, 6)
+                .addComponent(giao_dich)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,8 +179,8 @@ public class giao_dich extends javax.swing.JInternalFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,130 +189,29 @@ public class giao_dich extends javax.swing.JInternalFrame {
     
     private void load_anh() {
         try {
-            
-            BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/search.png"));
-            Image scaledImg_tk = img_tk.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-            tk.setIcon(new ImageIcon(scaledImg_tk));
-            
             BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/excel.png"));
             Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-            btn_xuatfile.setIcon(new ImageIcon(scaledImg_ec));
+            giao_dich.setIcon(new ImageIcon(scaledImg_ec));
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    private void load(){
-        try {
-            tb_gd.removeAll();
-            con = db.connect();
-            String sql = "select * "
-                    + "from giao_dich gd "
-                    + "join nguoi_dung nd on nd.id = gd.nguoi_dung_id "
-                    + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nd.id "
-                    + "where gd.trang_thai = 'thanh_cong' "
-                    + "order by gd.ngay_giao_dich desc";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            String[] td = {"Người chuyển", "STK người chuyển", "Người nhận", "STK người nhận", "Số tiền", "Mô tả", "Ngày GD"};
-            DefaultTableModel tb = new DefaultTableModel(td, 0){
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false; // Không cho phép chỉnh sửa bất kỳ ô nào
-                }
-            };
-            while(rs.next()){
-                Vector v = new Vector();
-                v.add(rs.getString("ho") +" "+ rs.getString("ten"));
-                v.add(rs.getString("so_tai_khoan"));
-                v.add(rs.getString("ten_nguoi_nhan"));
-                v.add(rs.getString("so_tai_khoan_nguoi_nhan"));
-                v.add(rs.getString("so_tien"));
-                v.add(rs.getString("mo_ta"));
-                v.add(rs.getString("ngay_giao_dich"));
-                tb.addRow(v);
-            }
-            tb_gd.setModel(tb);
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     
-    private void txt_tkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tkKeyReleased
-        try {
-            con = db.connect();
-            Statement st = con.createStatement();
-            String tim = txt_tk.getText().trim();
-            String sql = "select * "
-                    + "from giao_dich gd "
-                    + "join nguoi_dung nd on nd.id = gd.nguoi_dung_id "
-                    + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nd.id "
-                    + "where gd.trang_thai = 'thanh_cong' and ttcn.so_tai_khoan like '"+tim+"%' "
-                    + "order by gd.ngay_giao_dich desc";
-   
-            ResultSet rs = st.executeQuery(sql);
-            String[] td = {"Người chuyển", "STK người chuyển", "Người nhận", "STK người nhận", "Số tiền", "Mô tả", "Ngày GD"};
-            DefaultTableModel tb = new DefaultTableModel(td, 0){
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false; // Không cho phép chỉnh sửa bất kỳ ô nào
-                }
-            };
-            while(rs.next()){
-                Vector v = new Vector();
-                v.add(rs.getString("ho") +" "+ rs.getString("ten"));
-                v.add(rs.getString("so_tai_khoan"));
-                v.add(rs.getString("ten_nguoi_nhan"));
-                v.add(rs.getString("so_tai_khoan_nguoi_nhan"));
-                v.add(rs.getString("so_tien"));
-                v.add(rs.getString("mo_ta"));
-                v.add(rs.getString("ngay_giao_dich"));
-                tb.addRow(v);
-            }
-            tb_gd.setModel(tb);
-            con.close();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
+    private void giao_dichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giao_dichActionPerformed
+        p2.setEnabled(false);
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_tkKeyReleased
-
-    private void btn_xuatfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuatfileActionPerformed
-        try {
-            con = db.connect();
-            JasperDesign jdesign = JRXmlLoader.load("src\\main\\java\\com\\mycompany\\controllers\\admin\\giao_dich.jrxml");
-            String sql = "select * "
-                    + "from giao_dich gd "
-                    + "join nguoi_dung nd on nd.id = gd.nguoi_dung_id "
-                    + "join thong_tin_ca_nhan ttcn on ttcn.nguoi_dung_id = nd.id "
-                    + "where gd.trang_thai = 'thanh_cong'";
-            JRDesignQuery updateQuery = new JRDesignQuery();
-            updateQuery.setText(sql);
-            jdesign.setQuery(updateQuery);
-            JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-            JasperPrint jprint = JasperFillManager.fillReport(jreport, null, con);
-            JasperViewer viewer = new JasperViewer(jprint, false); // false để không đóng ứng dụng khi thoát
-            viewer.setDefaultCloseOperation(JasperViewer.DISPOSE_ON_CLOSE); // Chỉ đóng cửa sổ
-            viewer.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_xuatfileActionPerformed
+    }//GEN-LAST:event_giao_dichActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_xuatfile;
+    private javax.swing.JButton giao_dich;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tb_gd;
-    private javax.swing.JLabel tk;
-    private javax.swing.JTextField txt_tk;
+    private javax.swing.JPanel p1;
+    private javax.swing.JPanel p2;
     // End of variables declaration//GEN-END:variables
 }
