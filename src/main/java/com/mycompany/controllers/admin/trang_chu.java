@@ -31,7 +31,7 @@ public class trang_chu extends javax.swing.JInternalFrame {
     private void load_anh() {
         try {
             BufferedImage img_meo = ImageIO.read(new File("src/main/java/com/mycompany/pics/meow.jpg"));
-            Image scaledImg_meo = img_meo.getScaledInstance(640, 550, Image.SCALE_SMOOTH);
+            Image scaledImg_meo = img_meo.getScaledInstance(800, 699, Image.SCALE_SMOOTH);
             meo.setIcon(new ImageIcon(scaledImg_meo));
             
             
@@ -53,7 +53,7 @@ public class trang_chu extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         meo = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(640, 600));
+        setPreferredSize(new java.awt.Dimension(800, 699));
 
         jPanel5.setBackground(new java.awt.Color(255, 204, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
