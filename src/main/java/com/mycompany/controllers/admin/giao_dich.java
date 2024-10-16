@@ -65,7 +65,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(640, 600));
         setOpaque(true);
-        setPreferredSize(new java.awt.Dimension(640, 600));
+        setPreferredSize(new java.awt.Dimension(800, 699));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
         setVisible(true);

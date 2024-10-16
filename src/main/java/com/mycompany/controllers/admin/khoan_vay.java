@@ -78,7 +78,7 @@ public class khoan_vay extends javax.swing.JInternalFrame {
         txt_stv = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(640, 600));
-        setPreferredSize(new java.awt.Dimension(640, 600));
+        setPreferredSize(new java.awt.Dimension(800, 699));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setMaximumSize(new java.awt.Dimension(454, 404));

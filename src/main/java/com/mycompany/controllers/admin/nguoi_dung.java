@@ -117,7 +117,7 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
         setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         setMaximumSize(new java.awt.Dimension(640, 600));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(640, 600));
+        setPreferredSize(new java.awt.Dimension(800, 699));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
         setVisible(true);
