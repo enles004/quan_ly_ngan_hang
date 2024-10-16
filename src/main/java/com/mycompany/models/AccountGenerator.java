@@ -44,7 +44,7 @@ public class AccountGenerator {
 
     // Kiểm tra số tài khoản đã tồn tại trong cơ sở dữ liệu hay chưa
     private static boolean doesAccountExist(Connection connection, String accountNumber) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM thong_tin_ca_nhan WHERE so_tai_khoan = ?";
+        String sql = "SELECT COUNT(*) FROM tai_khoan_nguoi_dung WHERE so_tai_khoan = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, accountNumber);
             try (ResultSet rs = ps.executeQuery()) {
