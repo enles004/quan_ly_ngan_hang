@@ -5,6 +5,7 @@
 package com.mycompany.controllers.user;
 
 import com.mycompany.db;
+import com.mycompany.models.UserSession;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +43,8 @@ public class quanly_yeu_cau extends javax.swing.JInternalFrame {
             tbYeucau.removeAll();
             con = db.connect();
             String sql = " SELECT * from ho_tro_nguoi_dung ht "
-                    +"join nguoi_dung nd on ht.nguoi_dung_id = nd.id";          
+                    +"join nguoi_dung nd on ht.nguoi_dung_id = nd.id "
+                    + "where nguoi_dung_id = '"+UserSession.getUserId()+"'";          
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             String[] td = {"ID","Tiêu đề","Mô tả","Trạng thái"};
@@ -71,7 +73,6 @@ public class quanly_yeu_cau extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        txtTimkiem = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         ComboBox_chonyc = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -157,11 +158,16 @@ public class quanly_yeu_cau extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(txtMotachitiet);
 
         btnTimkiem.setBackground(new java.awt.Color(204, 204, 204));
-        btnTimkiem.setText("Tìm kiếm:");
+        btnTimkiem.setText("Tìm kiếm");
         btnTimkiem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnTimkiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTimkiemMouseClicked(evt);
+            }
+        });
+        btnTimkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimkiemActionPerformed(evt);
             }
         });
 
@@ -171,45 +177,36 @@ public class quanly_yeu_cau extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGui, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(btnNhapExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
-            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ComboBox_chonyc, 0, 275, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ComboBox_chonyc, 0, 275, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimkiem))
-                .addGap(32, 32, 32)
+                .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(ComboBox_chonyc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,12 +215,13 @@ public class quanly_yeu_cau extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSua)
                     .addComponent(btnNhapExcel)
-                    .addComponent(btnGui))
+                    .addComponent(btnGui)
+                    .addComponent(btnTimkiem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -241,7 +239,7 @@ public class quanly_yeu_cau extends javax.swing.JInternalFrame {
             //B2: Keets noois DB
             con = db.connect();
             //B3:Tạo đối tượng Statement để sua dl
-            String sql = "Update ho_tro_nguoi_dung Set loai_yeu_cau=N'" + loai_yeu_cau + "',mo_ta=N'" + mo_ta + "' Where id='" + nguoi_dung_id + "'";
+            String sql = "Update ho_tro_nguoi_dung Set loai_yeu_cau=N'" + loai_yeu_cau + "', mo_ta=N'" + mo_ta + "' Where id='" + nguoi_dung_id + "'";
             Statement st = con.createStatement();
             st.executeUpdate(sql);
             con.close();
@@ -269,7 +267,7 @@ public class quanly_yeu_cau extends javax.swing.JInternalFrame {
             st.setInt(1, nguoi_dung_id);
             st.setString(2, loai_yeu_cau);
             st.setString(3, mo_ta);
-            st.setString(4, "Đang xử lý ");
+            st.setString(4, "cho_xu_ly");
            st.executeUpdate();
            con.close();
            JOptionPane.showMessageDialog(this, "Gửi thành công");
@@ -283,6 +281,41 @@ public class quanly_yeu_cau extends javax.swing.JInternalFrame {
     private void btnTimkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimkiemMouseClicked
         
     }//GEN-LAST:event_btnTimkiemMouseClicked
+
+    private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
+        try {
+
+            
+            String mo_ta = txtMotachitiet.getText().trim();
+            String loai_yeu_cau = ComboBox_chonyc.getSelectedItem().toString();
+            
+
+            con = db.connect();
+
+            String sql = "select * from ho_tro_nguoi_dung where and nguoi_dung_id = '"+UserSession.getUserId()+"' and loai_yeu_cau like '%" + loai_yeu_cau + "%' and mo_ta like N'%" + mo_ta + "%' ";
+
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(sql);
+
+             String[] td = {"ID","Tiêu đề","Mô tả","Trạng thái"};
+            DefaultTableModel tb = new DefaultTableModel(td, 0);
+            while(rs.next()){
+                Vector v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("loai_yeu_cau"));
+                v.add(rs.getString("mo_ta"));
+                v.add(rs.getString("trang_thai"));
+                tb.addRow(v);
+
+            }
+            tbYeucau.setModel(tb);
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnTimkiemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -300,6 +333,5 @@ public class quanly_yeu_cau extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbYeucau;
     private javax.swing.JTextArea txtMotachitiet;
-    private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
 }
