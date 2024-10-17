@@ -42,14 +42,14 @@ CREATE TABLE loai_the (
 
 CREATE TABLE loai_the_nguoi_dung (
 	id INTEGER PRIMARY KEY IDENTITY,
-	nguoi_dung_id INTEGER NOT NULL,
+	so_dien_thoai_id VARCHAR(255) NOT NULL,
 	loai_the_id INTEGER NOT NULL,
 	so_the VARCHAR(255) NOT NULL UNIQUE,
 	so_tien DECIMAL NOT NULL,
 	ngay_het_han DATE NOT NULL,
 	trang_thai NVARCHAR(255) NOT NULL,
 	ngay_tao DATETIME NOT NULL,
-	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
+	FOREIGN KEY(so_dien_thoai_id) REFERENCES nguoi_dung(so_dien_thoai)
 	ON UPDATE NO ACTION ON DELETE CASCADE,
 	FOREIGN KEY(loai_the_id) REFERENCES loai_the(id)
 	ON UPDATE NO ACTION ON DELETE CASCADE
@@ -60,6 +60,7 @@ CREATE TABLE giao_dich (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
 	loai_giao_dich NVARCHAR(255) NOT NULL,
 	ten_nguoi_gui NVARCHAR(255) NOT NULL,
+	so_dien_thoai_nguoi_gui VARCHAR(255) NOT NULL,
 	so_tai_khoan_nguoi_gui VARCHAR(255) NULL,
 	so_tai_khoan_nguoi_nhan VARCHAR(255) NOT NULL,
 	so_tien DECIMAL NOT NULL,
