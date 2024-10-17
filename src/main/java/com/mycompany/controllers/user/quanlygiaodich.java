@@ -5,6 +5,7 @@
 package com.mycompany.controllers.user;
 
 import com.mycompany.db;
+import com.mycompany.models.UserSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -307,7 +309,27 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    Connection con;
+    private boolean chuyentien(String loaiPhuongThuc, String tenNguoiNhan, String soTaiKhoan, String soTien, String loiNhan, String trangThai){
+        try {
+            con = db.connect();
+            String sql = "INSERT INTO giao_dich (nguoi_dung_id, loai_giao_dich, ten_nguoi_nhan, so_tai_khoan_nguoi_nhan, so_tien, mo_ta, ngay_giao_dich, trang_thai) VALUES (?, ?, ?, ?, ?, ?, getdate(), ?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, UserSession.getUserId());
+            pst.setString(2, loaiPhuongThuc);
+            pst.setString(3, tenNguoiNhan);
+            pst.setString(4, soTaiKhoan);
+            pst.setString(5, soTien);
+            pst.setString(6, loiNhan);
+            pst.setString(7, trangThai);
+            int result = pst.executeUpdate();
+            if(result > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    } 
     private void btnluuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnluuActionPerformed
         // TODO add your handling code here:
         // Lấy thông tin từ các trường
@@ -329,20 +351,27 @@ public class quanlygiaodich extends javax.swing.JInternalFrame {
             // Kết nối database và thực hiện lưu
             try {
                 Connection con = db.connect();
-                String sql = "INSERT INTO GiaoDich (SoTaiKhoan, TenNguoiNhan, SoTien, LoaiChuyenTien, TuTaiKhoan, LoiNhan) VALUES (?, ?, ?, ?, ?, ?)";
-                PreparedStatement pst = con.prepareStatement(sql);
-                pst.setString(0, tenNganHang);
-                pst.setString(1, soTaiKhoan);
-                pst.setString(2, tenNguoiNhan);
-                pst.setString(3, soTien);
-                pst.setString(4, loaiPhuongThuc);
-                pst.setString(5, loiNhan);
-
-                int result = pst.executeUpdate();
-                if(result > 0) {
-                    JOptionPane.showMessageDialog(this, "Lưu thông tin thành công!");
+                String sql_so_tien = "Select so_tien_hien_co from thong_tin_ca_nhan where nguoi_dung_id = '"+ UserSession.getUserId()+"'";
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(sql_so_tien);
+                float so_tien_hien_tai = 0;
+                while(rs.next()){
+                    so_tien_hien_tai = Float.parseFloat(rs.getString("so_tien_hien_co"));
                 }
-                con.close();
+                if(so_tien_hien_tai < Float.parseFloat(soTien)){
+                    boolean chuyen_tien_loi = chuyentien(loaiPhuongThuc, tenNguoiNhan, soTaiKhoan, soTien, loiNhan, "chua_thanh_cong");
+                    JOptionPane.showMessageDialog(this, "Số dư hiện tại không đủ để giao dịch.");
+                    
+                }
+                else{
+                    String sql_nguoi_nhan = "Update thong_tin_ca_nhan set so_tien_hien_co = so_tien_hien_co + '"+soTien+"' where so_tai_khoan = '"+soTaiKhoan+"'";
+                    boolean chuyen_tien = chuyentien(loaiPhuongThuc, tenNguoiNhan, soTaiKhoan, soTien, loiNhan, "thanh_cong");
+                    if(chuyen_tien) {
+                        st.executeUpdate(sql_nguoi_nhan);
+                        JOptionPane.showMessageDialog(this, "Giao dịch thành công!");
+                    }
+                    con.close();
+                }
             } catch(Exception ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi lưu dữ liệu.");
