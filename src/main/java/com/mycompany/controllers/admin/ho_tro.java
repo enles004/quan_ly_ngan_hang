@@ -84,7 +84,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
         tb_ht = new javax.swing.JTable();
 
         setMaximumSize(new java.awt.Dimension(640, 600));
-        setPreferredSize(new java.awt.Dimension(640, 600));
+        setPreferredSize(new java.awt.Dimension(800, 699));
         setRequestFocusEnabled(false);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));

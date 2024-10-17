@@ -4,8 +4,6 @@
  */
 package com.mycompany.controllers;
 
-import com.mycompany.controllers.user.Quanlydangnhap;
-
 /**
  *
  * @author nobpe
@@ -15,7 +13,7 @@ public class main {
         this.main(null);
     }
     public static void main(String[] args){
-        Quanlydangnhap dn = new Quanlydangnhap();
+        dang_nhap dn = new dang_nhap();
         dn.setVisible(true);
     }
 }
