@@ -130,7 +130,7 @@
                                   <Component id="tai_khoan" alignment="1" pref="149" max="32767" attributes="0"/>
                                   <Component id="giao_dich1" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lich_su" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="loai_the1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="the_nd" alignment="0" max="32767" attributes="0"/>
                                   <Component id="loai_the2" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -159,7 +159,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="loai_the" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="loai_the1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="the_nd" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="loai_the2" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -370,7 +370,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lich_suMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="loai_the1">
+            <Component class="javax.swing.JLabel" name="the_nd">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="0" red="99" type="rgb"/>
@@ -385,7 +385,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai_the1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="the_ndMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="loai_the2">
