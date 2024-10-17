@@ -213,10 +213,10 @@ public class loai_the extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addGap(4, 4, 4)
                 .addComponent(sum_nd, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                .addComponent(tk, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -647,8 +647,8 @@ public class loai_the extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Phí dich vụ không được để trống.");
                 return;
             }
-            String sql = "insert into loai_the (ten_loai_the, uu_dai, han_muc_su_dung, phi_dich_vu)"
-                    + "values (N'"+ten+"', N'"+uu_dai+"', '"+han_muc+"', '"+phi_dich_vu+"')";
+            String sql = "insert into loai_the (ten_loai_the, uu_dai, han_muc_su_dung, phi_dich_vu, ngay_tao)"
+                    + "values (N'"+ten+"', N'"+uu_dai+"', '"+han_muc+"', '"+phi_dich_vu+"', getdate())";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(this, "Thêm loại thẻ thành công.");
             load();

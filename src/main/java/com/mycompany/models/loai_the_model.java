@@ -15,12 +15,28 @@ public class loai_the_model {
     String han_muc_su_dung;
     float phi_dich_vu;
 
+    public loai_the_model() {
+    }
+    
+
+    public loai_the_model(int id, String ten_the) {
+        this.id = id;
+        this.ten_the = ten_the;
+    }
+
+    
+    
     public void setId(int id) {
         this.id = id;
     }
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return ten_the;
     }
     
     
