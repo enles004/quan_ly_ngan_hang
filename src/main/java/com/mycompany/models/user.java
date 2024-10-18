@@ -18,18 +18,19 @@ public class user {
     String sdt;
     String email;
     String cccd;
-    String stk;
     
     public user(){
     }
 
-    public String getStk() {
-        return stk;
+    public String getId() {
+        return id;
     }
 
-    public void setStk(String stk) {
-        this.stk = stk;
+    public void setId(String id) {
+        this.id = id;
     }
+    
+    
    
     
 }

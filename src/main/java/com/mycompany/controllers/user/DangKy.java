@@ -313,7 +313,7 @@ public class DangKy extends javax.swing.JFrame {
         try {
             con = db.connect();
             con.setAutoCommit(false);
-            String sqlNguoiDung = "INSERT INTO nguoi_dung(ten_dang_nhap, mat_khau, email) VALUES (?, ?,GETDATE())";
+            String sqlNguoiDung = "INSERT INTO nguoi_dung(ten_dang_nhap, mat_khau, email, vai_tro) VALUES (?, ?, ?, ?, GETDATE())";
             try (PreparedStatement psNguoiDung = con.prepareStatement(sqlNguoiDung)) {
                 psNguoiDung.setString(1, username);
                 psNguoiDung.setString(2, mk);

@@ -81,7 +81,7 @@ public class thong_bao extends javax.swing.JInternalFrame {
         ec = new javax.swing.JButton();
         path = new javax.swing.JTextField();
 
-        setPreferredSize(new java.awt.Dimension(640, 600));
+        setPreferredSize(new java.awt.Dimension(800, 699));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
         setVisible(true);
