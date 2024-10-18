@@ -59,7 +59,6 @@ public class ho_tro extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         btn_xuatfile = new javax.swing.JButton();
         btn_xoa = new javax.swing.JButton();
-        btn_thoat = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -85,7 +84,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
         tb_ht = new javax.swing.JTable();
 
         setMaximumSize(new java.awt.Dimension(640, 600));
-        setPreferredSize(new java.awt.Dimension(640, 600));
+        setPreferredSize(new java.awt.Dimension(800, 699));
         setRequestFocusEnabled(false);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -102,13 +101,6 @@ public class ho_tro extends javax.swing.JInternalFrame {
         btn_xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_xoaActionPerformed(evt);
-            }
-        });
-
-        btn_thoat.setText("Thoát");
-        btn_thoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_thoatActionPerformed(evt);
             }
         });
 
@@ -200,9 +192,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
                 .addComponent(btn_xuatfile, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(29, 381, Short.MAX_VALUE))
             .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
@@ -212,8 +202,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_xuatfile)
-                    .addComponent(btn_xoa)
-                    .addComponent(btn_thoat))
+                    .addComponent(btn_xoa))
                 .addContainerGap())
         );
 
@@ -369,10 +358,6 @@ public class ho_tro extends javax.swing.JInternalFrame {
             Image scaledImg_xoa = img_xoa.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             btn_xoa.setIcon(new ImageIcon(scaledImg_xoa));
             
-            BufferedImage img_thoat = ImageIO.read(new File("src/main/java/com/mycompany/pics/thoat.png"));
-            Image scaledImg_thoat = img_thoat.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-            btn_thoat.setIcon(new ImageIcon(scaledImg_thoat));
-            
             BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/excel.png"));
             Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             btn_xuatfile.setIcon(new ImageIcon(scaledImg_ec));
@@ -487,11 +472,6 @@ public class ho_tro extends javax.swing.JInternalFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_xoaActionPerformed
-
-    private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
-        System.exit(0);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_thoatActionPerformed
 
     private void tb_htMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_htMouseClicked
         int i = tb_ht.getSelectedRow();
@@ -707,7 +687,6 @@ public class ho_tro extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_thoat;
     private javax.swing.JButton btn_xoa;
     private javax.swing.JButton btn_xuatfile;
     private javax.swing.JComboBox<String> cb_tt;
