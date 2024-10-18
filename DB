@@ -71,16 +71,22 @@ CREATE TABLE giao_dich (
 );
 
 CREATE TABLE tiet_kiem (
-	id INTEGER NOT NULL IDENTITY UNIQUE,
-	nguoi_dung_id INTEGER NOT NULL,
-	ten_tiet_kiem NVARCHAR(255) NOT NULL,
-	mo_ta_tiet_kiem NTEXT,
-	so_tien DECIMAL NOT NULL,
-	ngay_tao DATETIME NOT NULL,
-	PRIMARY KEY(id),
-	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
-	ON UPDATE NO ACTION ON DELETE CASCADE
+    id INTEGER NOT NULL IDENTITY UNIQUE,
+    so_dien_thoai_id VARCHAR(255) NOT NULL,
+    ten_tiet_kiem NVARCHAR(255) NOT NULL,
+    mo_ta_tiet_kiem NTEXT,
+    so_tien DECIMAL NOT NULL,
+    ngay_tao DATETIME NOT NULL,
+    ngay_dao_han DATETIME NOT NULL,
+    loai_tiet_kiem NVARCHAR(50),
+    lai_suat DECIMAL(5, 2),
+    trang_thai NVARCHAR(50),
+    so_du_hien_tai DECIMAL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(so_dien_thoai_id) REFERENCES nguoi_dung(so_dien_thoai)
+    ON UPDATE NO ACTION ON DELETE CASCADE
 );
+
 
 CREATE TABLE thong_bao (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
