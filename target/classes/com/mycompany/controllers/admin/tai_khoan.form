@@ -460,8 +460,8 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="btn_them" min="-2" pref="89" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="btn_xoa" alignment="0" max="32767" attributes="0"/>
-                              <Component id="nhap" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btn_xoa" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                              <Component id="nhap" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -474,8 +474,8 @@
                           <Component id="btn_them" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btn_xoa" min="-2" pref="35" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="nhap" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="nhap" min="-2" pref="34" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
