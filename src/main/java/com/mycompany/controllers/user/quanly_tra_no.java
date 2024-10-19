@@ -5,6 +5,7 @@
 package com.mycompany.controllers.user;
 
 import com.mycompany.db;
+import com.mycompany.models.UserSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,7 +44,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
             //b1:Ket noi Db
             con = db.connect();
             ////B2:Tạo đối tượng Statement để thực hiện câu lệnh truy vấn\
-            String sql = "Select * From khoan_vay";
+            String sql = "Select * From khoan_vay where nguoi_dung_id = '"+UserSession.getUserId()+"'";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             String[] tieude = {"ID", "Số tiền vay", "Số tiền trả", "Số tiền còn lại", "Kỳ hạn", "Loại khoản vay"};
@@ -125,7 +126,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("QUẢN LÝ KHOẢN NỢ");
+        jLabel1.setText(" TRẢ NỢ KHOẢN VAY");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,7 +169,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +285,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                                 .addComponent(txtTong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                                 .addComponent(txtLai_phai_tra, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtSo_tien_tra, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -327,10 +328,10 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThanhtoan)
                     .addComponent(btnXoa))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(378, Short.MAX_VALUE)
+                    .addContainerGap(480, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
@@ -348,7 +349,7 @@ public class quanly_tra_no extends javax.swing.JInternalFrame {
 
     private void btnThanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhtoanActionPerformed
       // Lấy dữ liệu từ các components
-    int nguoi_dung_id =1;
+    int nguoi_dung_id = UserSession.getUserId();
     
     tra_no frameVay = new tra_no(); 
     String so_tien_vay = frameVay.getSoTienVay();  // Gọi hàm getter
