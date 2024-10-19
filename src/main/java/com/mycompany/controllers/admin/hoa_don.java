@@ -56,7 +56,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         initComponents();
-//        load_anh();
+        load_anh();
     }
 
     /**
@@ -92,8 +92,6 @@ public class hoa_don extends javax.swing.JInternalFrame {
         jPanel11 = new javax.swing.JPanel();
         đfd = new javax.swing.JLabel();
         txt_den_stk = new javax.swing.JTextField();
-        cd = new javax.swing.JLabel();
-        txt_sdt_nhan = new javax.swing.JTextField();
         txt_ngay_giao_dich = new javax.swing.JLabel();
         txt_dc = new javax.swing.JLabel();
         txt_dia_chi = new javax.swing.JTextField();
@@ -269,9 +267,6 @@ public class hoa_don extends javax.swing.JInternalFrame {
             }
         });
 
-        cd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cd.setText("Số điện thoại bên nhận: ");
-
         txt_ngay_giao_dich.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txt_ngay_giao_dich.setText("Ngày giao dịch: ");
 
@@ -289,7 +284,6 @@ public class hoa_don extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_den_stk)
-                    .addComponent(txt_sdt_nhan)
                     .addComponent(txt_dia_chi)
                     .addComponent(txt_email)
                     .addGroup(jPanel11Layout.createSequentialGroup()
@@ -297,9 +291,8 @@ public class hoa_don extends javax.swing.JInternalFrame {
                             .addComponent(jLabel30)
                             .addComponent(txt_dc)
                             .addComponent(đfd)
-                            .addComponent(cd)
                             .addComponent(txt_ngay_giao_dich))
-                        .addGap(0, 217, Short.MAX_VALUE))
+                        .addGap(0, 261, Short.MAX_VALUE))
                     .addComponent(txtngaygiaodich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -310,10 +303,6 @@ public class hoa_don extends javax.swing.JInternalFrame {
                 .addComponent(đfd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_den_stk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_sdt_nhan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txt_ngay_giao_dich)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -437,31 +426,49 @@ public class hoa_don extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    private void load_anh() {
-//        try {
-//            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/excel.png"));
-//            Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-//            giao_dich.setIcon(new ImageIcon(scaledImg_ec));
-//            
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void load_anh() {
+        try {
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/excel.png"));
+            Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            giao_dich.setIcon(new ImageIcon(scaledImg_ec));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
     private void xoa_hoa_donActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoa_hoa_donActionPerformed
      try{
             // b1: lay du lieu tu componet dua vao bien
-            String stk=txt_den_stk.getText();
+            String stk=txtstk.getText();
             // Kiểm tra nếu mã người dùng (stk) bị bỏ trống
             if (stk.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn người dùng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
             return;
     }
+   
             Connection con = null;
             //b2:Ket noi DB
             con=db.connect();
-            //b3:tao doi tuong Statement de thuc hien cau lenh xoa
-            String sql="Delete From thong_tin_ca_nhan Where so_tai_khoan='"+stk+"'";
+              // B3: Tìm ID của người gửi từ bảng nguoi_dung dựa trên số điện thoại hoặc email
+            String sqlFindUser = "SELECT id FROM nguoi_dung WHERE so_dien_thoai = ?";
+            PreparedStatement findUserStmt = con.prepareStatement(sqlFindUser);
+            findUserStmt.setString(1, so_dien_thoai_nguoi_gui);
+            ResultSet rsUser = findUserStmt.executeQuery();
+
+            int nguoi_gui_id = -1;
+            if (rsUser.next()) {
+                nguoi_gui_id = rsUser.getInt("id"); // Lấy ID của người dùng từ bảng nguoi_dung
+            }
+
+            // Nếu không tìm thấy người dùng, thông báo lỗi và dừng lại
+            if (nguoi_gui_id == -1) {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng với số điện thoại: " + so_dien_thoai_nguoi_gui);
+                return;
+            }
+
+            //b4:tao doi tuong Statement de thuc hien cau lenh xoa
+            String sql="Delete From giao_dich Where so_tai_khoan_nguoi_gui='"+so_tai_khoan_nguoi_gui+"'";
             Statement st=con.createStatement();
             st.executeUpdate(sql);
             con.close();
@@ -508,7 +515,7 @@ try {
             row = spreadsheet.createRow((short) 2);
             row.setHeight((short) 500);
             cell = row.createCell(0, CellType.STRING);
-            cell.setCellValue("DANH SÁCH THÔNG TIN CÁ NHÂN");
+            cell.setCellValue("HÓA ĐƠN");
 
             //Tạo dòng tiêu đều của bảng
             // create CellStyle
@@ -519,39 +526,46 @@ try {
 
             cell = row.createCell(1, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Họ");
+            cell.setCellValue("Họ tên bên gửi");
 
             cell = row.createCell(2, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Tên");
+            cell.setCellValue("SĐT bên gửi");
 
             cell = row.createCell(3, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Ngày Sinh");
+            cell.setCellValue("STK bên gửi");
 
             cell = row.createCell(4, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Giới tính");
+            cell.setCellValue("Số tiền thanh toán");
 
             cell = row.createCell(5, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Địa chỉ");
+            cell.setCellValue("lời nhắn");
 
             cell = row.createCell(6, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("SĐT");
+            cell.setCellValue("STK bên nhận");
 
             cell = row.createCell(7, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("CCCD");
+            cell.setCellValue("Ngày giao dịch");
 
             cell = row.createCell(8, CellType.STRING);
             cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("STK");
+            cell.setCellValue("Địa chỉ");
+            
+            cell = row.createCell(9, CellType.STRING);
+            cell.setCellStyle(cellStyle_Head);
+            cell.setCellValue("Email");
+            
             Connection con = null;
             //Kết nối DB
             con = db.connect();
-            String sql = "Select * From thong_tin_ca_nhan";
+           String sql = "SELECT gd.*, nd.ho, nd.ten, nd.dia_chi, nd.email, nd.so_dien_thoai " +
+                 "FROM giao_dich gd " +
+                 "JOIN nguoi_dung nd ON gd.so_dien_thoai_nguoi_gui = nd.so_dien_thoai";
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             //Đổ dữ liệu từ rs vào các ô trong excel
@@ -577,51 +591,55 @@ try {
 
                 cell = row.createCell(2);
                 cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("ho"));
+                cell.setCellValue(rs.getString("ten_nguoi_gui"));
 
                 cell = row.createCell(3);
                 cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("ten"));
+                cell.setCellValue(rs.getString("so_dien_thoai_nguoi_gui"));
+
+                cell = row.createCell(4);
+                cell.setCellStyle(cellStyle_data);
+               cell.setCellValue(rs.getString("so_tai_khoan_nguoi_gui"));
+
+                cell = row.createCell(5);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("so_tien"));
+
+                cell = row.createCell(6);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("mo_ta"));
+
+                cell = row.createCell(7);
+                cell.setCellStyle(cellStyle_data);
+                cell.setCellValue(rs.getString("so_tai_khoan_nguoi_nhan"));
 
                 //Định dạng ngày tháng trong excel
-                java.util.Date ngay = new java.util.Date(rs.getDate("ngay_sinh").getTime());
+                java.util.Date ngay = new java.util.Date(rs.getDate("ngay_giao_dịch").getTime());
                 CellStyle cellStyle = workbook.createCellStyle();
                 cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
                 cellStyle.setBorderLeft(BorderStyle.THIN);
                 cellStyle.setBorderRight(BorderStyle.THIN);
                 cellStyle.setBorderBottom(BorderStyle.THIN);
-                cell = row.createCell(4);
+                cell = row.createCell(8);
                 cell.setCellValue(ngay);
                 cell.setCellStyle(cellStyle);
 
-                cell = row.createCell(5);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("gioi_tinh"));
-
-                cell = row.createCell(6);
+                cell = row.createCell(9);
                 cell.setCellStyle(cellStyle_data);
                 cell.setCellValue(rs.getString("dia_chi"));
 
-                cell = row.createCell(7);
+                cell = row.createCell(10);
                 cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("so_dien_thoai"));
+                cell.setCellValue(rs.getString("email"));
 
-                cell = row.createCell(8);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("so_cong_dan"));
-
-                cell = row.createCell(9);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("so_tai_khoan"));
-
+               
                 i++;
             }
             //Hiệu chỉnh độ rộng của cột
             for (int col = 0; col < tongsocot; col++) {
                 spreadsheet.autoSizeColumn(col);
             }
-            File f = new File("D:\\Java nhóm 9\\quan_ly_ngan_hang\\Danh_sach_thong_tin_ca_nhan.xlsx");
-            //File f = new File("D:\\Danhsachtacgia.xlsx");
+            File f = new File("D:\\Java nhóm 9\\quan_ly_ngan_hang\\hoa_don.xlsx");
             FileOutputStream out = new FileOutputStream(f);
             workbook.write(out);
             out.close();
@@ -640,26 +658,62 @@ try {
         String so_tien= txt_so_tien_thanh_toan.getText().trim();
         String mo_ta= txt_loi_nhan.getText().trim();
         Date ngay_giao_dich=(Date) txtngaygiaodich.getDate();
-//        String dia_chi=txt_dia_chi.getText().trim();
-//        String email= txt_email.getText().trim();
+        String dia_chi=txt_dia_chi.getText().trim();
+        String email= txt_email.getText().trim();
         //ket noi database
         Connection con = null;
         try {
           
             con = db.connect();
-            String sql="Insert into giao_dich Values(?,?,?,?,?,?,?)";
-            PreparedStatement st=con.prepareStatement(sql);
-            st.setString(0,ten_nguoi_gui);
-            st.setString(1,so_dien_thoai_nguoi_gui);
-            st.setString(2,so_tai_khoan_nguoi_gui);
-            st.setString(3,so_tai_khoan_nguoi_nhan);
-            st.setString(4,so_tien);
-            st.setString(5,mo_ta);
-            st.setDate(6,ngay_giao_dich);
+            
+            // Tìm ID của người gửi từ bảng nguoi_dung dựa trên số điện thoại
+            String sqlFindUser = "SELECT id FROM nguoi_dung WHERE so_dien_thoai = ?";
+            PreparedStatement findUserStmt = con.prepareStatement(sqlFindUser);
+            findUserStmt.setString(1, so_dien_thoai_nguoi_gui);
+            ResultSet rsUser = findUserStmt.executeQuery();
+
+            int nguoi_gui_id = -1;
+            if (rsUser.next()) {
+                nguoi_gui_id = rsUser.getInt("id"); // Lấy ID của người dùng từ bảng nguoi_dung
+            }
+
+            // Nếu không tìm thấy người dùng, thông báo lỗi và dừng lại
+            if (nguoi_gui_id == -1) {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng với số điện thoại: " + so_dien_thoai_nguoi_gui);
+                return;
+            }
+
+            // Tìm số tài khoản của người gửi từ bảng tai_khoan_nguoi_dung
+            String sqlFindAccount = "SELECT so_tai_khoan FROM tai_khoan_nguoi_dung WHERE so_dien_thoai_id = ?";
+            PreparedStatement findAccountStmt = con.prepareStatement(sqlFindAccount);
+            findAccountStmt.setInt(1, nguoi_gui_id);
+            ResultSet rsAccount = findAccountStmt.executeQuery();
+
+            if (rsAccount.next()) {
+                so_tai_khoan_nguoi_gui = rsAccount.getString("so_tai_khoan"); // Lấy số tài khoản người gửi
+            }
+
+            // Nếu không tìm thấy tài khoản, thông báo lỗi
+            if (so_tai_khoan_nguoi_gui == null) {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy tài khoản cho người dùng với ID: " + nguoi_gui_id);
+                return;
+            }
+            String sqlInsertGiaoDich = "INSERT INTO giao_dich (ten_nguoi_gui, so_dien_thoai_nguoi_gui, so_tai_khoan_nguoi_gui, so_tai_khoan_nguoi_nhan,so_tien, mo_ta, ngay_giao_dich, dia_chi, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement st= con.prepareStatement(sqlInsertGiaoDich);
+            st.setString(1, ten_nguoi_gui);
+            st.setString(2, so_dien_thoai_nguoi_gui);
+            st.setString(3, so_tai_khoan_nguoi_gui);
+            st.setString(4, so_tai_khoan_nguoi_nhan);
+            st.setString(5, so_tien);
+            st.setString(6, mo_ta);
+            st.setDate(7,ngay_giao_dich);
+            st.setString(8, dia_chi);
+            st.setString(9, email);
+            
             st.executeUpdate();
             con.close();
             JOptionPane.showMessageDialog(this,"Them moi thanh cong");
-            //load_thongtin();
+            
         }   catch(SQLException ex){
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
@@ -783,7 +837,6 @@ try {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_xac_nhan;
     private javax.swing.JButton btn_xuat;
-    private javax.swing.JLabel cd;
     private javax.swing.JButton hoa_don_moi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
@@ -809,7 +862,6 @@ try {
     private javax.swing.JTextField txt_loi_nhan;
     private javax.swing.JLabel txt_ngay_giao_dich;
     private javax.swing.JTextField txt_sdt_gui;
-    private javax.swing.JTextField txt_sdt_nhan;
     private javax.swing.JTextField txt_so_tien_thanh_toan;
     private javax.swing.JTextField txt_stk_gui;
     private com.toedter.calendar.JDateChooser txtngaygiaodich;

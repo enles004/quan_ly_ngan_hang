@@ -449,7 +449,6 @@
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txt_den_stk" max="32767" attributes="0"/>
-                                  <Component id="txt_sdt_nhan" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txt_dia_chi" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txt_email" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
@@ -457,10 +456,9 @@
                                           <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="txt_dc" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="đfd" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cd" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="txt_ngay_giao_dich" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="217" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="261" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="txtngaygiaodich" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -475,10 +473,6 @@
                               <Component id="đfd" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txt_den_stk" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cd" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txt_sdt_nhan" min="-2" pref="36" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="txt_ngay_giao_dich" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -509,16 +503,6 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_den_stkActionPerformed"/>
                       </Events>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="cd">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="12" style="1"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i b&#xea;n nh&#x1ead;n: "/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="txt_sdt_nhan">
                     </Component>
                     <Component class="javax.swing.JLabel" name="txt_ngay_giao_dich">
                       <Properties>
