@@ -52,7 +52,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
      * Creates new form hoa_don
      */
     public hoa_don() {
-         initComponents();
+        initComponents();
     }
 
     /**
@@ -422,10 +422,10 @@ public class hoa_don extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+   
     
     private void xoa_hoa_donActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoa_hoa_donActionPerformed
-     try{
+    try{
           // B1: Lấy dữ liệu từ component và gán vào biến
     String so_tai_khoan_nguoi_gui = txt_stk_gui.getText().trim();
     String so_dien_thoai_nguoi_gui = txt_sdt_gui.getText().trim();
@@ -718,9 +718,8 @@ try {
         txt_so_tien_thanh_toan.setText("");
         txt_loi_nhan.setText("");
         txtngaygiaodich.setDate(null);
-//        ht_nn.setText("");
-//        dc_nn.setText("");
-//        email_nn.setText("");
+        txt_dia_chi.setText("");
+        txt_email.setText("");
     }
     private void btn_xac_nhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xac_nhanActionPerformed
         // TODO add your handling code here:
