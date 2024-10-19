@@ -704,6 +704,7 @@ public class Quanlithongtincanhan extends javax.swing.JInternalFrame {
         
         String ho = txtHo.getText().trim();
         String ten= txtTen.getText().trim();
+        
         Date ngs= new Date (txtngaysinh.getDate().getTime());
         String gt= cboGioitinh.getSelectedItem().toString();
         String dc=txtDiachi.getText().trim();
