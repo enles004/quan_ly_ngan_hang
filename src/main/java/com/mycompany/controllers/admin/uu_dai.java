@@ -4,6 +4,30 @@
  */
 package com.mycompany.controllers.admin;
 
+import com.mycompany.db;
+import com.mycompany.models.thong_bao_model;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Iterator;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /**
  *
  * @author HOA.HP
@@ -14,8 +38,14 @@ public class uu_dai extends javax.swing.JInternalFrame {
      * Creates new form uu_dai
      */
     public uu_dai() {
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         initComponents();
+        load_anh();
+        load();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,17 +65,17 @@ public class uu_dai extends javax.swing.JInternalFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txt_nd = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        txt_ltb = new javax.swing.JComboBox<>();
+        txt_noidung = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        txt_td = new javax.swing.JTextField();
+        txt_tieude = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         sum_nd = new javax.swing.JLabel();
         txt_tk = new javax.swing.JTextField();
         tk = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_tb = new javax.swing.JTable();
+        nhap_file = new javax.swing.JButton();
+        path = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(800, 699));
 
@@ -56,7 +86,7 @@ public class uu_dai extends javax.swing.JInternalFrame {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QUẢN LÝ THÔNG BÁO");
+        jLabel1.setText("ƯU ĐÃI");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -99,14 +129,9 @@ public class uu_dai extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Nội dung:");
 
-        txt_nd.setColumns(20);
-        txt_nd.setRows(5);
-        jScrollPane2.setViewportView(txt_nd);
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setText("Loại thông báo:");
-
-        txt_ltb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn-", "Người dùng", "Nhân viên" }));
+        txt_noidung.setColumns(20);
+        txt_noidung.setRows(5);
+        jScrollPane2.setViewportView(txt_noidung);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Tiêu đề:");
@@ -117,12 +142,10 @@ public class uu_dai extends javax.swing.JInternalFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6)
-                    .addComponent(txt_ltb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(txt_td, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
+                    .addComponent(txt_tieude, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,14 +160,10 @@ public class uu_dai extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txt_td, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_ltb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(txt_tieude, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18))
         );
 
@@ -220,10 +239,10 @@ public class uu_dai extends javax.swing.JInternalFrame {
         tb_tb.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tb_tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tiêu đề", "Nội dung", "Ngày tạo"
             }
         ));
         tb_tb.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -234,15 +253,27 @@ public class uu_dai extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tb_tb);
 
+        nhap_file.setText("Nhập file");
+        nhap_file.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nhap_fileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nhap_file, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(path)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -254,10 +285,14 @@ public class uu_dai extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nhap_file, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(path))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -268,26 +303,130 @@ public class uu_dai extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    boolean check = false;
+    Connection con;
+    thong_bao_model tbb;
+    private void load_anh() {
+        try {
+            BufferedImage img_sua = ImageIO.read(new File("src/main/java/com/mycompany/pics/sua.png"));
+            Image scaledImg_sua = img_sua.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_sua.setIcon(new ImageIcon(scaledImg_sua));
+            
+            BufferedImage img_xoa = ImageIO.read(new File("src/main/java/com/mycompany/pics/xoa.png"));
+            Image scaledImg_xoa = img_xoa.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_xoa.setIcon(new ImageIcon(scaledImg_xoa));
+            
+            BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/search.png"));
+            Image scaledImg_tk = img_tk.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+            tk.setIcon(new ImageIcon(scaledImg_tk));
+            
+            BufferedImage img_them = ImageIO.read(new File("src/main/java/com/mycompany/pics/plus.png"));
+            Image scaledImg_them = img_them.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_them.setIcon(new ImageIcon(scaledImg_them));
+            
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/ec.png"));
+            Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            nhap_file.setIcon(new ImageIcon(scaledImg_ec));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void load(){
+        try {
+            txt_tieude.setEnabled(false);
+            txt_noidung.setEnabled(false);
+            
+            txt_noidung.setText("");
+            
+            txt_tieude.setText("");
+            btn_sua.setVisible(false);
+            btn_xoa.setVisible(false);
+            tb_tb.removeAll();
+            con = db.connect();
+            String sql = "select * from uu_dai "
+                    + "order by ngay_tao desc";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String[] td = {"ID", "Đối tượng thẻ ID", "Tiêu đề", "Nội dung", "Ngày tạo"};
+            DefaultTableModel tb = new DefaultTableModel(td, 0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Không cho phép chỉnh sửa bất kỳ ô nào
+                }
+            };
+            while(rs.next()){
+                Vector v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("doi_tuong_the_id"));
+                v.add(rs.getString("tieu_de"));
+                v.add(rs.getString("noi_dung"));
+                v.add(rs.getString("ngay_tao"));
+                tb.addRow(v);
+            }
+            tb_tb.setModel(tb);
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void ThemUuDai(String tieu_de, String noi_dung){
+        try {
+            con = db.connect();
+            String sql = "insert thong_bao (tieu_de, noi_dung, ngay_tao) "
+                + "values (N'"+tieu_de+"', N'"+noi_dung+"', getdate())";
+            Statement st = con.createStatement();
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+      private void ReadExcel(String tenfilepath) {
+        try {
+            FileInputStream fis = new FileInputStream(tenfilepath);
+            //Tạo đối tượng Excel
+            XSSFWorkbook wb = new XSSFWorkbook(fis);
+            XSSFSheet sheet = wb.getSheetAt(0); //Lấy sheet đầu tiên của file
+            //Lấy ra các dòng bảng bảng
+            Iterator<Row> itr = sheet.iterator();
+            //Đọc dữ liệu
+            int row_count = 0;
+            while (itr.hasNext()) {
+                if (row_count > 0) {
+                    Row row = itr.next(); 
+                    String tieu_de = row.getCell(0).getStringCellValue();
+                    String noi_dung = row.getCell(1).getStringCellValue();
+                    
+
+                    ThemUuDai(tieu_de, noi_dung);
+                }
+                row_count++;
+            }
+            JOptionPane.showMessageDialog(this, "Thêm ưu đãi bằng file thành công");
+            load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  
+        
+    }
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         try {
             
             con = db.connect();
-            String tieu_de = txt_td.getText().trim();
+            String tieu_de = txt_tieude.getText().trim();
             if(tieu_de.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Tiêu đề không được để trống.");
                 return;
             }
-            String noi_dung = txt_nd.getText().trim();
+            String noi_dung = txt_noidung.getText().trim();
             if(noi_dung.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Nội dung không được để trống.");
                 return;
             }
-            String loai_thong_bao = txt_ltb.getSelectedItem().toString().trim();
-            if(loai_thong_bao == "-Chọn-"){
-                JOptionPane.showMessageDialog(this, "Chưa chọn loại thông báo.");
-                return;
-            }
-            String sql = "Update thong_bao Set tieu_de = N'"+tieu_de+"', noi_dung = N'"+noi_dung+"', loai_thong_bao = N'"+loai_thong_bao+"' "
+           
+            String sql = "Update uu_dai Set tieu_de = N'"+tieu_de+"', noi_dung = N'"+noi_dung+"'"
             + "where id = '"+tbb.getId()+"'";
             Statement st = con.createStatement();
             st.executeUpdate(sql);
@@ -295,9 +434,9 @@ public class uu_dai extends javax.swing.JInternalFrame {
             con.close();
             load();
         } catch (SQLException ex) {
-            Logger.getLogger(thong_bao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(uu_dai.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(thong_bao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(uu_dai.class.getName()).log(Level.SEVERE, null, ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btn_suaActionPerformed
 
@@ -305,9 +444,9 @@ public class uu_dai extends javax.swing.JInternalFrame {
         try {
             con = db.connect();
             Statement st = con.createStatement();
-            String sql = "Delete from thong_bao "
+            String sql = "Delete from uu_dai "
             + "where id = '"+tbb.getId()+"'";
-            int r = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa thông báo này không?", "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int r = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa ưu đãi này không?", "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(r == JOptionPane.YES_OPTION){
                 st.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Xóa thành công!!");
@@ -323,41 +462,37 @@ public class uu_dai extends javax.swing.JInternalFrame {
         btn_sua.setVisible(false);
         btn_xoa.setVisible(false);
         if(check == true){
-            txt_nd.setText("");
-            txt_td.setText("");
-            txt_ltb.setSelectedItem(" ");
+            txt_noidung.setText("");
+            txt_tieude.setText("");
             check = false;
             return;
         }
-        if(!txt_td.isEnabled()){
-            txt_td.setEnabled(true);
-            txt_nd.setEnabled(true);
-            txt_ltb.setEnabled(true);
+        if(!txt_tieude.isEnabled()){
+            txt_tieude.setEnabled(true);
+            txt_noidung.setEnabled(true);
+            
             return;
         }
         try {
             con = db.connect();
             Statement st = con.createStatement();
-            String tieu_de = txt_td.getText().trim();
+            String tieu_de = txt_tieude.getText().trim();
             if(tieu_de.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Tiêu đề không được để trống.");
                 return;
             }
-            String noi_dung = txt_nd.getText().trim();
+            String noi_dung = txt_noidung.getText().trim();
             if(noi_dung.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Nội dung không được để trống.");
                 return;
             }
-            String loai_thong_bao = txt_ltb.getSelectedItem().toString();
-            if(loai_thong_bao == "-Chọn-"){
-                JOptionPane.showMessageDialog(this, "Chưa chọn loại thông báo.");
-                return;
-            }
+           
+            
 
-            String sql = "insert into thong_bao (tieu_de, noi_dung, loai_thong_bao, ngay_tao)"
-            + "values (N'"+tieu_de+"', N'"+noi_dung+"', N'"+loai_thong_bao+"', getdate())";
+            String sql = "insert into thong_bao (tieu_de, noi_dung, ngay_tao)"
+            + "values (N'"+tieu_de+"', N'"+noi_dung+"', getdate())";
             st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(this, "Thêm thông báo thành công.");
+            JOptionPane.showMessageDialog(this, "Thêm ưu đãi thành công.");
             load();
         } catch (Exception e){
             e.printStackTrace();
@@ -365,9 +500,8 @@ public class uu_dai extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void txt_tkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_tkMouseClicked
-        txt_nd.setText("");
-        txt_td.setText("");
-        txt_ltb.setSelectedItem(" ");
+        txt_noidung.setText("");
+        txt_tieude.setText("");
         btn_sua.setVisible(false);
         btn_xoa.setVisible(false);
     }//GEN-LAST:event_txt_tkMouseClicked
@@ -378,17 +512,16 @@ public class uu_dai extends javax.swing.JInternalFrame {
             Statement st = con.createStatement();
             String tim = txt_tk.getText().trim();
             String sql = "select * "
-            + "from thong_bao "
-            + "where tieu_de like '%"+tim+"%' or loai_thong_bao like '%"+tim+"%'";
+            + "from uu_dai "
+            + "where tieu_de like '%"+tim+"%'";
             ResultSet rs = st.executeQuery(sql);
-            String[] td = {"ID", "Tiêu đề", "Nội dung", "Loại thông báo", "Ngày tạo"};
+            String[] td = {"ID","Dối tượng thẻ ID", "Tiêu đề", "Nội dung", "Ngày tạo"};
             DefaultTableModel tb = new DefaultTableModel(td, 0);
             while(rs.next()){
                 Vector v = new Vector();
                 v.add(rs.getString("id"));
                 v.add(rs.getString("tieu_de"));
                 v.add(rs.getString("noi_dung"));
-                v.add(rs.getString("loai_thong_bao"));
                 v.add(rs.getString("ngay_tao"));
                 tb.addRow(v);
             }
@@ -404,16 +537,35 @@ public class uu_dai extends javax.swing.JInternalFrame {
         int i = tb_tb.getSelectedRow();
         btn_sua.setVisible(true);
         btn_xoa.setVisible(true);
-        txt_nd.setEnabled(true);
-        txt_ltb.setEnabled(true);
-        txt_td.setEnabled(true);
+        txt_noidung.setEnabled(true);
+        txt_tieude.setEnabled(true);
         DefaultTableModel tb = (DefaultTableModel)tb_tb.getModel();
-        txt_nd.setText(tb.getValueAt(i, 2).toString());
-        txt_ltb.setSelectedItem(tb.getValueAt(i, 3).toString());
-        txt_td.setText(tb.getValueAt(i, 1).toString());
+        txt_noidung.setText(tb.getValueAt(i, 2).toString());
+        txt_tieude.setText(tb.getValueAt(i, 1).toString());
         tbb = new thong_bao_model();
         tbb.setId(Integer.parseInt(tb.getValueAt(i, 0).toString()));
     }//GEN-LAST:event_tb_tbMouseClicked
+
+    private void nhap_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhap_fileActionPerformed
+        // TODO add your handling code here:
+          try {
+            JFileChooser fc = new JFileChooser();
+            int lc = fc.showOpenDialog(this);
+            if (lc == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                path.setText(file.getPath());
+                String tenfile = file.getName();
+                if (tenfile.endsWith(".xlsx")) { 
+                    ReadExcel(file.getPath());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Phải chọn file excel");
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_nhap_fileActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -423,19 +575,19 @@ public class uu_dai extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton nhap_file;
+    private javax.swing.JTextField path;
     private javax.swing.JLabel sum_nd;
     private javax.swing.JTable tb_tb;
     private javax.swing.JLabel tk;
-    private javax.swing.JComboBox<String> txt_ltb;
-    private javax.swing.JTextArea txt_nd;
-    private javax.swing.JTextField txt_td;
+    private javax.swing.JTextArea txt_noidung;
+    private javax.swing.JTextField txt_tieude;
     private javax.swing.JTextField txt_tk;
     // End of variables declaration//GEN-END:variables
 }
