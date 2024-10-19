@@ -231,8 +231,8 @@ public class tai_khoan extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nhap, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -242,8 +242,8 @@ public class tai_khoan extends javax.swing.JInternalFrame {
                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(nhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nhap, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -420,7 +420,7 @@ public class tai_khoan extends javax.swing.JInternalFrame {
         sd.setEditable(false);
         sd.setVisible(true);
         jsd.setVisible(true);
-        ltk.setEditable(false);
+        ltk.setEnabled(false);
         nt.setEditable(false);
         nt.setVisible(true);
         jnt.setVisible(true);
@@ -437,8 +437,9 @@ public class tai_khoan extends javax.swing.JInternalFrame {
         ht.setText(tb.getValueAt(i, 1).toString());
         tknd = new tai_khoan_nguoi_dung_model();
         tknd.setId(Integer.parseInt(tb.getValueAt(i, 0).toString()));
+        check = true;
     }//GEN-LAST:event_tb_ndMouseClicked
-
+    boolean check = false;
     private void txt_tkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_tkMouseClicked
         stk.setText("");
         sd.setText("");
@@ -454,7 +455,7 @@ public class tai_khoan extends javax.swing.JInternalFrame {
         ht.setVisible(false);
         btn_xoa.setVisible(false);
     }//GEN-LAST:event_txt_tkMouseClicked
-    boolean check = false;
+    
     private void txt_tkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tkKeyReleased
         try {
             con = db.connect();
@@ -492,14 +493,18 @@ public class tai_khoan extends javax.swing.JInternalFrame {
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         btn_xoa.setVisible(false);
         if(check == true){
-            stk.setVisible(true);
-            sd.setVisible(true);
-            ltk.setSelectedItem(" ");
-            nt.setVisible(true);
+            sdt.setEditable(true);
+            stk.setVisible(false);
+            jstk.setVisible(false);
+            sd.setVisible(false);
+            jsd.setVisible(false);
+            ltk.setSelectedItem("-Chọn tài khoản-");
+            nt.setVisible(false);
+            jnt.setVisible(false);
             sdt.setText("");
-            ht.setVisible(true);
+            ht.setVisible(false);
+            jht.setVisible(false);
             check = false;
-            return;
         }
         if(!ltk.isEnabled()){
             ltk.setEnabled(true);

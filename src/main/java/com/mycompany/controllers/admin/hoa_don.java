@@ -52,7 +52,11 @@ public class hoa_don extends javax.swing.JInternalFrame {
      * Creates new form hoa_don
      */
     public hoa_don() {
-         initComponents();
+         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
+        initComponents();
+        load_anh();
     }
 
     /**
@@ -422,19 +426,25 @@ public class hoa_don extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void load_anh() {
+        try {
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/excel.png"));
+            Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            giao_dich.setIcon(new ImageIcon(scaledImg_ec));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
     private void xoa_hoa_donActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoa_hoa_donActionPerformed
      try{
-          // B1: Lấy dữ liệu từ component và gán vào biến
-    String so_tai_khoan_nguoi_gui = txt_stk_gui.getText().trim();
-    String so_dien_thoai_nguoi_gui = txt_sdt_gui.getText().trim();
-
-    // Kiểm tra nếu các trường cần thiết bị bỏ trống
-    if (so_tai_khoan_nguoi_gui.isEmpty() && so_dien_thoai_nguoi_gui.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Vui lòng nhập số tài khoản hoặc số điện thoại để xóa giao dịch!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        return;
-
+            // b1: lay du lieu tu componet dua vao bien
+            String stk=txtstk.getText();
+            // Kiểm tra nếu mã người dùng (stk) bị bỏ trống
+            if (stk.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn người dùng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
     }
    
             Connection con = null;
