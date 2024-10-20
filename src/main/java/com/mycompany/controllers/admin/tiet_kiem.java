@@ -4,6 +4,11 @@
  */
 package com.mycompany.controllers.admin;
 
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import static org.apache.commons.math3.fitting.leastsquares.LeastSquaresFactory.model;
+
 /**
  *
  * @author nobpe
@@ -33,33 +38,34 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        ht_ng = new javax.swing.JTextField();
+        sdt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        sdt_ng = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        stk_ng = new javax.swing.JTextField();
+        stk = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        st_ng = new javax.swing.JTextField();
+        cccd = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        ln_ng = new javax.swing.JTextField();
+        diachi = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        ht_ng1 = new javax.swing.JTextField();
+        loaitk = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        sdt_ng1 = new javax.swing.JTextField();
+        sotien = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        stk_ng1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        st_ng1 = new javax.swing.JTextField();
+        nametk = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        ln_ng1 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        stk_ng2 = new javax.swing.JTextField();
+        sodu = new javax.swing.JTextField();
+        jdTao = new com.toedter.calendar.JDateChooser();
+        jdHan = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         p2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbTietkiem = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        themtk = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 699));
 
@@ -128,15 +134,15 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(stk_ng, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(sdt_ng)
-                    .addComponent(ht_ng))
+                    .addComponent(stk, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(name)
+                    .addComponent(sdt))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
-                    .addComponent(st_ng, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(ln_ng))
+                    .addComponent(cccd, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(diachi))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,26 +153,26 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ht_ng, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st_ng, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cccd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sdt_ng, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ln_ng, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(diachi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(stk_ng, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(stk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -200,19 +206,18 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
-                    .addComponent(stk_ng1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(sdt_ng1)
-                    .addComponent(ht_ng1))
+                    .addComponent(sotien)
+                    .addComponent(loaitk)
+                    .addComponent(jdHan, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel13)
-                        .addComponent(jLabel14)
-                        .addComponent(st_ng1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                        .addComponent(ln_ng1))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14)
+                    .addComponent(nametk)
                     .addComponent(jLabel15)
-                    .addComponent(stk_ng2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                    .addComponent(sodu)
+                    .addComponent(jdTao, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,33 +227,34 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ht_ng1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(loaitk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st_ng1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nametk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sdt_ng1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ln_ng1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(7, 7, 7)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sotien, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(jdTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stk_ng1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jdHan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stk_ng2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                        .addComponent(sodu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -268,7 +274,7 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                 .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(2, 2, 2))
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         p1Layout.setVerticalGroup(
@@ -287,18 +293,18 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         p2.setBackground(new java.awt.Color(51, 51, 51));
         p2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbTietkiem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Số ĐT", "Tên tiết kiệm", "Số tiền", "Ngày tạo", "Ngày hạn", "Số dư"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbTietkiem);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -307,19 +313,32 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jLabel3.setText("Bảng tiết kiệm");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
+        themtk.setText("Thêm tiết kiệm");
+        themtk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                themtkActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout p2Layout = new javax.swing.GroupLayout(p2);
         p2.setLayout(p2Layout);
         p2Layout.setHorizontalGroup(
             p2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(themtk)
+                .addGap(148, 148, 148))
         );
         p2Layout.setVerticalGroup(
             p2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(p2Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(themtk)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -362,10 +381,43 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void themtkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themtkActionPerformed
+        // Lấy dữ liệu từ các trường nhập liệu
+    String phoneNumber = sdt.getText(); // Số điện thoại
+    String savingType = loaitk.getText(); // Loại tiết kiệm
+    String savingName = nametk.getText(); // Tên tiết kiệm
+    String amount = sotien.getText(); // Số tiền
+    String createdDate = new SimpleDateFormat("yyyy-MM-dd").format(jdTao.getDate());
+    String expireDate = new SimpleDateFormat("yyyy-MM-dd").format(jdHan.getDate());
+    String balance = sodu.getText(); // Số dư hiện tại
+
+    // Kiểm tra xem các trường nhập liệu có rỗng không
+    if (phoneNumber.isEmpty() || savingType.isEmpty() || savingName.isEmpty() || 
+        amount.isEmpty() || createdDate.isEmpty() || expireDate.isEmpty() || 
+        balance.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    } else {
+        // Thêm dữ liệu vào bảng
+        DefaultTableModel model = (DefaultTableModel) tbTietkiem.getModel();
+        model.addRow(new Object[]{phoneNumber, savingType, savingName, amount, createdDate, expireDate, balance});
+        JOptionPane.showMessageDialog(null, "Thông tin tiết kiệm đã được thêm thành công!");
+
+        // Xóa nội dung trong các trường sau khi thêm
+        loaitk.setText("");
+        nametk.setText("");
+        sotien.setText("");
+        jdTao.setDate(null);
+        jdHan.setDate(null);
+        sodu.setText("");
+        sdt.setText(""); // Xóa số điện thoại
+        loaitk.requestFocus(); // Đặt lại tiêu điểm cho trường đầu tiên
+    }
+    }//GEN-LAST:event_themtkActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ht_ng;
-    private javax.swing.JTextField ht_ng1;
+    private javax.swing.JTextField cccd;
+    private javax.swing.JTextField diachi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -386,17 +438,18 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField ln_ng;
-    private javax.swing.JTextField ln_ng1;
+    private com.toedter.calendar.JDateChooser jdHan;
+    private com.toedter.calendar.JDateChooser jdTao;
+    private javax.swing.JTextField loaitk;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField nametk;
     private javax.swing.JPanel p1;
     private javax.swing.JPanel p2;
-    private javax.swing.JTextField sdt_ng;
-    private javax.swing.JTextField sdt_ng1;
-    private javax.swing.JTextField st_ng;
-    private javax.swing.JTextField st_ng1;
-    private javax.swing.JTextField stk_ng;
-    private javax.swing.JTextField stk_ng1;
-    private javax.swing.JTextField stk_ng2;
+    private javax.swing.JTextField sdt;
+    private javax.swing.JTextField sodu;
+    private javax.swing.JTextField sotien;
+    private javax.swing.JTextField stk;
+    private javax.swing.JTable tbTietkiem;
+    private javax.swing.JButton themtk;
     // End of variables declaration//GEN-END:variables
 }

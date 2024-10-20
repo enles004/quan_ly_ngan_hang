@@ -150,7 +150,7 @@
                           <Component id="jPanel1" max="32767" attributes="0"/>
                           <Component id="jPanel2" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -214,16 +214,16 @@
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="stk_ng" alignment="0" pref="150" max="32767" attributes="0"/>
-                              <Component id="sdt_ng" alignment="0" max="32767" attributes="0"/>
-                              <Component id="ht_ng" alignment="0" max="32767" attributes="0"/>
+                              <Component id="stk" alignment="0" pref="150" max="32767" attributes="0"/>
+                              <Component id="name" alignment="0" max="32767" attributes="0"/>
+                              <Component id="sdt" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="st_ng" alignment="0" pref="150" max="32767" attributes="0"/>
-                              <Component id="ln_ng" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cccd" alignment="0" pref="150" max="32767" attributes="0"/>
+                              <Component id="diachi" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -237,12 +237,12 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ht_ng" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="sdt" min="-2" pref="36" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="st_ng" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="cccd" min="-2" pref="36" max="-2" attributes="0"/>
                                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -251,18 +251,18 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="sdt_ng" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="name" min="-2" pref="36" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ln_ng" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="diachi" min="-2" pref="37" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="stk_ng" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="stk" min="-2" pref="36" max="-2" attributes="0"/>
                           <EmptySpace pref="26" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -277,7 +277,7 @@
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="ht_ng">
+                <Component class="javax.swing.JTextField" name="sdt">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
@@ -287,7 +287,7 @@
                     <Property name="text" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="sdt_ng">
+                <Component class="javax.swing.JTextField" name="name">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
@@ -297,7 +297,7 @@
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; t&#xe0;i kho&#x1ea3;n:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="stk_ng">
+                <Component class="javax.swing.JTextField" name="stk">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
@@ -307,7 +307,7 @@
                     <Property name="text" type="java.lang.String" value="CCCD:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="st_ng">
+                <Component class="javax.swing.JTextField" name="cccd">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
@@ -317,7 +317,7 @@
                     <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9;:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="ln_ng">
+                <Component class="javax.swing.JTextField" name="diachi">
                 </Component>
               </SubComponents>
             </Container>
@@ -337,22 +337,20 @@
                               <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="stk_ng1" alignment="0" pref="150" max="32767" attributes="0"/>
-                              <Component id="sdt_ng1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="ht_ng1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="sotien" alignment="0" max="32767" attributes="0"/>
+                              <Component id="loaitk" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jdHan" pref="150" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="st_ng1" alignment="0" pref="150" max="32767" attributes="0"/>
-                                  <Component id="ln_ng1" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="nametk" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="stk_ng2" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="sodu" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jdTao" pref="150" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="10" max="32767" attributes="0"/>
+                          <EmptySpace pref="8" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -364,42 +362,44 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ht_ng1" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="loaitk" min="-2" pref="36" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="st_ng1" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="nametk" min="-2" pref="36" max="-2" attributes="0"/>
                                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="sdt_ng1" min="-2" pref="36" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ln_ng1" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="sotien" pref="36" max="32767" attributes="0"/>
+                              <Component id="jdTao" max="32767" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="stk_ng1" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="jdHan" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="stk_ng2" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="sodu" min="-2" pref="36" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="61" max="32767" attributes="0"/>
+                          <EmptySpace pref="43" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -413,7 +413,7 @@
                     <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i ti&#x1ebf;t ki&#x1ec7;m"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="ht_ng1">
+                <Component class="javax.swing.JTextField" name="loaitk">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
@@ -423,7 +423,7 @@
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; ti&#x1ec1;n"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="sdt_ng1">
+                <Component class="javax.swing.JTextField" name="sotien">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
@@ -433,8 +433,6 @@
                     <Property name="text" type="java.lang.String" value="Ng&#xe0;y &#x111;&#xe1;o h&#x1ea1;n"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="stk_ng1">
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -443,7 +441,7 @@
                     <Property name="text" type="java.lang.String" value="T&#xea;n ti&#x1ebf;t ki&#x1ec7;m"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="st_ng1">
+                <Component class="javax.swing.JTextField" name="nametk">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
@@ -453,8 +451,6 @@
                     <Property name="text" type="java.lang.String" value="Ng&#xe0;y t&#x1ea1;o"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="ln_ng1">
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -463,7 +459,11 @@
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; d&#x1b0; hi&#x1ec7;n t&#x1ea1;i"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="stk_ng2">
+                <Component class="javax.swing.JTextField" name="sodu">
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="jdTao">
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="jdHan">
                 </Component>
               </SubComponents>
             </Container>
@@ -506,8 +506,13 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="410" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="416" max="32767" attributes="0"/>
                   <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="themtk" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -515,7 +520,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel3" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="222" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="467" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="themtk" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -529,14 +536,16 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="tbTietkiem">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
-                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                      <Table columnCount="6" rowCount="4">
+                        <Column editable="true" title="S&#x1ed1; &#x110;T" type="java.lang.Object"/>
+                        <Column editable="true" title="T&#xea;n ti&#x1ebf;t ki&#x1ec7;m" type="java.lang.Object"/>
+                        <Column editable="true" title="S&#x1ed1; ti&#x1ec1;n" type="java.lang.Object"/>
+                        <Column editable="true" title="Ng&#xe0;y t&#x1ea1;o" type="java.lang.Object"/>
+                        <Column editable="true" title="Ng&#xe0;y h&#x1ea1;n" type="java.lang.Object"/>
+                        <Column editable="true" title="S&#x1ed1; d&#x1b0;" type="java.lang.Object"/>
                       </Table>
                     </Property>
                   </Properties>
@@ -564,6 +573,14 @@
                   </Border>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="themtk">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Th&#xea;m ti&#x1ebf;t ki&#x1ec7;m"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="themtkActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
