@@ -100,7 +100,7 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="ff" type="rgb"/>
+              <Color blue="e6" green="e6" red="ff" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -128,7 +128,7 @@
                                   <Component id="giao_dich" alignment="0" max="32767" attributes="0"/>
                                   <Component id="nguoi_dung" alignment="1" pref="149" max="32767" attributes="0"/>
                                   <Component id="tai_khoan" alignment="1" pref="149" max="32767" attributes="0"/>
-                                  <Component id="giao_dich1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="hoa_don" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lich_su" alignment="0" max="32767" attributes="0"/>
                                   <Component id="the_nd" alignment="0" max="32767" attributes="0"/>
                                   <Component id="loai_the2" alignment="0" max="32767" attributes="0"/>
@@ -153,7 +153,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="giao_dich" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="giao_dich1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="hoa_don" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lich_su" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -276,7 +276,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Vay v&#x1ed1;n"/>
+                <Property name="text" type="java.lang.String" value="  Vay v&#x1ed1;n"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
@@ -346,7 +346,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="T&#xe0;i kho&#x1ea3;n"/>
+                <Property name="text" type="java.lang.String" value="   T&#xe0;i kho&#x1ea3;n"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
@@ -355,7 +355,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tai_khoanMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="giao_dich1">
+            <Component class="javax.swing.JLabel" name="hoa_don">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="0" red="99" type="rgb"/>
@@ -367,13 +367,13 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n"/>
+                <Property name="text" type="java.lang.String" value="  H&#xf3;a &#x111;&#x1a1;n"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="giao_dich1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="hoa_donMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lich_su">
@@ -388,7 +388,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="L&#x1ecb;ch s&#x1eed; GD"/>
+                <Property name="text" type="java.lang.String" value="  L&#x1ecb;ch s&#x1eed; GD"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
@@ -409,7 +409,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Th&#x1ebb; ND"/>
+                <Property name="text" type="java.lang.String" value="  Th&#x1ebb; ND"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
@@ -430,7 +430,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Ti&#x1ebf;t ki&#x1ec7;m"/>
+                <Property name="text" type="java.lang.String" value="  Ti&#x1ebf;t ki&#x1ec7;m"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
@@ -451,7 +451,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="&#x1af;u &#x111;&#xe3;i"/>
+                <Property name="text" type="java.lang.String" value="  &#x1af;u &#x111;&#xe3;i"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
@@ -472,7 +472,7 @@
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="B&#x1ea3;o hi&#x1ec3;m"/>
+                <Property name="text" type="java.lang.String" value="  B&#x1ea3;o hi&#x1ec3;m"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
