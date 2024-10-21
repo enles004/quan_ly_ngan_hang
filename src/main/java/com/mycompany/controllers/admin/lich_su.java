@@ -9,7 +9,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -21,6 +30,9 @@ public class lich_su extends javax.swing.JInternalFrame {
      * Creates new form lich_su
      */
     public lich_su() {
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         initComponents();
         load();
     }
@@ -42,14 +54,15 @@ public class lich_su extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         txt_tk = new javax.swing.JTextField();
         tk = new javax.swing.JLabel();
-        nhap = new javax.swing.JButton();
+        xuat = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 699));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setMaximumSize(new java.awt.Dimension(454, 404));
 
-        tb_nd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tb_nd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tb_nd.setForeground(new java.awt.Color(51, 51, 51));
         tb_nd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null}
@@ -94,21 +107,23 @@ public class lich_su extends javax.swing.JInternalFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBackground(new java.awt.Color(102, 102, 102));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         txt_tk.setToolTipText("");
+        txt_tk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         txt_tk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_tkKeyReleased(evt);
             }
         });
 
-        nhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        nhap.setText("Nhập");
-        nhap.addActionListener(new java.awt.event.ActionListener() {
+        xuat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        xuat.setText("Xuất");
+        xuat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        xuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nhapActionPerformed(evt);
+                xuatActionPerformed(evt);
             }
         });
 
@@ -118,12 +133,12 @@ public class lich_su extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nhap, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xuat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_tk)
+                .addComponent(txt_tk, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tk, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addComponent(tk, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +147,7 @@ public class lich_su extends javax.swing.JInternalFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_tk, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nhap, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                    .addComponent(xuat, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -192,9 +207,29 @@ public class lich_su extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-    private void nhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhapActionPerformed
-
-    }//GEN-LAST:event_nhapActionPerformed
+    private void xuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xuatActionPerformed
+        try {
+            con = db.connect();
+            String tim = txt_tk.getText().trim();
+            String sql = "Select * from giao_dich"; 
+            if(!tim.isEmpty()){
+                sql = "Select * from giao_dich "
+                        + "where so_dien_thoai_nguoi_gui like '"+tim+"%' or ten_nguoi_gui like '"+tim+"%' or so_tai_khoan_nguoi_nhan like '"+tim+"%' and trang_thai = 'thanh_cong'";
+            }
+            JasperDesign jdesign = JRXmlLoader.load("src\\main\\java\\com\\mycompany\\controllers\\admin\\lich_su.jrxml");
+            JRDesignQuery updateQuery = new JRDesignQuery();
+            updateQuery.setText(sql);
+            jdesign.setQuery(updateQuery);
+            JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+            JasperPrint jprint = JasperFillManager.fillReport(jreport, null, con);
+            JasperViewer viewer = new JasperViewer(jprint, false); // false để không đóng ứng dụng khi thoát
+            viewer.setDefaultCloseOperation(JasperViewer.DISPOSE_ON_CLOSE); // Chỉ đóng cửa sổ
+            viewer.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_xuatActionPerformed
 
     private void txt_tkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tkKeyReleased
         try {
@@ -238,9 +273,9 @@ public class lich_su extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton nhap;
     private javax.swing.JTable tb_nd;
     private javax.swing.JLabel tk;
     private javax.swing.JTextField txt_tk;
+    private javax.swing.JButton xuat;
     // End of variables declaration//GEN-END:variables
 }

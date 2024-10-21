@@ -115,11 +115,12 @@ public class admin_main_frame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setMaximumSize(new java.awt.Dimension(818, 497));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setMaximumSize(new java.awt.Dimension(163, 398));
 
         nguoi_dung.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        nguoi_dung.setForeground(new java.awt.Color(51, 51, 51));
         nguoi_dung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         nguoi_dung.setText("   Người dùng");
         nguoi_dung.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -131,6 +132,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         giao_dich.setBackground(new java.awt.Color(153, 0, 153));
         giao_dich.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        giao_dich.setForeground(new java.awt.Color(51, 51, 51));
         giao_dich.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         giao_dich.setText("  Giao dịch");
         giao_dich.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -142,6 +144,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         thong_bao.setBackground(new java.awt.Color(153, 0, 153));
         thong_bao.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        thong_bao.setForeground(new java.awt.Color(51, 51, 51));
         thong_bao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         thong_bao.setText("  Thông báo");
         thong_bao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -153,6 +156,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         loai_the.setBackground(new java.awt.Color(153, 0, 153));
         loai_the.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        loai_the.setForeground(new java.awt.Color(51, 51, 51));
         loai_the.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         loai_the.setText("  Loại thẻ");
         loai_the.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -164,6 +168,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         khoan_vay.setBackground(new java.awt.Color(153, 0, 153));
         khoan_vay.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        khoan_vay.setForeground(new java.awt.Color(51, 51, 51));
         khoan_vay.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         khoan_vay.setText("Vay vốn");
         khoan_vay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -175,7 +180,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         dang_xuat.setBackground(new java.awt.Color(153, 0, 153));
         dang_xuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        dang_xuat.setForeground(new java.awt.Color(255, 0, 51));
+        dang_xuat.setForeground(new java.awt.Color(0, 0, 153));
         dang_xuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dang_xuat.setText("Đăng xuất");
         dang_xuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -190,6 +195,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         ho_tro.setBackground(new java.awt.Color(153, 0, 153));
         ho_tro.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        ho_tro.setForeground(new java.awt.Color(51, 51, 51));
         ho_tro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ho_tro.setText("  Hỗ trợ");
         ho_tro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -200,6 +206,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         });
 
         tai_khoan.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        tai_khoan.setForeground(new java.awt.Color(51, 51, 51));
         tai_khoan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         tai_khoan.setText("Tài khoản");
         tai_khoan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -211,6 +218,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         giao_dich1.setBackground(new java.awt.Color(153, 0, 153));
         giao_dich1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        giao_dich1.setForeground(new java.awt.Color(51, 51, 51));
         giao_dich1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         giao_dich1.setText("Hóa đơn");
         giao_dich1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -222,6 +230,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         lich_su.setBackground(new java.awt.Color(153, 0, 153));
         lich_su.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        lich_su.setForeground(new java.awt.Color(51, 51, 51));
         lich_su.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lich_su.setText("Lịch sử GD");
         lich_su.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -233,6 +242,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         the_nd.setBackground(new java.awt.Color(153, 0, 153));
         the_nd.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        the_nd.setForeground(new java.awt.Color(51, 51, 51));
         the_nd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         the_nd.setText("Thẻ ND");
         the_nd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -244,6 +254,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         loai_the2.setBackground(new java.awt.Color(153, 0, 153));
         loai_the2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        loai_the2.setForeground(new java.awt.Color(51, 51, 51));
         loai_the2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         loai_the2.setText("Tiết kiệm");
         loai_the2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -255,6 +266,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         ho_tro1.setBackground(new java.awt.Color(153, 0, 153));
         ho_tro1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        ho_tro1.setForeground(new java.awt.Color(51, 51, 51));
         ho_tro1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ho_tro1.setText("Ưu đãi");
         ho_tro1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -266,6 +278,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         khoan_vay1.setBackground(new java.awt.Color(153, 0, 153));
         khoan_vay1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        khoan_vay1.setForeground(new java.awt.Color(51, 51, 51));
         khoan_vay1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         khoan_vay1.setText("Bảo hiểm");
         khoan_vay1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -277,6 +290,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
         khoan_vay2.setBackground(new java.awt.Color(153, 0, 153));
         khoan_vay2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        khoan_vay2.setForeground(new java.awt.Color(51, 51, 51));
         khoan_vay2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         khoan_vay2.setText("Thanh toán");
         khoan_vay2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -350,9 +364,11 @@ public class admin_main_frame extends javax.swing.JFrame {
                 .addComponent(dang_xuat, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
         );
 
+        jPanel4.setBackground(new java.awt.Color(255, 153, 153));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         logo.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        logo.setForeground(new java.awt.Color(255, 255, 255));
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setText("E BANK");
         logo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
