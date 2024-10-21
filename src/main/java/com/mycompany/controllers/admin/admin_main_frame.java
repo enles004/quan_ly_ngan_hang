@@ -54,9 +54,25 @@ public class admin_main_frame extends javax.swing.JFrame {
             Image scaledImg_nd = img_nd.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
             nguoi_dung.setIcon(new ImageIcon(scaledImg_nd));
             
+            BufferedImage img_taik = ImageIO.read(new File("src/main/java/com/mycompany/pics/user1.png"));
+            Image scaledImg_taik = img_taik.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+            tai_khoan.setIcon(new ImageIcon(scaledImg_taik));
+            
             BufferedImage img_gd = ImageIO.read(new File("src/main/java/com/mycompany/pics/giaodich.png"));
             Image scaledImg_gd = img_gd.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
             giao_dich.setIcon(new ImageIcon(scaledImg_gd));
+            
+            BufferedImage img_hd = ImageIO.read(new File("src/main/java/com/mycompany/pics/bill.png"));
+            Image scaledImg_hd = img_hd.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
+            hoa_don.setIcon(new ImageIcon(scaledImg_hd));
+            
+            BufferedImage img_ls = ImageIO.read(new File("src/main/java/com/mycompany/pics/history.png"));
+            Image scaledImg_ls = img_ls.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
+            lich_su.setIcon(new ImageIcon(scaledImg_ls));
+            
+            BufferedImage img_ndd = ImageIO.read(new File("src/main/java/com/mycompany/pics/card-per.png"));
+            Image scaledImg_ndd = img_ndd.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
+            the_nd.setIcon(new ImageIcon(scaledImg_ndd));
             
             BufferedImage img_c = ImageIO.read(new File("src/main/java/com/mycompany/pics/credit.png"));
             Image scaledImg_c = img_c.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
@@ -94,7 +110,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         ho_tro = new javax.swing.JLabel();
         tai_khoan = new javax.swing.JLabel();
-        giao_dich1 = new javax.swing.JLabel();
+        hoa_don = new javax.swing.JLabel();
         lich_su = new javax.swing.JLabel();
         the_nd = new javax.swing.JLabel();
         loai_the2 = new javax.swing.JLabel();
@@ -115,7 +131,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setMaximumSize(new java.awt.Dimension(818, 497));
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 230, 230));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setMaximumSize(new java.awt.Dimension(163, 398));
 
@@ -170,7 +186,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         khoan_vay.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         khoan_vay.setForeground(new java.awt.Color(51, 51, 51));
         khoan_vay.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        khoan_vay.setText("Vay vốn");
+        khoan_vay.setText("  Vay vốn");
         khoan_vay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         khoan_vay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -208,7 +224,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         tai_khoan.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         tai_khoan.setForeground(new java.awt.Color(51, 51, 51));
         tai_khoan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        tai_khoan.setText("Tài khoản");
+        tai_khoan.setText("   Tài khoản");
         tai_khoan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tai_khoan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -216,15 +232,15 @@ public class admin_main_frame extends javax.swing.JFrame {
             }
         });
 
-        giao_dich1.setBackground(new java.awt.Color(153, 0, 153));
-        giao_dich1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        giao_dich1.setForeground(new java.awt.Color(51, 51, 51));
-        giao_dich1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        giao_dich1.setText("Hóa đơn");
-        giao_dich1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        giao_dich1.addMouseListener(new java.awt.event.MouseAdapter() {
+        hoa_don.setBackground(new java.awt.Color(153, 0, 153));
+        hoa_don.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        hoa_don.setForeground(new java.awt.Color(51, 51, 51));
+        hoa_don.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        hoa_don.setText("  Hóa đơn");
+        hoa_don.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hoa_don.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                giao_dich1MouseClicked(evt);
+                hoa_donMouseClicked(evt);
             }
         });
 
@@ -232,7 +248,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         lich_su.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lich_su.setForeground(new java.awt.Color(51, 51, 51));
         lich_su.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lich_su.setText("Lịch sử GD");
+        lich_su.setText("  Lịch sử GD");
         lich_su.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lich_su.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -244,7 +260,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         the_nd.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         the_nd.setForeground(new java.awt.Color(51, 51, 51));
         the_nd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        the_nd.setText("Thẻ ND");
+        the_nd.setText("  Thẻ ND");
         the_nd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         the_nd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -256,7 +272,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         loai_the2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         loai_the2.setForeground(new java.awt.Color(51, 51, 51));
         loai_the2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        loai_the2.setText("Tiết kiệm");
+        loai_the2.setText("  Tiết kiệm");
         loai_the2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loai_the2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -268,7 +284,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         ho_tro1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         ho_tro1.setForeground(new java.awt.Color(51, 51, 51));
         ho_tro1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ho_tro1.setText("Ưu đãi");
+        ho_tro1.setText("  Ưu đãi");
         ho_tro1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ho_tro1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -280,7 +296,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         khoan_vay1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         khoan_vay1.setForeground(new java.awt.Color(51, 51, 51));
         khoan_vay1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        khoan_vay1.setText("Bảo hiểm");
+        khoan_vay1.setText("  Bảo hiểm");
         khoan_vay1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         khoan_vay1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -317,7 +333,7 @@ public class admin_main_frame extends javax.swing.JFrame {
                             .addComponent(giao_dich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nguoi_dung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                             .addComponent(tai_khoan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addComponent(giao_dich1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(hoa_don, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lich_su, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(the_nd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(loai_the2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -337,7 +353,7 @@ public class admin_main_frame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(giao_dich, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(giao_dich1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hoa_don, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lich_su, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -454,8 +470,8 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void nguoi_dungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dungMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(18, 48, 174);
-        Color black = new Color(0, 0, 0);
+        Color customColor = new Color(0, 102, 0);
+        Color black = new Color(51, 51, 51);
         sourceLabel.setForeground(customColor);
         giao_dich.setForeground(black);
         khoan_vay.setForeground(black);
@@ -469,9 +485,9 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void giao_dichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giao_dichMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(18, 48, 174);
+        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(0, 0, 0);
+        Color black = new Color(51, 51, 51);
         sourceLabel.setForeground(customColor);
         nguoi_dung.setForeground(black);
         khoan_vay.setForeground(black);
@@ -485,9 +501,9 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void loai_theMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai_theMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(18, 48, 174);
+        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(0, 0, 0);
+        Color black = new Color(51, 51, 51);
         sourceLabel.setForeground(customColor);
         nguoi_dung.setForeground(black);
         khoan_vay.setForeground(black);
@@ -502,9 +518,9 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void thong_baoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thong_baoMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(18, 48, 174);
+        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(0, 0, 0);
+        Color black = new Color(51, 51, 51);
         sourceLabel.setForeground(customColor);
         nguoi_dung.setForeground(black);
         khoan_vay.setForeground(black);
@@ -519,9 +535,9 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void khoan_vayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khoan_vayMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(18, 48, 174);
+        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(0, 0, 0);
+        Color black = new Color(51, 51, 51);
         sourceLabel.setForeground(customColor);
         nguoi_dung.setForeground(black);
         thong_bao.setForeground(black);
@@ -548,9 +564,9 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void ho_troMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ho_troMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(18, 48, 174);
+        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(0, 0, 0);
+        Color black = new Color(51, 51, 51);
         sourceLabel.setForeground(customColor);
         nguoi_dung.setForeground(black);
         thong_bao.setForeground(black);
@@ -564,7 +580,7 @@ public class admin_main_frame extends javax.swing.JFrame {
 
     private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
         Desktop1.removeAll();
-        Color black = new Color(0, 0, 0);
+        Color black = new Color(51, 51, 51);
         nguoi_dung.setForeground(black);
         thong_bao.setForeground(black);
         loai_the.setForeground(black);
@@ -577,7 +593,10 @@ public class admin_main_frame extends javax.swing.JFrame {
 
     private void tai_khoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tai_khoanMouseClicked
         Desktop1.removeAll();
-        Color black = new Color(0, 0, 0);
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        Color customColor = new Color(0, 102, 0);
+        sourceLabel.setForeground(customColor);
+        Color black = new Color(51, 51, 51);
         nguoi_dung.setForeground(black);
         thong_bao.setForeground(black);
         loai_the.setForeground(black);
@@ -589,13 +608,16 @@ public class admin_main_frame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tai_khoanMouseClicked
 
-    private void giao_dich1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giao_dich1MouseClicked
+    private void hoa_donMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hoa_donMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_giao_dich1MouseClicked
+    }//GEN-LAST:event_hoa_donMouseClicked
 
     private void lich_suMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lich_suMouseClicked
         Desktop1.removeAll();
-        Color black = new Color(0, 0, 0);
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        Color customColor = new Color(0, 102, 0);
+        sourceLabel.setForeground(customColor);
+        Color black = new Color(51, 51, 51);
         nguoi_dung.setForeground(black);
         thong_bao.setForeground(black);
         loai_the.setForeground(black);
@@ -609,7 +631,10 @@ public class admin_main_frame extends javax.swing.JFrame {
 
     private void the_ndMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_the_ndMouseClicked
         Desktop1.removeAll();
-        Color black = new Color(0, 0, 0);
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        Color customColor = new Color(0, 102, 0);
+        sourceLabel.setForeground(customColor);
+        Color black = new Color(51, 51, 51);
         nguoi_dung.setForeground(black);
         thong_bao.setForeground(black);
         loai_the.setForeground(black);
@@ -679,9 +704,9 @@ public class admin_main_frame extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Desktop1;
     private javax.swing.JLabel dang_xuat;
     private javax.swing.JLabel giao_dich;
-    private javax.swing.JLabel giao_dich1;
     private javax.swing.JLabel ho_tro;
     private javax.swing.JLabel ho_tro1;
+    private javax.swing.JLabel hoa_don;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
