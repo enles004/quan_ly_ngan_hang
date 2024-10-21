@@ -21,9 +21,9 @@ CREATE TABLE nguoi_dung (
 
 CREATE TABLE tai_khoan_nguoi_dung (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
-	so_dien_thoai_id INTEGER NOT NULL,
+	so_dien_thoai_id VARCHAR(255) NOT NULL,
 	loai_tai_khoan NVARCHAR(255) NOT NULL,
-	so_tai_khoan VARCHAR(255) NOT NULL,
+	so_tai_khoan VARCHAR(255) UNIQUE NOT NULL,
 	so_tien_hien_co DECIMAL NOT NULL,
 	ngay_tao DATETIME NOT NULL,
 	PRIMARY KEY(id),
@@ -122,7 +122,7 @@ CREATE TABLE ho_tro_nguoi_dung (
 
 CREATE TABLE khoan_vay (
     id INT PRIMARY KEY IDENTITY,  
-    tai_khoan_nguoi_dung_id INTEGER NOT NULL,                              
+    so_tai_khoan_id VARCHAR(255) NOT NULL,                              
     loai_vay NVARCHAR(255),                      
     so_tien_vay DECIMAL(15, 2),
     so_tien_da_tra DECIMAL(15, 2),
@@ -132,7 +132,7 @@ CREATE TABLE khoan_vay (
 	ky_han NVARCHAR(255) NOT NULL,                         
     tinh_trang NVARCHAR(255),                    
     ngay_tao DATETIME DEFAULT GETDATE(),
-    FOREIGN KEY(tai_khoan_nguoi_dung_id) REFERENCES tai_khoan_nguoi_dung(id)
+    FOREIGN KEY(so_tai_khoan_id) REFERENCES tai_khoan_nguoi_dung(so_tai_khoan)
     ON UPDATE NO ACTION ON DELETE CASCADE    
 );
 
