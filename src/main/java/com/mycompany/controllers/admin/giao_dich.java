@@ -389,9 +389,13 @@ public class giao_dich extends javax.swing.JInternalFrame {
     
     private void load_anh() {
         try {
-            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/excel.png"));
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/plus.png"));
             Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             giao_dich.setIcon(new ImageIcon(scaledImg_ec));
+            
+            BufferedImage img_xn = ImageIO.read(new File("src/main/java/com/mycompany/pics/xn.png"));
+            Image scaledImg_xn = img_xn.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_xn.setIcon(new ImageIcon(scaledImg_xn));
             
         } catch (Exception e) {
             e.printStackTrace();
