@@ -37,7 +37,9 @@ public class admin_main_frame extends javax.swing.JFrame {
         load_anh();
         load_tc();
     }
-
+    
+    Color customColor = new Color(0, 102, 0);
+    Color black = new Color(51, 51, 51);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,10 +115,10 @@ public class admin_main_frame extends javax.swing.JFrame {
         hoa_don = new javax.swing.JLabel();
         lich_su = new javax.swing.JLabel();
         the_nd = new javax.swing.JLabel();
-        loai_the2 = new javax.swing.JLabel();
-        ho_tro1 = new javax.swing.JLabel();
-        khoan_vay1 = new javax.swing.JLabel();
-        khoan_vay2 = new javax.swing.JLabel();
+        tiet_kiem = new javax.swing.JLabel();
+        uu_dai = new javax.swing.JLabel();
+        bao_hiem = new javax.swing.JLabel();
+        thanh_toan = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         Desktop1 = new javax.swing.JDesktopPane();
@@ -268,51 +270,51 @@ public class admin_main_frame extends javax.swing.JFrame {
             }
         });
 
-        loai_the2.setBackground(new java.awt.Color(153, 0, 153));
-        loai_the2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        loai_the2.setForeground(new java.awt.Color(51, 51, 51));
-        loai_the2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        loai_the2.setText("  Tiết kiệm");
-        loai_the2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loai_the2.addMouseListener(new java.awt.event.MouseAdapter() {
+        tiet_kiem.setBackground(new java.awt.Color(153, 0, 153));
+        tiet_kiem.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        tiet_kiem.setForeground(new java.awt.Color(51, 51, 51));
+        tiet_kiem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tiet_kiem.setText("  Tiết kiệm");
+        tiet_kiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tiet_kiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loai_the2MouseClicked(evt);
+                tiet_kiemMouseClicked(evt);
             }
         });
 
-        ho_tro1.setBackground(new java.awt.Color(153, 0, 153));
-        ho_tro1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        ho_tro1.setForeground(new java.awt.Color(51, 51, 51));
-        ho_tro1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ho_tro1.setText("  Ưu đãi");
-        ho_tro1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ho_tro1.addMouseListener(new java.awt.event.MouseAdapter() {
+        uu_dai.setBackground(new java.awt.Color(153, 0, 153));
+        uu_dai.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        uu_dai.setForeground(new java.awt.Color(51, 51, 51));
+        uu_dai.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        uu_dai.setText("  Ưu đãi");
+        uu_dai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        uu_dai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ho_tro1MouseClicked(evt);
+                uu_daiMouseClicked(evt);
             }
         });
 
-        khoan_vay1.setBackground(new java.awt.Color(153, 0, 153));
-        khoan_vay1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        khoan_vay1.setForeground(new java.awt.Color(51, 51, 51));
-        khoan_vay1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        khoan_vay1.setText("  Bảo hiểm");
-        khoan_vay1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        khoan_vay1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bao_hiem.setBackground(new java.awt.Color(153, 0, 153));
+        bao_hiem.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        bao_hiem.setForeground(new java.awt.Color(51, 51, 51));
+        bao_hiem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bao_hiem.setText("  Bảo hiểm");
+        bao_hiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bao_hiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                khoan_vay1MouseClicked(evt);
+                bao_hiemMouseClicked(evt);
             }
         });
 
-        khoan_vay2.setBackground(new java.awt.Color(153, 0, 153));
-        khoan_vay2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        khoan_vay2.setForeground(new java.awt.Color(51, 51, 51));
-        khoan_vay2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        khoan_vay2.setText("Thanh toán");
-        khoan_vay2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        khoan_vay2.addMouseListener(new java.awt.event.MouseAdapter() {
+        thanh_toan.setBackground(new java.awt.Color(153, 0, 153));
+        thanh_toan.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        thanh_toan.setForeground(new java.awt.Color(51, 51, 51));
+        thanh_toan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        thanh_toan.setText("Thanh toán");
+        thanh_toan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        thanh_toan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                khoan_vay2MouseClicked(evt);
+                thanh_toanMouseClicked(evt);
             }
         });
 
@@ -336,12 +338,12 @@ public class admin_main_frame extends javax.swing.JFrame {
                             .addComponent(hoa_don, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lich_su, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(the_nd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loai_the2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(tiet_kiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addComponent(ho_tro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ho_tro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(khoan_vay1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(khoan_vay2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(uu_dai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bao_hiem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(thanh_toan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,23 +363,23 @@ public class admin_main_frame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(the_nd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loai_the2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tiet_kiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(thong_bao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ho_tro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ho_tro1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(uu_dai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(khoan_vay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(khoan_vay1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bao_hiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(khoan_vay2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(thanh_toan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dang_xuat, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                .addComponent(dang_xuat, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 153, 153));
@@ -459,8 +461,8 @@ public class admin_main_frame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Desktop1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Desktop1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -470,14 +472,22 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void nguoi_dungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nguoi_dungMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(0, 102, 0);
-        Color black = new Color(51, 51, 51);
         sourceLabel.setForeground(customColor);
+        
+        tai_khoan.setForeground(black);
         giao_dich.setForeground(black);
-        khoan_vay.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
         thong_bao.setForeground(black);
         ho_tro.setForeground(black);
-        loai_the.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         nguoi_dung nd = new nguoi_dung();
         Desktop1.add(nd).setVisible(true);
     }//GEN-LAST:event_nguoi_dungMouseClicked
@@ -485,15 +495,22 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void giao_dichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giao_dichMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(51, 51, 51);
-        sourceLabel.setForeground(customColor);
+        
+        tai_khoan.setForeground(black);
         nguoi_dung.setForeground(black);
-        khoan_vay.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
         thong_bao.setForeground(black);
         ho_tro.setForeground(black);
-        loai_the.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         giao_dich gd = new giao_dich();
         Desktop1.add(gd).setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_giao_dichMouseClicked
@@ -501,15 +518,22 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void loai_theMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai_theMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(51, 51, 51);
-        sourceLabel.setForeground(customColor);
+        
+        tai_khoan.setForeground(black);
+        giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
         nguoi_dung.setForeground(black);
-        khoan_vay.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
         thong_bao.setForeground(black);
         ho_tro.setForeground(black);
-        giao_dich.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         loai_the lt = new loai_the();
         Desktop1.add(lt).setVisible(true);
         // TODO add your handling code here:
@@ -518,15 +542,22 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void thong_baoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thong_baoMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(51, 51, 51);
-        sourceLabel.setForeground(customColor);
-        nguoi_dung.setForeground(black);
-        khoan_vay.setForeground(black);
-        loai_the.setForeground(black);
-        ho_tro.setForeground(black);
+        
+        tai_khoan.setForeground(black);
         giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        nguoi_dung.setForeground(black);
+        ho_tro.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         thong_bao tb = new thong_bao();
         Desktop1.add(tb).setVisible(true);
         // TODO add your handling code here:
@@ -535,15 +566,22 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void khoan_vayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khoan_vayMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(51, 51, 51);
-        sourceLabel.setForeground(customColor);
-        nguoi_dung.setForeground(black);
-        thong_bao.setForeground(black);
-        loai_the.setForeground(black);
-        ho_tro.setForeground(black);
+        
+        tai_khoan.setForeground(black);
         giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
+        ho_tro.setForeground(black);
+        uu_dai.setForeground(black);
+        nguoi_dung.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         khoan_vay kv = new khoan_vay();
         Desktop1.add(kv).setVisible(true);
     }//GEN-LAST:event_khoan_vayMouseClicked
@@ -564,15 +602,22 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void ho_troMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ho_troMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(51, 51, 51);
-        sourceLabel.setForeground(customColor);
-        nguoi_dung.setForeground(black);
-        thong_bao.setForeground(black);
-        loai_the.setForeground(black);
-        khoan_vay.setForeground(black);
+        
+        tai_khoan.setForeground(black);
         giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
+        nguoi_dung.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         ho_tro ht = new ho_tro();
         Desktop1.add(ht).setVisible(true);
         // TODO add your handling code here:
@@ -580,13 +625,22 @@ public class admin_main_frame extends javax.swing.JFrame {
 
     private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
         Desktop1.removeAll();
-        Color black = new Color(51, 51, 51);
+        
+        tai_khoan.setForeground(black);
         nguoi_dung.setForeground(black);
-        thong_bao.setForeground(black);
-        loai_the.setForeground(black);
-        khoan_vay.setForeground(black);
         giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
         ho_tro.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         trang_chu tc = new trang_chu();
         Desktop1.add(tc).setVisible(true);
     }//GEN-LAST:event_logoMouseClicked
@@ -594,15 +648,22 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void tai_khoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tai_khoanMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(51, 51, 51);
+        
         nguoi_dung.setForeground(black);
-        thong_bao.setForeground(black);
-        loai_the.setForeground(black);
-        khoan_vay.setForeground(black);
         giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
         ho_tro.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         tai_khoan tk = new tai_khoan();
         Desktop1.add(tk).setVisible(true);
         // TODO add your handling code here:
@@ -615,15 +676,22 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void lich_suMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lich_suMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(51, 51, 51);
-        nguoi_dung.setForeground(black);
-        thong_bao.setForeground(black);
-        loai_the.setForeground(black);
-        khoan_vay.setForeground(black);
+        
+        tai_khoan.setForeground(black);
         giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        nguoi_dung.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
         ho_tro.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         lich_su ls = new lich_su();
         Desktop1.add(ls).setVisible(true);
         // TODO add your handling code here:
@@ -632,34 +700,41 @@ public class admin_main_frame extends javax.swing.JFrame {
     private void the_ndMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_the_ndMouseClicked
         Desktop1.removeAll();
         JLabel sourceLabel = (JLabel) evt.getSource();
-        Color customColor = new Color(0, 102, 0);
         sourceLabel.setForeground(customColor);
-        Color black = new Color(51, 51, 51);
-        nguoi_dung.setForeground(black);
-        thong_bao.setForeground(black);
-        loai_the.setForeground(black);
-        khoan_vay.setForeground(black);
+        
+        tai_khoan.setForeground(black);
         giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        nguoi_dung.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
         ho_tro.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
         the_nguoi_dung tnd = new the_nguoi_dung();
         Desktop1.add(tnd).setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_the_ndMouseClicked
 
-    private void loai_the2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai_the2MouseClicked
+    private void tiet_kiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tiet_kiemMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_loai_the2MouseClicked
+    }//GEN-LAST:event_tiet_kiemMouseClicked
 
-    private void ho_tro1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ho_tro1MouseClicked
+    private void uu_daiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uu_daiMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_ho_tro1MouseClicked
+    }//GEN-LAST:event_uu_daiMouseClicked
 
-    private void khoan_vay1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khoan_vay1MouseClicked
+    private void bao_hiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bao_hiemMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_khoan_vay1MouseClicked
+    }//GEN-LAST:event_bao_hiemMouseClicked
 
-    private void khoan_vay2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khoan_vay2MouseClicked
+    private void thanh_toanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thanh_toanMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_khoan_vay2MouseClicked
+    }//GEN-LAST:event_thanh_toanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -702,25 +777,25 @@ public class admin_main_frame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop1;
+    private javax.swing.JLabel bao_hiem;
     private javax.swing.JLabel dang_xuat;
     private javax.swing.JLabel giao_dich;
     private javax.swing.JLabel ho_tro;
-    private javax.swing.JLabel ho_tro1;
     private javax.swing.JLabel hoa_don;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel khoan_vay;
-    private javax.swing.JLabel khoan_vay1;
-    private javax.swing.JLabel khoan_vay2;
     private javax.swing.JLabel lich_su;
     private javax.swing.JLabel loai_the;
-    private javax.swing.JLabel loai_the2;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel nguoi_dung;
     private javax.swing.JLabel tai_khoan;
+    private javax.swing.JLabel thanh_toan;
     private javax.swing.JLabel the_nd;
     private javax.swing.JLabel thong_bao;
+    private javax.swing.JLabel tiet_kiem;
+    private javax.swing.JLabel uu_dai;
     // End of variables declaration//GEN-END:variables
 }

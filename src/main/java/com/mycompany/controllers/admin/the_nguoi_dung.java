@@ -8,6 +8,9 @@ import com.mycompany.db;
 import com.mycompany.models.AccountGenerator;
 import com.mycompany.models.loai_the_model;
 import com.mycompany.models.loai_the_nguoi_dung;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +19,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -34,6 +39,7 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         initComponents();
+        load_anh();
         load();
         load_cb();
     }
@@ -351,8 +357,8 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(btn_xoa, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                .addGap(330, 330, 330))
+                .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,8 +406,41 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     Connection con;
+    
+    private void load_anh() {
+        try {
+            BufferedImage img_sua = ImageIO.read(new File("src/main/java/com/mycompany/pics/sua.png"));
+            Image scaledImg_sua = img_sua.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_sua.setIcon(new ImageIcon(scaledImg_sua));
+            
+            BufferedImage img_xoa = ImageIO.read(new File("src/main/java/com/mycompany/pics/xoa.png"));
+            Image scaledImg_xoa = img_xoa.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_xoa.setIcon(new ImageIcon(scaledImg_xoa));
+            
+            BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/search.png"));
+            Image scaledImg_tk = img_tk.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+            tk.setIcon(new ImageIcon(scaledImg_tk));
+            
+            BufferedImage img_them = ImageIO.read(new File("src/main/java/com/mycompany/pics/plus.png"));
+            Image scaledImg_them = img_them.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_them.setIcon(new ImageIcon(scaledImg_them));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
     boolean check = false;
     private void load(){
+        ten.setText("");
+        cccd.setText("");
+        sdt.setText("");
+        stt.setText("");
+        so_tien.setText("");
+        hsd.setText("");
+        tt.setSelectedItem("-Chọn trạng thái-");
+        lt.setSelectedItem("-Chọn loại thẻ-");
         btn_sua.setVisible(false);
         btn_xoa.setVisible(false);
         sdt.setEnabled(false);

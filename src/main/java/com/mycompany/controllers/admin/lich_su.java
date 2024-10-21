@@ -5,10 +5,15 @@
 package com.mycompany.controllers.admin;
 
 import com.mycompany.db;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -35,6 +40,7 @@ public class lich_su extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         initComponents();
         load();
+        load_anh();
     }
 
     /**
@@ -175,6 +181,23 @@ public class lich_su extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     Connection con;
+    
+    private void load_anh() {
+        try {
+            BufferedImage img_xuat = ImageIO.read(new File("src/main/java/com/mycompany/pics/ec.png"));
+            Image scaledImg_xuat = img_xuat.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            xuat.setIcon(new ImageIcon(scaledImg_xuat));
+            
+            BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/search.png"));
+            Image scaledImg_tk = img_tk.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            tk.setIcon(new ImageIcon(scaledImg_tk));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
     private void load(){
         try {
             con = db.connect();
