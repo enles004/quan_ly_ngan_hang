@@ -671,6 +671,26 @@ public class admin_main_frame extends javax.swing.JFrame {
 
     private void hoa_donMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hoa_donMouseClicked
         // TODO add your handling code here:
+         Desktop1.removeAll();
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        sourceLabel.setForeground(customColor);
+        
+        tai_khoan.setForeground(black);
+        giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
+        nguoi_dung.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
+        hoa_don hd = new hoa_don();
+        Desktop1.add(hd).setVisible(true);
     }//GEN-LAST:event_hoa_donMouseClicked
 
     private void lich_suMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lich_suMouseClicked
@@ -726,6 +746,26 @@ public class admin_main_frame extends javax.swing.JFrame {
 
     private void uu_daiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uu_daiMouseClicked
         // TODO add your handling code here:
+         Desktop1.removeAll();
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        sourceLabel.setForeground(customColor);
+        
+        tai_khoan.setForeground(black);
+        giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
+        nguoi_dung.setForeground(black);
+        uu_dai.setForeground(black);
+        khoan_vay.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
+        uu_dai ud = new uu_dai();
+        Desktop1.add(ud).setVisible(true);
     }//GEN-LAST:event_uu_daiMouseClicked
 
     private void bao_hiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bao_hiemMouseClicked

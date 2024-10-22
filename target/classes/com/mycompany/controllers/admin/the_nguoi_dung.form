@@ -489,8 +489,8 @@
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="btn_sua" min="-2" pref="121" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="btn_xoa" pref="128" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
+                  <Component id="btn_xoa" min="-2" pref="119" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
