@@ -44,7 +44,7 @@ public class giaodien extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, Short.MAX_VALUE))
         );
 

@@ -83,10 +83,9 @@ public class giao_dich extends javax.swing.JInternalFrame {
         jLabel14 = new javax.swing.JLabel();
         email_nn = new javax.swing.JTextField();
         btn_xn = new javax.swing.JButton();
+        giao_dich = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        giao_dich = new javax.swing.JButton();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(640, 600));
@@ -111,7 +110,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
         jLabel2.setText("Bên gửi");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(240, 240, 240));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -203,7 +202,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
         jLabel3.setText("Bên nhận");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(240, 240, 240));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -301,9 +300,21 @@ public class giao_dich extends javax.swing.JInternalFrame {
 
         btn_xn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_xn.setText("Xác nhận giao dịch");
+        btn_xn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
+        btn_xn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_xn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_xnActionPerformed(evt);
+            }
+        });
+
+        giao_dich.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        giao_dich.setText("Giao dịch mới");
+        giao_dich.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
+        giao_dich.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        giao_dich.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                giao_dichActionPerformed(evt);
             }
         });
 
@@ -318,7 +329,8 @@ public class giao_dich extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
-                        .addComponent(p2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(p2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(giao_dich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -328,17 +340,20 @@ public class giao_dich extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(p1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(p2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(giao_dich, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(btn_xn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
-        jPanel5.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel5.setBackground(new java.awt.Color(255, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setMaximumSize(new java.awt.Dimension(635, 48));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ GIAO DỊCH");
 
@@ -353,40 +368,11 @@ public class giao_dich extends javax.swing.JInternalFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        giao_dich.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        giao_dich.setText("Giao dịch mới");
-        giao_dich.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                giao_dichActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(giao_dich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(giao_dich, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -394,8 +380,6 @@ public class giao_dich extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -405,9 +389,13 @@ public class giao_dich extends javax.swing.JInternalFrame {
     
     private void load_anh() {
         try {
-            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/excel.png"));
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/plus.png"));
             Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             giao_dich.setIcon(new ImageIcon(scaledImg_ec));
+            
+            BufferedImage img_xn = ImageIO.read(new File("src/main/java/com/mycompany/pics/xn.png"));
+            Image scaledImg_xn = img_xn.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_xn.setIcon(new ImageIcon(scaledImg_xn));
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -563,7 +551,6 @@ public class giao_dich extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JTextField ln_ng;
     private javax.swing.JPanel p1;
     private javax.swing.JPanel p2;
