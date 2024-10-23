@@ -120,7 +120,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="khoan_vay" alignment="1" max="32767" attributes="0"/>
+                          <Component id="vay_von" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="thong_bao" alignment="0" max="32767" attributes="0"/>
@@ -137,8 +137,8 @@
                           </Group>
                           <Component id="ho_tro" alignment="0" max="32767" attributes="0"/>
                           <Component id="ho_tro1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="khoan_vay1" alignment="1" max="32767" attributes="0"/>
-                          <Component id="khoan_vay2" alignment="1" max="32767" attributes="0"/>
+                          <Component id="bao_hiem" alignment="1" max="32767" attributes="0"/>
+                          <Component id="thanh_toan_tra_no" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -169,11 +169,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ho_tro1" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="khoan_vay" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="vay_von" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="khoan_vay1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="bao_hiem" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="khoan_vay2" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="thanh_toan_tra_no" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -252,7 +252,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai_theMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="khoan_vay">
+            <Component class="javax.swing.JLabel" name="vay_von">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="0" red="99" type="rgb"/>
@@ -267,7 +267,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="khoan_vayMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="vay_vonMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="dang_xuat">
@@ -424,7 +424,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ho_tro1MouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="khoan_vay1">
+            <Component class="javax.swing.JLabel" name="bao_hiem">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="0" red="99" type="rgb"/>
@@ -439,10 +439,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="khoan_vay1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bao_hiemMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="khoan_vay2">
+            <Component class="javax.swing.JLabel" name="thanh_toan_tra_no">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="0" red="99" type="rgb"/>
@@ -457,7 +457,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="khoan_vay2MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="thanh_toan_tra_noMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
