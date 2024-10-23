@@ -137,7 +137,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txt_stkyc, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(txt_nyc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,9 +190,9 @@ public class ho_tro extends javax.swing.JInternalFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(btn_xuatfile, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 381, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
@@ -214,7 +214,6 @@ public class ho_tro extends javax.swing.JInternalFrame {
 
         lb2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lb2.setForeground(new java.awt.Color(204, 0, 51));
-        lb2.setText("jLabel3");
 
         cb_tt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn tình trạng-", "Chờ xử lý", "Đã xử lý", "Đã từ chối" }));
         cb_tt.addItemListener(new java.awt.event.ItemListener() {
