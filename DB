@@ -21,9 +21,9 @@ CREATE TABLE nguoi_dung (
 
 CREATE TABLE tai_khoan_nguoi_dung (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
-	so_dien_thoai_id INTEGER NOT NULL,
+	so_dien_thoai_id VARCHAR(255) NOT NULL,
 	loai_tai_khoan NVARCHAR(255) NOT NULL,
-	so_tai_khoan VARCHAR(255) NOT NULL,
+	so_tai_khoan VARCHAR(255) UNIQUE NOT NULL,
 	so_tien_hien_co DECIMAL NOT NULL,
 	ngay_tao DATETIME NOT NULL,
 	PRIMARY KEY(id),
@@ -71,16 +71,22 @@ CREATE TABLE giao_dich (
 );
 
 CREATE TABLE tiet_kiem (
-	id INTEGER NOT NULL IDENTITY UNIQUE,
-	nguoi_dung_id INTEGER NOT NULL,
-	ten_tiet_kiem NVARCHAR(255) NOT NULL,
-	mo_ta_tiet_kiem NTEXT,
-	so_tien DECIMAL NOT NULL,
-	ngay_tao DATETIME NOT NULL,
-	PRIMARY KEY(id),
-	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
-	ON UPDATE NO ACTION ON DELETE CASCADE
+    id INTEGER NOT NULL IDENTITY UNIQUE,
+    so_dien_thoai_id VARCHAR(255) NOT NULL,
+    ten_tiet_kiem NVARCHAR(255) NOT NULL,
+    mo_ta_tiet_kiem NTEXT,
+    so_tien DECIMAL NOT NULL,
+    ngay_tao DATETIME NOT NULL,
+    ngay_dao_han DATETIME NOT NULL,
+    loai_tiet_kiem NVARCHAR(50),
+    lai_suat DECIMAL(5, 2),
+    trang_thai NVARCHAR(50),
+    so_du_hien_tai DECIMAL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(so_dien_thoai_id) REFERENCES nguoi_dung(so_dien_thoai)
+    ON UPDATE NO ACTION ON DELETE CASCADE
 );
+
 
 CREATE TABLE thong_bao (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
@@ -116,7 +122,7 @@ CREATE TABLE ho_tro_nguoi_dung (
 
 CREATE TABLE khoan_vay (
     id INT PRIMARY KEY IDENTITY,  
-    tai_khoan_nguoi_dung_id INTEGER NOT NULL,                              
+    so_tai_khoan_id VARCHAR(255) NOT NULL,                              
     loai_vay NVARCHAR(255),                      
     so_tien_vay DECIMAL(15, 2),
     so_tien_da_tra DECIMAL(15, 2),
@@ -126,7 +132,7 @@ CREATE TABLE khoan_vay (
 	ky_han NVARCHAR(255) NOT NULL,                         
     tinh_trang NVARCHAR(255),                    
     ngay_tao DATETIME DEFAULT GETDATE(),
-    FOREIGN KEY(tai_khoan_nguoi_dung_id) REFERENCES tai_khoan_nguoi_dung(id)
+    FOREIGN KEY(so_tai_khoan_id) REFERENCES tai_khoan_nguoi_dung(so_tai_khoan)
     ON UPDATE NO ACTION ON DELETE CASCADE    
 );
 
