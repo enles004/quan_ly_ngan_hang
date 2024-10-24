@@ -336,7 +336,6 @@ public class hoa_don extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -499,11 +498,16 @@ public class hoa_don extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txt_den_stkActionPerformed
 
+    private void txt_hotennhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_hotennhanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_hotennhanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_xac_nhan;
     private javax.swing.JComboBox<String> cb;
     private javax.swing.JButton hoa_don_moi;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -519,10 +523,10 @@ public class hoa_don extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel p3;
-    private javax.swing.JLabel txt_dc;
     private javax.swing.JTextField txt_den_stk;
     private javax.swing.JTextField txt_dia_chi;
     private javax.swing.JTextField txt_hoten;
+    private javax.swing.JTextField txt_hotennhan;
     private javax.swing.JTextField txt_loi_nhan;
     private javax.swing.JTextField txt_sdt_gui;
     private javax.swing.JTextField txt_so_tien_thanh_toan;

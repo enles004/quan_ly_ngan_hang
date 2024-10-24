@@ -68,7 +68,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
         nxl = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_stkyc = new javax.swing.JTextField();
+        txt_sdtyc = new javax.swing.JTextField();
         txt_nyc = new javax.swing.JTextField();
         txt_nxl = new javax.swing.JTextField();
         txt_tinhtrang = new javax.swing.JTextField();
@@ -145,7 +145,11 @@ public class ho_tro extends javax.swing.JInternalFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
+<<<<<<< HEAD
                     .addComponent(txt_stkyc, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+=======
+                    .addComponent(txt_sdtyc, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+>>>>>>> e6feca2c425a18206cb78104121e4202cae46179
                     .addComponent(txt_nyc))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,6 +170,27 @@ public class ho_tro extends javax.swing.JInternalFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+<<<<<<< HEAD
+=======
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(txt_tinhtrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(45, 45, 45)
+                            .addComponent(nxl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt_nxl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt_sdtyc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt_nyc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+>>>>>>> e6feca2c425a18206cb78104121e4202cae46179
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -451,7 +476,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
             lb1.setVisible(false);
             lb2.setVisible(false);
             txt_tinhtrang.setEnabled(false);
-            txt_stkyc.setEnabled(false);
+            txt_sdtyc.setEnabled(false);
             txt_mt.setEnabled(false);
             txt_nyc.setEnabled(false);
             txt_nxl.setEnabled(false);
@@ -465,12 +490,12 @@ public class ho_tro extends javax.swing.JInternalFrame {
         }
     }
     private void load_xoa(){
-        txt_stkyc.setText("");
+        txt_sdtyc.setText("");
         txt_tinhtrang.setText("");
         txt_nyc.setText("");
         txt_nxl.setText("");
         txt_mt.setText("");
-        txt_stkyc.setEnabled(false);
+        txt_sdtyc.setEnabled(false);
         txt_tinhtrang.setEnabled(false);
         txt_nyc.setEnabled(false);
         txt_nxl.setEnabled(false);
@@ -557,12 +582,12 @@ public class ho_tro extends javax.swing.JInternalFrame {
         htm = new ho_tro_model();
         htm.setId(id);
         try {
-            txt_stkyc.setEditable(false);
+            txt_sdtyc.setEditable(false);
             txt_tinhtrang.setEditable(false);
             txt_nyc.setEditable(false);
             txt_nxl.setEditable(false);
             txt_mt.setEditable(false);
-            txt_stkyc.setEnabled(true);
+            txt_sdtyc.setEnabled(true);
             txt_tinhtrang.setEnabled(true);
             txt_nyc.setEnabled(true);
             txt_nxl.setEnabled(true);
@@ -573,8 +598,13 @@ public class ho_tro extends javax.swing.JInternalFrame {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
+<<<<<<< HEAD
                 txt_stkyc.setText(rs.getString("so_dien_thoai_id"));
                 txt_tinhtrang.setText(rs.getString("trang_thai"));
+=======
+                txt_sdtyc.setText(rs.getString("so_tai_khoan"));
+                txt_tinhtrang.setText(rs.getString("loai_yeu_cau"));
+>>>>>>> e6feca2c425a18206cb78104121e4202cae46179
                 txt_nyc.setText(rs.getString("ngay_tao"));
                 if(cb_tt.getSelectedItem().toString() == "Đã xử lý" || cb_tt.getSelectedItem().toString() == "Đã từ chối"){
                     txt_nxl.setVisible(true);
@@ -630,19 +660,31 @@ public class ho_tro extends javax.swing.JInternalFrame {
             if (status == "Chờ xử lý"){
                 lb1.setText("Tổng số hỗ trợ đang chờ xử lý:");
                 where = "where ht.trang_thai = 'cho_xu_ly' "
+<<<<<<< HEAD
                 + "ht.so_dien_thoai_id like '"+tim+"%'";
+=======
+                + "ttcn.so_dien_thoai like '%"+tim+"%'";
+>>>>>>> e6feca2c425a18206cb78104121e4202cae46179
             }
             else if(status == "Đã xử lý"){
                 timkiem.setVisible(true);
                 lb1.setText("Tổng số hỗ trợ đã xử lý:");
                 where = "where ht.trang_thai = 'da_xu_ly' "
+<<<<<<< HEAD
                 + "ht.so_dien_thoai_id like '"+tim+"%'";
+=======
+                + "ttcn.so_dien_thoai like '%"+tim+"%'";
+>>>>>>> e6feca2c425a18206cb78104121e4202cae46179
             }
             else if(status == "Đã từ chối"){
                 timkiem.setVisible(true);
                 lb1.setText("Tổng số hỗ trợ đã từ chối:");
                 where = "where ht.trang_thai = 'da_tu_choi' "
+<<<<<<< HEAD
                 + "ht.so_dien_thoai_id like '"+tim+"%'";
+=======
+                + "ttcn.so_dien_thoai like '%"+tim+"%'";
+>>>>>>> e6feca2c425a18206cb78104121e4202cae46179
             }
             else{
                 return;
@@ -673,7 +715,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_timkiemKeyReleased
 
     private void timkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timkiemMouseClicked
-        txt_stkyc.setText("");
+        txt_sdtyc.setText("");
         txt_tinhtrang.setText("");
         txt_nyc.setText("");
         txt_nxl.setText("");
@@ -681,7 +723,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_timkiemMouseClicked
 
     private void cb_ttItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ttItemStateChanged
-        txt_stkyc.setText("");
+        txt_sdtyc.setText("");
         txt_tinhtrang.setText("");
         txt_nyc.setText("");
         txt_nxl.setText("");
@@ -857,7 +899,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txt_mt;
     private javax.swing.JTextField txt_nxl;
     private javax.swing.JTextField txt_nyc;
-    private javax.swing.JTextField txt_stkyc;
+    private javax.swing.JTextField txt_sdtyc;
     private javax.swing.JTextField txt_tinhtrang;
     private javax.swing.JButton xn;
     // End of variables declaration//GEN-END:variables

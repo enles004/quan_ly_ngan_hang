@@ -10,6 +10,7 @@ import com.mycompany.db;
 import com.mycompany.models.user;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -81,6 +82,11 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
         sdt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sdtActionPerformed(evt);
+            }
+        });
+        txt_sdtyc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_sdtycKeyPressed(evt);
             }
         });
 
@@ -245,6 +251,47 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
         supportForm.setVisible(true); 
         supportForm.load();
     }//GEN-LAST:event_btn_trolaiActionPerformed
+
+    private void txt_sdtycKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_sdtycKeyPressed
+        // TODO add your handling code here:
+         // Kiểm tra xem phím nhấn có phải là Enter không
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        String sdt = txt_sdtyc.getText().trim();
+        try {
+            Connection con = db.connect();
+            // Kiểm tra nếu số điện thoại người dùng tồn tại trong hệ thống
+            String sql = "SELECT nd.id, nd.ho, nd.ten "
+                       + "FROM nguoi_dung nd "
+                       + "WHERE nd.so_dien_thoai = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, sdt);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                // Nếu tìm thấy người dùng, điền thông tin họ tên
+                txt_ho.setText(rs.getString("ho"));
+                txt_ten.setText(rs.getString("ten"));
+            } else {
+                JOptionPane.showMessageDialog(this, "Số điện thoại không tồn tại.");
+                // Xóa thông tin họ tên nếu không tìm thấy
+                txt_ho.setText("");
+                txt_ten.setText("");
+            }
+
+            // Đóng kết nối
+            rs.close();
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi thực hiện thao tác trên cơ sở dữ liệu.");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    }//GEN-LAST:event_txt_sdtycKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
