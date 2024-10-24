@@ -68,7 +68,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
         nxl = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_sdtyc = new javax.swing.JTextField();
+        txt_stkyc = new javax.swing.JTextField();
         txt_nyc = new javax.swing.JTextField();
         txt_nxl = new javax.swing.JTextField();
         txt_tinhtrang = new javax.swing.JTextField();
@@ -451,7 +451,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
             lb1.setVisible(false);
             lb2.setVisible(false);
             txt_tinhtrang.setEnabled(false);
-            txt_sdtyc.setEnabled(false);
+            txt_stkyc.setEnabled(false);
             txt_mt.setEnabled(false);
             txt_nyc.setEnabled(false);
             txt_nxl.setEnabled(false);
@@ -465,12 +465,12 @@ public class ho_tro extends javax.swing.JInternalFrame {
         }
     }
     private void load_xoa(){
-        txt_sdtyc.setText("");
+        txt_stkyc.setText("");
         txt_tinhtrang.setText("");
         txt_nyc.setText("");
         txt_nxl.setText("");
         txt_mt.setText("");
-        txt_sdtyc.setEnabled(false);
+        txt_stkyc.setEnabled(false);
         txt_tinhtrang.setEnabled(false);
         txt_nyc.setEnabled(false);
         txt_nxl.setEnabled(false);
@@ -557,12 +557,12 @@ public class ho_tro extends javax.swing.JInternalFrame {
         htm = new ho_tro_model();
         htm.setId(id);
         try {
-            txt_sdtyc.setEditable(false);
+            txt_stkyc.setEditable(false);
             txt_tinhtrang.setEditable(false);
             txt_nyc.setEditable(false);
             txt_nxl.setEditable(false);
             txt_mt.setEditable(false);
-            txt_sdtyc.setEnabled(true);
+            txt_stkyc.setEnabled(true);
             txt_tinhtrang.setEnabled(true);
             txt_nyc.setEnabled(true);
             txt_nxl.setEnabled(true);
@@ -673,7 +673,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_timkiemKeyReleased
 
     private void timkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timkiemMouseClicked
-        txt_sdtyc.setText("");
+        txt_stkyc.setText("");
         txt_tinhtrang.setText("");
         txt_nyc.setText("");
         txt_nxl.setText("");
@@ -681,7 +681,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_timkiemMouseClicked
 
     private void cb_ttItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ttItemStateChanged
-        txt_sdtyc.setText("");
+        txt_stkyc.setText("");
         txt_tinhtrang.setText("");
         txt_nyc.setText("");
         txt_nxl.setText("");
@@ -857,7 +857,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txt_mt;
     private javax.swing.JTextField txt_nxl;
     private javax.swing.JTextField txt_nyc;
-    private javax.swing.JTextField txt_sdtyc;
+    private javax.swing.JTextField txt_stkyc;
     private javax.swing.JTextField txt_tinhtrang;
     private javax.swing.JButton xn;
     // End of variables declaration//GEN-END:variables

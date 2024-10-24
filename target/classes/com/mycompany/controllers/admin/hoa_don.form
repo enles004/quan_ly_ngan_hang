@@ -375,13 +375,11 @@
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="txt_dia_chi" pref="351" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="cb" alignment="0" pref="351" max="32767" attributes="0"/>
-                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_dc" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="đfd" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_den_stk" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="cb" alignment="0" pref="351" max="32767" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_dccccc" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="đfd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_den_stk" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -395,7 +393,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txt_den_stk" min="-2" pref="36" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txt_dc" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_dccccc" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txt_dia_chi" min="-2" pref="36" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -421,7 +419,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_den_stkActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="txt_dc">
+                    <Component class="javax.swing.JLabel" name="txt_dccccc">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="12" style="1"/>
