@@ -145,11 +145,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-<<<<<<< HEAD
                     .addComponent(txt_stkyc, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-=======
-                    .addComponent(txt_sdtyc, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
->>>>>>> e6feca2c425a18206cb78104121e4202cae46179
                     .addComponent(txt_nyc))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,27 +166,6 @@ public class ho_tro extends javax.swing.JInternalFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-<<<<<<< HEAD
-=======
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addGap(22, 22, 22)
-                            .addComponent(txt_tinhtrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(45, 45, 45)
-                            .addComponent(nxl)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_nxl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_sdtyc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_nyc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
->>>>>>> e6feca2c425a18206cb78104121e4202cae46179
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -598,13 +573,8 @@ public class ho_tro extends javax.swing.JInternalFrame {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
-<<<<<<< HEAD
                 txt_stkyc.setText(rs.getString("so_dien_thoai_id"));
                 txt_tinhtrang.setText(rs.getString("trang_thai"));
-=======
-                txt_sdtyc.setText(rs.getString("so_tai_khoan"));
-                txt_tinhtrang.setText(rs.getString("loai_yeu_cau"));
->>>>>>> e6feca2c425a18206cb78104121e4202cae46179
                 txt_nyc.setText(rs.getString("ngay_tao"));
                 if(cb_tt.getSelectedItem().toString() == "Đã xử lý" || cb_tt.getSelectedItem().toString() == "Đã từ chối"){
                     txt_nxl.setVisible(true);
@@ -660,31 +630,19 @@ public class ho_tro extends javax.swing.JInternalFrame {
             if (status == "Chờ xử lý"){
                 lb1.setText("Tổng số hỗ trợ đang chờ xử lý:");
                 where = "where ht.trang_thai = 'cho_xu_ly' "
-<<<<<<< HEAD
                 + "ht.so_dien_thoai_id like '"+tim+"%'";
-=======
-                + "ttcn.so_dien_thoai like '%"+tim+"%'";
->>>>>>> e6feca2c425a18206cb78104121e4202cae46179
             }
             else if(status == "Đã xử lý"){
                 timkiem.setVisible(true);
                 lb1.setText("Tổng số hỗ trợ đã xử lý:");
                 where = "where ht.trang_thai = 'da_xu_ly' "
-<<<<<<< HEAD
                 + "ht.so_dien_thoai_id like '"+tim+"%'";
-=======
-                + "ttcn.so_dien_thoai like '%"+tim+"%'";
->>>>>>> e6feca2c425a18206cb78104121e4202cae46179
             }
             else if(status == "Đã từ chối"){
                 timkiem.setVisible(true);
                 lb1.setText("Tổng số hỗ trợ đã từ chối:");
                 where = "where ht.trang_thai = 'da_tu_choi' "
-<<<<<<< HEAD
                 + "ht.so_dien_thoai_id like '"+tim+"%'";
-=======
-                + "ttcn.so_dien_thoai like '%"+tim+"%'";
->>>>>>> e6feca2c425a18206cb78104121e4202cae46179
             }
             else{
                 return;
