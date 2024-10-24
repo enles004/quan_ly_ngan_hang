@@ -125,7 +125,7 @@ public class tai_khoan extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Loại tài khoản:");
 
-        ltk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn tài khoản-", "Tài khoản giao dịch", "Tài khoản vay", "Tài khoản tiết kiệm", " " }));
+        ltk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn tài khoản-", "Tài khoản giao dịch", "Tài khoản vay", "Tài khoản tiết kiệm", "Tài khoản đối tác", " " }));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Số điện thoại:");
@@ -572,13 +572,26 @@ public class tai_khoan extends javax.swing.JInternalFrame {
             }
             String checkk = "select * from nguoi_dung where so_dien_thoai = '"+so_dien_thoai+"'";
             ResultSet rs = st.executeQuery(checkk);
+            int sum = 0;
             while(rs.next()){
-                String sql = "insert into tai_khoan_nguoi_dung (so_dien_thoai_id, loai_tai_khoan, so_tai_khoan, so_tien_hien_co, ngay_tao)"
-                + "values ('"+so_dien_thoai+"', N'"+loai_tai_khoan+"', '"+AccountGenerator.generateUniqueAccountNumber(con)+"', '"+0+"', getdate())";
-                st.executeUpdate(sql);
-                JOptionPane.showMessageDialog(this, "Thêm tài khoản người dùng mới thành công.");
-                load();
-                return;
+                String check2 = "select * from tai_khoan_nguoi_dung where so_dien_thoai_id = '"+so_dien_thoai+"' and loai_tai_khoan = N'"+loai_tai_khoan+"'";
+                ResultSet rss = st.executeQuery(check2);
+                while(rss.next()){
+                    sum = 1;
+                }
+                if(sum == 0){
+                    String sql = "insert into tai_khoan_nguoi_dung (so_dien_thoai_id, loai_tai_khoan, so_tai_khoan, so_tien_hien_co, ngay_tao)"
+                    + "values ('"+so_dien_thoai+"', N'"+loai_tai_khoan+"', '"+AccountGenerator.generateUniqueAccountNumber(con)+"', '"+0+"', getdate())";
+                    st.executeUpdate(sql);
+                    JOptionPane.showMessageDialog(this, "Thêm tài khoản người dùng mới thành công.");
+                    load();
+                    return;
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Loại tài khoản của số điện thoại này đã được đăng kí.");
+                    return;
+                }
+                
             }
             JOptionPane.showMessageDialog(this, "Người dùng chưa được đăng ký thông tin, hãy đăng ký thông tin và quay lại sau.");
             load();
