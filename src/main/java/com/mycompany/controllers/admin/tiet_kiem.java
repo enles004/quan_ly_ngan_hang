@@ -7,6 +7,9 @@ package com.mycompany.controllers.admin;
 import com.mycompany.db;
 import com.mycompany.models.tiet_kiem_model;
 import com.mycompany.models.user;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -20,6 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -48,8 +53,31 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         initComponents();
         load();
+        load_anh();
     }
-
+    
+    private void load_anh() {
+        try {
+            BufferedImage img_sua = ImageIO.read(new File("src/main/java/com/mycompany/pics/sua.png"));
+            Image scaledImg_sua = img_sua.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            sua.setIcon(new ImageIcon(scaledImg_sua));
+            
+            BufferedImage img_xoa = ImageIO.read(new File("src/main/java/com/mycompany/pics/xoa.png"));
+            Image scaledImg_xoa = img_xoa.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            xoa.setIcon(new ImageIcon(scaledImg_xoa));
+            
+            BufferedImage img_them = ImageIO.read(new File("src/main/java/com/mycompany/pics/plus.png"));
+            Image scaledImg_them = img_them.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            them.setIcon(new ImageIcon(scaledImg_them));
+            
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/ec.png"));
+            Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            ec.setIcon(new ImageIcon(scaledImg_ec));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,19 +121,20 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTietkiem = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        themtk = new javax.swing.JButton();
+        them = new javax.swing.JButton();
         sua = new javax.swing.JButton();
         xoa = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        ec = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 699));
 
-        jPanel5.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel5.setBackground(new java.awt.Color(255, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setMaximumSize(new java.awt.Dimension(635, 48));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ TIẾT KIỆM");
 
@@ -370,17 +399,17 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jLabel3.setText("Bảng tiết kiệm");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
-        themtk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        themtk.setText("Thêm");
-        themtk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 3));
-        themtk.addMouseListener(new java.awt.event.MouseAdapter() {
+        them.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        them.setText("Thêm");
+        them.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 3));
+        them.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                themtkMouseClicked(evt);
+                themMouseClicked(evt);
             }
         });
-        themtk.addActionListener(new java.awt.event.ActionListener() {
+        them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                themtkActionPerformed(evt);
+                themActionPerformed(evt);
             }
         });
 
@@ -402,12 +431,12 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Xuất");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 3));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ec.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ec.setText("Xuất");
+        ec.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 3));
+        ec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ecActionPerformed(evt);
             }
         });
 
@@ -419,13 +448,13 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(themtk, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(them, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(sua, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sua, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ec, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         p2Layout.setVerticalGroup(
@@ -436,10 +465,10 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(p2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(themtk)
+                    .addComponent(them)
                     .addComponent(sua)
                     .addComponent(xoa)
-                    .addComponent(jButton1))
+                    .addComponent(ec))
                 .addContainerGap())
         );
 
@@ -539,7 +568,7 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         }
     }
     boolean check = false;
-    private void themtkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themtkActionPerformed
+    private void themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themActionPerformed
         if(check == true){
             stk.setText("");
             cccd.setText("");
@@ -597,9 +626,9 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
         
-    }//GEN-LAST:event_themtkActionPerformed
+    }//GEN-LAST:event_themActionPerformed
 
-    private void themtkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themtkMouseClicked
+    private void themMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themMouseClicked
         // TODO add your handling code here:
         int selectedRow = tbTietkiem.getSelectedRow(); // Lấy chỉ số hàng được chọn
     
@@ -618,7 +647,7 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         email.setText(em); // Email
         sotien.setText(amount); // Số tiền
     }
-    }//GEN-LAST:event_themtkMouseClicked
+    }//GEN-LAST:event_themMouseClicked
     Connection con;
     private void stkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stkActionPerformed
         String stk_nnn = stk.getText().trim();
@@ -756,7 +785,7 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         }      
     }//GEN-LAST:event_xoaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecActionPerformed
         try {
             con = db.connect();
             JasperDesign jdesign = JRXmlLoader.load("src\\main\\java\\com\\mycompany\\controllers\\admin\\tiet_kiem.jrxml");
@@ -773,14 +802,14 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ecActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cccd;
     private javax.swing.JTextField diachi;
+    private javax.swing.JButton ec;
     private javax.swing.JTextField email;
     private javax.swing.JTextField ht;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -812,7 +841,7 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
     private javax.swing.JTextField stk;
     private javax.swing.JButton sua;
     private javax.swing.JTable tbTietkiem;
-    private javax.swing.JButton themtk;
+    private javax.swing.JButton them;
     private javax.swing.JButton xoa;
     // End of variables declaration//GEN-END:variables
 }
