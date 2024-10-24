@@ -74,7 +74,6 @@ CREATE TABLE tiet_kiem (
     id INTEGER NOT NULL IDENTITY UNIQUE,
     so_dien_thoai_id VARCHAR(255) NOT NULL,
     ten_tiet_kiem NVARCHAR(255) NOT NULL,
-    mo_ta_tiet_kiem NTEXT,
     so_tien DECIMAL NOT NULL,
     ngay_tao DATETIME NOT NULL,
     ngay_dao_han DATETIME NOT NULL,
@@ -109,14 +108,14 @@ CREATE TABLE uu_dai (
 
 CREATE TABLE ho_tro_nguoi_dung (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
-	nguoi_dung_id INTEGER NOT NULL,
+	so_dien_thoai_id VARCHAR(255) NOT NULL,
 	loai_yeu_cau NVARCHAR(255) NOT NULL,
 	mo_ta NTEXT NOT NULL,
 	trang_thai VARCHAR(255) NOT NULL,
 	ngay_tao DATETIME NOT NULL,
 	ngay_xu_ly DATETIME,
 	PRIMARY KEY(id),
-	FOREIGN KEY(nguoi_dung_id) REFERENCES nguoi_dung(id)
+	FOREIGN KEY(so_dien_thoai_id) REFERENCES nguoi_dung(so_dien_thoai)
 	ON UPDATE NO ACTION ON DELETE CASCADE
 );
 

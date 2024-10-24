@@ -636,7 +636,7 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
             String sql = "insert into loai_the_nguoi_dung (so_dien_thoai_id, loai_the_id, so_the, so_tien, ngay_het_han, trang_thai, ngay_tao)"
             + "values (N'"+so_dien_thoai+"', N'"+loai_the_id+"', '"+AccountGenerator.generateUniqueAccountNumber(con)+"', 0, DATEADD(YEAR, 5, GETDATE()), N'"+"Đang hoạt động"+"', getdate())";
             st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(this, "Thêm loại thẻ thành công.");
+            JOptionPane.showMessageDialog(this, "Thêm loại thẻ người dùng thành công.");
             load();
         } catch (Exception e){
             e.printStackTrace();

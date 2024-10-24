@@ -526,7 +526,7 @@ public class loai_the extends javax.swing.JInternalFrame {
             String tim = txt_tk.getText().trim();
             String sql = "select * "
             + "from loai_the "
-            + "where ten_loai_the like '%"+tim+"%' or han_muc_su_dung like '%"+tim+"%'";
+            + "where ten_loai_the like N'%"+tim+"%' or han_muc_su_dung like '%"+tim+"%'";
             ResultSet rs = st.executeQuery(sql);
             String[] td = {"ID", "Tên thẻ", "Ưu đãi", "Hạn mức sử dụng", "Phí dịch vụ"};
             DefaultTableModel tb = new DefaultTableModel(td, 0);
