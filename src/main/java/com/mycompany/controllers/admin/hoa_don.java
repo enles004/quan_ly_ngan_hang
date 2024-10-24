@@ -89,7 +89,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
         jPanel11 = new javax.swing.JPanel();
         đfd = new javax.swing.JLabel();
         txt_den_stk = new javax.swing.JTextField();
-        txt_dc = new javax.swing.JLabel();
+        txt_dcc = new javax.swing.JLabel();
         txt_dia_chi = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         cb = new javax.swing.JComboBox<>();
@@ -217,8 +217,8 @@ public class hoa_don extends javax.swing.JInternalFrame {
             }
         });
 
-        txt_dc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txt_dc.setText("Tên thụ hưởng:");
+        txt_dcc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txt_dcc.setText("Tên thụ hưởng:");
 
         txt_dia_chi.setEditable(false);
 
@@ -235,12 +235,11 @@ public class hoa_don extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_dia_chi, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(cb, javax.swing.GroupLayout.Alignment.LEADING, 0, 351, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txt_dc, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(đfd, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txt_den_stk, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(cb, 0, 351, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(txt_dcc)
+                    .addComponent(đfd)
+                    .addComponent(txt_den_stk))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -251,7 +250,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_den_stk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txt_dc)
+                .addComponent(txt_dcc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_dia_chi, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -336,6 +335,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,8 +343,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
                                 .addComponent(hoa_don_moi, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_xac_nhan, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 11, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 11, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -507,7 +506,6 @@ public class hoa_don extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_xac_nhan;
     private javax.swing.JComboBox<String> cb;
     private javax.swing.JButton hoa_don_moi;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -523,10 +521,10 @@ public class hoa_don extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel p3;
+    private javax.swing.JLabel txt_dcc;
     private javax.swing.JTextField txt_den_stk;
     private javax.swing.JTextField txt_dia_chi;
     private javax.swing.JTextField txt_hoten;
-    private javax.swing.JTextField txt_hotennhan;
     private javax.swing.JTextField txt_loi_nhan;
     private javax.swing.JTextField txt_sdt_gui;
     private javax.swing.JTextField txt_so_tien_thanh_toan;
