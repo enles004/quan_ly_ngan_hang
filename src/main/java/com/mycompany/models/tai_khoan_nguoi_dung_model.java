@@ -21,6 +21,10 @@ public class tai_khoan_nguoi_dung_model {
     public int getId() {
         return id;
     }
+
+    public String getID() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

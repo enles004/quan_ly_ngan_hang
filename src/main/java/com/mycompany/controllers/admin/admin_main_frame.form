@@ -136,15 +136,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Component id="ho_tro" alignment="0" max="32767" attributes="0"/>
-<<<<<<< HEAD
-                          <Component id="ho_tro1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="bao_hiem" alignment="1" max="32767" attributes="0"/>
-                          <Component id="thanh_toan_tra_no" alignment="1" max="32767" attributes="0"/>
-=======
                           <Component id="uu_dai" alignment="0" max="32767" attributes="0"/>
                           <Component id="bao_hiem" alignment="1" max="32767" attributes="0"/>
                           <Component id="thanh_toan" alignment="1" max="32767" attributes="0"/>
->>>>>>> 5bab4c384abd410959ed7163c2dbe7a6ccc532c1
                       </Group>
                   </Group>
               </Group>
@@ -179,11 +173,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="bao_hiem" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="thanh_toan_tra_no" min="-2" pref="30" max="-2" attributes="0"/>
-=======
                       <Component id="thanh_toan" min="-2" pref="30" max="-2" attributes="0"/>
->>>>>>> 5bab4c384abd410959ed7163c2dbe7a6ccc532c1
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -491,11 +481,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bao_hiemMouseClicked"/>
               </Events>
             </Component>
-<<<<<<< HEAD
-            <Component class="javax.swing.JLabel" name="thanh_toan_tra_no">
-=======
             <Component class="javax.swing.JLabel" name="thanh_toan">
->>>>>>> 5bab4c384abd410959ed7163c2dbe7a6ccc532c1
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="0" red="99" type="rgb"/>
@@ -513,11 +499,7 @@
                 </Property>
               </Properties>
               <Events>
-<<<<<<< HEAD
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="thanh_toan_tra_noMouseClicked"/>
-=======
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="thanh_toanMouseClicked"/>
->>>>>>> 5bab4c384abd410959ed7163c2dbe7a6ccc532c1
               </Events>
             </Component>
           </SubComponents>
