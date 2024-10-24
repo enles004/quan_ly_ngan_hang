@@ -105,11 +105,9 @@ CREATE TABLE uu_dai (
 	PRIMARY KEY(id)
 );
 
-
 CREATE TABLE ho_tro_nguoi_dung (
 	id INTEGER NOT NULL IDENTITY UNIQUE,
 	so_dien_thoai_id VARCHAR(255) NOT NULL,
-	loai_yeu_cau NVARCHAR(255) NOT NULL,
 	mo_ta NTEXT NOT NULL,
 	trang_thai VARCHAR(255) NOT NULL,
 	ngay_tao DATETIME NOT NULL,

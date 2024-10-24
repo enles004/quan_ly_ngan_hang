@@ -432,13 +432,20 @@ public class uu_dai extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-    private void ThemUuDai(String tieu_de, String noi_dung){
+    private void ThemUuDai(String id, String tieu_de, String noi_dung){
         try {
             con = db.connect();
-            String sql = "insert thong_bao (tieu_de, noi_dung, ngay_tao) "
-                + "values (N'"+tieu_de+"', N'"+noi_dung+"', getdate())";
-            Statement st = con.createStatement();
-            st.executeUpdate(sql);
+            String check = "select * from loai_the where id = '"+id+"'";
+            Statement stt = con.createStatement();
+            ResultSet rs = stt.executeQuery(check);
+            while(rs.next()){
+                String sql = "insert uu_dai (doi_tuong_the_id, tieu_de, noi_dung, ngay_tao) "
+                    + "values ('"+id+"', N'"+tieu_de+"', N'"+noi_dung+"', getdate())";
+                Statement st = con.createStatement();
+                st.executeUpdate(sql);
+                return;
+            }
+            JOptionPane.showConfirmDialog(this, "Không có đối tượng thẻ nào mang id là: " + id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -456,11 +463,10 @@ public class uu_dai extends javax.swing.JInternalFrame {
             while (itr.hasNext()) {
                 if (row_count > 0) {
                     Row row = itr.next(); 
-                    String tieu_de = row.getCell(0).getStringCellValue();
-                    String noi_dung = row.getCell(1).getStringCellValue();
-                    
-
-                    ThemUuDai(tieu_de, noi_dung);
+                    String id = row.getCell(0).getStringCellValue();
+                    String tieu_de = row.getCell(1).getStringCellValue();
+                    String noi_dung = row.getCell(2).getStringCellValue();
+                    ThemUuDai(id, tieu_de, noi_dung);
                 }
                 row_count++;
             }

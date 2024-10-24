@@ -52,7 +52,11 @@ public class hoa_don extends javax.swing.JInternalFrame {
      * Creates new form hoa_don
      */
     public hoa_don() {
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         initComponents();
+        load();
     }
 
     /**
@@ -85,16 +89,12 @@ public class hoa_don extends javax.swing.JInternalFrame {
         jPanel11 = new javax.swing.JPanel();
         đfd = new javax.swing.JLabel();
         txt_den_stk = new javax.swing.JTextField();
-        txt_ngay_giao_dich = new javax.swing.JLabel();
         txt_dc = new javax.swing.JLabel();
         txt_dia_chi = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
-        txt_email = new javax.swing.JTextField();
-        txtngaygiaodich = new com.toedter.calendar.JDateChooser();
-        btn_xuat = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        cb = new javax.swing.JComboBox<>();
         btn_xac_nhan = new javax.swing.JButton();
         hoa_don_moi = new javax.swing.JButton();
-        xoa_hoa_don = new javax.swing.JButton();
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -103,12 +103,13 @@ public class hoa_don extends javax.swing.JInternalFrame {
 
         setPreferredSize(new java.awt.Dimension(800, 699));
 
-        jPanel5.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel5.setBackground(new java.awt.Color(255, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setMaximumSize(new java.awt.Dimension(635, 48));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("QUẢN LÝ HÓA ĐƠN");
 
@@ -208,7 +209,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         đfd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        đfd.setText("Đến stk:");
+        đfd.setText("STK thụ hưởng:");
 
         txt_den_stk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,14 +217,15 @@ public class hoa_don extends javax.swing.JInternalFrame {
             }
         });
 
-        txt_ngay_giao_dich.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txt_ngay_giao_dich.setText("Ngày giao dịch: ");
-
         txt_dc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txt_dc.setText("Địa chỉ:");
+        txt_dc.setText("Tên thụ hưởng:");
 
-        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel30.setText("Email:");
+        txt_dia_chi.setEditable(false);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("Loại hóa đơn:");
+
+        cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn hóa đơn-", "Hóa đơn tiền nước", "Hóa đơn tiền điện", "Hóa đơn tiền nhà" }));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -231,19 +233,15 @@ public class hoa_don extends javax.swing.JInternalFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_den_stk)
-                    .addComponent(txt_dia_chi)
-                    .addComponent(txt_email)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel30)
-                            .addComponent(txt_dc)
-                            .addComponent(đfd)
-                            .addComponent(txt_ngay_giao_dich))
-                        .addGap(0, 261, Short.MAX_VALUE))
-                    .addComponent(txtngaygiaodich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_dia_chi, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cb, javax.swing.GroupLayout.Alignment.LEADING, 0, 351, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txt_dc, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(đfd, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txt_den_stk, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,17 +251,13 @@ public class hoa_don extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_den_stk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txt_ngay_giao_dich)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtngaygiaodich, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(txt_dc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_dia_chi, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel30)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cb, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -273,7 +267,8 @@ public class hoa_don extends javax.swing.JInternalFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,14 +281,11 @@ public class hoa_don extends javax.swing.JInternalFrame {
             p3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(p3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(p3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(p3Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         p3Layout.setVerticalGroup(
             p3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,8 +302,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addComponent(p3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -321,14 +312,6 @@ public class hoa_don extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(p3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        btn_xuat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_xuat.setText("Xuất hóa đơn");
-        btn_xuat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_xuatActionPerformed(evt);
-            }
-        });
 
         btn_xac_nhan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_xac_nhan.setText("Xác nhận hóa đơn");
@@ -346,14 +329,6 @@ public class hoa_don extends javax.swing.JInternalFrame {
             }
         });
 
-        xoa_hoa_don.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        xoa_hoa_don.setText("Xóa hóa đơn");
-        xoa_hoa_don.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                xoa_hoa_donActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -363,18 +338,13 @@ public class hoa_don extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(btn_xac_nhan, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_xuat, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(hoa_don_moi, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                        .addComponent(xoa_hoa_don, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(hoa_don_moi, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_xac_nhan, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 11, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -384,317 +354,50 @@ public class hoa_don extends javax.swing.JInternalFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_xac_nhan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_xuat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(hoa_don_moi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(xoa_hoa_don, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_xac_nhan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hoa_don_moi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-   
     
-    private void xoa_hoa_donActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoa_hoa_donActionPerformed
-    try{
-          // B1: Lấy dữ liệu từ component và gán vào biến
-    String so_tai_khoan_nguoi_gui = txt_stk_gui.getText().trim();
-    String so_dien_thoai_nguoi_gui = txt_sdt_gui.getText().trim();
-
-    // Kiểm tra nếu các trường cần thiết bị bỏ trống
-    if (so_tai_khoan_nguoi_gui.isEmpty() && so_dien_thoai_nguoi_gui.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Vui lòng nhập số tài khoản hoặc số điện thoại để xóa giao dịch!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        return;
-
-    }
-   
-            Connection con = null;
-            //b2:Ket noi DB
-            con=db.connect();
-              // B3: Tìm ID của người gửi từ bảng nguoi_dung dựa trên số điện thoại hoặc email
-            String sqlFindUser = "SELECT id FROM nguoi_dung WHERE so_dien_thoai = ?";
-            PreparedStatement findUserStmt = con.prepareStatement(sqlFindUser);
-            findUserStmt.setString(1, so_dien_thoai_nguoi_gui);
-            ResultSet rsUser = findUserStmt.executeQuery();
-
-            int nguoi_gui_id = -1;
-            if (rsUser.next()) {
-                nguoi_gui_id = rsUser.getInt("id"); // Lấy ID của người dùng từ bảng nguoi_dung
-            }
-
-            // Nếu không tìm thấy người dùng, thông báo lỗi và dừng lại
-            if (nguoi_gui_id == -1) {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng với số điện thoại: " + so_dien_thoai_nguoi_gui);
-                return;
-            }
-
-            //b4:tao doi tuong Statement de thuc hien cau lenh xoa
-            String sql="Delete From giao_dich Where so_tai_khoan_nguoi_gui='"+so_tai_khoan_nguoi_gui+"'";
-            Statement st=con.createStatement();
-            st.executeUpdate(sql);
-            con.close();
-            JOptionPane.showMessageDialog(this,"xoa thanh cong!");
-            //load_thongtin();
-        } catch(SQLException ex){
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Quanlithongtincanhan.class.getName()).log(Level.SEVERE, null, ex);
-        }        
-    }//GEN-LAST:event_xoa_hoa_donActionPerformed
- private static CellStyle DinhdangHeader(XSSFSheet sheet) {
-        // Create font
-        XSSFFont font = sheet.getWorkbook().createFont();
-        font.setFontName("Times New Roman");
-        font.setBold(true);
-        font.setFontHeightInPoints((short) 12); // font size
-        font.setColor(IndexedColors.WHITE.getIndex()); // text color
-        // Create CellStyle
-        CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
-        cellStyle.setFont(font);
-        cellStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellStyle.setVerticalAlignment(VerticalAlignment.TOP);
-        cellStyle.setFillForegroundColor(IndexedColors.DARK_GREEN.getIndex());
-        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        cellStyle.setBorderBottom(BorderStyle.THIN);
-        cellStyle.setWrapText(true);
-        return cellStyle;
-    }
-    
-    
-    private void btn_xuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xuatActionPerformed
-try {
-
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet spreadsheet = workbook.createSheet("giao_dich");
-            // register the columns you wish to track and compute the column width
-
-            CreationHelper createHelper = workbook.getCreationHelper();
-
-            XSSFRow row = null;
-            Cell cell = null;
-
-            row = spreadsheet.createRow((short) 2);
-            row.setHeight((short) 500);
-            cell = row.createCell(0, CellType.STRING);
-            cell.setCellValue("HÓA ĐƠN");
-
-            //Tạo dòng tiêu đều của bảng
-            // create CellStyle
-            CellStyle cellStyle_Head = DinhdangHeader(spreadsheet);
-            row = spreadsheet.createRow((short) 3);
-            row.setHeight((short) 500);
-            
-
-            cell = row.createCell(1, CellType.STRING);
-            cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Họ tên bên gửi");
-
-            cell = row.createCell(2, CellType.STRING);
-            cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("SĐT bên gửi");
-
-            cell = row.createCell(3, CellType.STRING);
-            cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("STK bên gửi");
-
-            cell = row.createCell(4, CellType.STRING);
-            cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Số tiền thanh toán");
-
-            cell = row.createCell(5, CellType.STRING);
-            cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("lời nhắn");
-
-            cell = row.createCell(6, CellType.STRING);
-            cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("STK bên nhận");
-
-            cell = row.createCell(7, CellType.STRING);
-            cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Ngày giao dịch");
-
-            cell = row.createCell(8, CellType.STRING);
-            cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Địa chỉ");
-            
-            cell = row.createCell(9, CellType.STRING);
-            cell.setCellStyle(cellStyle_Head);
-            cell.setCellValue("Email");
-            
-            Connection con = null;
-            //Kết nối DB
-            con = db.connect();
-           String sql = "SELECT gd.*, nd.ho, nd.ten, nd.dia_chi, nd.email, nd.so_dien_thoai " +
-                 "FROM giao_dich gd " +
-                 "JOIN nguoi_dung nd ON gd.so_dien_thoai_nguoi_gui = nd.so_dien_thoai";
-            PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            //Đổ dữ liệu từ rs vào các ô trong excel
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int tongsocot = rsmd.getColumnCount();
-
-            //Đinh dạng Tạo đường kẻ cho ô chứa dữ liệu
-            CellStyle cellStyle_data = spreadsheet.getWorkbook().createCellStyle();
-            cellStyle_data.setBorderLeft(BorderStyle.THIN);
-            cellStyle_data.setBorderRight(BorderStyle.THIN);
-            cellStyle_data.setBorderBottom(BorderStyle.THIN);
-
-            int i = 0;
-            while (rs.next()) {
-                row = spreadsheet.createRow((short) 4 + i);
-                row.setHeight((short) 400);
-
-                cell = row.createCell(1);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(i + 1);
-
-                
-
-                cell = row.createCell(2);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("ten_nguoi_gui"));
-
-                cell = row.createCell(3);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("so_dien_thoai_nguoi_gui"));
-
-                cell = row.createCell(4);
-                cell.setCellStyle(cellStyle_data);
-               cell.setCellValue(rs.getString("so_tai_khoan_nguoi_gui"));
-
-                cell = row.createCell(5);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("so_tien"));
-
-                cell = row.createCell(6);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("mo_ta"));
-
-                cell = row.createCell(7);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("so_tai_khoan_nguoi_nhan"));
-
-                //Định dạng ngày tháng trong excel
-                java.util.Date ngay = new java.util.Date(rs.getDate("ngay_giao_dịch").getTime());
-                CellStyle cellStyle = workbook.createCellStyle();
-                cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
-                cellStyle.setBorderLeft(BorderStyle.THIN);
-                cellStyle.setBorderRight(BorderStyle.THIN);
-                cellStyle.setBorderBottom(BorderStyle.THIN);
-                cell = row.createCell(8);
-                cell.setCellValue(ngay);
-                cell.setCellStyle(cellStyle);
-
-                cell = row.createCell(9);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("dia_chi"));
-
-                cell = row.createCell(10);
-                cell.setCellStyle(cellStyle_data);
-                cell.setCellValue(rs.getString("email"));
-
-               
-                i++;
-            }
-            //Hiệu chỉnh độ rộng của cột
-            for (int col = 0; col < tongsocot; col++) {
-                spreadsheet.autoSizeColumn(col);
-            }
-            File f = new File("D:\\Java nhóm 9\\quan_ly_ngan_hang\\hoa_don.xlsx");
-            FileOutputStream out = new FileOutputStream(f);
-            workbook.write(out);
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }     
-    }//GEN-LAST:event_btn_xuatActionPerformed
-
     private void hoa_don_moiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoa_don_moiActionPerformed
-        // TODO add your handling code here:
-   
-        String ten_nguoi_gui = txt_hoten.getText().trim();
-        String so_dien_thoai_nguoi_gui  = txt_sdt_gui.getText().trim();
-        String so_tai_khoan_nguoi_gui= txt_stk_gui.getText().trim();
-        String so_tai_khoan_nguoi_nhan= txt_den_stk.getText().trim();
-        String so_tien= txt_so_tien_thanh_toan.getText().trim();
-        String mo_ta= txt_loi_nhan.getText().trim();
-        Date ngay_giao_dich=(Date) txtngaygiaodich.getDate();
-        String dia_chi=txt_dia_chi.getText().trim();
-        String email= txt_email.getText().trim();
-        //ket noi database
-        Connection con = null;
-        try {
-          
-            con = db.connect();
-            
-            // Tìm ID của người gửi từ bảng nguoi_dung dựa trên số điện thoại
-            String sqlFindUser = "SELECT id FROM nguoi_dung WHERE so_dien_thoai = ?";
-            PreparedStatement findUserStmt = con.prepareStatement(sqlFindUser);
-            findUserStmt.setString(1, so_dien_thoai_nguoi_gui);
-            ResultSet rsUser = findUserStmt.executeQuery();
-
-            int nguoi_gui_id = -1;
-            if (rsUser.next()) {
-                nguoi_gui_id = rsUser.getInt("id"); // Lấy ID của người dùng từ bảng nguoi_dung
-            }
-
-            // Nếu không tìm thấy người dùng, thông báo lỗi và dừng lại
-            if (nguoi_gui_id == -1) {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng với số điện thoại: " + so_dien_thoai_nguoi_gui);
-                return;
-            }
-
-            // Tìm số tài khoản của người gửi từ bảng tai_khoan_nguoi_dung
-            String sqlFindAccount = "SELECT so_tai_khoan FROM tai_khoan_nguoi_dung WHERE so_dien_thoai_id = ?";
-            PreparedStatement findAccountStmt = con.prepareStatement(sqlFindAccount);
-            findAccountStmt.setInt(1, nguoi_gui_id);
-            ResultSet rsAccount = findAccountStmt.executeQuery();
-
-            if (rsAccount.next()) {
-                so_tai_khoan_nguoi_gui = rsAccount.getString("so_tai_khoan"); // Lấy số tài khoản người gửi
-            }
-
-            // Nếu không tìm thấy tài khoản, thông báo lỗi
-            if (so_tai_khoan_nguoi_gui == null) {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy tài khoản cho người dùng với ID: " + nguoi_gui_id);
-                return;
-            }
-            String sqlInsertGiaoDich = "INSERT INTO giao_dich (ten_nguoi_gui, so_dien_thoai_nguoi_gui, so_tai_khoan_nguoi_gui, so_tai_khoan_nguoi_nhan,so_tien, mo_ta, ngay_giao_dich, dia_chi, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement st= con.prepareStatement(sqlInsertGiaoDich);
-            st.setString(1, ten_nguoi_gui);
-            st.setString(2, so_dien_thoai_nguoi_gui);
-            st.setString(3, so_tai_khoan_nguoi_gui);
-            st.setString(4, so_tai_khoan_nguoi_nhan);
-            st.setString(5, so_tien);
-            st.setString(6, mo_ta);
-            st.setDate(7,ngay_giao_dich);
-            st.setString(8, dia_chi);
-            st.setString(9, email);
-            
-            st.executeUpdate();
-            con.close();
-            JOptionPane.showMessageDialog(this,"Them moi thanh cong");
-            
-        }   catch(SQLException ex){
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(hoa_don.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }//GEN-LAST:event_hoa_don_moiActionPerformed
- private void load(){
+        txt_hoten.setEnabled(true);
+        txt_sdt_gui.setEnabled(true);
+        txt_stk_gui.setEnabled(true);
+        txt_den_stk.setEnabled(true);
+        txt_so_tien_thanh_toan.setEnabled(true);
+        txt_loi_nhan.setEnabled(true);
+        txt_dia_chi.setEnabled(true);
+        cb.setEnabled(true);
         txt_hoten.setText("");
         txt_sdt_gui.setText("");
         txt_stk_gui.setText("");
         txt_den_stk.setText("");
         txt_so_tien_thanh_toan.setText("");
         txt_loi_nhan.setText("");
-        txtngaygiaodich.setDate(null);
         txt_dia_chi.setText("");
-        txt_email.setText("");
+        cb.setSelectedItem("-Chọn hóa đơn-");
+    }//GEN-LAST:event_hoa_don_moiActionPerformed
+ private void load(){
+        txt_hoten.setEnabled(false);
+        txt_sdt_gui.setEnabled(false);
+        txt_stk_gui.setEnabled(false);
+        txt_den_stk.setEnabled(false);
+        txt_so_tien_thanh_toan.setEnabled(false);
+        txt_loi_nhan.setEnabled(false);
+        txt_dia_chi.setEnabled(false);
+        cb.setEnabled(false);
+        txt_hoten.setText("");
+        txt_sdt_gui.setText("");
+        txt_stk_gui.setText("");
+        txt_den_stk.setText("");
+        txt_so_tien_thanh_toan.setText("");
+        txt_loi_nhan.setText("");
+        txt_dia_chi.setText("");
     }
     private void btn_xac_nhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xac_nhanActionPerformed
         // TODO add your handling code here:
@@ -705,50 +408,53 @@ try {
         }
         String so_dien_thoai_nguoi_gui= txt_sdt_gui.getText().trim();
         if(so_dien_thoai_nguoi_gui.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Tên người dùng không được để trống.");
+            JOptionPane.showMessageDialog(this, "Số điện thoại người dùng không được để trống.");
             return;
         }
         String so_tai_khoan_nguoi_gui = txt_stk_gui.getText().trim();
         String so_tien = txt_so_tien_thanh_toan.getText().trim();
         if(so_tien.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Tên người dùng không được để trống.");
+            JOptionPane.showMessageDialog(this, "Chưa điền số tiền.");
             return;
         }
         String mo_ta = txt_loi_nhan.getText().trim();
         if(mo_ta.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Tên người dùng không được để trống.");
+            JOptionPane.showMessageDialog(this, "Lời nhắn không được để trống.");
             return;
         }
         String so_tai_khoan_nguoi_nhan = txt_den_stk.getText().trim();
         if(so_tai_khoan_nguoi_nhan.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Tên người dùng không được để trống.");
+            JOptionPane.showMessageDialog(this, "STK người thụ hưởng không được để trống.");
+            return;
+        }
+        String loai_hoa_don = cb.getSelectedItem().toString();
+        if(loai_hoa_don.equals("-Chọn hóa đơn-")){
+            JOptionPane.showMessageDialog(this, "Chưa chọn loại hóa đơn.");
             return;
         }
         int r = JOptionPane.showConfirmDialog(this, "Xác nhận hóa đơn?", "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(r == JOptionPane.YES_OPTION){
-            Connection con = null;
-        try {
-            
-            con = db.connect();
-            con.setAutoCommit(false); 
-            Statement st = con.createStatement();
-            double soTienGiaoDich = Double.parseDouble(so_tien);
-            String queryCheckBalance = "SELECT so_tien_hien_co FROM tai_khoan_nguoi_dung WHERE so_tai_khoan = '" + so_tai_khoan_nguoi_nhan + "'";
-            ResultSet rs = st.executeQuery(queryCheckBalance);
-            if(rs.next()) {
-                double soTienHienCo = rs.getDouble("so_tien_hien_co");
-                double soTienMoi = soTienHienCo + soTienGiaoDich;
-                String updateBalance = "UPDATE tai_khoan_nguoi_dung SET so_tien_hien_co = " + soTienMoi + " WHERE so_tai_khoan = '" + so_tai_khoan_nguoi_nhan + "'";
-                st.executeUpdate(updateBalance);
-                String sql = "insert into giao_dich (loai_giao_dich, ten_nguoi_gui, so_dien_thoai_nguoi_gui, so_tai_khoan_nguoi_gui, so_tai_khoan_nguoi_nhan, so_tien, mo_ta, ngay_giao_dich, trang_thai)"
-                        + "values (N'Giao dịch', N'" + ten_nguoi_gui + "', '" + so_dien_thoai_nguoi_gui+ "', '" + so_tai_khoan_nguoi_gui + "', '" + so_tai_khoan_nguoi_nhan + "', " + so_tien + ", N'" + mo_ta + "', getdate(), N'thanh_cong')";
-                st.executeUpdate(sql);
-                con.commit();
-                JOptionPane.showMessageDialog(this, "Thanh toán hóa đơn thành công.");
-                load();
-            } else {
-                throw new Exception("Không tìm thấy số tài khoản người nhận.");
-            }
+            try {
+                con = db.connect();
+                con.setAutoCommit(false); 
+                Statement st = con.createStatement();
+                double soTienGiaoDich = Double.parseDouble(so_tien);
+                String queryCheckBalance = "SELECT so_tien_hien_co FROM tai_khoan_nguoi_dung WHERE so_tai_khoan = '" + so_tai_khoan_nguoi_nhan + "'";
+                ResultSet rs = st.executeQuery(queryCheckBalance);
+                if(rs.next()) {
+                    double soTienHienCo = rs.getDouble("so_tien_hien_co");
+                    double soTienMoi = soTienHienCo + soTienGiaoDich;
+                    String updateBalance = "UPDATE tai_khoan_nguoi_dung SET so_tien_hien_co = " + soTienMoi + " WHERE so_tai_khoan = '" + so_tai_khoan_nguoi_nhan + "'";
+                    st.executeUpdate(updateBalance);
+                    String sql = "insert into giao_dich (loai_giao_dich, ten_nguoi_gui, so_dien_thoai_nguoi_gui, so_tai_khoan_nguoi_gui, so_tai_khoan_nguoi_nhan, so_tien, mo_ta, ngay_giao_dich, trang_thai)"
+                            + "values (N'"+loai_hoa_don+"', N'" + ten_nguoi_gui + "', '" + so_dien_thoai_nguoi_gui+ "', '" + so_tai_khoan_nguoi_gui + "', '" + so_tai_khoan_nguoi_nhan + "', " + so_tien + ", N'" + mo_ta + "', getdate(), N'thanh_cong')";
+                    st.executeUpdate(sql);
+                    con.commit();
+                    JOptionPane.showMessageDialog(this, "Thanh toán hóa đơn thành công.");
+                    load();
+                } else {
+                    throw new Exception("Không tìm thấy số tài khoản người nhận.");
+                }
         } catch (Exception e) {
             e.printStackTrace();
             if (con != null) {
@@ -772,26 +478,22 @@ try {
         }
     }
     }//GEN-LAST:event_btn_xac_nhanActionPerformed
-
+    Connection con;
     private void txt_den_stkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_den_stkActionPerformed
-        // TODO add your handling code here:
         String so_tai_khoan_nguoi_nhan = txt_den_stk.getText().trim();
-         Connection con = null;
         try {   
             con = db.connect();
             Statement st = con.createStatement();
             String sql = "select * "
                     + "from tai_khoan_nguoi_dung tknd "
                     + "join nguoi_dung nd on nd.so_dien_thoai = tknd.so_dien_thoai_id "
-                    + "where tknd.so_tai_khoan = '"+txt_den_stk+"'"; 
+                    + "where tknd.so_tai_khoan = '"+so_tai_khoan_nguoi_nhan+"' and tknd.loai_tai_khoan = N'Tài khoản đối tác'"; 
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
-                txt_hoten.setText(rs.getString("ho") +" "+ rs.getString("ten"));
-                txt_dia_chi.setText(rs.getString("dia_chi"));
-                txt_email.setText(rs.getString("email"));
+                txt_dia_chi.setText(rs.getString("ho") +" "+ rs.getString("ten"));
                 return;
             }
-            JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại.");
+            JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại hoặc không có đối tác nào.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -800,7 +502,7 @@ try {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_xac_nhan;
-    private javax.swing.JButton btn_xuat;
+    private javax.swing.JComboBox<String> cb;
     private javax.swing.JButton hoa_don_moi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
@@ -810,7 +512,7 @@ try {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel5;
@@ -820,15 +522,11 @@ try {
     private javax.swing.JLabel txt_dc;
     private javax.swing.JTextField txt_den_stk;
     private javax.swing.JTextField txt_dia_chi;
-    private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_hoten;
     private javax.swing.JTextField txt_loi_nhan;
-    private javax.swing.JLabel txt_ngay_giao_dich;
     private javax.swing.JTextField txt_sdt_gui;
     private javax.swing.JTextField txt_so_tien_thanh_toan;
     private javax.swing.JTextField txt_stk_gui;
-    private com.toedter.calendar.JDateChooser txtngaygiaodich;
-    private javax.swing.JButton xoa_hoa_don;
     private javax.swing.JLabel đfd;
     // End of variables declaration//GEN-END:variables
 }
