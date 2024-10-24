@@ -104,6 +104,10 @@ public class admin_main_frame extends javax.swing.JFrame {
             Image scaledImg_tk = img_tk.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
             tiet_kiem.setIcon(new ImageIcon(scaledImg_tk));
             
+            BufferedImage img_g = ImageIO.read(new File("src/main/java/com/mycompany/pics/gift.png"));
+            Image scaledImg_g = img_g.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
+            uu_dai.setIcon(new ImageIcon(scaledImg_g));
+            
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -790,7 +794,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         tiet_kiem.setForeground(black);
         thong_bao.setForeground(black);
         nguoi_dung.setForeground(black);
-        uu_dai.setForeground(black);
+        ho_tro.setForeground(black);
         vay_von.setForeground(black);
         bao_hiem.setForeground(black);
         thanh_toan.setForeground(black);

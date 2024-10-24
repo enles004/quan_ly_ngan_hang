@@ -477,7 +477,7 @@ public class thong_bao extends javax.swing.JInternalFrame {
             String tim = txt_tk.getText().trim();
             String sql = "select * "
             + "from thong_bao "
-            + "where tieu_de like '%"+tim+"%' or loai_thong_bao like '%"+tim+"%'";
+            + "where tieu_de like N'%"+tim+"%' or loai_thong_bao like N'%"+tim+"%'";
             ResultSet rs = st.executeQuery(sql);
             String[] td = {"ID", "Tiêu đề", "Nội dung", "Loại thông báo", "Ngày tạo"};
             DefaultTableModel tb = new DefaultTableModel(td, 0);
