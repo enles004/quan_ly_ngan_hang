@@ -123,6 +123,12 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Họ và tên:");
 
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Số tài khoản:");
 
@@ -499,6 +505,10 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         sotien.setText(amount); // Số tiền
     }
     }//GEN-LAST:event_themtkMouseClicked
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
     private void loadBang() {
     DefaultTableModel model = (DefaultTableModel) tbTietkiem.getModel();
     model.setRowCount(0); // Xóa dữ liệu cũ
