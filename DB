@@ -74,7 +74,6 @@ CREATE TABLE tiet_kiem (
     id INTEGER NOT NULL IDENTITY UNIQUE,
     so_dien_thoai_id VARCHAR(255) NOT NULL,
     ten_tiet_kiem NVARCHAR(255) NOT NULL,
-    mo_ta_tiet_kiem NTEXT,
     so_tien DECIMAL NOT NULL,
     ngay_tao DATETIME NOT NULL,
     ngay_dao_han DATETIME NOT NULL,
