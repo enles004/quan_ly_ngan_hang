@@ -57,6 +57,22 @@ public class hoa_don extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         initComponents();
         load();
+        load_anh();
+    }
+    
+    private void load_anh() {
+        try {
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/plus.png"));
+            Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            hoa_don_moi.setIcon(new ImageIcon(scaledImg_ec));
+            
+            BufferedImage img_xn = ImageIO.read(new File("src/main/java/com/mycompany/pics/xn.png"));
+            Image scaledImg_xn = img_xn.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            btn_xac_nhan.setIcon(new ImageIcon(scaledImg_xn));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -89,7 +105,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
         jPanel11 = new javax.swing.JPanel();
         đfd = new javax.swing.JLabel();
         txt_den_stk = new javax.swing.JTextField();
-        txt_dccccc = new javax.swing.JLabel();
+        txt_dcc = new javax.swing.JLabel();
         txt_dia_chi = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         cb = new javax.swing.JComboBox<>();
@@ -217,8 +233,8 @@ public class hoa_don extends javax.swing.JInternalFrame {
             }
         });
 
-        txt_dccccc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txt_dccccc.setText("Tên thụ hưởng:");
+        txt_dcc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txt_dcc.setText("Tên thụ hưởng:");
 
         txt_dia_chi.setEditable(false);
 
@@ -237,7 +253,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
                     .addComponent(txt_dia_chi, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                     .addComponent(cb, 0, 351, Short.MAX_VALUE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_dccccc)
+                    .addComponent(txt_dcc)
                     .addComponent(đfd)
                     .addComponent(txt_den_stk))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -250,7 +266,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_den_stk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txt_dccccc)
+                .addComponent(txt_dcc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_dia_chi, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -314,6 +330,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
 
         btn_xac_nhan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_xac_nhan.setText("Xác nhận hóa đơn");
+        btn_xac_nhan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         btn_xac_nhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_xac_nhanActionPerformed(evt);
@@ -322,6 +339,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
 
         hoa_don_moi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         hoa_don_moi.setText("Hóa đơn mới");
+        hoa_don_moi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         hoa_don_moi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hoa_don_moiActionPerformed(evt);
@@ -521,7 +539,7 @@ public class hoa_don extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel p3;
-    private javax.swing.JLabel txt_dccccc;
+    private javax.swing.JLabel txt_dcc;
     private javax.swing.JTextField txt_den_stk;
     private javax.swing.JTextField txt_dia_chi;
     private javax.swing.JTextField txt_hoten;

@@ -61,7 +61,7 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        sdtt = new javax.swing.JTextField();
+        txt_sdtyc = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txt_noidungyc = new javax.swing.JTextField();
         btn_them = new javax.swing.JButton();
@@ -79,9 +79,9 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
 
         jLabel1.setText("SĐT yêu cầu:");
 
-        sdtt.addActionListener(new java.awt.event.ActionListener() {
+        txt_sdtyc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sdttActionPerformed(evt);
+                txt_sdtycActionPerformed(evt);
             }
         });
 
@@ -127,7 +127,7 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5)
                                 .addComponent(ht, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                                .addComponent(sdtt)
+                                .addComponent(txt_sdtyc)
                                 .addComponent(cccd))
                             .addComponent(jLabel1))
                         .addGap(67, 67, 67)
@@ -150,7 +150,7 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sdtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_sdtyc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -194,8 +194,8 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
         cccd.setEnabled(false);
         ht.setEnabled(false);
     }
-    private void sdttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sdttActionPerformed
-        String stk_nnn = sdtt.getText().trim();
+    private void txt_sdtycActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_sdtycActionPerformed
+        String stk_nnn = txt_sdtyc.getText().trim();
         try {
             con = db.connect();
             Statement st = con.createStatement();
@@ -213,7 +213,7 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_sdttActionPerformed
+    }//GEN-LAST:event_txt_sdtycActionPerformed
 
     private void txt_noidungycActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_noidungycActionPerformed
         // TODO add your handling code here:
@@ -222,13 +222,13 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
       
-        String sdttt = sdtt.getText().trim();
+        String sdtt = txt_sdtyc.getText().trim();
         String nd= txt_noidungyc.getText().trim();
         try {
             con=db.connect();
             String sqlNguoiDung = "INSERT INTO ho_tro_nguoi_dung (so_dien_thoai_id, mo_ta, trang_thai, ngay_tao) VALUES (?, ?, ?, getdate())";
             PreparedStatement stNguoiDung=con.prepareStatement(sqlNguoiDung);
-            stNguoiDung.setString(1, sdttt);
+            stNguoiDung.setString(1, sdtt);
             stNguoiDung.setString(2, nd);
             stNguoiDung.setString(3, "dang_xu_ly");
             stNguoiDung.executeUpdate();
@@ -262,7 +262,7 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField sdtt;
     private javax.swing.JTextField txt_noidungyc;
+    private javax.swing.JTextField txt_sdtyc;
     // End of variables declaration//GEN-END:variables
 }

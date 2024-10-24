@@ -693,7 +693,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         
         tai_khoan.setForeground(black);
         giao_dich.setForeground(black);
-        hoa_don.setForeground(black);
+        ho_tro.setForeground(black);
         lich_su.setForeground(black);
         loai_the.setForeground(black);
         the_nd.setForeground(black);
