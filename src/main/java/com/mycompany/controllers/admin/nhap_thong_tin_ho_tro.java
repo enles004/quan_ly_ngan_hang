@@ -308,9 +308,9 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
         
         //ket noi database
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-         Connection con = null;
-          con=db.connect();
+            
+           Connection con = null;
+           con=db.connect();
             String sqlNguoiDung = "INSERT INTO nguoi_dung (ho, ten, so_dien_thoai) VALUES (?, ?, ?)";
             PreparedStatement stNguoiDung=con.prepareStatement(sqlNguoiDung);
             stNguoiDung.setString(1,ho);
