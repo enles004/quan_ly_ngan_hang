@@ -129,7 +129,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt_stkyc" alignment="0" pref="140" max="32767" attributes="0"/>
+                          <Component id="txt_sdtyc" alignment="0" pref="140" max="32767" attributes="0"/>
                           <Component id="txt_nyc" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="210" max="32767" attributes="0"/>
@@ -173,7 +173,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txt_stkyc" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_sdtyc" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -233,7 +233,7 @@
                 <Property name="text" type="java.lang.String" value="N&#x1ed9;i dung y&#xea;u c&#x1ea7;u:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_stkyc">
+            <Component class="javax.swing.JTextField" name="txt_sdtyc">
             </Component>
             <Component class="javax.swing.JTextField" name="txt_nyc">
             </Component>

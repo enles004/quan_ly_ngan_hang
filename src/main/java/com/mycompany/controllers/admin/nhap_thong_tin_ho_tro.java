@@ -10,6 +10,7 @@ import com.mycompany.db;
 import com.mycompany.models.user;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -35,6 +36,11 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
      */
     public nhap_thong_tin_ho_tro() {
         initComponents();
+    txt_sdtyc.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            txt_sdtycKeyPressed(evt);
+        }
+    });
         this.setDefaultCloseOperation(javax.swing.JInternalFrame.DISPOSE_ON_CLOSE); // Đóng form mà không thoát ứng dụng
         this.setSize(600, 400); // Đặt kích thước cho form
     // Lấy kích thước của màn hình
@@ -86,6 +92,11 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
         txt_sdtyc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_sdtycActionPerformed(evt);
+            }
+        });
+        txt_sdtyc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_sdtycKeyPressed(evt);
             }
         });
 
@@ -140,7 +151,7 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel4.setText("Họ");
+        jLabel4.setText("Họ ");
 
         jLabel5.setText("Tên");
 
@@ -298,49 +309,53 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
       
-        String ho = txt_ho.getText().trim();
-        String ten = txt_ten.getText().trim();
         String sdt = txt_sdtyc.getText().trim();
-        Date ngayyc= new Date (ngayyeucau.getDate().getTime());
-        String nd= txt_noidungyc.getText().trim();
+
+try {
+    Connection con = db.connect();
+    // Kiểm tra nếu số điện thoại người dùng tồn tại trong hệ thống
+    String sql = "SELECT nd.id, nd.ho, nd.ten "
+               + "FROM nguoi_dung nd "
+               + "JOIN ho_tro_nguoi_dung htnd ON nd.id = htnd.nguoi_dung_id "
+               + "WHERE nd.so_dien_thoai = ?";
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setString(1, sdt);
+    
+    ResultSet rs = ps.executeQuery();
+    
+    if (rs.next()) {
+        // Nếu tìm thấy người dùng, điền thông tin họ tên
+        int nguoidungid = rs.getInt("id");
+        txt_ho.setText(rs.getString("ho"));
+        txt_ten.setText(rs.getString("ten"));
         
-        
-        
-        //ket noi database
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-         Connection con = null;
-          con=db.connect();
-            String sqlNguoiDung = "INSERT INTO nguoi_dung (ho, ten, so_dien_thoai) VALUES (?, ?, ?)";
-            PreparedStatement stNguoiDung=con.prepareStatement(sqlNguoiDung);
-            stNguoiDung.setString(1,ho);
-            stNguoiDung.setString(2,ten);
-            stNguoiDung.setString(3, sdt);
-            stNguoiDung.executeUpdate();
-           // Lấy ID người dùng vừa thêm
-            ResultSet rs = stNguoiDung.getGeneratedKeys();
-            int nguoidungid = 0;
-            if (rs.next()) {
-                nguoidungid = rs.getInt(1);
-            }
-//                
-            String sqlHoTro = "INSERT INTO ho_tro_nguoi_dung (nguoi_dung_id, trang_thai, ngay_tao, mo_ta) VALUES (?, 'dang_xu_ly', ?, ?)";
-            PreparedStatement stHoTro = con.prepareStatement(sqlHoTro);
-            stHoTro.setInt(1, nguoidungid);
-            stHoTro.setString(2,"dang_xu_ly" );
-            stHoTro.setDate(3,ngayyc);
-            stHoTro.setString(4,nd);
-           
-            stHoTro.executeUpdate();
-            
-            con.close();
-            JOptionPane.showMessageDialog(this,"Them moi thanh cong");
-            load();
-        }   catch(SQLException ex){
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        // Lấy dữ liệu từ các field cần thiết
+        Date ngayyc = new Date(ngayyeucau.getDate().getTime());
+        String nd = txt_noidungyc.getText().trim();
+   
+        String sqlHoTro = "INSERT INTO ho_tro_nguoi_dung (nguoi_dung_id, trang_thai, ngay_tao, mo_ta) VALUES (?, 'dang_xu_ly', ?, ?)";
+        PreparedStatement stHoTro = con.prepareStatement(sqlHoTro);
+        stHoTro.setInt(1, nguoidungid); 
+        stHoTro.setDate(2, new java.sql.Date(ngayyc.getTime()));
+        stHoTro.setString(3, nd); 
+        stHoTro.executeUpdate();
+
+        JOptionPane.showMessageDialog(this, "Thêm mới thành công");
+        load();
+    } else {    
+        JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại.");
+    }
+    
+    // Đóng kết nối
+    con.close();
+    
+} catch (SQLException ex) {
+    ex.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Lỗi khi thực hiện thao tác trên cơ sở dữ liệu.");
+} catch (ClassNotFoundException ex) {
+    Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
+}
+
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
@@ -457,6 +472,47 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btn_trolaiActionPerformed
+
+    private void txt_sdtycKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_sdtycKeyPressed
+        // TODO add your handling code here:
+         // Kiểm tra xem phím nhấn có phải là Enter không
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        String sdt = txt_sdtyc.getText().trim();
+        try {
+            Connection con = db.connect();
+            // Kiểm tra nếu số điện thoại người dùng tồn tại trong hệ thống
+            String sql = "SELECT nd.id, nd.ho, nd.ten "
+                       + "FROM nguoi_dung nd "
+                       + "WHERE nd.so_dien_thoai = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, sdt);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                // Nếu tìm thấy người dùng, điền thông tin họ tên
+                txt_ho.setText(rs.getString("ho"));
+                txt_ten.setText(rs.getString("ten"));
+            } else {
+                JOptionPane.showMessageDialog(this, "Số điện thoại không tồn tại.");
+                // Xóa thông tin họ tên nếu không tìm thấy
+                txt_ho.setText("");
+                txt_ten.setText("");
+            }
+
+            // Đóng kết nối
+            rs.close();
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi thực hiện thao tác trên cơ sở dữ liệu.");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    }//GEN-LAST:event_txt_sdtycKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -167,6 +167,7 @@
         <Component class="javax.swing.JTextField" name="txt_sdtyc">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_sdtycActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_sdtycKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -243,7 +244,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="H&#x1ecd;"/>
+            <Property name="text" type="java.lang.String" value="H&#x1ecd; "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_ho">
