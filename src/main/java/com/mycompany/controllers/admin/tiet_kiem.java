@@ -4,15 +4,38 @@
  */
 package com.mycompany.controllers.admin;
 
+import com.mycompany.db;
+import com.mycompany.models.tiet_kiem_model;
+import com.mycompany.models.user;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import static org.apache.commons.math3.fitting.leastsquares.LeastSquaresFactory.model;
 
 /**
@@ -25,9 +48,36 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
      * Creates new form tiet_kiem
      */
     public tiet_kiem() {
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         initComponents();
+        load();
+        load_anh();
     }
-
+    
+    private void load_anh() {
+        try {
+            BufferedImage img_sua = ImageIO.read(new File("src/main/java/com/mycompany/pics/sua.png"));
+            Image scaledImg_sua = img_sua.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            sua.setIcon(new ImageIcon(scaledImg_sua));
+            
+            BufferedImage img_xoa = ImageIO.read(new File("src/main/java/com/mycompany/pics/xoa.png"));
+            Image scaledImg_xoa = img_xoa.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            xoa.setIcon(new ImageIcon(scaledImg_xoa));
+            
+            BufferedImage img_them = ImageIO.read(new File("src/main/java/com/mycompany/pics/plus.png"));
+            Image scaledImg_them = img_them.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            them.setIcon(new ImageIcon(scaledImg_them));
+            
+            BufferedImage img_ec = ImageIO.read(new File("src/main/java/com/mycompany/pics/ec.png"));
+            Image scaledImg_ec = img_ec.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            ec.setIcon(new ImageIcon(scaledImg_ec));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,17 +94,17 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        sdt = new javax.swing.JTextField();
+        stk = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        stk = new javax.swing.JTextField();
+        sdt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         cccd = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         diachi = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        name1 = new javax.swing.JTextField();
+        ht = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         loaitk = new javax.swing.JTextField();
@@ -63,26 +113,28 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         nametk = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        jsd = new javax.swing.JLabel();
         sodu = new javax.swing.JTextField();
-        jdTao = new com.toedter.calendar.JDateChooser();
         jdHan = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         p2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTietkiem = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        themtk = new javax.swing.JButton();
+        them = new javax.swing.JButton();
+        sua = new javax.swing.JButton();
+        xoa = new javax.swing.JButton();
+        ec = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 699));
 
-        jPanel5.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel5.setBackground(new java.awt.Color(255, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setMaximumSize(new java.awt.Dimension(635, 48));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ TIẾT KIỆM");
 
@@ -118,28 +170,46 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("Số điện thoại:");
+        jLabel4.setText("Số tài khoản:");
+
+        stk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stkActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Họ và tên:");
 
+<<<<<<< HEAD
         email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailActionPerformed(evt);
             }
         });
+=======
+        email.setEditable(false);
+>>>>>>> 6cc9e428faec52b7936bf316216ec04f734382e6
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setText("Số tài khoản:");
+        jLabel6.setText("Số điện thoại:");
+
+        sdt.setEditable(false);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("CCCD:");
 
+        cccd.setEditable(false);
+
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Địa chỉ:");
 
+        diachi.setEditable(false);
+
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel16.setText("Email: ");
+
+        ht.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,9 +221,9 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(stk, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(sdt)
-                    .addComponent(name1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(sdt, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(stk)
+                    .addComponent(ht, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -173,7 +243,7 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(stk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -189,14 +259,13 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(diachi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(name1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(ht, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -215,11 +284,8 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Tên tiết kiệm");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel14.setText("Ngày tạo");
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel15.setText("Số dư hiện tại");
+        jsd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jsd.setText("Số dư hiện tại");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -227,22 +293,27 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(sotien)
-                    .addComponent(loaitk)
-                    .addComponent(jdHan, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14)
-                    .addComponent(nametk)
-                    .addComponent(jLabel15)
-                    .addComponent(sodu)
-                    .addComponent(jdTao, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jsd)
+                        .addGap(0, 0, 0))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(sodu)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loaitk, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jdHan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sotien)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(nametk, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11))
+                                .addGap(0, 2, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,28 +329,21 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nametk, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(7, 7, 7)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(sotien, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jdTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jdHan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jdHan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
+                        .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sodu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(sotien, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jsd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sodu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -298,7 +362,7 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2))
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -311,8 +375,8 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         p2.setBackground(new java.awt.Color(51, 51, 51));
@@ -329,6 +393,11 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                 "Số ĐT", "Tên tiết kiệm", "Số tiền", "Ngày tạo", "Ngày hạn", "Số dư"
             }
         ));
+        tbTietkiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTietkiemMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbTietkiem);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -338,15 +407,44 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jLabel3.setText("Bảng tiết kiệm");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
-        themtk.setText("Thêm tiết kiệm");
-        themtk.addMouseListener(new java.awt.event.MouseAdapter() {
+        them.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        them.setText("Thêm");
+        them.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 3));
+        them.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                themtkMouseClicked(evt);
+                themMouseClicked(evt);
             }
         });
-        themtk.addActionListener(new java.awt.event.ActionListener() {
+        them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                themtkActionPerformed(evt);
+                themActionPerformed(evt);
+            }
+        });
+
+        sua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        sua.setText("Sửa");
+        sua.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 3));
+        sua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suaActionPerformed(evt);
+            }
+        });
+
+        xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        xoa.setText("Xóa");
+        xoa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 3));
+        xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xoaActionPerformed(evt);
+            }
+        });
+
+        ec.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ec.setText("Xuất");
+        ec.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 3));
+        ec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ecActionPerformed(evt);
             }
         });
 
@@ -358,8 +456,14 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(themtk)
-                .addGap(148, 148, 148))
+                .addComponent(them, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sua, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ec, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         p2Layout.setVerticalGroup(
             p2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,9 +471,13 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(themtk)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(p2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(them)
+                    .addComponent(sua)
+                    .addComponent(xoa)
+                    .addComponent(ec))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -385,12 +493,12 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(p2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(p1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(p2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -410,82 +518,125 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void themtkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themtkActionPerformed
-        // Lấy dữ liệu từ các trường nhập liệu
-    String sodienthoai = sdt.getText(); // Số điện thoại
-    String em = email.getText(); // Email
-
-    // Kiểm tra số điện thoại và email
-    if (sodienthoai.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Vui lòng nhập số điện thoại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    if (em.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Vui lòng nhập email!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    try {
-        // Kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost\\NguyenDinhTam:1433;databaseName=Embeiu", "sa", "27012004");
-        
-        // Truy vấn dữ liệu từ bảng người gửi
-        String sql = "SELECT savingType, savingName, balance FROM Savings WHERE tbTietkiem = ?";
-        PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, sodienthoai);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            // Hiển thị thông tin lên các trường nhập liệu
-            loaitk.setText(rs.getString("savingType")); // Loại tiết kiệm
-            nametk.setText(rs.getString("savingName")); // Tên tiết kiệm
-            sodu.setText(rs.getString("balance")); // Số dư hiện tại
-        } else {
-            JOptionPane.showMessageDialog(null, "Không tìm thấy thông tin người gửi với số điện thoại này!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        }
-
-        // Đóng kết nối
-        rs.close();
-        stmt.close();
-        con.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Lỗi khi truy vấn dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    }
-
-    String savingType = loaitk.getText(); // Loại tiết kiệm
-    String savingName = nametk.getText(); // Tên tiết kiệm
-    String amount = sotien.getText(); // Số tiền
-    String createdDate = new SimpleDateFormat("yyyy-MM-dd").format(jdTao.getDate());
-    String expireDate = new SimpleDateFormat("yyyy-MM-dd").format(jdHan.getDate());
-    String balance = sodu.getText(); // Số dư hiện tại
-
-    // Kiểm tra xem các trường nhập liệu có rỗng không
-    if (sodienthoai.isEmpty() || em.isEmpty() || savingType.isEmpty() || 
-        savingName.isEmpty() || amount.isEmpty() || createdDate.isEmpty() || 
-        expireDate.isEmpty() || balance.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    } else {
-        // Thêm dữ liệu vào bảng
-        DefaultTableModel model = (DefaultTableModel) tbTietkiem.getModel();
-        model.addRow(new Object[]{sodienthoai, em, savingType, savingName, amount, createdDate, expireDate, balance});
-        JOptionPane.showMessageDialog(null, "Thông tin tiết kiệm đã được thêm thành công!");
-
-        // Xóa nội dung trong các trường sau khi thêm
+    private void load(){
+        stk.setText("");
+        cccd.setText("");
+        jdHan.setDate(null);
+        ht.setText("");
+        diachi.setText("");
+        email.setText("");
+        sdt.setText("");
         loaitk.setText("");
         nametk.setText("");
         sotien.setText("");
-        jdTao.setDate(null);
-        jdHan.setDate(null);
-        sodu.setText("");
-        email.setText("");
-        sdt.setText("");
-        loaitk.requestFocus(); // Đặt lại tiêu điểm cho trường đầu tiên
+        jsd.setVisible(false);
+        sodu.setVisible(false);
+        stk.setEnabled(false);
+        loaitk.setEnabled(false);
+        nametk.setEnabled(false);
+        jdHan.setEnabled(false);
+        sotien.setEnabled(false);
+        sua.setVisible(false);
+        xoa.setVisible(false);
+        try {
+            tbTietkiem.removeAll();
+            con = db.connect();
+            String sql = "select * "
+                    + "from tiet_kiem tk "
+                    + "join nguoi_dung nd on tk.so_dien_thoai_id = nd.so_dien_thoai "
+                    + "order by tk.ngay_tao desc";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String[] td = {"ID", "Họ và tên", "Số điện thoại", "Loại TK", "Tên TK", "Số tiền", "Số dư", "Ngày tạo", "Ngày đáo hạn"};
+            DefaultTableModel tb = new DefaultTableModel(td, 0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; 
+                }
+            };
+            int sum = 0;
+            while(rs.next()){
+                sum ++;
+                Vector v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("ho") + " " + rs.getString("ten"));
+                v.add(rs.getString("so_dien_thoai"));
+                v.add(rs.getString("loai_tiet_kiem"));
+                v.add(rs.getString("ten_tiet_kiem"));
+                v.add(rs.getString("so_tien"));
+                v.add(rs.getString("so_du_hien_tai"));
+                v.add(rs.getString("ngay_tao"));
+                v.add(rs.getString("ngay_dao_han"));
+                tb.addRow(v);
+            }
+            tbTietkiem.setModel(tb);
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    }//GEN-LAST:event_themtkActionPerformed
+    boolean check = false;
+    private void themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themActionPerformed
+        if(check == true){
+            stk.setText("");
+            cccd.setText("");
+            jdHan.setDate(null);
+            ht.setText("");
+            diachi.setText("");
+            email.setText("");
+            sdt.setText("");
+            loaitk.setText("");
+            nametk.setText("");
+            sotien.setText("");
+            sodu.setVisible(false);
+            jsd.setVisible(false);
+            check = false;
+            return;
+        }
+        if(!stk.isEnabled()){
+            stk.setEnabled(true);
+            loaitk.setEnabled(true);
+            nametk.setEnabled(true);
+            jdHan.setEnabled(true);
+            sotien.setEnabled(true);
+            return;
+        }
+        
+        String so_dien_thoai = sdt.getText().trim();
+        if(so_dien_thoai.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Chưa có số điện thoại từ người dùng.");
+            return;
+        }
+        String loai_tiet_kiem = loaitk.getText().trim();
+        if(loai_tiet_kiem.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Chưa nhập loại tiết kiệm.");
+            return;
+        }
+        String ten_tiet_kiem = nametk.getText().trim();
+        if(ten_tiet_kiem.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Chưa có tên tiết kiệm.");
+            return;
+        }
+        String so_tien = sotien.getText().trim();
+        if(so_tien.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Chưa nhập số tiền muốn tiết kiệm.");
+            return;
+        }
+        Date ngay_dao_han = new Date(jdHan.getDate().getTime());
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String sql = "insert into tiet_kiem values ('"+so_dien_thoai+"', N'"+ten_tiet_kiem+"', '"+so_tien+"', getdate(), '"+ngay_dao_han+"', N'"+loai_tiet_kiem+"', '"+7.5+"', N'"+"Đang tiết kiệm"+"', '"+0+"')";
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(this, "Tạo tiết kiệm thành công.");
+            load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_themActionPerformed
 
-    private void themtkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themtkMouseClicked
+    private void themMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_themMouseClicked
         // TODO add your handling code here:
         int selectedRow = tbTietkiem.getSelectedRow(); // Lấy chỉ số hàng được chọn
     
@@ -498,12 +649,13 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         String amount = tbTietkiem.getValueAt(selectedRow, 3).toString(); // Số tiền
         
         // Hiển thị dữ liệu lên các trường nhập liệu
-        sdt.setText(sodienthoai); // Số điện thoại
+        stk.setText(sodienthoai); // Số điện thoại
         loaitk.setText(savingType); // Loại tiết kiệm
         nametk.setText(savingName); // Tên tiết kiệm
         email.setText(em); // Email
         sotien.setText(amount); // Số tiền
     }
+<<<<<<< HEAD
     }//GEN-LAST:event_themtkMouseClicked
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
@@ -528,24 +680,176 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
             String expireDate = rs.getString("expireDate");
             String balance = rs.getString("balance");
             model.addRow(new Object[]{sodienthoai, savingType, savingName, amount, createdDate, expireDate, balance});
+=======
+    }//GEN-LAST:event_themMouseClicked
+    Connection con;
+    private void stkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stkActionPerformed
+        String stk_nnn = stk.getText().trim();
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String sql = "select * "
+                    + "from tai_khoan_nguoi_dung tknd "
+                    + "join nguoi_dung nd on nd.so_dien_thoai = tknd.so_dien_thoai_id "
+                    + "where tknd.so_tai_khoan = '"+stk_nnn+"'"; 
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                if(rs.getString("loai_tai_khoan").equals("Tài khoản tiết kiệm")){
+                    ht.setText(rs.getString("ho") +" "+ rs.getString("ten"));
+                    cccd.setText(rs.getString("so_cong_dan"));
+                    diachi.setText(rs.getString("dia_chi"));
+                    email.setText(rs.getString("email"));
+                    sdt.setText(rs.getString("so_dien_thoai"));
+                    return;
+                }
+                else{
+                    System.out.println(rs.getString("loai_tai_khoan"));
+                    JOptionPane.showMessageDialog(this, "Đây không phải tài khoản tiết kiệm!\n Thử lại.");
+                    return;
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại.");
+        } catch (Exception e) {
+            e.printStackTrace();
+>>>>>>> 6cc9e428faec52b7936bf316216ec04f734382e6
         }
+    }//GEN-LAST:event_stkActionPerformed
+    tiet_kiem_model tkm;
+    private void tbTietkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTietkiemMouseClicked
+        int i = tbTietkiem.getSelectedRow();
+        check = true;
+        stk.setEnabled(false);
+        sua.setVisible(true);
+        xoa.setVisible(true);
+        jsd.setVisible(true);
+        sodu.setVisible(true);
+        loaitk.setEnabled(true);
+        nametk.setEnabled(true);
+        jdHan.setEnabled(true);
+        sotien.setEnabled(true);
+        sodu.setEnabled(true);
 
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Lỗi khi tải dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    }
-}
+        DefaultTableModel tb = (DefaultTableModel)tbTietkiem.getModel();
+        String so_dien_thoai = tb.getValueAt(i, 2).toString();
+        ht.setText(tb.getValueAt(i, 1).toString());
+        sdt.setText(tb.getValueAt(i, 2).toString());
+        String ngay = tb.getValueAt(i, 8).toString();
+        java.util.Date ngs;
+        try {
+            ngs = new SimpleDateFormat("yyyy-MM-dd").parse(ngay);
+            jdHan.setDate(ngs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        loaitk.setText(tb.getValueAt(i, 3).toString());
+        nametk.setText(tb.getValueAt(i, 4).toString());
+        sotien.setText(tb.getValueAt(i, 5).toString());
+        sodu.setText(tb.getValueAt(i, 6).toString());
+        
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String sql = "select * from nguoi_dung nd "
+                    + "join tai_khoan_nguoi_dung tknd on nd.so_dien_thoai = tknd.so_dien_thoai_id "
+                    + "where nd.so_dien_thoai = '"+so_dien_thoai+"' and tknd.loai_tai_khoan = N'Tài khoản tiết kiệm'";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                stk.setText(rs.getString("so_tai_khoan"));
+                cccd.setText(rs.getString("so_cong_dan"));
+                email.setText(rs.getString("email"));
+                diachi.setText(rs.getString("dia_chi"));
+                sdt.setText(rs.getString("so_dien_thoai"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        tkm = new tiet_kiem_model();
+        tkm.setId(Integer.parseInt(tb.getValueAt(i, 0).toString()));
+    }//GEN-LAST:event_tbTietkiemMouseClicked
+
+    private void suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaActionPerformed
+        try {
+            con = db.connect();
+            String loai_tiet_kiem = loaitk.getText().trim();
+            if(loai_tiet_kiem.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Chưa nhập loại tiết kiệm.");
+                return;
+            }
+            String ten_tiet_kiem = nametk.getText().trim();
+            if(ten_tiet_kiem.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Chưa có tên tiết kiệm.");
+                return;
+            }
+            String so_tien = sotien.getText().trim();
+            if(so_tien.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Chưa nhập số tiền muốn tiết kiệm.");
+                return;
+            }
+            Date ngay_dao_han = new Date(jdHan.getDate().getTime());
+            String sql = "Update tiet_kiem Set loai_tiet_kiem = N'"+loai_tiet_kiem+"', ten_tiet_kiem = N'"+ten_tiet_kiem+"', so_tien = '"+so_tien+"', ngay_dao_han = '"+ngay_dao_han+"' "
+                    + "where id = '"+tkm.getId()+"'";
+            Statement st = con.createStatement();
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(this, "Bạn đã cập nhật thành công");
+            con.close();
+            load();
+        } catch (SQLException ex) {
+            Logger.getLogger(nguoi_dung.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(nguoi_dung.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_suaActionPerformed
+
+    private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String sql = "Delete from tiet_kiem "
+                    + "where id = '"+tkm.getId()+"'";
+            int r = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa tiết kiệm này không?", "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(r == JOptionPane.YES_OPTION){
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(this, "Xóa thành công!!");
+                con.close();
+            }
+            load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }      
+    }//GEN-LAST:event_xoaActionPerformed
+
+    private void ecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecActionPerformed
+        try {
+            con = db.connect();
+            JasperDesign jdesign = JRXmlLoader.load("src\\main\\java\\com\\mycompany\\controllers\\admin\\tiet_kiem.jrxml");
+            String sql = "Select * from tiet_kiem"; 
+            JRDesignQuery updateQuery = new JRDesignQuery();
+            updateQuery.setText(sql);
+            jdesign.setQuery(updateQuery);
+            JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+            JasperPrint jprint = JasperFillManager.fillReport(jreport, null, con);
+            JasperViewer viewer = new JasperViewer(jprint, false); // false để không đóng ứng dụng khi thoát
+            viewer.setDefaultCloseOperation(JasperViewer.DISPOSE_ON_CLOSE); // Chỉ đóng cửa sổ
+            viewer.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ecActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cccd;
     private javax.swing.JTextField diachi;
+    private javax.swing.JButton ec;
     private javax.swing.JTextField email;
+    private javax.swing.JTextField ht;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -561,9 +865,8 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser jdHan;
-    private com.toedter.calendar.JDateChooser jdTao;
+    private javax.swing.JLabel jsd;
     private javax.swing.JTextField loaitk;
-    private javax.swing.JTextField name1;
     private javax.swing.JTextField nametk;
     private javax.swing.JPanel p1;
     private javax.swing.JPanel p2;
@@ -571,7 +874,9 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
     private javax.swing.JTextField sodu;
     private javax.swing.JTextField sotien;
     private javax.swing.JTextField stk;
+    private javax.swing.JButton sua;
     private javax.swing.JTable tbTietkiem;
-    private javax.swing.JButton themtk;
+    private javax.swing.JButton them;
+    private javax.swing.JButton xoa;
     // End of variables declaration//GEN-END:variables
 }
