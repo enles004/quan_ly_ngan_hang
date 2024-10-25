@@ -641,7 +641,7 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_tkMouseClicked
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-                btn_sua.setVisible(false);
+        btn_sua.setVisible(false);
         btn_xoa.setVisible(false);
         if(check == true){
             txt_ho.setText("");

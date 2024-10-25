@@ -100,7 +100,13 @@ public class admin_main_frame extends javax.swing.JFrame {
             Image scaledImg_sp = img_sp.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
             ho_tro.setIcon(new ImageIcon(scaledImg_sp));
             
+            BufferedImage img_tk = ImageIO.read(new File("src/main/java/com/mycompany/pics/money.png"));
+            Image scaledImg_tk = img_tk.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
+            tiet_kiem.setIcon(new ImageIcon(scaledImg_tk));
             
+            BufferedImage img_g = ImageIO.read(new File("src/main/java/com/mycompany/pics/gift.png"));
+            Image scaledImg_g = img_g.getScaledInstance(30, 25, Image.SCALE_SMOOTH);
+            uu_dai.setIcon(new ImageIcon(scaledImg_g));
             
 
         } catch (Exception e) {
@@ -687,7 +693,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         
         tai_khoan.setForeground(black);
         giao_dich.setForeground(black);
-        hoa_don.setForeground(black);
+        ho_tro.setForeground(black);
         lich_su.setForeground(black);
         loai_the.setForeground(black);
         the_nd.setForeground(black);
@@ -751,7 +757,26 @@ public class admin_main_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_the_ndMouseClicked
 
     private void tiet_kiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tiet_kiemMouseClicked
-        // TODO add your handling code here:
+        Desktop1.removeAll();
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        sourceLabel.setForeground(customColor);
+        
+        tai_khoan.setForeground(black);
+        giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        nguoi_dung.setForeground(black);
+        the_nd.setForeground(black);
+        thong_bao.setForeground(black);
+        ho_tro.setForeground(black);
+        uu_dai.setForeground(black);
+        vay_von.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
+        tiet_kiem tk = new tiet_kiem();
+        Desktop1.add(tk).setVisible(true);
     }//GEN-LAST:event_tiet_kiemMouseClicked
 
     private void uu_daiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uu_daiMouseClicked
@@ -769,7 +794,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         tiet_kiem.setForeground(black);
         thong_bao.setForeground(black);
         nguoi_dung.setForeground(black);
-        uu_dai.setForeground(black);
+        ho_tro.setForeground(black);
         vay_von.setForeground(black);
         bao_hiem.setForeground(black);
         thanh_toan.setForeground(black);

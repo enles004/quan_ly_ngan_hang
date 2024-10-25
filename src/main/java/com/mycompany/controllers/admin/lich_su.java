@@ -263,7 +263,7 @@ public class lich_su extends javax.swing.JInternalFrame {
             String tim = txt_tk.getText().trim();
             String sql = "select * "
             + "from giao_dich "
-            + "where so_dien_thoai_nguoi_gui like '"+tim+"%' or ten_nguoi_gui like '"+tim+"%' or so_tai_khoan_nguoi_nhan like '"+tim+"%' and trang_thai = 'thanh_cong'";
+            + "where so_dien_thoai_nguoi_gui like '"+tim+"%' or ten_nguoi_gui like N'"+tim+"%' or so_tai_khoan_nguoi_nhan like '"+tim+"%' and trang_thai = 'thanh_cong'";
             ResultSet rs = st.executeQuery(sql);
             String[] td = {"Loại giao dịch", "Tên người gửi", "SĐT người gửi", "STK người gửi", "STK người nhận", "Số tiền", "Nội dung", "Ngày GD"};
             DefaultTableModel tb = new DefaultTableModel(td, 0){

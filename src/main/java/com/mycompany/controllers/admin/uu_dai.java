@@ -14,7 +14,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +46,7 @@ public class uu_dai extends javax.swing.JInternalFrame {
         initComponents();
         load_anh();
         load();
+        load_cb();
     }
     
 
@@ -68,10 +71,13 @@ public class uu_dai extends javax.swing.JInternalFrame {
         txt_noidung = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         txt_tieude = new javax.swing.JTextField();
+        cb = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         sum_nd = new javax.swing.JLabel();
         txt_tk = new javax.swing.JTextField();
         tk = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_tb = new javax.swing.JTable();
         nhap_file = new javax.swing.JButton();
@@ -79,12 +85,13 @@ public class uu_dai extends javax.swing.JInternalFrame {
 
         setPreferredSize(new java.awt.Dimension(800, 699));
 
-        jPanel5.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel5.setBackground(new java.awt.Color(255, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setMaximumSize(new java.awt.Dimension(635, 48));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ƯU ĐÃI");
 
@@ -99,24 +106,30 @@ public class uu_dai extends javax.swing.JInternalFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
         );
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(102, 102, 102));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        btn_sua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_sua.setText("Sửa");
+        btn_sua.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         btn_sua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_suaActionPerformed(evt);
             }
         });
 
+        btn_xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_xoa.setText("Xóa");
+        btn_xoa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         btn_xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_xoaActionPerformed(evt);
             }
         });
 
+        btn_them.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_them.setText("Thêm");
+        btn_them.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         btn_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_themActionPerformed(evt);
@@ -136,20 +149,27 @@ public class uu_dai extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Tiêu đề:");
 
+        cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn đối tượng thẻ-" }));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("Đối tượng thẻ:");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4)
+                    .addComponent(cb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_tieude, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_tieude, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,50 +177,54 @@ public class uu_dai extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txt_tieude, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18))
+                        .addComponent(cb, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_tieude, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 459, Short.MAX_VALUE))
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_sua)
                     .addComponent(btn_xoa)
                     .addComponent(btn_them))
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBackground(new java.awt.Color(102, 102, 102));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         sum_nd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         sum_nd.setForeground(new java.awt.Color(204, 0, 51));
 
+        txt_tk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txt_tk.setToolTipText("");
+        txt_tk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         txt_tk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txt_tkMouseClicked(evt);
@@ -212,27 +236,39 @@ public class uu_dai extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Tìm kiếm theo tiêu đề:");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(sum_nd, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(sum_nd, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 136, 136))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tk, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sum_nd)
+                .addGap(0, 0, 0)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sum_nd))
-                    .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                        .addComponent(txt_tk)
+                        .addComponent(jLabel5))
+                    .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -253,7 +289,9 @@ public class uu_dai extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tb_tb);
 
+        nhap_file.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         nhap_file.setText("Nhập file");
+        nhap_file.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         nhap_file.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nhap_fileActionPerformed(evt);
@@ -287,17 +325,17 @@ public class uu_dai extends javax.swing.JInternalFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nhap_file, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(nhap_file, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(path))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 759, Short.MAX_VALUE)))
+                    .addGap(0, 763, Short.MAX_VALUE)))
         );
 
         pack();
@@ -334,13 +372,35 @@ public class uu_dai extends javax.swing.JInternalFrame {
         }
     }
     
+    Map<String, String> ltid = new HashMap<>();
+    private void load_cb(){
+        String sql = "select * from loai_the";
+        cb.removeAllItems();
+        cb.addItem("-Chọn loại thẻ-");
+            try {
+                con = db.connect();
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next()){
+                    String id = rs.getString("id");
+                    String ten_the = rs.getString("ten_loai_the");
+                    cb.addItem(ten_the);  
+                    ltid.put(id, ten_the);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+    
     private void load(){
         try {
+            cb.removeAllItems();
+            cb.addItem("-Chọn loại thẻ-");
             txt_tieude.setEnabled(false);
             txt_noidung.setEnabled(false);
-            
+            cb.setEnabled(false);
             txt_noidung.setText("");
-            
             txt_tieude.setText("");
             btn_sua.setVisible(false);
             btn_xoa.setVisible(false);
@@ -372,13 +432,20 @@ public class uu_dai extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-    private void ThemUuDai(String tieu_de, String noi_dung){
+    private void ThemUuDai(String id, String tieu_de, String noi_dung){
         try {
             con = db.connect();
-            String sql = "insert thong_bao (tieu_de, noi_dung, ngay_tao) "
-                + "values (N'"+tieu_de+"', N'"+noi_dung+"', getdate())";
-            Statement st = con.createStatement();
-            st.executeUpdate(sql);
+            String check = "select * from loai_the where id = '"+id+"'";
+            Statement stt = con.createStatement();
+            ResultSet rs = stt.executeQuery(check);
+            while(rs.next()){
+                String sql = "insert uu_dai (doi_tuong_the_id, tieu_de, noi_dung, ngay_tao) "
+                    + "values ('"+id+"', N'"+tieu_de+"', N'"+noi_dung+"', getdate())";
+                Statement st = con.createStatement();
+                st.executeUpdate(sql);
+                return;
+            }
+            JOptionPane.showConfirmDialog(this, "Không có đối tượng thẻ nào mang id là: " + id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -396,11 +463,10 @@ public class uu_dai extends javax.swing.JInternalFrame {
             while (itr.hasNext()) {
                 if (row_count > 0) {
                     Row row = itr.next(); 
-                    String tieu_de = row.getCell(0).getStringCellValue();
-                    String noi_dung = row.getCell(1).getStringCellValue();
-                    
-
-                    ThemUuDai(tieu_de, noi_dung);
+                    String id = row.getCell(0).getStringCellValue();
+                    String tieu_de = row.getCell(1).getStringCellValue();
+                    String noi_dung = row.getCell(2).getStringCellValue();
+                    ThemUuDai(id, tieu_de, noi_dung);
                 }
                 row_count++;
             }
@@ -415,6 +481,17 @@ public class uu_dai extends javax.swing.JInternalFrame {
         try {
             
             con = db.connect();
+            String loai_the = cb.getSelectedItem().toString();
+            if(loai_the.equals("-Chọn đối tượng thẻ-")){
+                JOptionPane.showMessageDialog(this, "Chưa chọn đối tượng thẻ.");
+                return;
+            }
+            String loai_the_id = ltid.entrySet()
+                        .stream()
+                        .filter(entry -> entry.getValue().equals(loai_the))
+                        .map(Map.Entry::getKey)
+                        .findFirst()
+                        .orElse(null);
             String tieu_de = txt_tieude.getText().trim();
             if(tieu_de.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Tiêu đề không được để trống.");
@@ -426,7 +503,7 @@ public class uu_dai extends javax.swing.JInternalFrame {
                 return;
             }
            
-            String sql = "Update uu_dai Set tieu_de = N'"+tieu_de+"', noi_dung = N'"+noi_dung+"'"
+            String sql = "Update uu_dai Set doi_tuong_the_id = '"+loai_the_id+"', tieu_de = N'"+tieu_de+"', noi_dung = N'"+noi_dung+"'"
             + "where id = '"+tbb.getId()+"'";
             Statement st = con.createStatement();
             st.executeUpdate(sql);
@@ -464,18 +541,30 @@ public class uu_dai extends javax.swing.JInternalFrame {
         if(check == true){
             txt_noidung.setText("");
             txt_tieude.setText("");
+            cb.setSelectedItem("-Chọn đối tượng thẻ-");
             check = false;
             return;
         }
         if(!txt_tieude.isEnabled()){
             txt_tieude.setEnabled(true);
             txt_noidung.setEnabled(true);
-            
+            cb.setEnabled(true);
             return;
         }
         try {
             con = db.connect();
             Statement st = con.createStatement();
+            String loai_the = cb.getSelectedItem().toString();
+            if(loai_the.equals("-Chọn đối tượng thẻ-")){
+                JOptionPane.showMessageDialog(this, "Chưa chọn đối tượng thẻ.");
+                return;
+            }
+            String loai_the_id = ltid.entrySet()
+                        .stream()
+                        .filter(entry -> entry.getValue().equals(loai_the))
+                        .map(Map.Entry::getKey)
+                        .findFirst()
+                        .orElse(null);
             String tieu_de = txt_tieude.getText().trim();
             if(tieu_de.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Tiêu đề không được để trống.");
@@ -489,8 +578,8 @@ public class uu_dai extends javax.swing.JInternalFrame {
            
             
 
-            String sql = "insert into thong_bao (tieu_de, noi_dung, ngay_tao)"
-            + "values (N'"+tieu_de+"', N'"+noi_dung+"', getdate())";
+            String sql = "insert into uu_dai (doi_tuong_the_id, tieu_de, noi_dung, ngay_tao) "
+            + "values ('"+loai_the_id+"', N'"+tieu_de+"', N'"+noi_dung+"', getdate())";
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(this, "Thêm ưu đãi thành công.");
             load();
@@ -500,6 +589,8 @@ public class uu_dai extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void txt_tkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_tkMouseClicked
+        cb.removeAllItems();
+        cb.addItem("-Chọn loại thẻ-");
         txt_noidung.setText("");
         txt_tieude.setText("");
         btn_sua.setVisible(false);
@@ -513,13 +604,14 @@ public class uu_dai extends javax.swing.JInternalFrame {
             String tim = txt_tk.getText().trim();
             String sql = "select * "
             + "from uu_dai "
-            + "where tieu_de like '%"+tim+"%'";
+            + "where tieu_de like N'%"+tim+"%'";
             ResultSet rs = st.executeQuery(sql);
-            String[] td = {"ID","Dối tượng thẻ ID", "Tiêu đề", "Nội dung", "Ngày tạo"};
+            String[] td = {"ID", "Đối tượng thẻ ID", "Tiêu đề", "Nội dung", "Ngày tạo"};
             DefaultTableModel tb = new DefaultTableModel(td, 0);
             while(rs.next()){
                 Vector v = new Vector();
                 v.add(rs.getString("id"));
+                v.add(rs.getString("doi_tuong_the_id"));
                 v.add(rs.getString("tieu_de"));
                 v.add(rs.getString("noi_dung"));
                 v.add(rs.getString("ngay_tao"));
@@ -539,9 +631,21 @@ public class uu_dai extends javax.swing.JInternalFrame {
         btn_xoa.setVisible(true);
         txt_noidung.setEnabled(true);
         txt_tieude.setEnabled(true);
+        cb.setEnabled(true);
         DefaultTableModel tb = (DefaultTableModel)tb_tb.getModel();
-        txt_noidung.setText(tb.getValueAt(i, 2).toString());
-        txt_tieude.setText(tb.getValueAt(i, 1).toString());
+        txt_noidung.setText(tb.getValueAt(i, 3).toString());
+        txt_tieude.setText(tb.getValueAt(i, 2).toString());
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String sql = "select * from loai_the where id = '"+tb.getValueAt(i, 1)+"'";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                cb.setSelectedItem(rs.getString("ten_loai_the"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         tbb = new thong_bao_model();
         tbb.setId(Integer.parseInt(tb.getValueAt(i, 0).toString()));
     }//GEN-LAST:event_tb_tbMouseClicked
@@ -572,9 +676,12 @@ public class uu_dai extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_xoa;
+    private javax.swing.JComboBox<String> cb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
