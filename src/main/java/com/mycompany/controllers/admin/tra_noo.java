@@ -156,6 +156,7 @@ public class tra_noo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -177,7 +178,7 @@ public class tra_noo extends javax.swing.JInternalFrame {
         txtSotaikhoan = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        CheckBox = new javax.swing.JCheckBox();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -324,13 +325,14 @@ public class tra_noo extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Hình thức trả nợ:");
 
-        jCheckBox1.setText("Tôi đồng ý với Quy định về các nội dung trong Hợp đồng và điều khoản điều kiện kèm theo. ");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        CheckBox.setText("Tôi đồng ý với Quy định về các nội dung trong Hợp đồng và điều khoản điều kiện kèm theo. ");
+        CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                CheckBoxActionPerformed(evt);
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Tất toán - đóng khoản vay");
         jRadioButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -344,6 +346,7 @@ public class tra_noo extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Số tiền trả:");
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Trả nợ định kỳ");
         jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -366,7 +369,7 @@ public class tra_noo extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(103, 103, 103)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGap(13, 13, 13)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +420,7 @@ public class tra_noo extends javax.swing.JInternalFrame {
                         .addComponent(jLabel7)
                         .addComponent(txtTong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
-                    .addComponent(jCheckBox1)
+                    .addComponent(CheckBox)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -525,9 +528,9 @@ public class tra_noo extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtSotaikhoanActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_CheckBoxActionPerformed
 
     private void jRadioButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton2MouseClicked
 
@@ -615,7 +618,7 @@ public class tra_noo extends javax.swing.JInternalFrame {
     private void txtSo_tien_traActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSo_tien_traActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSo_tien_traActionPerformed
-tai_khoan_nguoi_dung_model tknd;
+        tai_khoan_nguoi_dung_model tknd;
     private void tb_tra_noMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_tra_noMouseClicked
         int i = tb_tra_no.getSelectedRow();
         txtHo.setEditable(false);
@@ -631,6 +634,8 @@ tai_khoan_nguoi_dung_model tknd;
         txtCancuoc.setEditable(false);
         txtSotaikhoan.setVisible(true);
         txtSotaikhoan.setEditable(false);
+        txtSo_tien_tra.setVisible(true);
+        txtSo_tien_tra.setEditable(false);
         txtLai_phai_tra.setEditable(false);
         txtLai_phai_tra.setVisible(true);
         txtTong.setEditable(false);
@@ -652,6 +657,7 @@ tai_khoan_nguoi_dung_model tknd;
 
         txtCancuoc.setText(tb.getValueAt(i, 6).toString());
         txtSotaikhoan.setText(tb.getValueAt(i, 7).toString());
+       
 
         tknd = new tai_khoan_nguoi_dung_model();
         tknd.setId(Integer.parseInt(tb.getValueAt(i, 0).toString()));
@@ -659,7 +665,13 @@ tai_khoan_nguoi_dung_model tknd;
     }//GEN-LAST:event_tb_tra_noMouseClicked
 boolean check = false;
     private void btnThanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhtoanActionPerformed
-        // Lấy dữ liệu từ các components
+        
+        // Kiểm tra xem checkbox đã được tích hay chưa
+    if (!CheckBox.isSelected()) {
+        JOptionPane.showMessageDialog(this, "Bạn phải đồng ý với các điều khoản trước khi thanh toán!");
+        return; // Dừng lại nếu chưa tích vào checkbox
+    }
+    // Lấy dữ liệu từ các components
         if (check == true) {
             txtHo.setVisible(true);
             txtTen.setVisible(true);
@@ -735,6 +747,31 @@ boolean check = false;
             st.executeUpdate();
             con.close();
             JOptionPane.showMessageDialog(this, "Thanh toán thành công");
+            
+            // Sau khi thanh toán thành công, kiểm tra nếu chọn tất toán
+            if (jRadioButton2.isSelected()) {
+                int confirmed = JOptionPane.showConfirmDialog(this,
+                    "Bạn đã tất toán khoản vay. Bạn có muốn xoá khoản vay này không?", 
+                    "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+                // Nếu người dùng chọn Yes
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    // Thực hiện xoá khoản vay
+                    try {
+                        String deleteSQL = "DELETE FROM khoan_vay WHERE so_tai_khoan_id = ?";
+                        PreparedStatement deleteStatement = con.prepareStatement(deleteSQL);
+                        deleteStatement.setString(1, so_tai_khoan_id);
+                        deleteStatement.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Khoản vay đã được xoá thành công!");
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                } else if (confirmed == JOptionPane.NO_OPTION) {
+                    // Nếu người dùng chọn No, không làm gì thêm
+                    JOptionPane.showMessageDialog(this, "Khoản vay không bị xoá.");
+                }
+            }
+            
             load_Tra_no();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -772,10 +809,11 @@ boolean check = false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CheckBox;
     private javax.swing.JButton btnThanhtoan;
     private javax.swing.JButton btnXoa;
+    private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser dateNgaysinh;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

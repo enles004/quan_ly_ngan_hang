@@ -539,9 +539,9 @@ public class vay_vonn extends javax.swing.JInternalFrame {
         try {
             con = db.connect();
             Statement st = con.createStatement();
-            String sql = " SELECT * from khoan_vay kv "
-            + "join tai_khoan_nguoi_dung tknd on tknd.so_tai_khoan = kv.so_tai_khoan_id "
-            + "join nguoi_dung nd on nd.so_dien_thoai = tknd.so_dien_thoai_id "
+            String sql = "select * "
+            + "from nguoi_dung nd "
+            + "join tai_khoan_nguoi_dung tknd on nd.so_dien_thoai = tknd.so_dien_thoai_id "
             + "where tknd.so_tai_khoan = '"+stk+"'";
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
