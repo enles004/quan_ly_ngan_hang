@@ -181,7 +181,15 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Họ và tên:");
 
+<<<<<<< HEAD
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+=======
         email.setEditable(false);
+>>>>>>> 6cc9e428faec52b7936bf316216ec04f734382e6
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Số điện thoại:");
@@ -647,6 +655,32 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         email.setText(em); // Email
         sotien.setText(amount); // Số tiền
     }
+<<<<<<< HEAD
+    }//GEN-LAST:event_themtkMouseClicked
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+    private void loadBang() {
+    DefaultTableModel model = (DefaultTableModel) tbTietkiem.getModel();
+    model.setRowCount(0); // Xóa dữ liệu cũ
+
+        try (Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost\\NguyenDinhTam:1433;databaseName=Embeiu", "sa", "27012004");
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM tbTietkiem")) {
+
+        // Thêm dữ liệu vào bảng
+        while (rs.next()) {
+            String sodienthoai = rs.getString("sodienthoai");
+            String em = rs.getString("email");
+            String savingType = rs.getString("savingType");
+            String savingName = rs.getString("savingName");
+            String amount = rs.getString("amount");
+            String createdDate = rs.getString("createdDate");
+            String expireDate = rs.getString("expireDate");
+            String balance = rs.getString("balance");
+            model.addRow(new Object[]{sodienthoai, savingType, savingName, amount, createdDate, expireDate, balance});
+=======
     }//GEN-LAST:event_themMouseClicked
     Connection con;
     private void stkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stkActionPerformed
@@ -677,6 +711,7 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại.");
         } catch (Exception e) {
             e.printStackTrace();
+>>>>>>> 6cc9e428faec52b7936bf316216ec04f734382e6
         }
     }//GEN-LAST:event_stkActionPerformed
     tiet_kiem_model tkm;
