@@ -332,6 +332,11 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
                 txt_tkMouseClicked(evt);
             }
         });
+        txt_tk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_tkActionPerformed(evt);
+            }
+        });
         txt_tk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_tkKeyReleased(evt);
@@ -758,6 +763,10 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_nhapActionPerformed
+
+    private void txt_tkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_tkActionPerformed
     Connection con;
     
     private void load(){
