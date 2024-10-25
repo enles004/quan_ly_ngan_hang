@@ -209,7 +209,7 @@ public class thong_bao extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Loại thông báo:");
 
-        txt_ltb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn-", "Người dùng", "Nhân viên" }));
+        txt_ltb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn-", "Thông báo giao dịch", "Thông báo số dư", "Thông báo lãi suất", "Thông báo phí dịch vụ", "Thông báo bảo mật" }));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Tiêu đề:");
