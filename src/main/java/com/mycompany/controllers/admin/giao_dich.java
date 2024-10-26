@@ -470,7 +470,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
             return;
         }
         String stk_ngg = stk_ng.getText().trim();
-        String so_tien = st_ng.getText().trim();
+        String so_tien = st_ng.getText().trim().replaceAll(",", "");
         if(so_tien.isEmpty()){
             JOptionPane.showMessageDialog(this, "Tên người dùng không được để trống.");
             return;
