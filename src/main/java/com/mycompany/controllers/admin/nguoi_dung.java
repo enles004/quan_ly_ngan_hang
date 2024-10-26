@@ -175,8 +175,20 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Họ:");
 
+        txt_ho.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_hoKeyReleased(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Tên:");
+
+        txt_ten.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_tenKeyReleased(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Giới tính:");
@@ -195,11 +207,36 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("SĐT:");
 
+        txt_sdt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_sdtKeyReleased(evt);
+            }
+        });
+
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("CCCD:");
 
+        txt_cccd.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txt_cccdInputMethodTextChanged(evt);
+            }
+        });
+        txt_cccd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_cccdKeyReleased(evt);
+            }
+        });
+
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("Email:");
+
+        txt_email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_emailFocusLost(evt);
+            }
+        });
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -348,26 +385,27 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(49, 49, 49)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sum_nd, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(225, 225, 225)
+                .addComponent(txt_tk, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 7, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_tk, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(sum_nd)))
+                        .addComponent(txt_tk, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(sum_nd))))
                 .addContainerGap())
         );
 
@@ -693,11 +731,17 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
             String sdt = txt_sdt.getText().trim();
             String cccd = txt_cccd.getText().trim();
             String email = txt_email.getText().trim();
-            String sql = "insert into nguoi_dung (ho, ten, ngay_sinh, gioi_tinh, dia_chi, so_dien_thoai, email, so_cong_dan)"
+            String check = "select * from nguoi_dung where so_dien_thoai = '"+sdt+"'";
+            ResultSet rs = st.executeQuery(check);
+            while(rs.next()){
+                String sql = "insert into nguoi_dung (ho, ten, ngay_sinh, gioi_tinh, dia_chi, so_dien_thoai, email, so_cong_dan)"
                     + "values (N'"+ho+"', N'"+ten+"', '"+ns+"', N'"+gioi_tinh+"', N'"+dc+"', '"+sdt+"', N'"+email+"', N'"+cccd+"')";
-            st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(this, "Thêm người dùng mới thành công.");
-            load();
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(this, "Thêm người dùng mới thành công.");
+                load();
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Người dùng đã tồn tại.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -707,9 +751,15 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
         try {
             con = db.connect();
             Statement st = con.createStatement();
-            String sql = "insert into nguoi_dung values "
+            String check = "select * from nguoi_dung where so_dien_thoai = '"+sdt+"'";
+            ResultSet rs = st.executeQuery(check);
+            while(rs.next()){
+                String sql = "insert into nguoi_dung values "
                     + "(N'"+ho+"', N'"+ten+"', '"+ns+"', N'"+gt+"', N'"+dc+"', '"+sdt+"', '"+email+"', '"+cccd+"')";
-            st.executeUpdate(sql);
+                st.executeUpdate(sql);
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "SDT người dùng: " + sdt + " Đã tồn tại.");
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Người dùng: " + ho + " " + ten + "Lỗi: " + e.getMessage());
@@ -767,6 +817,68 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
     private void txt_tkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_tkActionPerformed
+
+    private void txt_hoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_hoKeyReleased
+        String text = txt_ho.getText().trim();
+        if (!text.matches("[\\p{L}\\s]*")) { 
+            javax.swing.JOptionPane.showMessageDialog(this, "Không được nhập số. Vui lòng chỉ nhập chữ cái.", "Lỗi nhập liệu", javax.swing.JOptionPane.WARNING_MESSAGE);
+            text = text.replaceAll("[^\\p{L}\\s]", ""); 
+            txt_ho.setText(text);
+        }
+    }//GEN-LAST:event_txt_hoKeyReleased
+
+    private void txt_tenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tenKeyReleased
+        String text = txt_ten.getText().trim();
+        if (!text.matches("[\\p{L}\\s]*")) { 
+            javax.swing.JOptionPane.showMessageDialog(this, "Không được nhập số. Vui lòng chỉ nhập chữ cái.", "Lỗi nhập liệu", javax.swing.JOptionPane.WARNING_MESSAGE);
+            text = text.replaceAll("[^\\p{L}\\s]", ""); 
+            txt_ten.setText(text);
+        } 
+    }//GEN-LAST:event_txt_tenKeyReleased
+
+    private void txt_sdtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_sdtKeyReleased
+        String text = txt_sdt.getText().trim();
+        text = text.replaceAll("[^0-9]", ""); 
+        txt_sdt.setText(text);
+        if (text.length() > 10 || (text.length() >= 2 && !text.matches("^(03|05|07|08|09).*$"))) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại Việt Nam hợp lệ.", "Lỗi nhập liệu", javax.swing.JOptionPane.WARNING_MESSAGE);
+            text = text.substring(0, Math.min(text.length(), 10));
+            txt_sdt.setText(text);
+        }
+    }//GEN-LAST:event_txt_sdtKeyReleased
+
+    private void txt_cccdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cccdKeyReleased
+        String text = txt_cccd.getText();
+        text = text.replaceAll("[^0-9]", "");
+        txt_cccd.setText(text);
+        if (text.length() > 12) {
+            javax.swing.JOptionPane.showMessageDialog(this, "CCCD chỉ được phép tối đa 12 số.", "Lỗi nhập liệu", javax.swing.JOptionPane.WARNING_MESSAGE);
+            text = text.substring(0, 12);
+            txt_cccd.setText(text);
+        }  
+    }//GEN-LAST:event_txt_cccdKeyReleased
+
+    private void txt_cccdInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txt_cccdInputMethodTextChanged
+        String composedText = txt_cccd.getText();
+
+        if (!composedText.matches("[0-9]*")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "CCCD chỉ được phép chứa số, không được nhập ký tự.", "Lỗi nhập liệu", javax.swing.JOptionPane.WARNING_MESSAGE);
+
+            composedText = composedText.replaceAll("[^0-9]", "");
+            txt_cccd.setText(composedText);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cccdInputMethodTextChanged
+
+    private void txt_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_emailFocusLost
+        String email = txt_email.getText();
+        String gmailPattern = "^[a-zA-Z0-9._%+-]+@gmail\\.com$";
+        if (!email.matches(gmailPattern) && !email.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Vui lòng nhập địa chỉ Gmail hợp lệ (phải kết thúc bằng @gmail.com).", "Lỗi nhập liệu", javax.swing.JOptionPane.WARNING_MESSAGE);
+            txt_email.setText("");
+            txt_email.requestFocus(); 
+        }
+    }//GEN-LAST:event_txt_emailFocusLost
     Connection con;
     
     private void load(){

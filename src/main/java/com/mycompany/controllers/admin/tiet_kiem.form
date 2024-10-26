@@ -305,15 +305,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="email">
-<<<<<<< HEAD
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailActionPerformed"/>
-                  </Events>
-=======
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
->>>>>>> 6cc9e428faec52b7936bf316216ec04f734382e6
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
@@ -382,10 +376,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jsd" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jsd" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="sodu" max="32767" attributes="0"/>
@@ -499,6 +490,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="sodu">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jdHan">
                 </Component>

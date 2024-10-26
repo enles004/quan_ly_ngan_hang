@@ -231,6 +231,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="ht_ng">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ht_ngKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
@@ -241,6 +244,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="sdt_ng">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sdt_ngKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
@@ -251,6 +257,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="stk_ng">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="stk_ngKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
@@ -261,6 +270,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="st_ng">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="st_ngKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
@@ -406,6 +418,7 @@
                 <Component class="javax.swing.JTextField" name="stk_nn">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stk_nnActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="stk_nnKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">

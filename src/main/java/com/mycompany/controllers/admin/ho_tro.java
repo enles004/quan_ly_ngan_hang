@@ -428,7 +428,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
             
             
             BufferedImage img_tc = ImageIO.read(new File("src/main/java/com/mycompany/pics/rj.png"));
-            Image scaledImg_tc = img_tk.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            Image scaledImg_tc = img_tc.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             tc.setIcon(new ImageIcon(scaledImg_tc));
             
         } catch (Exception e) {
@@ -630,19 +630,19 @@ public class ho_tro extends javax.swing.JInternalFrame {
             if (status == "Chờ xử lý"){
                 lb1.setText("Tổng số hỗ trợ đang chờ xử lý:");
                 where = "where ht.trang_thai = 'cho_xu_ly' "
-                + "ht.so_dien_thoai_id like '"+tim+"%'";
+                + "and ht.so_dien_thoai_id like N'"+tim+"%'";
             }
             else if(status == "Đã xử lý"){
                 timkiem.setVisible(true);
                 lb1.setText("Tổng số hỗ trợ đã xử lý:");
                 where = "where ht.trang_thai = 'da_xu_ly' "
-                + "ht.so_dien_thoai_id like '"+tim+"%'";
+                + "and ht.so_dien_thoai_id like N'"+tim+"%'";
             }
             else if(status == "Đã từ chối"){
                 timkiem.setVisible(true);
                 lb1.setText("Tổng số hỗ trợ đã từ chối:");
                 where = "where ht.trang_thai = 'da_tu_choi' "
-                + "ht.so_dien_thoai_id like '"+tim+"%'";
+                + "and ht.so_dien_thoai_id like N'"+tim+"%'";
             }
             else{
                 return;
@@ -794,7 +794,7 @@ public class ho_tro extends javax.swing.JInternalFrame {
             con = db.connect();
             Statement st = con.createStatement();
             int id = htm.getId();
-            String sql = "update ho_tro_nguoi_dung set trang_thai = 'da_tu_choi, ngay_xu_ly = getdate() "
+            String sql = "update ho_tro_nguoi_dung set trang_thai = 'da_tu_choi', ngay_xu_ly = getdate() "
                         + "where id = '"+id+"'";
             int r = JOptionPane.showConfirmDialog(this, "Bạn có từ chối hỗ trợ này không?", "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(r == JOptionPane.YES_OPTION){

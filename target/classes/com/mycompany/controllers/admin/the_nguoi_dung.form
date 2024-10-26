@@ -256,6 +256,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="sdt">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sdtKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jst">
           <Properties>
