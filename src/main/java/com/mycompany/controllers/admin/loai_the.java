@@ -26,7 +26,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -104,6 +106,15 @@ public class loai_the extends javax.swing.JInternalFrame {
             }
             sum_nd.setText(sum + "");
             tb_lt.setModel(tb);
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+            DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+            rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+
+            tb_lt.getColumnModel().getColumn(0).setCellRenderer(centerRenderer); 
+            tb_lt.getColumnModel().getColumn(3).setCellRenderer(centerRenderer); 
+            tb_lt.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -690,7 +701,7 @@ public class loai_the extends javax.swing.JInternalFrame {
             }
             String check = "select * from loai_the where ten_loai_the = N'"+ten+"'";
             ResultSet rs = st.executeQuery(check);
-            while(rs.next()){
+            while(!rs.next()){
                 String sql = "insert into loai_the (ten_loai_the, uu_dai, han_muc_su_dung, phi_dich_vu, ngay_tao)"
                     + "values (N'"+ten+"', N'"+uu_dai+"', '"+han_muc+"', '"+phi_dich_vu+"', getdate())";
                 st.executeUpdate(sql);
