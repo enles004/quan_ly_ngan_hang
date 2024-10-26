@@ -587,7 +587,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
     private void st_ngKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_st_ngKeyReleased
         String text = st_ng.getText().trim();
         text = text.replaceAll("[^0-9]", ""); 
-        st_ng.setText(text);        // TODO add your handling code here:
+        st_ng.setText(formatNumber(text));        // TODO add your handling code here:
     }//GEN-LAST:event_st_ngKeyReleased
     public static String formatNumber(String input) {
         try {
@@ -601,7 +601,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
     private void stk_nnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stk_nnKeyReleased
         String text = stk_nn.getText().trim();
         text = text.replaceAll("[^0-9]", ""); 
-        stk_nn.setText(formatNumber(text)); // TODO add your handling code here:
+        stk_nn.setText(text); // TODO add your handling code here:
     }//GEN-LAST:event_stk_nnKeyReleased
 
 
