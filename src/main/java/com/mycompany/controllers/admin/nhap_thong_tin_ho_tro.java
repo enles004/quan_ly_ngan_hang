@@ -36,22 +36,18 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
      */
     public nhap_thong_tin_ho_tro() {
         initComponents();
-    txt_sdtyc.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyPressed(java.awt.event.KeyEvent evt) {
-            txt_sdtycKeyPressed(evt);
-        }
-    });
+        load();
         this.setDefaultCloseOperation(javax.swing.JInternalFrame.DISPOSE_ON_CLOSE); // Đóng form mà không thoát ứng dụng
         this.setSize(600, 400); // Đặt kích thước cho form
     // Lấy kích thước của màn hình
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    
-    // Tính toán vị trí để đặt form ở giữa màn hình
-    int x = (screenSize.width - this.getWidth()) / 2;
-    int y = (screenSize.height - this.getHeight()) / 2;
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    // Đặt vị trí cho form
-    this.setLocation(x, y);
+        // Tính toán vị trí để đặt form ở giữa màn hình
+        int x = (screenSize.width - this.getWidth()) / 2;
+        int y = (screenSize.height - this.getHeight()) / 2;
+
+        // Đặt vị trí cho form
+        this.setLocation(x, y);
     }
 
     /**
@@ -68,18 +64,12 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
         txt_sdtyc = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txt_noidungyc = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        ngayyeucau = new com.toedter.calendar.JDateChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbHotro = new javax.swing.JTable();
         btn_them = new javax.swing.JButton();
-        btn_sua = new javax.swing.JButton();
-        btn_xoa = new javax.swing.JButton();
         btn_trolai = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txt_ho = new javax.swing.JTextField();
+        ht = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txt_ten = new javax.swing.JTextField();
+        cccd = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(800, 699));
 
@@ -94,11 +84,6 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
                 txt_sdtycActionPerformed(evt);
             }
         });
-        txt_sdtyc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_sdtycKeyPressed(evt);
-            }
-        });
 
         jLabel2.setText("Nội dung yêu cầu:");
 
@@ -108,39 +93,10 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setText("Ngày yêu cầu");
-
-        tbHotro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "SĐT", "Họ", "Tên", "Ngày yêu cầu", "Nội dung", "Trạng thái"
-            }
-        ));
-        jScrollPane1.setViewportView(tbHotro);
-
         btn_them.setText("Thêm");
         btn_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_themActionPerformed(evt);
-            }
-        });
-
-        btn_sua.setText("Sửa");
-        btn_sua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_suaActionPerformed(evt);
-            }
-        });
-
-        btn_xoa.setText("Xóa");
-        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_xoaActionPerformed(evt);
             }
         });
 
@@ -151,89 +107,66 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel4.setText("Họ ");
+        jLabel4.setText("Họ và tên:");
 
-        jLabel5.setText("Tên");
+        jLabel5.setText("CCCD:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(186, 186, 186)
-                        .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(ht, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                .addComponent(txt_sdtyc)
+                                .addComponent(cccd))
+                            .addComponent(jLabel1))
+                        .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txt_ho, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                                    .addComponent(txt_sdtyc)
-                                    .addComponent(txt_ten))
-                                .addGap(67, 67, 67)
+                                .addGap(106, 106, 106)
+                                .addComponent(btn_trolai, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 20, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(txt_noidungyc)
-                                    .addComponent(ngayyeucau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(19, 19, 19)
-                                    .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btn_xoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btn_trolai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(106, 106, 106))))
+                                    .addComponent(txt_noidungyc, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(20, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_sdtyc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ngayyeucau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_noidungyc, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txt_ho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_sdtyc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ht, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_ten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cccd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_them)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_sua)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_xoa)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_trolai)))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_noidungyc)))
+                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_them)
+                    .addComponent(btn_trolai))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -242,8 +175,8 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,49 +189,29 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
- private void load() {
-    try {
-        Connection con = db.connect();
-        String sql = "SELECT n.so_dien_thoai, n.ho, n.ten, h.ngay_tao, h.noi_dung, h.trang_thai " +
-                     "FROM nguoi_dung n " +
-                     "JOIN ho_tro_nguoi_dung h ON n.id = h.nguoi_dung_id";
-     
-        Statement st = con.createStatement(); 
-        ResultSet rs = st.executeQuery(sql); 
-
-        // Tiêu đề cột cho JTable
-        String[] tieude = {"SĐT", "Họ", "Tên", "Ngày Yêu Cầu", "Nội Dung", "Trạng Thái"};
-        DefaultTableModel tb = new DefaultTableModel(tieude, 0); // Tạo model cho JTable
-
-        while (rs.next()) {
-            Vector<Object> v = new Vector<>(); 
-            v.add(rs.getString("so_dien_thoai"));
-            v.add(rs.getString("ho")); 
-            v.add(rs.getString("ten")); 
-            v.add(rs.getDate("ngay_tao")); 
-            v.add(rs.getString("noi_dung")); 
-            v.add(rs.getString("trang_thai")); 
-            tb.addRow(v); 
-        }
-
-        
-        tbHotro.setModel(tb); 
-
-        // Đóng tài nguyên
-        rs.close(); // Đóng ResultSet
-        st.close(); // Đóng Statement
-        con.close(); // Đóng Connection
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu: " + ex.getMessage());
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
+    Connection con;
+    private void load(){
+        cccd.setEnabled(false);
+        ht.setEnabled(false);
     }
-}
-
-
     private void txt_sdtycActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_sdtycActionPerformed
+        String stk_nnn = txt_sdtyc.getText().trim();
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String sql = "select * "
+                    + "from nguoi_dung "
+                    + "where so_dien_thoai = '"+stk_nnn+"'"; 
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                ht.setText(rs.getString("ho") +" "+ rs.getString("ten"));
+                cccd.setText(rs.getString("so_cong_dan"));
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Số điện thoại không tồn tại.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_sdtycActionPerformed
 
@@ -309,229 +222,47 @@ public class nhap_thong_tin_ho_tro extends javax.swing.JInternalFrame {
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
       
-        String sdt = txt_sdtyc.getText().trim();
-
-try {
-    Connection con = db.connect();
-    // Kiểm tra nếu số điện thoại người dùng tồn tại trong hệ thống
-    String sql = "SELECT nd.id, nd.ho, nd.ten "
-               + "FROM nguoi_dung nd "
-               + "JOIN ho_tro_nguoi_dung htnd ON nd.id = htnd.nguoi_dung_id "
-               + "WHERE nd.so_dien_thoai = ?";
-    PreparedStatement ps = con.prepareStatement(sql);
-    ps.setString(1, sdt);
-    
-    ResultSet rs = ps.executeQuery();
-    
-    if (rs.next()) {
-        // Nếu tìm thấy người dùng, điền thông tin họ tên
-        int nguoidungid = rs.getInt("id");
-        txt_ho.setText(rs.getString("ho"));
-        txt_ten.setText(rs.getString("ten"));
-        
-        // Lấy dữ liệu từ các field cần thiết
-        Date ngayyc = new Date(ngayyeucau.getDate().getTime());
-        String nd = txt_noidungyc.getText().trim();
-   
-        String sqlHoTro = "INSERT INTO ho_tro_nguoi_dung (nguoi_dung_id, trang_thai, ngay_tao, mo_ta) VALUES (?, 'dang_xu_ly', ?, ?)";
-        PreparedStatement stHoTro = con.prepareStatement(sqlHoTro);
-        stHoTro.setInt(1, nguoidungid); 
-        stHoTro.setDate(2, new java.sql.Date(ngayyc.getTime()));
-        stHoTro.setString(3, nd); 
-        stHoTro.executeUpdate();
-
-        JOptionPane.showMessageDialog(this, "Thêm mới thành công");
-        load();
-    } else {    
-        JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại.");
-    }
-    
-    // Đóng kết nối
-    con.close();
-    
-} catch (SQLException ex) {
-    ex.printStackTrace();
-    JOptionPane.showMessageDialog(this, "Lỗi khi thực hiện thao tác trên cơ sở dữ liệu.");
-} catch (ClassNotFoundException ex) {
-    Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
-}
-
+        String sdtt = txt_sdtyc.getText().trim();
+        String nd= txt_noidungyc.getText().trim();
+        try {
+            con=db.connect();
+            String sqlNguoiDung = "INSERT INTO ho_tro_nguoi_dung (so_dien_thoai_id, mo_ta, trang_thai, ngay_tao) VALUES (?, ?, ?, getdate())";
+            PreparedStatement stNguoiDung=con.prepareStatement(sqlNguoiDung);
+            stNguoiDung.setString(1, sdtt);
+            stNguoiDung.setString(2, nd);
+            stNguoiDung.setString(3, "dang_xu_ly");
+            stNguoiDung.executeUpdate();
+            JOptionPane.showMessageDialog(this,"Thêm mới thành công.");
+        }   catch(SQLException ex){
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_btn_themActionPerformed
 
-    private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-        // TODO add your handling code here:
-                                           
-    try {
-        // B1: Lấy dữ liệu từ các component đưa vào biến
-        String sdt = txt_sdtyc.getText().trim();
-        String ho = txt_ho.getText().trim();
-        String ten = txt_ten.getText().trim();
-        Date ngayyc = new Date(ngayyeucau.getDate().getTime());
-        String nd = txt_noidungyc.getText().trim();
-        String trangThai = "chờ xử lý"; // Trạng thái mặc định
-
-        // B2: Kết nối đến DB
-       Connection con = null;
-        con=db.connect();
-
-        // B3: Cập nhật thông tin người dùng trong bảng nguoi_dung
-        String sqlNguoiDung = "UPDATE nguoi_dung SET ho = ?, ten = ?, so_dien_thoai = ? WHERE so_dien_thoai = ?";
-        PreparedStatement stNguoiDung = con.prepareStatement(sqlNguoiDung);
-        stNguoiDung.setString(1, ho);
-        stNguoiDung.setString(2, ten);
-        stNguoiDung.setString(3, sdt);
-        stNguoiDung.setString(4, sdt); // Cập nhật theo số điện thoại
-
-        int nguoiDungRowsAffected = stNguoiDung.executeUpdate();
-
-        // B4: Cập nhật thông tin hỗ trợ trong bảng ho_tro
-        String sqlHoTro = "UPDATE ho_tro_nguoi_dung SET ngay_tao = ?, noi_dung = ?, trang_thai = ? WHERE nguoi_dung_id = (SELECT id FROM nguoi_dung WHERE so_dien_thoai = ?)";
-        PreparedStatement stHoTro = con.prepareStatement(sqlHoTro);
-        stHoTro.setDate(1, new java.sql.Date(ngayyc.getTime())); // Chuyển đổi Date
-        stHoTro.setString(2, nd);
-        stHoTro.setString(3, trangThai);
-        stHoTro.setString(4, sdt); // Lấy ID người dùng từ số điện thoại
-
-        int hoTroRowsAffected = stHoTro.executeUpdate();
-
-        // Kiểm tra số hàng bị ảnh hưởng
-        if (nguoiDungRowsAffected > 0 || hoTroRowsAffected > 0) {
-            JOptionPane.showMessageDialog(this, "Sửa thành công!");
-            load(); // Tải lại dữ liệu
-        } else {
-            JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin người dùng hoặc hỗ trợ!");
-        }
-
-        // Đóng tài nguyên
-        stNguoiDung.close();
-        stHoTro.close();
-        con.close();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Lỗi khi sửa dữ liệu: " + ex.getMessage());
-    }   catch (ClassNotFoundException ex) {
-            Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    }//GEN-LAST:event_btn_suaActionPerformed
-
-    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
-        // TODO add your handling code here:
-                                 
-    try {
-        // B1: Lấy dữ liệu từ component đưa vào biến
-        String sdt = txt_sdtyc.getText().trim(); // Hoặc lấy từ mã tác giả nếu cần
-
-        // B2: Kết nối đến DB
-        Connection con = null;
-        con=db.connect();
-
-
-        // B3: Xóa thông tin hỗ trợ người dùng trong bảng ho_tro
-        String sqlHoTro = "DELETE FROM ho_tro_nguoi_dung WHERE nguoi_dung_id = (SELECT id FROM nguoi_dung WHERE so_dien_thoai = ?)";
-        PreparedStatement stHoTro = con.prepareStatement(sqlHoTro);
-        stHoTro.setString(1, sdt);
-        stHoTro.executeUpdate();
-
-        // B4: Xóa thông tin người dùng trong bảng nguoi_dung
-        String sqlNguoiDung = "DELETE FROM nguoi_dung WHERE so_dien_thoai = ?";
-        PreparedStatement stNguoiDung = con.prepareStatement(sqlNguoiDung);
-        stNguoiDung.setString(1, sdt);
-        stNguoiDung.executeUpdate();
-
-        // Thông báo xóa thành công
-        JOptionPane.showMessageDialog(this, "Xóa thành công!");
-        
-        // Tải lại dữ liệu
-        load();
-
-        // Đóng tài nguyên
-        stHoTro.close();
-        stNguoiDung.close();
-        con.close();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Lỗi khi xóa dữ liệu: " + ex.getMessage());
-    }   catch (ClassNotFoundException ex) {
-            Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    }//GEN-LAST:event_btn_xoaActionPerformed
-
     private void btn_trolaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_trolaiActionPerformed
-        // TODO add your handling code here:
-                                             
-    // Đóng form hiện tại
-    this.dispose(); // Nếu bạn muốn đóng form hiện tại
-    
-    // Nếu bạn cần mở lại form hỗ trợ trước đó, hãy tạo một instance mới của form đó
-    ho_tro supportForm = new ho_tro(); // Giả sử tên class là SupportForm
-    supportForm.setVisible(true); // Hiển thị form hỗ trợ
-
-
+        this.dispose(); 
+        ho_tro supportForm = new ho_tro(); 
+        supportForm.setVisible(true); 
+        supportForm.load();
     }//GEN-LAST:event_btn_trolaiActionPerformed
 
     private void txt_sdtycKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_sdtycKeyPressed
-        // TODO add your handling code here:
-         // Kiểm tra xem phím nhấn có phải là Enter không
-    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        String sdt = txt_sdtyc.getText().trim();
-        try {
-            Connection con = db.connect();
-            // Kiểm tra nếu số điện thoại người dùng tồn tại trong hệ thống
-            String sql = "SELECT nd.id, nd.ho, nd.ten "
-                       + "FROM nguoi_dung nd "
-                       + "WHERE nd.so_dien_thoai = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, sdt);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                // Nếu tìm thấy người dùng, điền thông tin họ tên
-                txt_ho.setText(rs.getString("ho"));
-                txt_ten.setText(rs.getString("ten"));
-            } else {
-                JOptionPane.showMessageDialog(this, "Số điện thoại không tồn tại.");
-                // Xóa thông tin họ tên nếu không tìm thấy
-                txt_ho.setText("");
-                txt_ten.setText("");
-            }
-
-            // Đóng kết nối
-            rs.close();
-            ps.close();
-            con.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Lỗi khi thực hiện thao tác trên cơ sở dữ liệu.");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(nhap_thong_tin_ho_tro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+       
     }//GEN-LAST:event_txt_sdtycKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_trolai;
-    private javax.swing.JButton btn_xoa;
+    private javax.swing.JTextField cccd;
+    private javax.swing.JTextField ht;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.calendar.JDateChooser ngayyeucau;
-    private javax.swing.JTable tbHotro;
-    private javax.swing.JTextField txt_ho;
     private javax.swing.JTextField txt_noidungyc;
     private javax.swing.JTextField txt_sdtyc;
-    private javax.swing.JTextField txt_ten;
     // End of variables declaration//GEN-END:variables
 }

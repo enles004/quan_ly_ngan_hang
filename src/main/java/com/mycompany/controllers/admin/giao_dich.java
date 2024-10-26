@@ -510,7 +510,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
             String sql = "select * "
                     + "from tai_khoan_nguoi_dung tknd "
                     + "join nguoi_dung nd on nd.so_dien_thoai = tknd.so_dien_thoai_id "
-                    + "where tknd.so_tai_khoan = '"+stk_nnn+"'"; 
+                    + "where tknd.so_tai_khoan = '"+stk_nnn+"' and tknd.loai_tai_khoan = N'Tài khoản giao dịch'"; 
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
                 ht_nn.setText(rs.getString("ho") +" "+ rs.getString("ten"));
@@ -519,7 +519,7 @@ public class giao_dich extends javax.swing.JInternalFrame {
                 email_nn.setText(rs.getString("email"));
                 return;
             }
-            JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại.");
+            JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại hoặc loại tài khoản không đúng.");
         } catch (Exception e) {
             e.printStackTrace();
         }
