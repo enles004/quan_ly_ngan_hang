@@ -4,6 +4,7 @@
  */
 package com.mycompany.controllers.admin;
 
+import com.mycompany.controller.timkiem.tk_nguoi_dung;
 import com.mycompany.db;
 import com.mycompany.models.user;
 import java.awt.Image;
@@ -87,6 +88,14 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
             BufferedImage img_nhap = ImageIO.read(new File("src/main/java/com/mycompany/pics/ec.png"));
             Image scaledImg_nhap = img_nhap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             nhap.setIcon(new ImageIcon(scaledImg_nhap));
+            
+            BufferedImage img_tkk = ImageIO.read(new File("src/main/java/com/mycompany/pics/se.png"));
+            Image scaledImg_tkk = img_tkk.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            tkk.setIcon(new ImageIcon(scaledImg_tkk));
+            
+            BufferedImage img_cl = ImageIO.read(new File("src/main/java/com/mycompany/pics/clean.png"));
+            Image scaledImg_cl = img_cl.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            cl.setIcon(new ImageIcon(scaledImg_cl));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,6 +138,8 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
         btn_sua = new javax.swing.JButton();
         btn_xoa = new javax.swing.JButton();
         nhap = new javax.swing.JButton();
+        tkk = new javax.swing.JButton();
+        cl = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
 
@@ -404,10 +415,9 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(tk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_tk, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(sum_nd))))
+                        .addComponent(jLabel2)
+                        .addComponent(sum_nd))
+                    .addComponent(txt_tk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -454,17 +464,39 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
             }
         });
 
+        tkk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tkk.setText("Tìm kiếm");
+        tkk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        tkk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tkkActionPerformed(evt);
+            }
+        });
+
+        cl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cl.setText("Clear");
+        cl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        cl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(33, 33, 33)
                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tkk, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cl, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(nhap, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
@@ -477,7 +509,9 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
                     .addComponent(btn_them, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(btn_sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tkk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -882,13 +916,24 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
             txt_email.requestFocus(); 
         }
     }//GEN-LAST:event_txt_emailFocusLost
+
+    private void tkkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tkkActionPerformed
+        tk_nguoi_dung tknd = new tk_nguoi_dung();
+        tknd.setVisible(true);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tkkActionPerformed
+
+    private void clActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clActionPerformed
+        load();        // TODO add your handling code here:
+    }//GEN-LAST:event_clActionPerformed
     Connection con;
     
     private void load(){
         txt_ho.setText("");
         txt_ten.setText("");
         txt_ns.setDate(null);
-        txt_gt.setSelectedItem(" ");
+        txt_gt.setSelectedItem("-Chọn giới tính-");
         txt_dc.setText("");
         txt_sdt.setText("");
         txt_cccd.setText("");
@@ -964,6 +1009,7 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_xoa;
+    private javax.swing.JButton cl;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -987,6 +1033,7 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
     private javax.swing.JLabel sum_nd;
     private javax.swing.JTable tb_nd;
     private javax.swing.JLabel tk;
+    private javax.swing.JButton tkk;
     private javax.swing.JTextField txt_cccd;
     private javax.swing.JTextField txt_dc;
     private javax.swing.JTextField txt_email;

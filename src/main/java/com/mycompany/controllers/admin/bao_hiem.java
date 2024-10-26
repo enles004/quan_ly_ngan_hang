@@ -38,7 +38,7 @@ public class bao_hiem extends javax.swing.JInternalFrame {
      * Creates new form bao_hiem
      */
     public bao_hiem() {
-       initComponents();
+        initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);

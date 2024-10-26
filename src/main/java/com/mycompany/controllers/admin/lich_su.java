@@ -269,7 +269,7 @@ public class lich_su extends javax.swing.JInternalFrame {
             DefaultTableModel tb = new DefaultTableModel(td, 0){
                 @Override
                 public boolean isCellEditable(int row, int column) {
-                    return false; 
+                    return false;
                 }
             };
             while(rs.next()){
