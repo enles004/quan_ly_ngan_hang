@@ -214,7 +214,7 @@ public class tai_khoan extends javax.swing.JInternalFrame {
                                 .addComponent(jnt)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addGap(11, 11, 11)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -379,9 +379,9 @@ public class tai_khoan extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -458,11 +458,9 @@ public class tai_khoan extends javax.swing.JInternalFrame {
             DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
-            DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-            rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
-            tb_nd.getColumnModel().getColumn(0).setCellRenderer(centerRenderer); // STT
-            tb_nd.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); // Số điện thoại
-            tb_nd.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
+            tb_nd.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+            tb_nd.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); 
+            tb_nd.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
             con.close();
         } catch (Exception e) {
             e.printStackTrace();

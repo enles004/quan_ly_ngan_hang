@@ -23,7 +23,9 @@ import java.util.Vector;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -483,6 +485,15 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
             }
             sum_nd.setText(sum + "");
             tb_lt.setModel(tb);
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+            DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+            rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+
+            tb_lt.getColumnModel().getColumn(0).setCellRenderer(centerRenderer); 
+            tb_lt.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); 
+            tb_lt.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -650,7 +661,7 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
             }
             String checkk = "select * from loai_the_nguoi_dung where so_dien_thoai_id = '"+so_dien_thoai+"' and loai_the_id = '"+loai_the_id+"'";
             ResultSet rs = st.executeQuery(checkk);
-            while(rs.next()){
+            while(!rs.next()){
                 String sql = "insert into loai_the_nguoi_dung (so_dien_thoai_id, loai_the_id, so_the, so_tien, ngay_het_han, trang_thai, ngay_tao)"
                 + "values (N'"+so_dien_thoai+"', N'"+loai_the_id+"', '"+AccountGenerator.generateUniqueAccountNumber(con)+"', 0, DATEADD(YEAR, 5, GETDATE()), N'"+"Đang hoạt động"+"', getdate())";
                 st.executeUpdate(sql);

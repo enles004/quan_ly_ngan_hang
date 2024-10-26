@@ -518,6 +518,7 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
     user u;
     private void tb_ndMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_ndMouseClicked
+        check = true;
         int i = tb_nd.getSelectedRow();
         btn_sua.setVisible(true);
         btn_xoa.setVisible(true);
@@ -735,7 +736,7 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
             String email = txt_email.getText().trim();
             String check = "select * from nguoi_dung where so_dien_thoai = '"+sdt+"'";
             ResultSet rs = st.executeQuery(check);
-            while(rs.next()){
+            while(!rs.next()){
                 String sql = "insert into nguoi_dung (ho, ten, ngay_sinh, gioi_tinh, dia_chi, so_dien_thoai, email, so_cong_dan)"
                     + "values (N'"+ho+"', N'"+ten+"', '"+ns+"', N'"+gioi_tinh+"', N'"+dc+"', '"+sdt+"', N'"+email+"', N'"+cccd+"')";
                 st.executeUpdate(sql);
