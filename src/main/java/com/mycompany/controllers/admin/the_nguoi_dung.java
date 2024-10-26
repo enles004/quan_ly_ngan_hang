@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -125,6 +126,12 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("SĐT chủ thẻ:");
+
+        sdt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                sdtKeyReleased(evt);
+            }
+        });
 
         jst.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jst.setText("Số thẻ:");
@@ -505,7 +512,7 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
                 lt.setSelectedItem(tb.getValueAt(i, 2).toString());
                 sdt.setText(tb.getValueAt(i, 1).toString());
                 stt.setText(rs.getString("so_the"));
-                so_tien.setText(rs.getString("so_tien"));
+                so_tien.setText(formatNumber(rs.getString("so_tien")));
                 hsd.setText(rs.getString("ngay_het_han"));
                 tt.setSelectedItem(rs.getString("trang_thai"));
             }
@@ -516,7 +523,15 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
         ltnd.setId(Integer.parseInt(id));
        
     }//GEN-LAST:event_tb_ltMouseClicked
-
+    public static String formatNumber(String input) {
+        try {
+            long number = Long.parseLong(input.replaceAll(",", ""));
+            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+            return decimalFormat.format(number);
+        } catch (NumberFormatException ex) {
+            return input;
+        }
+    }
     private void txt_tkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_tkMouseClicked
             tt.setSelectedItem("-Chọn trạng thái-");
             tt.setEnabled(false);
@@ -633,11 +648,17 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Số điện thoại không được để trống.");
                 return;
             }
-            String sql = "insert into loai_the_nguoi_dung (so_dien_thoai_id, loai_the_id, so_the, so_tien, ngay_het_han, trang_thai, ngay_tao)"
-            + "values (N'"+so_dien_thoai+"', N'"+loai_the_id+"', '"+AccountGenerator.generateUniqueAccountNumber(con)+"', 0, DATEADD(YEAR, 5, GETDATE()), N'"+"Đang hoạt động"+"', getdate())";
-            st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(this, "Thêm loại thẻ người dùng thành công.");
-            load();
+            String checkk = "select * from loai_the_nguoi_dung where so_dien_thoai_id = '"+so_dien_thoai+"' and loai_the_id = '"+loai_the_id+"'";
+            ResultSet rs = st.executeQuery(checkk);
+            while(rs.next()){
+                String sql = "insert into loai_the_nguoi_dung (so_dien_thoai_id, loai_the_id, so_the, so_tien, ngay_het_han, trang_thai, ngay_tao)"
+                + "values (N'"+so_dien_thoai+"', N'"+loai_the_id+"', '"+AccountGenerator.generateUniqueAccountNumber(con)+"', 0, DATEADD(YEAR, 5, GETDATE()), N'"+"Đang hoạt động"+"', getdate())";
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(this, "Thêm loại thẻ người dùng thành công.");
+                load();
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Thẻ người dùng này đã được đăng kí.");
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -689,6 +710,12 @@ public class the_nguoi_dung extends javax.swing.JInternalFrame {
     private void sttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sttActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sttActionPerformed
+
+    private void sdtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sdtKeyReleased
+        String text = sdt.getText().trim();
+        text = text.replaceAll("[^0-9]", ""); 
+        sdt.setText(text);        // TODO add your handling code here:
+    }//GEN-LAST:event_sdtKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

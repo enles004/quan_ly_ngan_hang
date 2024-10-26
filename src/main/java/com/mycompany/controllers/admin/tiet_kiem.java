@@ -279,6 +279,8 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
         jsd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jsd.setText("Số dư hiện tại");
 
+        sodu.setEditable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -286,9 +288,7 @@ public class tiet_kiem extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jsd)
-                        .addGap(0, 0, 0))
+                    .addComponent(jsd)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(sodu)

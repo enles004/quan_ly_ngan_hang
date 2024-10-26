@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -116,14 +117,38 @@ public class giao_dich extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Họ và tên người gửi:");
 
+        ht_ng.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ht_ngKeyReleased(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Số điện thoại người gửi: ");
+
+        sdt_ng.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                sdt_ngKeyReleased(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Số tài khoản người gửi (Nếu có)");
 
+        stk_ng.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                stk_ngKeyReleased(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Số tiền gửi:");
+
+        st_ng.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                st_ngKeyReleased(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Lời nhắn:");
@@ -211,6 +236,11 @@ public class giao_dich extends javax.swing.JInternalFrame {
         stk_nn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stk_nnActionPerformed(evt);
+            }
+        });
+        stk_nn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                stk_nnKeyReleased(evt);
             }
         });
 
@@ -525,6 +555,54 @@ public class giao_dich extends javax.swing.JInternalFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_stk_nnActionPerformed
+
+    private void ht_ngKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ht_ngKeyReleased
+        String text = ht_ng.getText().trim();
+        if (!text.matches("[\\p{L}\\s]*")) { 
+            javax.swing.JOptionPane.showMessageDialog(this, "Không được nhập số. Vui lòng chỉ nhập chữ cái.", "Lỗi nhập liệu", javax.swing.JOptionPane.WARNING_MESSAGE);
+            text = text.replaceAll("[^\\p{L}\\s]", ""); 
+            ht_ng.setText(text);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ht_ngKeyReleased
+
+    private void sdt_ngKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sdt_ngKeyReleased
+        String text = sdt_ng.getText().trim();
+        text = text.replaceAll("[^0-9]", ""); 
+        sdt_ng.setText(text);
+        if (text.length() > 10 || (text.length() >= 2 && !text.matches("^(03|05|07|08|09).*$"))) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại Việt Nam hợp lệ.", "Lỗi nhập liệu", javax.swing.JOptionPane.WARNING_MESSAGE);
+            text = text.substring(0, Math.min(text.length(), 10));
+            sdt_ng.setText(text);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sdt_ngKeyReleased
+
+    private void stk_ngKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stk_ngKeyReleased
+        String text = stk_ng.getText().trim();
+        text = text.replaceAll("[^0-9]", ""); 
+        stk_ng.setText(text);
+    }//GEN-LAST:event_stk_ngKeyReleased
+
+    private void st_ngKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_st_ngKeyReleased
+        String text = st_ng.getText().trim();
+        text = text.replaceAll("[^0-9]", ""); 
+        st_ng.setText(text);        // TODO add your handling code here:
+    }//GEN-LAST:event_st_ngKeyReleased
+    public static String formatNumber(String input) {
+        try {
+            long number = Long.parseLong(input.replaceAll(",", ""));
+            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+            return decimalFormat.format(number);
+        } catch (NumberFormatException ex) {
+            return input;
+        }
+    }
+    private void stk_nnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stk_nnKeyReleased
+        String text = stk_nn.getText().trim();
+        text = text.replaceAll("[^0-9]", ""); 
+        stk_nn.setText(formatNumber(text)); // TODO add your handling code here:
+    }//GEN-LAST:event_stk_nnKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

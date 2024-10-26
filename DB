@@ -147,3 +147,23 @@ CREATE TABLE bao_hiem (
     FOREIGN KEY(tai_khoan_nguoi_dung_id) REFERENCES tai_khoan_nguoi_dung(so_tai_khoan)
     ON UPDATE NO ACTION ON DELETE CASCADE
 )
+
+CREATE TABLE cb_uu_dai (
+	id INT PRIMARY KEY IDENTITY,
+	ten_uu_dai NVARCHAR(255) NOT NULL
+)
+
+INSERT INTO cb_uu_dai (ten_uu_dai)
+VALUES 
+    (N'Giảm giá mua sắm 10%'),
+    (N'Ưu đãi ẩm thực 15% tại các nhà hàng đối tác'),
+    (N'Miễn phí rút tiền tại ATM'),
+    (N'Tích điểm đổi quà khi chi tiêu'),
+    (N'Giảm giá 20% khi đặt phòng khách sạn'),
+    (N'Ưu đãi hoàn tiền 5% cho giao dịch quốc tế'),
+    (N'Tặng voucher mua sắm mỗi tháng'),
+    (N'Giảm giá vé máy bay 10% cho các chuyến bay quốc tế'),
+    (N'Ưu đãi trả góp 0% tại các cửa hàng điện máy'),
+    (N'Miễn phí thường niên năm đầu tiên'),
+    (N'Ưu đãi bảo hiểm du lịch toàn cầu'),
+    (N'Giảm giá 20% khi mua sắm trực tuyến tại các đối tác');

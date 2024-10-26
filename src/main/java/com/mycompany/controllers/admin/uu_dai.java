@@ -479,7 +479,6 @@ public class uu_dai extends javax.swing.JInternalFrame {
     }
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         try {
-            
             con = db.connect();
             String loai_the = cb.getSelectedItem().toString();
             if(loai_the.equals("-Chọn đối tượng thẻ-")){
@@ -510,11 +509,9 @@ public class uu_dai extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Bạn đã cập nhật thành công");
             con.close();
             load();
-        } catch (SQLException ex) {
-            Logger.getLogger(uu_dai.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(uu_dai.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
