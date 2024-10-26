@@ -131,6 +131,75 @@ public class tra_no extends javax.swing.JInternalFrame {
             return Combo_Khoanvay.getSelectedItem().toString();
         }
     }
+    
+    private void load_xoa(){
+        txtHo.setText("");
+        txtTen.setText("");
+        txtDiachi.setText("");
+        txtSodt.setText("");
+        txtSotaikhoan.setText("");
+        txtCancuoc.setText("");
+        txtLai_phai_tra.setText("");
+        txtSo_tien_tra.setText("");
+        txtTong.setText("");
+        dateNgaysinh.setDateFormatString("dd/MM/yyyy");
+        
+        txtHo.setEnabled(false);
+        txtCancuoc.setEnabled(false);
+        txtDiachi.setEnabled(false);
+        txtTen.setEnabled(false);
+        txtLai_phai_tra.setEnabled(false);
+        txtSo_tien_tra.setEnabled(false);
+        txtSotaikhoan.setEnabled(false);
+        txtTong.setEnabled(false);
+        dateNgaysinh.setEnabled(false);
+        btnXoa.setVisible(false);
+        tb_tra_no.removeAll();
+        try {
+           
+            tb_tra_no.removeAll();
+            con = db.connect();
+            String sql = " SELECT * from khoan_vay kv "
+                    + "join tai_khoan_nguoi_dung tknd on tknd.so_tai_khoan = kv.so_tai_khoan_id "
+                    + "join nguoi_dung nd on nd.so_dien_thoai = tknd.so_dien_thoai_id "
+                    + "where kv.tinh_trang = 'Đã thanh toán'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String[] td = {"ID","Họ","Tên","Số điện thoại","Địa chỉ","Ngày sinh","Số CCCD ","Số tài khoản" ,"Số tiền vay", "Số tiền trả", "Số tiền còn lại", "Kỳ hạn", "Loại khoản vay","Trạng thái"};
+            DefaultTableModel tb = new DefaultTableModel(td, 0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Không cho phép chỉnh sửa bất kỳ ô nào
+                }
+            };
+            while(rs.next()){
+                
+                Vector v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("ho"));
+                v.add(rs.getString("ten"));
+                v.add(rs.getString("so_dien_thoai"));
+                v.add(rs.getString("dia_chi"));
+                v.add(rs.getString("ngay_sinh"));
+                v.add(rs.getString("so_cong_dan"));
+                v.add(rs.getString("so_tai_khoan_id"));
+                v.add(rs.getString("so_tien_vay"));
+                v.add(rs.getString("so_tien_da_tra"));
+                v.add(rs.getString("so_tien_con_lai"));
+                v.add(rs.getString("ky_han"));
+                v.add(rs.getString("loai_vay"));
+                v.add(rs.getString("tinh_trang"));
+                tb.addRow(v);
+            }
+            
+
+            tb_tra_no.setModel(tb);
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -250,6 +319,17 @@ public class tra_no extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Hình thức trả nợ:");
+
+        txtSotaikhoan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtSotaikhoanMouseClicked(evt);
+            }
+        });
+        txtSotaikhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSotaikhoanActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Tài khoản nguồn trả nợ :");
@@ -382,8 +462,8 @@ public class tra_no extends javax.swing.JInternalFrame {
                     .addComponent(txtSotaikhoan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jRadioButton2))
                     .addComponent(jLabel3))
                 .addGap(21, 21, 21)
@@ -542,20 +622,25 @@ public class tra_no extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
     khoan_vay kv;
-    
+  
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         try {
-            con = db.connect();
+            //Lấy dữ liệu từ component đưa vào biến
+            String stk = txtSotaikhoan.getText();
+            //B2:Keets noois DB
+             con = db.connect();
+            //B3:Tạo đối tượng Statement để thực hirnj câu lệnh
+            String sql = "Delete From khoan_vay Where so_tai_khoan_id='" + stk + "'";
             Statement st = con.createStatement();
-            String sql = "Delete from khoan_vay kv "
-                        + "where id = ? ";
+            
             int r = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa khoản vay này không?", "Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(r == JOptionPane.YES_OPTION){
                 st.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Xóa thành công!!");
-                con.close();
             }
+                con.close();
             load_Tra_no();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -616,11 +701,11 @@ public class tra_no extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
        
-//         // Kiểm tra các giá trị trước khi sử dụng
-//        if (so_tai_khoan_id.isEmpty() || so_tien_vay.isEmpty() || ky_han == null || loai_khoan == null || so_tien_da_tra.isEmpty()) {
-//        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
-//        return; // Thoát nếu có thông tin không hợp lệ
-//   }
+         // Kiểm tra các giá trị trước khi sử dụng
+        if (so_tai_khoan_id.isEmpty() || so_tien_vay.isEmpty() || ky_han == null || loai_khoan == null || so_tien_da_tra.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!");
+        return; // Thoát nếu có thông tin không hợp lệ
+   }
 
         // B2: Kết nối DB
         try {
@@ -649,6 +734,36 @@ public class tra_no extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btnThanhtoanActionPerformed
+
+    private void txtSotaikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSotaikhoanActionPerformed
+         String stk = txtSotaikhoan.getText().trim();
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+            String sql = " SELECT * from khoan_vay kv "
+                    + "join tai_khoan_nguoi_dung tknd on tknd.so_tai_khoan = kv.so_tai_khoan_id "
+                    + "join nguoi_dung nd on nd.so_dien_thoai = tknd.so_dien_thoai_id "
+                    + "where tknd.so_tai_khoan = '"+stk+"'"; 
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                txtHo.setText(rs.getString("ho"));
+                txtTen.setText(rs.getString("ten"));
+                txtCancuoc.setText(rs.getString("so_cong_dan"));
+                txtDiachi.setText(rs.getString("dia_chi"));
+                txtSodt.setText(rs.getString("so_dien_thoai"));
+                dateNgaysinh.setDate(rs.getDate("ngay_sinh"));
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_txtSotaikhoanActionPerformed
+
+    private void txtSotaikhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSotaikhoanMouseClicked
+       
+        
+    }//GEN-LAST:event_txtSotaikhoanMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -598,8 +598,8 @@ public class admin_main_frame extends javax.swing.JFrame {
         bao_hiem.setForeground(black);
         thanh_toan.setForeground(black);
         
-        khoan_vay kv = new khoan_vay();
-        Desktop1.add(kv).setVisible(true);
+        vay_vonn vv = new vay_vonn();
+        Desktop1.add(vv).setVisible(true);
     }                                      
 
     private void dang_xuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dang_xuatMouseClicked
@@ -805,10 +805,50 @@ public class admin_main_frame extends javax.swing.JFrame {
 
     private void bao_hiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bao_hiemMouseClicked
         // TODO add your handling code here:
+         Desktop1.removeAll();
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        sourceLabel.setForeground(customColor);
+        
+        tai_khoan.setForeground(black);
+        giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
+        nguoi_dung.setForeground(black);
+        uu_dai.setForeground(black);
+        vay_von.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
+        bao_hiemm bh = new bao_hiemm();
+        Desktop1.add(bh).setVisible(true);
     }//GEN-LAST:event_bao_hiemMouseClicked
 
     private void thanh_toanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thanh_toanMouseClicked
         // TODO add your handling code here:
+         Desktop1.removeAll();
+        JLabel sourceLabel = (JLabel) evt.getSource();
+        sourceLabel.setForeground(customColor);
+        
+        tai_khoan.setForeground(black);
+        giao_dich.setForeground(black);
+        hoa_don.setForeground(black);
+        lich_su.setForeground(black);
+        loai_the.setForeground(black);
+        the_nd.setForeground(black);
+        tiet_kiem.setForeground(black);
+        thong_bao.setForeground(black);
+        nguoi_dung.setForeground(black);
+        uu_dai.setForeground(black);
+        vay_von.setForeground(black);
+        bao_hiem.setForeground(black);
+        thanh_toan.setForeground(black);
+        
+        tra_noo tt = new tra_noo();
+        Desktop1.add(tt).setVisible(true);
     }//GEN-LAST:event_thanh_toanMouseClicked
 
     /**

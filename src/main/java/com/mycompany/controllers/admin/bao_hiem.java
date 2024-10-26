@@ -5,17 +5,28 @@
 package com.mycompany.controllers.admin;
 
 import com.mycompany.db;
+import com.mycompany.models.user;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -35,20 +46,18 @@ public class bao_hiem extends javax.swing.JInternalFrame {
     }
      Connection con; 
     private void load(){
-//        ComboBox_loaibaohiem.setSelectedItem("");
-//        ComboBox_thoihan.setSelectedItem("");
-//        txtSotaikhoan.setText("");
-//        txtTongphi.setText("");
-//        txtHo.setText("");
-//        txtTen.setText("");
-//        txtSodt.setText("");
-//        txtCancuoc.setText("");
-//        txtDiachi.setText("");
-//        dateNgaysinh.setDateFormatString("dd/MM/yyyy");
+        ComboBox_loaibaohiem.setSelectedItem("");
+        ComboBox_thoihan.setSelectedItem("");
+        txtSotaikhoan.setText("");
+        txtTongphi.setText("");
+        txtHo.setText("");
+        txtTen.setText("");
+        txtSodt.setText("");
+        txtCancuoc.setText("");
+        txtDiachi.setText("");
+        dateNgaysinh.setDateFormatString("dd/MM/yyyy");
     
 
-       
-        
         try {
             tb_bao_hiem.removeAll();
             con = db.connect();
@@ -134,6 +143,8 @@ public class bao_hiem extends javax.swing.JInternalFrame {
         txtSotaikhoan = new javax.swing.JTextField();
         ComboBox_thoihan = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -204,8 +215,18 @@ public class bao_hiem extends javax.swing.JInternalFrame {
         });
 
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnNhapfie.setText("Nhập File");
+        btnNhapfie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhapfieActionPerformed(evt);
+            }
+        });
 
         tb_bao_hiem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,6 +239,11 @@ public class bao_hiem extends javax.swing.JInternalFrame {
                 "ID", "Họ ", "Tên ", "Số điện thoại", "Địa chỉ", "Ngày sinh", "Số CCCD", "Tài khoản thanh toán", "Loại bảo hiểm", "Thời hạn", "Phí bảo hiểm"
             }
         ));
+        tb_bao_hiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_bao_hiemMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_bao_hiem);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -225,6 +251,12 @@ public class bao_hiem extends javax.swing.JInternalFrame {
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setText("Tài khoản thanh toán:");
+
+        txtSotaikhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSotaikhoanActionPerformed(evt);
+            }
+        });
 
         ComboBox_thoihan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chon thời hạn--", "3 tháng", "6 tháng", "12 tháng" }));
 
@@ -275,30 +307,32 @@ public class bao_hiem extends javax.swing.JInternalFrame {
                                 .addGap(75, 75, 75))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7))
-                                .addGap(63, 63, 63)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ComboBox_loaibaohiem, 0, 193, Short.MAX_VALUE)
-                                    .addComponent(ComboBox_thoihan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel15))
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtTongphi)
-                                    .addComponent(txtSotaikhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel15))
+                                        .addGap(23, 23, 23)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtTongphi)
+                                            .addComponent(txtSotaikhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel7))
+                                        .addGap(63, 63, 63)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(ComboBox_loaibaohiem, 0, 193, Short.MAX_VALUE)
+                                            .addComponent(ComboBox_thoihan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel11)))
-                        .addContainerGap())))
+                        .addContainerGap(380, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,15 +397,38 @@ public class bao_hiem extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        boolean check = false;
     private void btnMuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuaActionPerformed
-         //Lấy dl từ các componets đưa vào biến
-        String ho = txtHo.getText().trim();
-        String ten = txtTen.getText().trim();
-        Date ngs = new Date(dateNgaysinh.getDate().getTime());
-        String dt = txtSodt.getText().trim();
-        String cc = txtCancuoc.getText().trim();
-        String dc = txtDiachi.getText().trim();
+        
+        if (check == true) {
+         txtHo.setVisible(true);
+         txtTen.setVisible(true);
+         txtSodt.setVisible(true);
+         ComboBox_loaibaohiem.setSelectedItem(" ");
+         ComboBox_thoihan.setSelectedItem(" ");
+         txtCancuoc.setVisible(true);
+         txtSotaikhoan.setVisible(true);
+         txtDiachi.setVisible(true);
+         txtTongphi.setVisible(true);
+         dateNgaysinh.setVisible(true);
+         check = false;
+         return;
+     }
+     if (!txtSotaikhoan.isEnabled()) {
+         txtTongphi.setEnabled(true);
+         ComboBox_loaibaohiem.setEnabled(true);
+         ComboBox_thoihan.setEnabled(true);
+         
+         return;
+     }
+        
+        //Lấy dl từ các componets đưa vào biến
+//        String ho = txtHo.getText().trim();
+//        String ten = txtTen.getText().trim();
+//        Date ngs = new Date(dateNgaysinh.getDate().getTime());
+//        String dt = txtSodt.getText().trim();
+//        String cc = txtCancuoc.getText().trim();
+//        String dc = txtDiachi.getText().trim();
         String tk = txtSotaikhoan.getText().trim();
         String tong = txtTongphi.getText().trim();
         
@@ -382,8 +439,8 @@ public class bao_hiem extends javax.swing.JInternalFrame {
         con = db.connect();
         
         // B2: Câu lệnh SQL để thêm khoản vay
-        String sql = "INSERT INTO bao_hiem (id, loai_bao_hiem, ky_han, tai_khoan_nguoi_dung_id, so_tien_da_dong) "
-                   + "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO bao_hiem ( loai_bao_hiem, ky_han, tai_khoan_nguoi_dung_id, so_tien_da_dong) "
+                   + "VALUES ( ?, ?, ?, ?)";
         
         PreparedStatement st = con.prepareStatement(sql);
 
@@ -403,6 +460,215 @@ public class bao_hiem extends javax.swing.JInternalFrame {
         ex.printStackTrace();
     }
     }//GEN-LAST:event_btnMuaActionPerformed
+
+    private void txtSotaikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSotaikhoanActionPerformed
+         String stk= txtSotaikhoan.getText().trim();
+        try {
+             con = db.connect();
+            Statement st = con.createStatement();
+
+                        String sql = "select * "
+                        + "from nguoi_dung nd "
+                        + "join tai_khoan_nguoi_dung tknd on nd.so_dien_thoai = tknd.so_dien_thoai_id "
+                        + "where tknd.so_tai_khoan = '"+stk+"'";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                txtHo.setText(rs.getString("ho"));
+                txtTen.setText(rs.getString("ten"));
+                txtCancuoc.setText(rs.getString("so_cong_dan"));
+                txtDiachi.setText(rs.getString("dia_chi"));
+                txtSodt.setText(rs.getString("so_dien_thoai"));
+                dateNgaysinh.setDate(rs.getDate("ngay_sinh"));
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Số tài khoản không tồn tại hoặc số tài khoản không đúng!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_txtSotaikhoanActionPerformed
+    bao_hiem bh;
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        try {
+            //B1: Lay dl tu cac component dua vao bien
+        String ho = txtHo.getText().trim();
+        if(ho.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Họ của người dùng \n không được để trống.");
+                return;
+            }
+        String ten = txtTen.getText().trim();
+        if(ten.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Tên của người dùng \n không được để trống.");
+                return;
+            }
+        Date ngs = new Date(dateNgaysinh.getDate().getTime());
+        String dt = txtSodt.getText().trim();
+        String regex_sdt = "^(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})$";
+        Pattern pattern_sdt = Pattern.compile(regex_sdt);
+            Matcher matcher_sdt = pattern_sdt.matcher(dt);
+            if(!matcher_sdt.matches()){
+                JOptionPane.showMessageDialog(this, "Định dạng số điện thoại không đúng.");
+                return;
+            }
+        String cc = txtCancuoc.getText().trim();
+         String regex_cccd = "^[0-9]{12}$";
+            Pattern pattern_cccd = Pattern.compile(regex_cccd);
+            Matcher matcher_cccd = pattern_cccd.matcher(cc);
+            if (!matcher_cccd.matches()) {
+                JOptionPane.showMessageDialog(this, "Định dạng số căn cước công dân không đúng.");
+                return;
+            }
+        String dc = txtDiachi.getText().trim();
+         if(dc.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Địa chỉ của người dùng \n không được để trống.");
+                return;
+            }
+        String tk = txtSotaikhoan.getText().trim();
+        String tong = txtTongphi.getText().trim();
+        
+        String loai_bao_hiem = ComboBox_loaibaohiem.getSelectedItem().toString();
+        String thoi_han = ComboBox_thoihan.getSelectedItem().toString();
+        
+            //B2: Keets noois DB
+            con =db.connect() ;
+            //B3:Tạo đối tượng Statement để sua dl
+            
+            String sql = "Update bao_hiem Set loai_bao_hiem=N'" + loai_bao_hiem + "',so_tien_da_dong='" + tong + "',ky_han=N'" + thoi_han + "' Where id='" + bh.getID() + "'";
+            
+            Statement st = con.createStatement();
+            st.executeUpdate(sql);
+            con.close();
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+            load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+       
+    private void tb_bao_hiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_bao_hiemMouseClicked
+         int i = tb_bao_hiem.getSelectedRow();
+//        btnSua.setVisible(true);
+//        btnNhapfie.setVisible(true);
+        txtHo.setEnabled(true);
+        txtTen.setEnabled(true);
+        txtDiachi.setEnabled(true);
+        txtCancuoc.setEnabled(true);
+        txtSodt.setEnabled(true);
+        txtSotaikhoan.setEnabled(true);
+        txtTongphi.setEnabled(true);
+        dateNgaysinh.setEnabled(true);
+        ComboBox_thoihan.setEnabled(true);
+        ComboBox_loaibaohiem.setEnabled(true);
+        
+        
+        DefaultTableModel tb = (DefaultTableModel)tb_bao_hiem.getModel();
+        
+        txtHo.setText(tb.getValueAt(i, 1).toString());
+        txtTen.setText(tb.getValueAt(i, 2).toString());
+        txtSodt.setText(tb.getValueAt(i, 3).toString());
+        txtDiachi.setText(tb.getValueAt(i, 4).toString());
+        String ngay = tb.getValueAt(i, 5).toString();
+        java.util.Date ngs;
+        try {
+            ngs = new SimpleDateFormat("yyyy-MM-dd").parse(ngay);
+            dateNgaysinh.setDate(ngs);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+       
+        txtCancuoc.setText(tb.getValueAt(i, 6).toString());
+        txtSotaikhoan.setText(tb.getValueAt(i, 7).toString());
+        ComboBox_loaibaohiem.setSelectedItem(tb.getValueAt(i, 8).toString());
+        ComboBox_thoihan.setSelectedItem(tb.getValueAt(i, 9).toString());
+         txtTongphi.setText(tb.getValueAt(i, 10).toString());
+        
+        bh = new bao_hiem();
+        bh.setId(tb.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_tb_bao_hiemMouseClicked
+    
+    
+     private void them_nd( String tai_khoan_nguoi_dung_id, String loai_bao_hiem, String ky_han, String so_tien_da_dong){
+        try {
+            con = db.connect();
+            Statement st = con.createStatement();
+          
+            String sql = "INSERT INTO bao_hiem (tai_khoan_nguoi_dung_id, loai_bao_hiem, ky_han, so_tien_da_dong) VALUES "
+                    + "('"+tai_khoan_nguoi_dung_id+"', N'"+loai_bao_hiem+"', N'"+ky_han+"', '"+so_tien_da_dong+"')";
+        
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+    }
+    
+     private void ReadExcel(String tenfilepath) {
+    try {
+        FileInputStream fis = new FileInputStream(tenfilepath);
+        // Tạo đối tượng Excel
+        XSSFWorkbook wb = new XSSFWorkbook(fis);
+        XSSFSheet sheet = wb.getSheetAt(0); // Lấy sheet đầu tiên của file
+
+        // Lấy ra các dòng của bảng
+        Iterator<Row> itr = sheet.iterator();
+
+        // Bỏ qua dòng đầu tiên (header)
+        if (itr.hasNext()) {
+            itr.next();
+        }
+
+        // Đọc dữ liệu
+        while (itr.hasNext()) { // Lặp đến hết các dòng trong excel
+            Row row = itr.next(); // Lấy dòng tiếp theo
+            String tai_khoan_nguoi_dung_id = "", loai_bao_hiem = "", ky_han = "", so_tien_da_dong = "";
+
+            // Kiểm tra từng ô để đảm bảo không bị null
+            if (row.getCell(0) != null) {
+                tai_khoan_nguoi_dung_id = row.getCell(0).getCellType() == CellType.NUMERIC ?
+                      String.valueOf((long) row.getCell(0).getNumericCellValue()) : 
+                      row.getCell(0).getStringCellValue();
+            }
+
+            if (row.getCell(1) != null) {
+                loai_bao_hiem = row.getCell(1).getStringCellValue();
+            }
+
+            if (row.getCell(2) != null) {
+                ky_han = row.getCell(2).getStringCellValue();
+            }
+
+            if (row.getCell(3) != null) {
+               so_tien_da_dong = row.getCell(3).getCellType() == CellType.NUMERIC ?
+                           String.valueOf((long) row.getCell(3).getNumericCellValue()) :
+                           row.getCell(3).getStringCellValue();
+            }
+
+            // Thêm dữ liệu vào cơ sở dữ liệu
+            them_nd(tai_khoan_nguoi_dung_id, loai_bao_hiem, ky_han, so_tien_da_dong);
+        }
+
+        JOptionPane.showMessageDialog(this, "Nhập file thành công.");
+        load();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+    private void btnNhapfieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapfieActionPerformed
+       try {
+            JFileChooser fc = new JFileChooser();
+            int lc = fc.showOpenDialog(this);
+            if (lc == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                String tenfile = file.getName();
+                if (tenfile.endsWith(".xlsx")) {    //endsWith chọn file có phần kết thúc ...
+                    ReadExcel(file.getPath());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Phải chọn file excel");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnNhapfieActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -438,4 +704,12 @@ public class bao_hiem extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTen;
     private javax.swing.JTextField txtTongphi;
     // End of variables declaration//GEN-END:variables
+
+    void setId(String id) {
+        this.id = id; 
+    }
+    private String id;
+    String getID() {
+        return this.id;
+    }
 }

@@ -691,4 +691,8 @@ public class khoan_vay extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_stkv;
     private javax.swing.JTextField txt_stv;
     // End of variables declaration//GEN-END:variables
+
+    String getID() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
