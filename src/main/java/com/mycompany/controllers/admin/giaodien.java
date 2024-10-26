@@ -4,6 +4,8 @@
  */
 package com.mycompany.controllers.admin;
 
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author PC
@@ -14,6 +16,9 @@ public class giaodien extends javax.swing.JInternalFrame {
      * Creates new form giaodien
      */
     public giaodien() {
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         initComponents();
     }
 
@@ -37,7 +42,7 @@ public class giaodien extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, Short.MAX_VALUE)
                 .addContainerGap())
         );

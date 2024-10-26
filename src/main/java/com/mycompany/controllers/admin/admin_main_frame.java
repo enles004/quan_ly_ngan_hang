@@ -47,7 +47,7 @@ public class admin_main_frame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     private void load_tc(){
-        trang_chu tc = new trang_chu();
+        giaodien tc = new giaodien();
         Desktop1.add(tc).setVisible(true);
     }
     private void load_anh() throws IOException{
@@ -657,7 +657,7 @@ public class admin_main_frame extends javax.swing.JFrame {
         bao_hiem.setForeground(black);
         thanh_toan.setForeground(black);
         
-        trang_chu tc = new trang_chu();
+        giaodien tc = new giaodien();
         Desktop1.add(tc).setVisible(true);
     }//GEN-LAST:event_logoMouseClicked
 

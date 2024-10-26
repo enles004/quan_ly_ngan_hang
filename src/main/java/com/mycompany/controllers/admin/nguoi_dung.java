@@ -27,7 +27,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -931,6 +933,25 @@ public class nguoi_dung extends javax.swing.JInternalFrame {
             }
             sum_nd.setText(sum + "");
             tb_nd.setModel(tb);
+            DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+            leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+            DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+            rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+
+            // Áp dụng renderer cho từng cột
+            tb_nd.getColumnModel().getColumn(0).setCellRenderer(centerRenderer); // ID - căn giữa
+            tb_nd.getColumnModel().getColumn(1).setCellRenderer(leftRenderer);   // Họ - căn trái
+            tb_nd.getColumnModel().getColumn(2).setCellRenderer(leftRenderer);   // Tên - căn trái
+            tb_nd.getColumnModel().getColumn(3).setCellRenderer(centerRenderer); // Ngày sinh - căn giữa
+            tb_nd.getColumnModel().getColumn(4).setCellRenderer(centerRenderer); // Giới tính - căn giữa
+            tb_nd.getColumnModel().getColumn(5).setCellRenderer(leftRenderer);   // Địa chỉ - căn trái
+            tb_nd.getColumnModel().getColumn(6).setCellRenderer(rightRenderer);  // Số điện thoại - căn phải
+            tb_nd.getColumnModel().getColumn(7).setCellRenderer(leftRenderer);   // Email - căn trái
+            tb_nd.getColumnModel().getColumn(8).setCellRenderer(rightRenderer); 
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
